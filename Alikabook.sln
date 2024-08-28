@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alikabook", "Alikabook\Alikabook.csproj", "{3F0DDF37-E63B-4B22-B73A-96AF0ACB86AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alikabook", "Alikabook\Alikabook.csproj", "{3F0DDF37-E63B-4B22-B73A-96AF0ACB86AD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alikabook.DataAccess", "Alikabook.DataAccess\Alikabook.DataAccess.csproj", "{FD43FD15-A9F1-42F4-A305-EF77CB8881CA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alikabook.Models", "Alikabook.Models\Alikabook.Models.csproj", "{4091573F-7403-482E-B8DC-0DB63B2835A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Alikabook.Utility", "Alikabook.Utility\Alikabook.Utility.csproj", "{EDD17FF1-25EE-4161-8045-72BAEEE93A03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{3F0DDF37-E63B-4B22-B73A-96AF0ACB86AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F0DDF37-E63B-4B22-B73A-96AF0ACB86AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F0DDF37-E63B-4B22-B73A-96AF0ACB86AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD43FD15-A9F1-42F4-A305-EF77CB8881CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD43FD15-A9F1-42F4-A305-EF77CB8881CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD43FD15-A9F1-42F4-A305-EF77CB8881CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD43FD15-A9F1-42F4-A305-EF77CB8881CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4091573F-7403-482E-B8DC-0DB63B2835A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4091573F-7403-482E-B8DC-0DB63B2835A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4091573F-7403-482E-B8DC-0DB63B2835A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4091573F-7403-482E-B8DC-0DB63B2835A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDD17FF1-25EE-4161-8045-72BAEEE93A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDD17FF1-25EE-4161-8045-72BAEEE93A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDD17FF1-25EE-4161-8045-72BAEEE93A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDD17FF1-25EE-4161-8045-72BAEEE93A03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

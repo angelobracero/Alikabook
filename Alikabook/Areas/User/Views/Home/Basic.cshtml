@@ -1,0 +1,30 @@
+﻿@using Alikabook.Utility;
+@model List<BookInfo>
+
+<main class="container">
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="index">Home</a></li>
+        <li><a href="" class="active">Basic Programming</a></li>
+    </ol>
+    <div class="category-title">
+        <p>Basic Programming</p>
+    </div>
+    <section class="display-category">
+        @foreach (var book in Model)
+        {
+            var truncatedTitle = SD.TruncateTitle(book.Title, 12);
+
+            <div class="box">
+                <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.Bid"><img src="/added-books/@book.Image" alt="" /></a>
+                <div class="book-info">
+                    <p class="title">@truncatedTitle</p>
+                    <p class="price">&#8369;@book.Price</p>
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.Bid">
+                        <p class="see-more">see more</p>
+                    </a>
+                </div>
+            </div>
+        }
+    </section>
+</main>
+

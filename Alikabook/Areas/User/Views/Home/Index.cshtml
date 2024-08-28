@@ -1,0 +1,149 @@
+﻿@using Alikabook.Utility;
+@model BookViewModel
+
+<main>
+    <section class="hero">
+        <img class="hero__image"
+             src="/background-images/slider-background1.jpg"
+             alt="" />
+    </section>
+
+    <section class="about">
+        <div class="about__container">
+            <div class="about__title">
+                <p>Alikabook <span>bookstore</span></p>
+            </div>
+            <div class="about__description">
+                <span>Welcome to AlikaBook</span> - your ultimate destination for
+                all things programming and business literature! Dive into our
+                extensive collection of books covering a wide range of topics, from
+                programming languages and software development to entrepreneurship
+                and business strategy.
+            </div>
+            <div class="about__img-container">
+                <img src="~/background-images/reading-book.png" alt="" />
+            </div>
+            <div class="about__description">
+                <span>AlikaBook</span> has something for everyone. Our user-friendly
+                platform offers intuitive navigation, secure transactions, and a
+                seamless shopping experience, ensuring that you can easily explore,
+                discover, and purchase the books that inspire you.
+            </div>
+        </div>
+    </section>
+
+    <div class="book-section-container">
+        <section class="book-section">
+            <div class="book-category book-category--recently">
+                <p>Recently Added</p>
+            </div>
+            <div class="arrow arrow-left" id="arrowLeft1">
+                <i class="fa-solid fa-angle-left"></i>
+            </div>
+            <div class="arrow arrow-right">
+                <i class="fa-solid fa-angle-right" id="arrowRight1"></i>
+            </div>
+            <div class="book-container" id="scrollContainer1">
+                @foreach (var book in Model.RecentBooks)
+                {
+                    var truncatedTitle = SD.TruncateTitle(book.Title, 12);
+
+                    <div class="box">
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.Bid"><img src="/added-books/@book.Image" alt="" /></a>
+                        <div class="book-info">
+                            <p class="title">@truncatedTitle</p>
+                            <p class="price">&#8369;@book.Price</p>
+                            <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.Bid">
+                                <p class="see-more">see more</p>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+        <section class="book-section">
+            <div class="book-category book-category--business">
+                <p>Business</p>
+            </div>
+            <div class="arrow arrow-left" id="arrowLeft2">
+                <i class="fa-solid fa-angle-left"></i>
+            </div>
+            <div class="arrow arrow-right">
+                <i class="fa-solid fa-angle-right" id="arrowRight2"></i>
+            </div>
+            <div class="book-container" id="scrollContainer2">
+                @foreach (var book in Model.BusinessBooks)
+                {
+                    var truncatedTitle = SD.TruncateTitle(book.Title, 12);
+
+                    <div class="box">
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.Bid"><img src="/added-books/@book.Image" alt="" /></a>
+                        <div class="book-info">
+                            <p class="title">@truncatedTitle</p>
+                            <p class="price">&#8369;@book.Price</p>
+                            <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.Bid">
+                                <p class="see-more">see more</p>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+        <section class="book-section">
+            <div class="book-category book-category--basic">
+                <p>Basic Programming</p>
+            </div>
+            <div class="arrow arrow-left" id="arrowLeft3">
+                <i class="fa-solid fa-angle-left"></i>
+            </div>
+            <div class="arrow arrow-right">
+                <i class="fa-solid fa-angle-right" id="arrowRight3"></i>
+            </div>
+            <div class="book-container" id="scrollContainer3">
+                @foreach (var book in Model.BasicBooks)
+                {
+                    var truncatedTitle = SD.TruncateTitle(book.Title, 12);
+
+                    <div class="box">
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.Bid"><img src="/added-books/@book.Image" alt="" /></a>
+                        <div class="book-info">
+                            <p class="title">@truncatedTitle</p>
+                            <p class="price">&#8369;@book.Price</p>
+                            <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.Bid">
+                                <p class="see-more">see more</p>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+        <section class="book-section">
+            <div class="book-category book-category--advanced">
+                <p>Advanced Programming</p>
+            </div>
+            <div class="arrow arrow-left" id="arrowLeft4">
+                <i class="fa-solid fa-angle-left"></i>
+            </div>
+            <div class="arrow arrow-right">
+                <i class="fa-solid fa-angle-right" id="arrowRight4"></i>
+            </div>
+            <div class="book-container" id="scrollContainer4">
+                @foreach (var book in Model.AdvancedBooks)
+                {
+                    var truncatedTitle = SD.TruncateTitle(book.Title, 12);
+
+                    <div class="box">
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.Bid"><img src="/added-books/@book.Image" alt="" /></a>
+                        <div class="book-info">
+                            <p class="title">@truncatedTitle</p>
+                            <p class="price">&#8369;@book.Price</p>
+                            <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.Bid">
+                                <p class="see-more">see more</p>
+                            </a>
+                        </div>
+                    </div>
+                }        
+            </div>
+        </section>
+    </div>
+</main>

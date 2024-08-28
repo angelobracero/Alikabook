@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AlikaBook</title>
+    <script src="https://kit.fontawesome.com/180a654a03.js"
+            crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="~/css/user.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Alikabook.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="header">
+        <div class="header__main">
+            <div class="header__main-left">
+                <p class="header__main-logo">alikabook</p>
+                <p class="header__main-logo header__main-logo--secondary">
+                    bookstore
+                </p>
+            </div>
+            <div class="header__main-middle">
+                <form action="">
+                    <input type="text" name="" id="" placeholder="Search Books" />
+                    <input type="submit" value="" />
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </form>
+            </div>
+            <div class="header__main-right">
+                <!-- <a href="">
+                  <div class="header__main-cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <p>cart</p>
+                  </div>
+                </a> -->
+                <a href="">
+                    <div class="header__main-login">
+                        <i class="fa-regular fa-user"></i>
+                        <p>login/register</p>
+                    </div>
+                </a>
+            </div>
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <nav class="header__sub">
+            <div class="header__sub-profile">
+                <img src="~/added-books/thehardthing.jpg" alt="" />
+                <div class="header__sub-info">
+                    <p>Cardo Dalisay</p>
+                    <p>Cardodalisay35@gmail.com</p>
+                </div>
+            </div>
+            <ul class="header__sub-ul">
+                <li>
+                    <a asp-controller="Home" asp-action="index"><i class="fa-solid fa-house"></i>home </a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="business">
+                        <i class="fa-solid fa-business-time"></i>business
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="basic">
+                        <i class="fa-solid fa-code"></i>basic programming
+                    </a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="advance">
+                        <i class="fa-solid fa-code-fork"></i>advanced programming
+                    </a>
+                </li>
+            </ul>
+            <hr class="hr" />
+            <a href="">
+                <div class="header__sub-login">
+                    <i class="fa-regular fa-user"></i>
+                    <p>login/register</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="header__sub-logout">
+                    <i class="fa-regular fa-user"></i>
+                    <p>logout</p>
+                </div>
+            </a>
+        </nav>
+    </header>
+    
+    @RenderBody()
+      
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__column">
+                <p class="footer__heading">Alikabook <span>Bookstore</span></p>
+                <nav class="footer__nav">
+                    <ul>
+                        <li><a asp-controller="Home" asp-action="index">Home</a></li>
+                        <li><a asp-controller="Home" asp-action="business">Business</a></li>
+                        <li><a asp-controller="Home" asp-action="basic">Basic Programming</a></li>
+                        <li><a asp-controller="Home" asp-action="advance">advanced Programming</a></li>
+                        <li><a href="#" onclick="scrollToAbout()">About</a></li>
+
+                    </ul>
+                </nav>
+                <div class="footer__icons">
+                    <a href="">
+                        <img src="~/icons/facebook.png" alt="" width="50" height="50" />
+                    </a>
+                    <a href="">
+                        <img src="~/icons/gmail.png" alt="" width="50" height="50" />
+                    </a>
+                    <a href="">
+                        <img src="~/icons/instagram.png" alt="" width="50" height="50" />
+                    </a>
+                    <a href="">
+                        <img src="~/icons/linkedin.png" alt="" width="50" height="50" />
+                    </a>
+                </div>
+            </div>
+            <div class="footer__copyright">
+                <hr />
+                <p class="footer__text">
+                    All Rights are reserved &copy; <span>Alikabook</span> Bookstore
+                </p>
+            </div>
+        </div>
+    </footer>
+
+ 
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

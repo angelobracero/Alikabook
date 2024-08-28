@@ -1,0 +1,106 @@
+﻿@using Alikabook.Utility;
+@model BookDetailsViewModel
+
+@{
+    var truncatedBreadCrumb = SD.TruncateTitle(Model.Book.Title, 30);
+
+    var category = Model.Book.Category;
+    var words = category.Trim().Split(' ');
+    var firstWord = "";
+    string modifiedCategory = category;
+
+    if (words.Length > 1)
+    {
+        modifiedCategory = modifiedCategory == "Advance Programming" ? "Advanced Programming" : modifiedCategory;
+        firstWord = words[0];
+    }
+    else
+    {
+        firstWord = category; 
+    }
+}
+
+
+<main class="container">
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li><a asp-controller="Home" asp-action="@firstWord">@modifiedCategory</a></li>
+        <li><a href="" class="active">@truncatedBreadCrumb</a></li>
+    </ol>
+
+    <section class="book-details">
+        <div class="book-details__container">
+            <img src="~/added-books/@Model.Book.Image" alt="" />
+        </div>
+        <div class="book-details__info">
+            <form action="">
+                <h2 class="book-details__info-title">
+                    @Model.Book.Title
+                </h2>
+                <p class="book-details__info-author">
+                    By @Model.Book.Author
+                </p>
+                <div class="book-details__info-star-stocks">
+                    <div class="rating">
+                        <input type="radio" id="star5" name="rating" value="5" />
+                        <label for="star5" title="5 stars">&#9733;</label>
+
+                        <input type="radio" id="star4" name="rating" value="4" />
+                        <label for="star4" title="4 stars">&#9733;</label>
+
+                        <input type="radio" id="star3" name="rating" value="3" />
+                        <label for="star3" title="3 stars">&#9733;</label>
+
+                        <input type="radio" id="star2" name="rating" value="2" />
+                        <label for="star2" title="2 stars">&#9733;</label>
+
+                        <input type="radio" id="star1" name="rating" value="1" />
+                        <label for="star1" title="1 star">&#9733;</label>
+                    </div>
+                    <div class="stocks">
+                        <p>Stocks: &nbsp;</p>
+                        <p>@Model.Book.Stock</p>
+                    </div>
+                </div>
+                <h2 class="book-details__info-price">&#8369; @Model.Book.Price</h2>
+                <div class="book-details__info-qty">
+                    Quantity:
+                    <button>+</button>
+                    <p>5</p>
+                    <button>-</button>
+                </div>
+                <button class="book-details__info-btn">Add to Cart</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="book-description">
+        <h1 class="book-description__h1">Description</h1>
+        <hr class="book-description__hr" />
+        <p class="book-description__p">
+            @Model.Book.Description
+        </p>
+    </section>
+
+    <section class="book-description">
+        <h1 class="book-description__h1">Similar Products</h1>
+        <hr class="book-description__hr" />
+        <div class="book-container--similar">
+            @foreach (var book in Model.RelatedBooks)
+            {
+                var truncatedTitle = SD.TruncateTitle(book.Title, 12);
+
+                <div class="box">
+                    <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.Bid"><img src="/added-books/@book.Image" alt="" /></a>
+                    <div class="book-info">
+                        <p class="title">@truncatedTitle</p>
+                        <p class="price">&#8369;@book.Price</p>
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.Bid">
+                            <p class="see-more">see more</p>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</main>
