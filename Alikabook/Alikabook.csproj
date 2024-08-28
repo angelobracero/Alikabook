@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Controllers\" />
+    <Folder Include="Views\Views\Home\" />
   </ItemGroup>
 
   <ItemGroup>

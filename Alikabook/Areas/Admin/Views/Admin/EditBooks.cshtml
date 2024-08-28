@@ -1,0 +1,52 @@
+﻿@model BookInfo
+
+<main class="add-books container">
+    <h1 class="add-books__title">Edit Books</h1>
+    <div class="add-books__form">
+        <form action="">
+            <div class="add-books__form-col">
+                <div class="add-books__form-form-group">
+                    <label for="title">Title</label>
+                    <p>:</p>
+                    <input type="text" name="title" id="title" value="@Model.Title" readonly/>
+                </div>
+                <div class="add-books__form-form-group">
+                    <label for="author">Author</label>
+                    <p>:</p>
+                    <input type="text" name="author" id="author" value="@Model.Author" readonly/>
+                </div>
+                <div class="add-books__form-form-group">
+                    <label for="price">Price</label>
+                    <p>:</p>
+                    <input type="text" name="price" id="price" value="@Model.Price" readonly/>
+                </div>
+                <div class="add-books__form-form-group">
+                    <label for="category">Category</label>
+                    <p>:</p>
+                    <input type="text" name="category" id="category" value="@Model.Category" readonly/>
+                </div>
+            </div>
+            <div class="add-books__form-col">
+                <div class="add-books__form-form-group">
+                    <label for="description">Description</label>
+                    <p>:</p>
+                    <textarea name="description" id="description" rows="4" readonly>@Model.Description</textarea>
+                </div>
+                <div class="add-books__form-form-group">
+                    <label for="image">Image</label>
+                    <p>:</p>
+                    <input type="file" name="image" id="image" value="@Model.Image" readonly/>
+                </div>
+                <div class="add-books__form-form-group">
+                    <label for="quantity">Quantity</label>
+                    <p>:</p>
+                    <input type="text" name="quantity" id="quantity" value="@Model.Stock" readonly/>
+                </div>
+            </div>
+            <div class="add-books__form-buttons">
+                <button>Update Book</button>
+                <button>View Books</button>
+            </div>
+        </form>
+    </div>
+</main>

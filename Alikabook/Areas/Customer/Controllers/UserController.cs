@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Alikabook.Areas.User.Controllers
 {
-    [Area("User")]
+    [Area("Customer")]
     public class UserController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

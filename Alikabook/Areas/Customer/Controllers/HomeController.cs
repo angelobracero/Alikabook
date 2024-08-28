@@ -6,7 +6,7 @@ using System.Diagnostics;
 
 namespace Alikabook.Areas.User.Controllers
 {
-    [Area("User")]
+    [Area("Customer")]
     public class HomeController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -110,7 +110,6 @@ namespace Alikabook.Areas.User.Controllers
         {
             return View();
         }
-
 
 
     }

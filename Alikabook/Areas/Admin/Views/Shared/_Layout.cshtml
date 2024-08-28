@@ -38,8 +38,8 @@
                 <i class="fa-solid fa-angle-right"></i>
             </button>
             <div class="sidebar__submenu">
-                <button>&#8226; &nbsp; Add/Edit Books</button>
-                <button>&#8226; &nbsp; View Books</button>
+                <a asp-controller="Admin" asp-action="AddBooks">&#8226; &nbsp; Add/Edit Books</a>
+                <a asp-controller="Admin" asp-action="ViewBook">&#8226; &nbsp; View Books</a>
             </div>
             <button>
                 <i class="fa-solid fa-book"></i>
@@ -47,8 +47,8 @@
                 <i class="fa-solid fa-angle-right"></i>
             </button>
             <div class="sidebar__submenu">
-                <button>&#8226; &nbsp; View Orders</button>
-                <button>&#8226; &nbsp; Process Orders</button>
+                <a asp-controller="Admin" asp-action="OrderList">&#8226; &nbsp; View Orders</a>
+                <a asp-controller="" asp-action="">&#8226; &nbsp; Process Orders</a>
             </div>
             <button>
                 <i class="fa-solid fa-book"></i>
@@ -56,8 +56,8 @@
                 <i class="fa-solid fa-angle-right"></i>
             </button>
             <div class="sidebar__submenu">
-                <button>&#8226; &nbsp; Inventory Dashboard</button>
-                <button>&#8226; &nbsp; Stock Management</button>
+                <a asp-controller="" asp-action="">&#8226; &nbsp; Inventory Dashboard</a>
+                <a asp-controller="" asp-action="">&#8226; &nbsp; Stock Management</a>
             </div>
             <button>
                 <i class="fa-solid fa-book"></i>
@@ -65,8 +65,8 @@
                 <i class="fa-solid fa-angle-right"></i>
             </button>
             <div class="sidebar__submenu">
-                <button>&#8226; &nbsp; Inventory Dashboard</button>
-                <button>&#8226; &nbsp; Stock Management</button>
+                <a asp-controller="" asp-action="">&#8226; &nbsp; Inventory Dashboard</a>
+                <a asp-controller="" asp-action="">&#8226; &nbsp; Stock Management</a>
             </div>
         </div>
     </aside>
