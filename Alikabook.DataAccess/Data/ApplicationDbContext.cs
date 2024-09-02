@@ -1,9 +1,11 @@
 ﻿using Alikabook.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Alikabook.DataAccess.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> option) : base(option)
         {
@@ -11,9 +13,14 @@ namespace Alikabook.DataAccess.Data
         }
 
         public DbSet<BookInfo> BookInfos { get; set; }
+        public DbSet<CustomerInfo> Customer { get; set; }
+        public DbSet<Cart> Cart { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<BookInfo>().HasData(
                 new BookInfo
                 {

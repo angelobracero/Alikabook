@@ -8,6 +8,10 @@ namespace Alikabook.Utility
 {
     public static class SD
     {
+        public const string Role_Customer = "Customer";
+        public const string Role_Admin = "Admin";
+
+
         public static string TruncateTitle(this string title, int maxLength)
         {
             if (string.IsNullOrWhiteSpace(title) || title.Length <= maxLength)

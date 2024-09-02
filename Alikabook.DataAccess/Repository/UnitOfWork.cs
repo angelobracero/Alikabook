@@ -12,11 +12,13 @@ namespace Alikabook.DataAccess.Repository
     {
         private ApplicationDbContext _db;
         public IBookInfoRepository BookInfo { get; private set; }
+        public ICustomerRepository Customer { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             BookInfo = new BookInfoRepository(db);
+            Customer = new CustomerRepository(db);
         }
 
         public void Save()

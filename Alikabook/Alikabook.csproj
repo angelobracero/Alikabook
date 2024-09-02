@@ -7,7 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
       <PrivateAssets>all</PrivateAssets>
@@ -17,12 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Views\Home\" />
+    <ProjectReference Include="..\Alikabook.DataAccess\Alikabook.DataAccess.csproj" />
+    <ProjectReference Include="..\Alikabook.Utility\Alikabook.Utility.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Alikabook.DataAccess\Alikabook.DataAccess.csproj" />
-    <ProjectReference Include="..\Alikabook.Utility\Alikabook.Utility.csproj" />
+    <Folder Include="wwwroot\profile_images\" />
   </ItemGroup>
 
 </Project>

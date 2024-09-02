@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Alikabook.Utility
+@using System.Security.Claims
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -32,29 +34,50 @@
                 </form>
             </div>
             <div class="header__main-right">
-                <!-- <a href="">
-                  <div class="header__main-cart">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <p>cart</p>
-                  </div>
-                </a> -->
-                <a href="">
-                    <div class="header__main-login">
-                        <i class="fa-regular fa-user"></i>
-                        <p>login/register</p>
-                    </div>
-                </a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole(SD.Role_Customer))
+                    {
+                        <a asp-area="Customer" asp-controller="Home" asp-action="Cart">
+                            <div class="header__main-cart">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <p>cart</p>
+                            </div>
+                        </a>
+                    }
+                }
+                else
+                {
+                    <a id="register" asp-area="Identity" asp-page="/Account/Login">
+                        <div class="header__main-login">
+                            <i class="fa-regular fa-user"></i>
+                            <p>login/register</p>
+                        </div>
+                    </a>
+                }
+                @if (User.Identity.IsAuthenticated)
+            {
+                    if (User.IsInRole(SD.Role_Customer))
+                    {
+                        <div class="header__sub-profile2">
+                            <img id="profilePic" src="/added-books/thehardthing.jpg" alt="" />
+                        </div>
+                    }
+                }
             </div>
             <i class="fa-solid fa-bars"></i>
         </div>
         <nav class="header__sub">
-            <div class="header__sub-profile">
-                <img src="~/added-books/thehardthing.jpg" alt="" />
-                <div class="header__sub-info">
-                    <p>Cardo Dalisay</p>
-                    <p>Cardodalisay35@gmail.com</p>
-                </div>
-            </div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole(SD.Role_Customer)) 
+                {
+                    <div class="header__sub-profile">
+                        <img src="~/added-books/thehardthing.jpg" alt="" />
+                        @await Component.InvokeAsync("UserInfo")
+                    </div>
+                }
+            }
             <ul class="header__sub-ul">
                 <li>
                     <a asp-controller="Home" asp-action="index"><i class="fa-solid fa-house"></i>home </a>
@@ -76,21 +99,67 @@
                 </li>
             </ul>
             <hr class="hr" />
-            <a href="">
-                <div class="header__sub-login">
-                    <i class="fa-regular fa-user"></i>
-                    <p>login/register</p>
-                </div>
-            </a>
-            <a href="">
-                <div class="header__sub-logout">
-                    <i class="fa-regular fa-user"></i>
-                    <p>logout</p>
-                </div>
-            </a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole(SD.Role_Customer))
+                {
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "Customer" })" method="post">
+                        <button class="header__sub-logout">
+                            <i class="fa-regular fa-user"></i>
+                            <p>logout</p>
+                        </button>
+                    </form>
+                }   
+            }
+            else
+            {
+                <a id="register" asp-area="Identity" asp-page="/Account/Login">
+                    <div class="header__sub-login">
+                        <i class="fa-regular fa-user"></i>
+                        <p>login/register</p>
+                    </div>
+                </a>
+            }
+           
         </nav>
     </header>
-    
+    @if (User.Identity.IsAuthenticated)
+            {
+        if (User.IsInRole(SD.Role_Customer))
+        {
+            <div class="header__settings" id="headerSetting">
+                <div class="header__settings-wrapper container">
+                    <div class="header__settings-info">
+                        <img src="~/added-books/thehardthing.jpg" alt="" />
+                        @await Component.InvokeAsync("UserInfo")
+                    </div>
+                    <hr />
+                    <nav class="header__settings-nav">
+                        <ul>
+                            <li>      
+                                <a href=""><i class="fa-solid fa-message"></i>Contact</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Home" asp-action="Cart"><i class="fa-solid fa-cart-shopping"></i>Cart</a>
+                            </li>
+                            <li>
+                                <a asp-controller="User" asp-action="Profile"><i class="fa-solid fa-user"></i>Account Settings</a>
+                            </li>
+                            <li>
+                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "Customer" })" method="post">
+                                    <button class="header__settings-nav-btn">
+                                        <i class="fa-regular fa-user"></i>
+                                        <p>logout</p>
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        }
+    }
+
     @RenderBody()
       
     <footer class="footer">

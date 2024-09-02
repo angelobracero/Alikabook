@@ -1,0 +1,91 @@
+﻿@page
+@model RegisterModel
+
+<div class="login-background">
+    <div class="login">
+        <div class="login-container register-container">
+            <h1 class="login-title register-title">Register</h1>
+            <form method="post">
+                <div class="form">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.FirstName"><i class="fa-solid fa-user"></i></label>
+                        <input type="text"
+                            asp-for="Input.FirstName" id="fname" placeholder="Enter your first name" />
+
+                        </div>
+                    <div class="form-group">
+                        <label asp-for="Input.LastName"><i class="fa-solid fa-user-tie"></i></label>
+                        <input type="text" asp-for="Input.LastName" id="lname" placeholder="Enter your last name" />
+                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.Email"><i class="fa-solid fa-envelope"></i></label>
+                        <input type="email" asp-for="Input.Email" placeholder="Enter your email" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+
+                     <div class="form-group">
+                        <label asp-for="Input.PhoneNumber"><i class="fa-solid fa-phone"></i></label>
+                        <input type="phone" asp-for="Input.PhoneNumber" id="phone" placeholder="Enter your phone" />
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group form-password">
+                        <label asp-for="Input.Password"><i class="fa-solid fa-lock"></i></label>
+                        <input type="password" asp-for="Input.Password" placeholder="Enter your password" />
+                        <i class="fa-regular fa-eye"></i>
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group form-confirm">
+                        <label asp-for="Input.ConfirmPassword"><i class="fa-solid fa-key"></i></label>
+                        <input type="password" asp-for="Input.ConfirmPassword"placeholder="Confirm your password" />
+                        <i class="fa-regular fa-eye"></i>
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <div class="remember-me">
+                        <input type="checkbox" id="agreeTerms" />
+                        <label for="agreeTerms">I agree to <a href="">Terms & Conditions</a></label>
+                    </div>
+
+                    <button class="login-button" type="submit">Register</button>
+
+                    <div class="have-account">
+                        <p>Already have an account?</p>
+                        <a asp-area="Identity" asp-page="/Account/Login">Login now</a>
+                    </div>
+
+                    <p class="login-divider">Or</p>
+
+                    <div class="login-icons">
+                        <a href="">
+                            <img src="~/background-images/google.png"
+                                 alt="Google Login"
+                                 height="36"
+                                 width="36" />
+                        </a>
+                        <a href="">
+                            <img src="~/background-images/facebook.png"
+                                 alt="Facebook Login"
+                                 height="41"
+                                 width="41" />
+                        </a>
+                    </div>
+                    <br /><br />
+                </div>
+            </form>
+        </div>
+        <div class="login-design register-design">
+            <h1>Welcome to <span>Alikabook</span> Bookstore</h1>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,58 @@
+﻿@model CustomerInfo
+
+<h1 class="account__title">My Account</h1>
+<main class="account container">
+    <section class="account__details">
+        <h1>Personal Details</h1>
+        <div class="indent">
+            <form method="post">
+                <div class="account__details-form-group">
+                    <label asp-for="FirstName">First Name</label>
+                    <input asp-for="FirstName" type="text" value="@Model.FirstName" />
+                </div>
+                <div class="account__details-form-group">
+                    <label asp-for="LastName">Last Name</label>
+                    <input asp-for="LastName" type="text" value="@Model.LastName" />
+                </div>
+                <div class="account__details-form-group">
+                    <label asp-for="PhoneNumber">Phone Number</label>
+                    <input asp-for="PhoneNumber" type="text" value="@Model.PhoneNumber" />
+                </div>
+                <div class="account__details-form-group">
+                    <label asp-for="Email">Email Address</label>
+                    <input asp-for="Email" type="email" value="@Model.Email" />
+                </div>
+                <div class="account__details-form-group">
+                    <label asp-for="House">House no./Blk/Lot/Street</label>
+                    <input asp-for="House" type="text" value="@Model.House" />
+                </div>
+                <div class="account__details-form-group">
+                    <label asp-for="Barangay">Barangay</label>
+                    <input asp-for="Barangay" type="text" value="@Model.Barangay" />
+                </div>
+                <div class="account__details-form-group">
+                    <label asp-for="City">City</label>
+                    <input asp-for="City" type="text" value="@Model.City" />
+                </div>
+                <div class="account__details-form-group">
+                    <label asp-for="Province">Province</label>
+                    <input asp-for="Province" type="text" value="@Model.Province" />
+                </div>
+                <div class="account__details-form-group">
+                    <label asp-for="ZipCode">Zip Code</label>
+                    <input asp-for="ZipCode" type="text" value="@Model.ZipCode" />
+                </div>
+                <div class="account__details-form-group">
+                    <label asp-for="Birthday">Birthday<span class="optional">(optional)</span></label>
+                    <input asp-for="Birthday" type="date" value="@Model.Birthday?.ToString("yyyy-MM-dd")" />
+                </div>
+                <div class="account__details-btn">
+                    <button type="submit" class="account__details-edit edit">Save Info</button>
+                    <a asp-action="Profile" class="account__details-edit edit">Cancel</a>
+                </div>
+            </form>
+        </div>
+        <br />
+        <br />
+    </section>
+</main> 

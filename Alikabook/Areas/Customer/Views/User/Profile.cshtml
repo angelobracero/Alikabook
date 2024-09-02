@@ -1,4 +1,6 @@
-﻿<h1 class="account__title">My Account</h1>
+﻿@model CustomerInfo
+
+<h1 class="account__title">My Account</h1>
 <main class="account container">
     <nav class="account__nav">
         <ul>
@@ -21,48 +23,48 @@
     <section class="account__details">
         <h1>Personal Details</h1>
         <div class="indent">
-            <form action="">
+            <form>
                 <div class="account__details-form-group">
-                    <label for="fname">First Name</label>
-                    <input type="text" name="fname" id="fname" />
+                    <label asp-for="FirstName">First Name</label>
+                    <input asp-for="FirstName" type="text" value="@Model.FirstName" readonly />
                 </div>
                 <div class="account__details-form-group">
-                    <label for="lname">Last Name</label>
-                    <input type="text" name="lname" id="lname" />
+                    <label asp-for="LastName">Last Name</label>
+                    <input asp-for="LastName" type="text" value="@Model.LastName" readonly />
                 </div>
                 <div class="account__details-form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="text" name="phone" id="phone" />
+                    <label asp-for="PhoneNumber">Phone Number</label>
+                    <input asp-for="PhoneNumber" type="text" value="@Model.PhoneNumber" readonly />
                 </div>
                 <div class="account__details-form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" name="email" id="email" />
+                    <label asp-for="Email">Email Address</label>
+                    <input asp-for="Email" type="email" value="@Model.Email" readonly />
                 </div>
                 <div class="account__details-form-group">
-                    <label for="house">House no./Blk/Lot/Street</label>
-                    <input type="text" name="house" id="house" />
+                    <label asp-for="House">House no./Blk/Lot/Street</label>
+                    <input asp-for="House" type="text" value="@Model.House" readonly />
                 </div>
                 <div class="account__details-form-group">
-                    <label for="barangay">Barangay</label>
-                    <input type="text" name="barangay" id="barangay" />
+                    <label asp-for="Barangay">Barangay</label>
+                    <input asp-for="Barangay" type="text" value="@Model.Barangay" readonly />
                 </div>
                 <div class="account__details-form-group">
-                    <label for="city">City</label>
-                    <input type="text" name="city" id="city" />
+                    <label asp-for="City">City</label>
+                    <input asp-for="City" type="text" value="@Model.City" readonly />
                 </div>
                 <div class="account__details-form-group">
-                    <label for="province">Province</label>
-                    <input type="text" name="province" id="province" />
+                    <label asp-for="Province">Province</label>
+                    <input asp-for="Province" type="text" value="@Model.Province" readonly />
                 </div>
                 <div class="account__details-form-group">
-                    <label for="zipcode">Zip Code</label>
-                    <input type="text" name="zipcode" id="zipcode" />
+                    <label asp-for="ZipCode">Zip Code</label>
+                    <input asp-for="ZipCode" type="text" value="@Model.ZipCode" readonly />
                 </div>
                 <div class="account__details-form-group">
-                    <label for="birthday">Birthday<span class="optional">(optional)</span></label>
-                    <input type="date" name="birthday" id="birthday" />
+                    <label asp-for="Birthday">Birthday<span class="optional">(optional)</span></label>
+                    <input asp-for="Birthday" type="text" value="@Model.Birthday?.ToString("MMM. dd, yyyy")"  readonly/>
                 </div>
-                <button class="account__details-edit">Edit Info</button>
+                <a asp-controller="User" asp-action="EditProfile" asp-route-id="@Model.Id" class="account__details-edit">Edit Info</a>
             </form>
         </div>
     </section>

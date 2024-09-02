@@ -1,5 +1,4 @@
-﻿@using Alikabook.Utility;
-@model BookDetailsViewModel
+﻿@model BookDetailsViewModel
 
 @{
     var truncatedBreadCrumb = SD.TruncateTitle(Model.Book.Title, 30);
@@ -65,11 +64,21 @@
                 <h2 class="book-details__info-price">&#8369; @Model.Book.Price</h2>
                 <div class="book-details__info-qty">
                     Quantity:
-                    <button>+</button>
+                    @if(User.IsInRole(SD.Role_Customer))
+                    {
+                        <button>+</button>
+                    }
                     <p>5</p>
-                    <button>-</button>
+                    @if(User.IsInRole(SD.Role_Customer))
+                    {
+                        <button>-</button>
+                    }
                 </div>
+
+                @if(User.IsInRole(SD.Role_Customer))
+                {
                 <button class="book-details__info-btn">Add to Cart</button>
+                }
             </form>
         </div>
     </section>

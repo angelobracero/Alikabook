@@ -1,10 +1,14 @@
 ﻿using Alikabook.DataAccess.Repository.IRepository;
 using Alikabook.Models;
+using Alikabook.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace Alikabook.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class AdminController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -76,6 +80,12 @@ namespace Alikabook.Areas.Admin.Controllers
         public IActionResult OrderList()
         {
             return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

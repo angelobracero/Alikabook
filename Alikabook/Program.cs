@@ -2,6 +2,9 @@ using Alikabook.DataAccess.Data;
 using Alikabook.DataAccess.Repository;
 using Alikabook.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Alikabook.Utility;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +13,17 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>(); 
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+builder.Services.ConfigureApplicationCookie(option =>
+{
+    option.LoginPath = $"/Identity/Account/Login";
+    option.LogoutPath = $"/Identity/Account/Logout";
+    option.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+});
+
+builder.Services.AddRazorPages();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 
 var app = builder.Build();
     
@@ -26,11 +39,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
+app.MapRazorPages();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{area=Admin}/{controller=Admin}/{action=ViewBook}/{id?}");
-
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 app.Run();

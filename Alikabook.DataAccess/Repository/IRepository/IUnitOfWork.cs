@@ -9,6 +9,7 @@ namespace Alikabook.DataAccess.Repository.IRepository
     public interface IUnitOfWork
     {
         IBookInfoRepository BookInfo { get; }
+        ICustomerRepository Customer { get; }
 
         void Save();
     }

@@ -19,7 +19,13 @@
     <header class="header">
         <button class="header__menu"><i class="fa-solid fa-bars"></i></button>
         <p class="header__title">Admin Pannel</p>
-        <div class="header__logout"><a href="">Log Out</a></div>
+        <form class="header__logout" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Customer" })" method="post">
+            <button class="header__settings-nav-btn">
+                <i class="fa-regular fa-user"></i>
+                <p>Log Out</p>
+            </button>
+        </form>
+
     </header>
 
     <aside class="sidebar">
