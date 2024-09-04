@@ -85,7 +85,7 @@ namespace Alikabook.Areas.User.Controllers
                 return NotFound();
             }
 
-            BookInfo book = _unitOfWork.BookInfo.Get(b => b.Bid == id);
+            BookInfo book = _unitOfWork.BookInfo.Get(b => b.BookId == id);
 
             if (book == null)
             {
@@ -108,11 +108,96 @@ namespace Alikabook.Areas.User.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = SD.Role_Customer)]
-        public IActionResult Cart()
+        [HttpPost]
+        public IActionResult AddToCart(int bookId, int quantity)
         {
-            return View();
+            if (bookId <= 0 || quantity <= 0)
+            {
+                return BadRequest("Invalid data.");
+            }
+
+            var book = _unitOfWork.BookInfo.Get(b => b.BookId == bookId);
+            if (book == null)
+            {
+                return NotFound("Book not found.");
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var inCartAlready = _unitOfWork.Cart.Get(c => c.BookId == bookId && c.UserId == userId);
+
+            if (inCartAlready != null)
+            {
+                inCartAlready.Quantity += quantity;
+                inCartAlready.Total = inCartAlready.Price * inCartAlready.Quantity;
+                _unitOfWork.Cart.Update(inCartAlready);
+            }
+            else
+            {
+                var newCartItem = new Cart
+                {
+                    BookId = book.BookId,
+                    UserId = userId,
+                    Title = book.Title,
+                    Price = book.Price,
+                    Image = book.Image,
+                    Quantity = quantity,
+                    Total = book.Price * quantity
+                };
+
+                _unitOfWork.Cart.Add(newCartItem);
+            }
+
+            _unitOfWork.Save();
+            return RedirectToAction("ViewCart");
         }
+
+
+        [Authorize(Roles = SD.Role_Customer)]
+        public IActionResult ViewCart()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            List<Cart> cartItems = _unitOfWork.Cart.GetAll()
+                                .Where(book => book.UserId == userId)
+                                .ToList();
+            return View(cartItems);
+        }
+
+        [HttpPost]
+        public IActionResult RemoveFromCart(int bookId)
+        {
+            if (bookId <= 0)
+            {
+                return BadRequest("Invalid data.");
+            }
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var cartItem = _unitOfWork.Cart.Get(c => c.BookId == bookId && c.UserId == userId);
+
+            if (cartItem != null)
+            {
+                _unitOfWork.Cart.Remove(cartItem);
+                _unitOfWork.Save();
+                return RedirectToAction("ViewCart");
+            }
+            else
+            {
+                return NotFound("Item not found in cart.");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

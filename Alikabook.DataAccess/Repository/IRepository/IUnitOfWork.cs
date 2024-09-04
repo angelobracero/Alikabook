@@ -10,6 +10,12 @@ namespace Alikabook.DataAccess.Repository.IRepository
     {
         IBookInfoRepository BookInfo { get; }
         ICustomerRepository Customer { get; }
+        ICartRepository Cart { get; }
+        IConfirmOrderRepository ConfirmOrder { get; }
+        IOrderHistoryRepository OrderHistory { get; }
+        IOrderDetailsRepository OrderDetails { get; }
+        IMessagesRepository Messages { get; }
+        ICommentsRepository Comments { get; }
 
         void Save();
     }

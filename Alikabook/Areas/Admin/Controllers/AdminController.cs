@@ -36,7 +36,7 @@ namespace Alikabook.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            BookInfo book = _unitOfWork.BookInfo.Get(b => b.Bid == id);
+            BookInfo book = _unitOfWork.BookInfo.Get(b => b.BookId == id);
 
             if (book == null)
             {
@@ -61,7 +61,7 @@ namespace Alikabook.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            BookInfo book = _unitOfWork.BookInfo.Get(b => b.Bid == id);
+            BookInfo book = _unitOfWork.BookInfo.Get(b => b.BookId == id);
 
             if (book == null)
             {

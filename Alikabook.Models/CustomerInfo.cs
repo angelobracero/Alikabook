@@ -2,9 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Alikabook.Models
 {
@@ -12,6 +10,7 @@ namespace Alikabook.Models
     {
         [Required]
         public string FirstName { get; set; }
+
         [Required]
         public string LastName { get; set; }
 
@@ -22,7 +21,8 @@ namespace Alikabook.Models
         public string? ZipCode { get; set; }
         public DateTime? Birthday { get; set; }
 
+        public string? ProfileImage { get; set; }
 
-
+        public virtual ICollection<Comments> Comments { get; set; }
     }
 }

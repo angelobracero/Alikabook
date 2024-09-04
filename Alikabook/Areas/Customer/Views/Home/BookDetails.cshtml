@@ -32,7 +32,10 @@
             <img src="~/added-books/@Model.Book.Image" alt="" />
         </div>
         <div class="book-details__info">
-            <form action="">
+            <form method="post" asp-action="AddToCart" asp-controller="Home">
+                <input type="hidden" name="bookId" value="@Model.Book.BookId" />
+                <input type="hidden" id="hiddenQty" name="quantity" value="1" />
+                <input type="hidden" id="rating" name="rating" value="" />
                 <h2 class="book-details__info-title">
                     @Model.Book.Title
                 </h2>
@@ -41,6 +44,8 @@
                 </p>
                 <div class="book-details__info-star-stocks">
                     <div class="rating">
+                        <p id="itemRating">5</p>
+
                         <input type="radio" id="star5" name="rating" value="5" />
                         <label for="star5" title="5 stars">&#9733;</label>
 
@@ -66,18 +71,18 @@
                     Quantity:
                     @if(User.IsInRole(SD.Role_Customer))
                     {
-                        <button>+</button>
+                        <button type="button" id="btnDecrease">-</button>
                     }
-                    <p>5</p>
+                    <p id="itemQty">1</p>
                     @if(User.IsInRole(SD.Role_Customer))
                     {
-                        <button>-</button>
+                        <button type="button" id="btnIncrease">+</button>
                     }
                 </div>
 
                 @if(User.IsInRole(SD.Role_Customer))
                 {
-                <button class="book-details__info-btn">Add to Cart</button>
+                <button type="submit" class="book-details__info-btn">Add to Cart</button>
                 }
             </form>
         </div>
@@ -100,11 +105,11 @@
                 var truncatedTitle = SD.TruncateTitle(book.Title, 12);
 
                 <div class="box">
-                    <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.Bid"><img src="/added-books/@book.Image" alt="" /></a>
+                    <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="/added-books/@book.Image" alt="" /></a>
                     <div class="book-info">
                         <p class="title">@truncatedTitle</p>
                         <p class="price">&#8369;@book.Price</p>
-                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.Bid">
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId">
                             <p class="see-more">see more</p>
                         </a>
                     </div>
@@ -113,3 +118,5 @@
         </div>
     </section>
 </main>
+
+<script src="~/js/cart.js" asp-append-version="true"></script>

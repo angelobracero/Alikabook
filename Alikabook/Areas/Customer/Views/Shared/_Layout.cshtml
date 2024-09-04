@@ -38,7 +38,7 @@
                 {
                     if (User.IsInRole(SD.Role_Customer))
                     {
-                        <a asp-area="Customer" asp-controller="Home" asp-action="Cart">
+                        <a asp-area="Customer" asp-controller="Home" asp-action="Viewcart">
                             <div class="header__main-cart">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <p>cart</p>
@@ -140,7 +140,7 @@
                                 <a href=""><i class="fa-solid fa-message"></i>Contact</a>
                             </li>
                             <li>
-                                <a asp-controller="Home" asp-action="Cart"><i class="fa-solid fa-cart-shopping"></i>Cart</a>
+                                        <a asp-controller="Home" asp-action="Viewcart"><i class="fa-solid fa-cart-shopping"></i>Cart</a>
                             </li>
                             <li>
                                 <a asp-controller="User" asp-action="Profile"><i class="fa-solid fa-user"></i>Account Settings</a>

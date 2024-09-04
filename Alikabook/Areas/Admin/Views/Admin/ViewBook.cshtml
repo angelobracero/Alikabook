@@ -10,11 +10,11 @@
              var truncatedTitle = SD.TruncateTitle(book.Title, 12);
 
             <div class="box">
-                  <a asp-controller="Admin" asp-action="BookDetails" asp-route-id="@book.Bid"><img src="~/added-books/@book.Image" alt="" /></a>
+                  <a asp-controller="Admin" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/added-books/@book.Image" alt="" /></a>
               <div class="book-info">
                 <p class="title">@truncatedTitle</p>
                 <div class="box-buttons">
-                        <a asp-controller="Admin" asp-action="BookDetails" asp-route-id="@book.Bid">View</a>
+                        <a asp-controller="Admin" asp-action="BookDetails" asp-route-id="@book.BookId">View</a>
                     <a href="">Delete</a>
                 </div>
               </div>

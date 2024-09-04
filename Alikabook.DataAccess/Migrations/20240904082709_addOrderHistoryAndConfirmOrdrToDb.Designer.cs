@@ -4,6 +4,7 @@ using Alikabook.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Alikabook.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240904082709_addOrderHistoryAndConfirmOrdrToDb")]
+    partial class addOrderHistoryAndConfirmOrdrToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,7 +71,7 @@ namespace Alikabook.DataAccess.Migrations
 
                     b.HasKey("BookId");
 
-                    b.ToTable("BookInfos", (string)null);
+                    b.ToTable("BookInfos");
 
                     b.HasData(
                         new
@@ -1091,7 +1094,7 @@ namespace Alikabook.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Cart", (string)null);
+                    b.ToTable("Cart");
                 });
 
             modelBuilder.Entity("Alikabook.Models.Comments", b =>
@@ -1122,7 +1125,7 @@ namespace Alikabook.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Alikabook.Models.ConfirmOrder", b =>
@@ -1155,86 +1158,7 @@ namespace Alikabook.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ConfirmOrders", (string)null);
-                });
-
-            modelBuilder.Entity("Alikabook.Models.Messages", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MessageContent")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Messages", (string)null);
-                });
-
-            modelBuilder.Entity("Alikabook.Models.OrderDetails", b =>
-                {
-                    b.Property<int>("OrderDetailId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderDetailId"));
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("BookTitle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("OrderHistoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("OrderHistoryId1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("OrderDetailId");
-
-                    b.HasIndex("BookId");
-
-                    b.HasIndex("OrderHistoryId");
-
-                    b.HasIndex("OrderHistoryId1");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("ConfirmOrders");
                 });
 
             modelBuilder.Entity("Alikabook.Models.OrderHistory", b =>
@@ -1270,7 +1194,7 @@ namespace Alikabook.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("OrderHistory", (string)null);
+                    b.ToTable("OrderHistory");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -1565,55 +1489,6 @@ namespace Alikabook.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Alikabook.Models.Messages", b =>
-                {
-                    b.HasOne("Alikabook.Models.CustomerInfo", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Alikabook.Models.OrderDetails", b =>
-                {
-                    b.HasOne("Alikabook.Models.BookInfo", "Book")
-                        .WithMany()
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Alikabook.Models.OrderHistory", "OrderHistory")
-                        .WithMany()
-                        .HasForeignKey("OrderHistoryId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Alikabook.Models.OrderHistory", null)
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderHistoryId1");
-
-                    b.HasOne("Alikabook.Models.ConfirmOrder", "Order")
-                        .WithMany("OrderDetails")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Alikabook.Models.CustomerInfo", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("Order");
-
-                    b.Navigation("OrderHistory");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Alikabook.Models.OrderHistory", b =>
                 {
                     b.HasOne("Alikabook.Models.CustomerInfo", "User")
@@ -1679,16 +1554,6 @@ namespace Alikabook.DataAccess.Migrations
             modelBuilder.Entity("Alikabook.Models.BookInfo", b =>
                 {
                     b.Navigation("Comments");
-                });
-
-            modelBuilder.Entity("Alikabook.Models.ConfirmOrder", b =>
-                {
-                    b.Navigation("OrderDetails");
-                });
-
-            modelBuilder.Entity("Alikabook.Models.OrderHistory", b =>
-                {
-                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("Alikabook.Models.CustomerInfo", b =>

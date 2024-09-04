@@ -1,0 +1,79 @@
+﻿@model List<Cart>
+
+@{
+    double subtotal = 0, total = 0, shipping = 85, tax = 25.23;
+}
+
+<main class="cart-page container">
+    <section class="cart">
+        <div class="cart__header">
+            <i class="cart__header-back">&#8592;</i>
+            <h1 class="cart__header-title">My Cart</h1>
+        </div>
+
+        <table class="cart__table">
+            <thead class="cart__label">
+                <tr>
+                    <th>Book</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody class="display-items">
+                @foreach (var cart in Model)
+                {
+                    total = (double)cart.Price * cart.Quantity;
+                    subtotal += total;
+                <tr>
+                    <td class="cart__item">
+                        <div class="cart__item-img-container">
+                            <img src="~/added-books/@cart.Image" alt="" />
+                        </div>
+                        <div class="cart__item-details">
+                            <h1>
+                                @cart.Title
+                            </h1>
+                            <div class="cart__item-qty">
+                                QTY:
+                                <button>-</button>
+                                    <p>
+                                        @cart.Quantity
+                                    </p>
+                                <button>+</button>
+                            </div>
+                                <form asp-action="RemoveFromCart" method="post">
+                                    <input type="hidden" name="bookId" value="@cart.BookId" />
+                                    <button type="submit" class="cart__item-remove">REMOVE</button>
+                                </form>
+                            <p class="cart__item-price">&#8369; @cart.Price</p>
+                        </div>
+                        <div class="cart__item-price2">&#8369; @cart.Price</div>
+                        <div class="cart__item-total">&#8369; @cart.Total</div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+
+    <section class="summary">
+        <h1 class="summary-header">SUMMARY</h1>
+        <div class="summary__subtotal">
+            <div>
+                <h2>SUBTOTAL</h2>
+                <p>shipping fee</p>
+                <p>tax</p>
+            </div>
+            <div>
+                <p>&#8369; @subtotal</p>
+                <p>&#8369; @shipping</p>
+                <p>&#8369; @tax</p>
+            </div>
+        </div>
+        <div class="summary__total">
+            <h2>Estimated Total</h2>
+            <p>&#8369; @(subtotal + shipping + tax)</p>
+        </div>
+        <button class="summary__button">Checkout</button>
+    </section>
+</main>

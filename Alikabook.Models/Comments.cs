@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Alikabook.Models
 {
-    public class Cart
+    public class Comments
     {
         [Key]
-        public int Id { get; set; }
+        public int CommentId { get; set; }
 
         [Required]
         public int BookId { get; set; }
@@ -22,19 +22,7 @@ namespace Alikabook.Models
         public virtual CustomerInfo User { get; set; }
 
         [Required]
-        public string Title { get; set; }
-
-        [Required]
-        public decimal Price { get; set; }
-
-        [Required]
-        public string Image { get; set; }
-
-        [Required]
-        public int Quantity { get; set; }
-
-        [Required]
-        public decimal Total { get; set; }
+        public string Content { get; set; }
 
         public DateTime Date { get; set; } = DateTime.Now;
     }
