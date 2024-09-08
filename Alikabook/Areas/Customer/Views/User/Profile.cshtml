@@ -1,19 +1,20 @@
 ﻿@model CustomerInfo
 
+
 <h1 class="account__title">My Account</h1>
 <main class="account container">
     <nav class="account__nav">
         <ul>
-            <li class="active"><a href="">Profile</a></li>
-            <li><a href="">My Order</a></li>
-            <li><a href="">Order History</a></li>
+            <li class="active"><a>Profile</a></li>
+            <li><a asp-controller="User" asp-action="MyOrder">My Order</a></li>
+            <li><a asp-controller="User" asp-action="OrderHistory">Order History</a></li>
         </ul>
     </nav>
 
     <section class="account__photo">
         <h1>Your Photo</h1>
         <div class="indent account__photo-container">
-            <img src="~/added-books/thehardthing.jpg" alt="" />
+            <img src="~/images/books/thehardthing.jpg" alt="" />
             <div>
                 <button class="account__photo-remove">Remove Photo</button>
                 <button class="account__photo-upload">Upload Photo</button>

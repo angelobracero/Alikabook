@@ -29,13 +29,13 @@
 
     <section class="book-details">
         <div class="book-details__container">
-            <img src="~/added-books/@Model.Book.Image" alt="" />
+            <img src="~/images/books/@Model.Book.Image" alt="" />
         </div>
         <div class="book-details__info">
             <form method="post" asp-action="AddToCart" asp-controller="Home">
                 <input type="hidden" name="bookId" value="@Model.Book.BookId" />
                 <input type="hidden" id="hiddenQty" name="quantity" value="1" />
-                <input type="hidden" id="rating" name="rating" value="" />
+                <input type="hidden" id="rating" name="rating" value="@Model.UserBookRating?.Rating" />
                 <h2 class="book-details__info-title">
                     @Model.Book.Title
                 </h2>
@@ -44,21 +44,21 @@
                 </p>
                 <div class="book-details__info-star-stocks">
                     <div class="rating">
-                        <p id="itemRating">5</p>
+                        <p id="itemRating">@Model.UserBookRating?.Rating</p>
 
-                        <input type="radio" id="star5" name="rating" value="5" />
+                        <input type="radio" id="star5" name="rating" value="5" @(Model.UserBookRating?.Rating == 5 ? "checked" : "") />
                         <label for="star5" title="5 stars">&#9733;</label>
 
-                        <input type="radio" id="star4" name="rating" value="4" />
+                        <input type="radio" id="star4" name="rating" value="4" @(Model.UserBookRating?.Rating == 4 ? "checked" : "") />
                         <label for="star4" title="4 stars">&#9733;</label>
 
-                        <input type="radio" id="star3" name="rating" value="3" />
+                        <input type="radio" id="star3" name="rating" value="3" @(Model.UserBookRating?.Rating == 3 ? "checked" : "") />
                         <label for="star3" title="3 stars">&#9733;</label>
 
-                        <input type="radio" id="star2" name="rating" value="2" />
+                        <input type="radio" id="star2" name="rating" value="2" @(Model.UserBookRating?.Rating == 2 ? "checked" : "") />
                         <label for="star2" title="2 stars">&#9733;</label>
 
-                        <input type="radio" id="star1" name="rating" value="1" />
+                        <input type="radio" id="star1" name="rating" value="1" @(Model.UserBookRating?.Rating == 1 ? "checked" : "") />
                         <label for="star1" title="1 star">&#9733;</label>
                     </div>
                     <div class="stocks">
@@ -66,23 +66,17 @@
                         <p>@Model.Book.Stock</p>
                     </div>
                 </div>
-                <h2 class="book-details__info-price">&#8369; @Model.Book.Price</h2>
-                <div class="book-details__info-qty">
-                    Quantity:
-                    @if(User.IsInRole(SD.Role_Customer))
-                    {
-                        <button type="button" id="btnDecrease">-</button>
-                    }
-                    <p id="itemQty">1</p>
-                    @if(User.IsInRole(SD.Role_Customer))
-                    {
-                        <button type="button" id="btnIncrease">+</button>
-                    }
-                </div>
-
+                <h2 class="book-details__info-price" id="bookPrice">&#8369; @Model.Book.Price</h2>
                 @if(User.IsInRole(SD.Role_Customer))
                 {
-                <button type="submit" class="book-details__info-btn">Add to Cart</button>
+                    <div class="book-details__info-qty">
+                        Quantity:
+                        <button type="button" id="btnDecrease">-</button>
+                        <p id="itemQty">1</p>
+                        <button type="button" id="btnIncrease">+</button>
+                    </div>
+
+                    <button type="submit" class="book-details__info-btn">Add to Cart</button>
                 }
             </form>
         </div>
@@ -105,7 +99,7 @@
                 var truncatedTitle = SD.TruncateTitle(book.Title, 12);
 
                 <div class="box">
-                    <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="/added-books/@book.Image" alt="" /></a>
+                    <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="" /></a>
                     <div class="book-info">
                         <p class="title">@truncatedTitle</p>
                         <p class="price">&#8369;@book.Price</p>
@@ -118,5 +112,5 @@
         </div>
     </section>
 </main>
-
-<script src="~/js/cart.js" asp-append-version="true"></script>
+    
+<script src="~/js/bookDetails.js" asp-append-version="true"></script>

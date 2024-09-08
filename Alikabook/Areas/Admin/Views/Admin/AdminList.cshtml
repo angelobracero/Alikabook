@@ -7,8 +7,8 @@
     <nav class="order__nav">
         <ul>
             <li><a asp-controller="Admin" asp-action="AllUserList">All Orders</a></li>
-            <li class="active"><a href="#">User</a></li>
-            <li><a asp-controller="Admin" asp-action="AdminList">Admin</a></li>
+            <li><a asp-controller="Admin" asp-action="CustomerList">User</a></li>
+            <li class="active"><a href="#">Admin</a></li>
         </ul>
     </nav>
 
@@ -28,7 +28,7 @@
             </tr>
         </thead>
         <tbody class="order__table-body">
-            @foreach(var customer in Model.allUser)
+            @foreach (var customer in Model.allUser)
             {
                 <tr>
                     <td class="order__table-body-img">
@@ -41,7 +41,7 @@
                     </td>
                     <td class="order__table-body-id">
                         <p>ID: <span>#2175</span></p>
-                        <div class="user_Mobile">@Model.Roles</div>
+                        <div class="admin_Mobile">@Model.Roles</div>
                     </td>
                     <td><i class="fa-solid fa-ellipsis-vertical"></i></td>
                     <td class="order__table-body-big">
@@ -51,7 +51,7 @@
                         <div>@customer.Email</div>
                         <div>@customer.dateCreated.ToString("MMM. dd, yyyy")</div>
                         <div>@customer.PhoneNumber</div>
-                        <div class="user_PC">@Model.Roles</div>
+                        <div class="admin_PC">@Model.Roles</div>
                         <i class="fa-solid fa-ellipsis"></i>
                     </td>
                 </tr>

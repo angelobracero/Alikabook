@@ -4,6 +4,7 @@ using Alikabook.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Security.Claims;
 
@@ -59,8 +60,19 @@ namespace Alikabook.Areas.User.Controllers
         [HttpPost]
         public IActionResult EditProfile(CustomerInfo obj)
         {
+
+            if (!ModelState.IsValid)
+            {
+                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+                return View(obj);
+            }
+
             if (ModelState.IsValid)
             {
+
                 var existingCustomer = _unitOfWork.Customer.Get(c => c.Id == obj.Id);
 
                 if (existingCustomer == null)
@@ -91,7 +103,15 @@ namespace Alikabook.Areas.User.Controllers
 
         public IActionResult MyOrder()
         {
-            return View();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            List<OrderDetails> orders = _unitOfWork.OrderDetails.GetAll()
+                                .Where(o => o.UserId == userId)
+                                .Include(o => o.Book)
+                                .Include(o => o.Order)
+                                .ToList();
+
+            return View(orders);
         }
 
         public IActionResult OrderHistory()

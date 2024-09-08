@@ -24,8 +24,4 @@
     <ProjectReference Include="..\Alikabook.Utility\Alikabook.Utility.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\profile_images\" />
-  </ItemGroup>
-
 </Project>

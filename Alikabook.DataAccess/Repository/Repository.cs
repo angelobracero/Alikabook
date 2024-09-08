@@ -33,10 +33,28 @@ namespace Alikabook.DataAccess.Repository
             return query.FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll()
+        public IQueryable<T> GetAll()
         {
             IQueryable<T> query = dbSet;
-            return query.ToList();
+            return query;
+        }
+
+        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null)
+        {
+            try
+            {
+                if (filter != null)
+                {
+                    return await dbSet.Where(filter).ToListAsync();
+                }
+                return await dbSet.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception
+                // You can use a logging framework like Serilog, NLog, or built-in logging
+                throw new Exception("An error occurred while retrieving data", ex);
+            }
         }
 
         public void Remove(T entity)

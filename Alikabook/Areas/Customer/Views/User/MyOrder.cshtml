@@ -1,122 +1,74 @@
-﻿<h1 class="account__title">My Account</h1>
+﻿@model List<OrderDetails>
+
+<h1 class="account__title">My Account</h1>
 <main class="account container">
     <nav class="account__nav">
         <ul>
-            <li><a href="">Profile</a></li>
-            <li class="active"><a href="">My Order</a></li>
-            <li><a href="">Order History</a></li>
+            <li><a asp-controller="User" asp-action="Profile">Profile</a></li>
+            <li class="active"><a>My Order</a></li>
+            <li><a asp-controller="User" asp-action="OrderHistory">Order History</a></li>
         </ul>
     </nav>
 
     <section class="">
         <table class="order">
             <thead class="order__header">
-                <tr>
-                    <th><input type="checkbox" name="" id="" /></th>
+                <tr class="o">
+                    <th></th>
                     <th>Book Details</th>
                     <th>Date Order</th>
                     <th>Payment Method</th>
                     <th>Status</th>
-                    <th>Price</th>
-                    <th>---</th>
+                    <th>Price</th>      
+                    <th></th>
                 </tr>
             </thead>
             <tbody class="order__body">
-                <tr class="order__item">
-                    <td><input type="checkbox" name="" id="" /></td>
-                    <td class="order__info">
-                        <div class="order__info-img-container">
-                            <img src="~/added-books/thehardthing.jpg" alt="" />
-                        </div>
-                        <div class="order__info-details-container">
-                            <p class="order__info-title">
-                                Zero to One: Notes on Startups, or How to Build the Future
-                            </p>
-                            <p class="order__info-qty">QTY: <span>5</span></p>
-                            <p class="order__info-price">
-                                Price: <span>P 43, 232.32</span>
-                            </p>
-                            <p class="order__info-payment">
-                                Payment Method: <span>GCash</span>
-                            </p>
-                            <p class="order__info-date">
-                                Date Order: <span>01 Jan 2024</span>
-                            </p>
-                            <p class="order__info-status">
-                                Status: <span>Delivering</span>
-                            </p>
-                        </div>
-                    </td>
-                    <td class="order__info-date2">01 Jan 2024</td>
-                    <td class="order__info-payment2">Cash On Delivery</td>
-                    <td class="order__info-status2">Delivering</td>
-                    <td class="order__info-price2">P 2,125.25</td>
-                    <td>---</td>
-                </tr>
-                <tr class="order__item">
-                    <td><input type="checkbox" name="" id="" /></td>
-                    <td class="order__info">
-                        <div class="order__info-img-container">
-                            <img src="~/added-books/thehardthing.jpg" alt="" />
-                        </div>
-                        <div class="order__info-details-container">
-                            <p class="order__info-title">
-                                Zero to One: Notes on Startups, or How to Build the Future
-                            </p>
-                            <p class="order__info-qty">QTY: <span>5</span></p>
-                            <p class="order__info-price">
-                                Price: <span>P 43, 232.32</span>
-                            </p>
-                            <p class="order__info-payment">
-                                Payment Method: <span>GCash</span>
-                            </p>
-                            <p class="order__info-date">
-                                Date Order: <span>01 Jan 2024</span>
-                            </p>
-                            <p class="order__info-status">
-                                Status: <span>Delivering</span>
-                            </p>
-                        </div>
-                    </td>
-                    <td class="order__info-date2">01 Jan 2024</td>
-                    <td class="order__info-payment2">Cash On Delivery</td>
-                    <td class="order__info-status2">Delivering</td>
-                    <td class="order__info-price2">P 2,125.25</td>
-                    <td>---</td>
-                </tr>
-                <tr class="order__item">
-                    <td><input type="checkbox" name="" id="" /></td>
-                    <td class="order__info">
-                        <div class="order__info-img-container">
-                            <img src="~/added-books/thehardthing.jpg" alt="" />
-                        </div>
-                        <div class="order__info-details-container">
-                            <p class="order__info-title">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Maxime, rerum?Lorem ipsum dolor, sit amet consectetur
-                                adipisicing elit. Dicta, quibusdam.
-                            </p>
-                            <p class="order__info-qty">QTY: <span>5</span></p>
-                            <p class="order__info-price">
-                                Price: <span>P 43, 232.32</span>
-                            </p>
-                            <p class="order__info-payment">
-                                Payment Method: <span>GCash</span>
-                            </p>
-                            <p class="order__info-date">
-                                Date Order: <span>01 Jan 2024</span>
-                            </p>
-                            <p class="order__info-status">
-                                Status: <span>Delivering</span>
-                            </p>
-                        </div>
-                    </td>
-                    <td class="order__info-date2">01 Jan 2024</td>
-                    <td class="order__info-payment2">Cash On Delivery</td>
-                    <td class="order__info-status2">Delivering</td>
-                    <td class="order__info-price2">P 2,125.25</td>
-                    <td>---</td>
-                </tr>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach(var order in Model)
+                    {
+                        <tr class="order__item o">
+                            <td></td>
+                            <td class="order__info">
+                                <div class="order__info-img-container">
+                                    <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@order.BookId">
+                                        <img src="~/images/books/@order.Book.Image" alt="" />
+                                    </a>
+                                </div>
+                                <div class="order__info-details-container">
+                                    <p class="order__info-title">
+                                        @order.BookTitle
+                                    </p>
+                                    <p class="order__info-qty">QTY: <span>@order.Quantity</span></p>
+                                    <p class="order__info-price">
+                                        Price: <span>₱ @(order.Price * order.Quantity)</span>
+                                    </p>
+                                    <p class="order__info-payment">
+                                        Payment Method: <span>@order.Order.PaymentMethod</span>
+                                    </p>
+                                    <p class="order__info-date">
+                                        Date Order: <span>@order.Order.OrderDate.ToString("MMM. dd, yyyy")</span>
+                                    </p>
+                                    <p class="order__info-status">
+                                        Status: <span>@order.Order.ItemStatus</span>
+                                    </p>
+                                </div>
+                            </td>
+                            <td class="order__info-date2">@order.Order.OrderDate.ToString("MMM. dd, yyyy")</td>
+                            <td class="order__info-payment2">@order.Order.PaymentMethod</td>
+                            <td class="order__info-status2">@order.Order.ItemStatus</td>
+                            <td class="order__info-price2">₱ @(order.Price * order.Quantity)</td>
+                            <td></td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr class="empty-container">
+                        <td colspan="7"  class="empty">Your order is empty. Explore our selection and find something you love!</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </section>

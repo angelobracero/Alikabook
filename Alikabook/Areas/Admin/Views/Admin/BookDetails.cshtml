@@ -9,7 +9,7 @@
 
     <section class="book-details">
         <div class="book-details__container">
-            <img src="~/added-books/@Model.Image" alt="" />
+            <img src="~/images/books/@Model.Image" alt="" />
         </div>
         <div class="book-details__info">
             <form action="">
@@ -20,32 +20,19 @@
                     By @Model.Author
                 </p>
                 <div class="book-details__info-star-stocks">
-                    <div class="rating">
-                        <input type="radio" id="star5" name="rating" value="5" />
-                        <label for="star5" title="5 stars">&#9733;</label>
-
-                        <input type="radio" id="star4" name="rating" value="4" />
-                        <label for="star4" title="4 stars">&#9733;</label>
-
-                        <input type="radio" id="star3" name="rating" value="3" />
-                        <label for="star3" title="3 stars">&#9733;</label>
-
-                        <input type="radio" id="star2" name="rating" value="2" />
-                        <label for="star2" title="2 stars">&#9733;</label>
-
-                        <input type="radio" id="star1" name="rating" value="1" />
-                        <label for="star1" title="1 star">&#9733;</label>
-                    </div>
+                    @if(Model.RatingCount != 0)
+                    {
+                        <div class="book-details__info-rating">
+                            <p class="book-rating">Ratings: @(Model.Rating)</p>
+                            <p class="rating-count">(@Model.RatingCount people)</p>
+                        </div>
+                    }
                     <div class="stocks">
                         <p>Stocks: &nbsp;</p>
                         <p>@Model.Stock</p>
                     </div>
                 </div>
                 <h2 class="book-details__info-price">&#8369; 935.75</h2>
-                <div class="book-details__info-qty">
-                    Quantity:
-                    <p>5</p>
-                </div>
                 <a asp-controller="Admin" asp-action="EditBooks" asp-route-id="@Model.BookId" class="book-details__info-btn">Update Book</a>
                 <a class="book-details__info-btn delete">Delete Book</a>
             </form>

@@ -1,0 +1,97 @@
+﻿@model IEnumerable<CustomerInfo>
+
+@{
+    var customerRoles = ViewBag.CustomerRoles as Dictionary<string, List<string>>;
+}
+
+<main class="order container">
+    <h1 class="add-books__title">User</h1>
+    <p class="order__sub-title">122 orders found</p>
+
+    <nav class="order__nav">
+        <ul>
+            <li class="active"><a href="#">All Orders</a></li>
+            <li><a asp-controller="Admin" asp-action="CustomerList">User</a></li>
+            <li><a asp-controller="Admin" asp-action="AdminList">Admin</a></li>
+        </ul>
+    </nav>
+
+    <table class="order__table">
+        <thead class="order__table-header">
+            <tr>
+                <th>
+                    <input type="checkbox" name="" id="" />
+                </th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Date Created</th>
+                <th>Phone Number</th>
+                <th>User Type</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class="order__table-body">
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td class="order__table-body-img">
+                        <img src="~/images/books/thehardthing.jpg" alt="" />
+                    </td>
+                    <td class="order__table-body-details">
+                        <h1>@customer.FirstName @customer.LastName</h1>
+                        <p>@customer.Email</p>
+                        <p>@customer.PhoneNumber</p>
+                    </td>
+                    <td class="order__table-body-id">
+                        <p>ID: <span>#2175</span></p>
+                        <div>
+                            @if (customerRoles != null && customerRoles.ContainsKey(customer.Id))
+                            {
+                                var roles = customerRoles[customer.Id];
+                                foreach (var role in roles)
+                                {
+                                    if (role == "6424f45a-410a-4f0f-abd1-f91d2ee4b6be")
+                                    {
+                                        <span class="user_Mobile">User</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="admin_Mobile">Admin</span>
+                                    }
+                                }
+                            }
+                        </div>
+                    </td>
+                    <td><i class="fa-solid fa-ellipsis-vertical"></i></td>
+                    <td class="order__table-body-big">
+                        <input type="checkbox" name="" id="" />
+                        <div>2</div>
+                        <div>@customer.FirstName @customer.LastName</div>
+                        <div>@customer.Email</div>
+                        <div>@customer.dateCreated.ToString("MMM. dd, yyyy")</div>
+                        <div>@customer.PhoneNumber</div>
+                        <div class="status user">
+                            @if (customerRoles != null && customerRoles.ContainsKey(customer.Id))
+                            {
+                                var roles = customerRoles[customer.Id];
+                                foreach (var role in roles)
+                                {
+                                    if (role == "6424f45a-410a-4f0f-abd1-f91d2ee4b6be")
+                                    {
+                                        <span class="user_PC">User</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="admin_PC">Admin</span>
+                                    }
+                                }
+                            }
+                        </div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</main>

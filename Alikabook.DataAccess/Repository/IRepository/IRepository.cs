@@ -9,7 +9,8 @@ namespace Alikabook.DataAccess.Repository.IRepository
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetAll();
+        IQueryable<T> GetAll();
+        Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null);
         T Get(Expression<Func<T, bool>> filter);
 
         void Add(T entity);

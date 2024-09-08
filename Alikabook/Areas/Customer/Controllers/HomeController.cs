@@ -91,6 +91,8 @@ namespace Alikabook.Areas.User.Controllers
             {
                 return NotFound();
             }
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userBookRating = _unitOfWork.UserBookRatings.Get(r => r.BookId == book.BookId && r.UserId == userId);
 
             List<BookInfo> bookList = _unitOfWork.BookInfo.GetAll()
                         .Where(b => b.Category == book.Category)
@@ -101,7 +103,8 @@ namespace Alikabook.Areas.User.Controllers
             var model = new BookDetailsViewModel
             {
                 Book = book,
-                RelatedBooks = bookList
+                RelatedBooks = bookList,
+                UserBookRating = userBookRating
             };
 
 
@@ -109,7 +112,7 @@ namespace Alikabook.Areas.User.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddToCart(int bookId, int quantity)
+        public IActionResult AddToCart(int bookId, int quantity, int rating)
         {
             if (bookId <= 0 || quantity <= 0)
             {
@@ -124,7 +127,12 @@ namespace Alikabook.Areas.User.Controllers
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var inCartAlready = _unitOfWork.Cart.Get(c => c.BookId == bookId && c.UserId == userId);
+           
 
+            //
+            // Check if the item is already in the cart.
+            // It is just adding the quantity if it's there already
+            //
             if (inCartAlready != null)
             {
                 inCartAlready.Quantity += quantity;
@@ -147,6 +155,40 @@ namespace Alikabook.Areas.User.Controllers
                 _unitOfWork.Cart.Add(newCartItem);
             }
 
+
+            //
+            // Handles the rating for each books
+            //
+            if (rating > 0)
+            {
+                var userBookRating = _unitOfWork.UserBookRatings.Get(r => r.BookId == book.BookId && r.UserId == userId);
+
+                if (userBookRating == null)
+                {
+                    // Calculate new average rating
+                    var currentAverageRating = book.RatingCount > 0 ? book.Rating / book.RatingCount : 0;
+                    var newAverageRating = ((currentAverageRating * book.RatingCount) + rating) / (book.RatingCount + 1);
+
+                    // Update book rating
+                    book.Rating = newAverageRating;
+                    book.RatingCount += 1;
+
+                    var newUserRating = new UserBookRating
+                    {
+                        BookId = book.BookId,
+                        UserId = userId,
+                        Rating = rating,
+                        RatedOn = DateTime.Now
+                    };
+                    _unitOfWork.UserBookRatings.Add(newUserRating);
+                }
+                else
+                {
+                    TempData["Message"] = "You have already rated this book.";
+                }
+                _unitOfWork.BookInfo.Update(book);
+            }
+
             _unitOfWork.Save();
             return RedirectToAction("ViewCart");
         }
@@ -158,32 +200,72 @@ namespace Alikabook.Areas.User.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             List<Cart> cartItems = _unitOfWork.Cart.GetAll()
-                                .Where(book => book.UserId == userId)
+                                .Where(c => c.UserId == userId)
                                 .ToList();
             return View(cartItems);
         }
 
         [HttpPost]
-        public IActionResult RemoveFromCart(int bookId)
+        public IActionResult SubmitOrder(List<OrderDetails> OrderDetails, ConfirmOrder confirmOrder)
         {
-            if (bookId <= 0)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            List<Cart> cartItems = _unitOfWork.Cart.GetAll()
+                                .Where(c => c.UserId == userId)
+                                .ToList();
+
+            var cOrder = new ConfirmOrder
             {
-                return BadRequest("Invalid data.");
+                UserId = userId,
+                PaymentMethod = "",
+                TotalPrice = confirmOrder.TotalPrice,
+                OrderDetails = new List<OrderDetails>()
+            };
+
+            bool stockIsSufficient = true;
+            var outOfStockBooks = new List<string>();
+
+            // Check stock for each order detail
+            foreach (var orderDetail in OrderDetails)
+            {
+                var book = _unitOfWork.BookInfo.Get(b => b.BookId == orderDetail.BookId);
+
+                if (book.Stock >= orderDetail.Quantity)
+                {
+                    orderDetail.BookId = orderDetail.BookId;
+                    orderDetail.BookTitle = orderDetail.BookTitle;
+                    orderDetail.Quantity = orderDetail.Quantity;
+                    orderDetail.Price = orderDetail.Price;
+                    orderDetail.UserId = userId;
+
+                    // Reduce the stock
+                    book.Stock -= orderDetail.Quantity;
+                    _unitOfWork.BookInfo.Update(book);
+                }
+                else
+                {
+                    // Stock is insufficient, set flag and store the book title
+                    stockIsSufficient = false;
+                    outOfStockBooks.Add(book.Title);
+                }
+
+                // Add the order details to the confirm order
+                cOrder.OrderDetails.Add(orderDetail);
             }
 
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var cartItem = _unitOfWork.Cart.Get(c => c.BookId == bookId && c.UserId == userId);
-
-            if (cartItem != null)
+            // If stock is insufficient, prevent saving the order and notify the user
+            if (!stockIsSufficient)
             {
-                _unitOfWork.Cart.Remove(cartItem);
-                _unitOfWork.Save();
+                TempData["StockError"] = $"Insufficient stock for the following books: {string.Join(", ", outOfStockBooks)}";
                 return RedirectToAction("ViewCart");
             }
-            else
-            {
-                return NotFound("Item not found in cart.");
-            }
+
+            _unitOfWork.ConfirmOrder.Add(cOrder);
+            _unitOfWork.Save();
+
+            _unitOfWork.Cart.RemoveRange(cartItems);
+            _unitOfWork.Save();
+
+            return RedirectToAction("OrderConfirmation");
         }
 
 

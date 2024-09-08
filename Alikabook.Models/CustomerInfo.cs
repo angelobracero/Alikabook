@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 
 namespace Alikabook.Models
@@ -20,9 +21,11 @@ namespace Alikabook.Models
         public string? Province { get; set; }
         public string? ZipCode { get; set; }
         public DateTime? Birthday { get; set; }
-
         public string? ProfileImage { get; set; }
+        public DateTime dateCreated { get; set; } = DateTime.Now;
 
-        public virtual ICollection<Comments> Comments { get; set; }
+        [NotMapped]
+        //or [ValidateNever]
+        public virtual ICollection<Comments> Comments { get; set; } = new List<Comments>();
     }
 }

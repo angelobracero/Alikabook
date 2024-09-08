@@ -47,6 +47,19 @@ a {
     margin: 0 auto;
 }
 
+.empty-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+}
+
+.empty {
+    color: red;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
 /**!------------------------ SCROLLBAR ------------------------*/
 ::-webkit-scrollbar {
     width: 6px;
@@ -527,6 +540,7 @@ a {
     gap: 2rem;
 }
 
+
 .rating {
     display: flex;
     direction: rtl;
@@ -947,6 +961,8 @@ a {
 .order {
     margin: 0 auto;
     width: 100%;
+    margin-bottom: 1em;
+    min-height: 85vh;
 }
 
 .order__header,
@@ -1641,8 +1657,8 @@ a {
 
     /* || ORDER */
     .order input[type="checkbox"] {
-        width: 20px;
-        height: 20px;
+        width: 15px;
+        height: 15px;
         cursor: pointer;
     }
 
@@ -1677,6 +1693,11 @@ a {
         border-radius: 10px;
     }
 
+    .order__header .o,    
+    .order__item.o {
+        grid-template-columns: 25px 8fr 2fr 2fr 2fr 2fr 25px;
+    }
+
     .order__info {
         justify-self: start;
         padding: 0.5em 0;
@@ -1687,13 +1708,18 @@ a {
     }
 
     .order__info-title {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .order__info-qty {
-        font-size: 0.6rem;
+        font-size: 0.8rem;
         font-weight: bold;
     }
+
+    .order__info-date2 {
+        font-weight: bold;
+    }
+
 
     .order__item td:not(.order__info) {
         display: block;

@@ -1,0 +1,63 @@
+﻿@model List<OrderDetails>
+
+<main class="order container">
+    <h1 class="add-books__title">Order</h1>
+    <p class="order__sub-title">22 orders found</p>
+
+    <nav class="order__nav">
+        <ul>
+            <li class="active"><a>All Orders</a></li>
+            <li><a asp-action="PendingOrders">Pending</a></li>
+            <li><a asp-action="DeliveringOrders">Delivering</a></li>
+            <li><a asp-action="CompletedOrders">Completed</a></li>
+            <li><a asp-action="FailedOrders">Failed</a></li>
+        </ul>
+    </nav>
+
+    <table class="order__table">
+        <thead class="order__table-header">
+            <tr>
+                <th>
+                    <input type="checkbox" name="" id="" />
+                </th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Total Price</th>
+                <th>Payment Method</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class="order__table-body">
+            @foreach(var order in Model)
+            {
+                <tr>
+                    <td class="order__table-body-img">
+                        <img src="~/images/books/@order.Book.Image" alt="" />
+                    </td>
+                    <td class="order__table-body-details">
+                        <h1>@order.User.FirstName @order.User.LastName</h1>
+                        <p>@order.Order.OrderDate.ToString("dd MMM yyyy")</p>
+                        <p>₱ @(order.Quantity * order.Price)</p>
+                    </td>
+                    <td class="order__table-body-id">
+                        <p>ID: <span>#2175</span></p>
+                        <div>@order.Order.ItemStatus</div>
+                    </td>
+                    <td><i class="fa-solid fa-ellipsis-vertical"></i></td>
+                    <td class="order__table-body-big">
+                        <input type="checkbox" name="" id="" />
+                        <div>2</div>
+                        <div>@order.User.FirstName @order.User.LastName</div>
+                        <div>@order.Order.OrderDate.ToString("dd MMM yyyy")</div>
+                        <div>P @(order.Quantity * order.Price)</div>
+                        <div>Gcash</div>
+                        <div class="status">@order.Order.ItemStatus</div>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</main>

@@ -527,6 +527,7 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
 .order__nav ul li.active {
     color: black;
     position: relative;
+    pointer-events: none;
 }
 
 .order__nav ul li.active::after {
@@ -611,7 +612,6 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
 }
 
 .order__table-body-id div {
-    background-color: #14fd00;
     color: #086100;
     padding: 0.5em 0.5em;
     border-radius: 5px;
@@ -626,9 +626,18 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
     display: block;
 }
 
-.order__table-body-id .user {
-    color: #001c7a;
-    background-color: #6ebeff;
+.order__table-body-id .admin_Mobile {
+    padding: 0.3em;
+    border-radius: 0.5em;
+    color: #ffffff;
+    background-color: #007bff;
+}
+
+.order__table-body-id .user_Mobile {
+    padding: 0.3em;
+    border-radius: 0.5em;
+    color: #ffffff; 
+    background-color: #ff0000; 
 }
 
 /**************************************** || BOOK DETAILS ****************************************/
@@ -724,33 +733,17 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
     gap: 2rem;
 }
 
-.rating {
-    direction: rtl;
-    text-align: end;
+.book-details__info-rating {
+    display: flex;
+    gap: 1em;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 
-.rating input {
-    display: none;
-}
-
-.rating label {
-    font-size: 2em;
-    color: #ccc;
-    cursor: pointer;
-}
-
-.rating label:hover,
-.rating label:hover ~ label {
-    color: gold;
-}
-
-.rating input:checked ~ label {
-    color: gold;
-}
-
-.rating input:checked + label:hover,
-.rating input:checked + label:hover ~ label {
-    color: gold;
+.book-details__info-rating p:last-child {
+    color: gray;
+    font-style: italic;
+    font-size: 0.7rem;
 }
 
 .book-details__info-star-stocks .stocks {
@@ -783,12 +776,6 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
 .book-description__p {
     text-indent: 2em;
     line-height: 1.6rem;
-}
-
-.book-details__info-qty {
-    display: flex;
-    gap: 1em;
-    font-weight: bold;
 }
 
 /**************************************** || VIEW BOOKS ****************************************/
@@ -899,8 +886,13 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
         justify-self: center;
     }
 
-    .order__table-body-big .status {
-        color: #fd4c00;
+
+    .order__table-body-big .admin_PC {
+        color: #007bff;
+    }
+
+    .order__table-body-big .user_PC {
+        color: #ff0000;
     }
 
 

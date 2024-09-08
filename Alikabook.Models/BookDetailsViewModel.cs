@@ -10,5 +10,6 @@ namespace Alikabook.Models
     {
         public BookInfo Book { get; set; }
         public List<BookInfo> RelatedBooks { get; set; }
+        public UserBookRating? UserBookRating { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using Alikabook.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Alikabook.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240905042217_addUserBookRatingsToDb")]
+    partial class addUserBookRatingsToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1543,9 +1546,6 @@ namespace Alikabook.DataAccess.Migrations
                     b.Property<string>("ZipCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("dateCreated")
-                        .HasColumnType("datetime2");
-
                     b.HasDiscriminator().HasValue("CustomerInfo");
                 });
 
@@ -1577,7 +1577,7 @@ namespace Alikabook.DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("Alikabook.Models.CustomerInfo", "User")
-                        .WithMany()
+                        .WithMany("Comments")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1741,6 +1741,11 @@ namespace Alikabook.DataAccess.Migrations
             modelBuilder.Entity("Alikabook.Models.OrderHistory", b =>
                 {
                     b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("Alikabook.Models.CustomerInfo", b =>
+                {
+                    b.Navigation("Comments");
                 });
 #pragma warning restore 612, 618
         }

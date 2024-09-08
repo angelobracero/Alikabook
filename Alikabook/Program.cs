@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Alikabook.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Alikabook.DataAccess.Repository.IUserRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,7 @@ builder.Services.ConfigureApplicationCookie(option =>
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
+builder.Services.AddScoped<IUserRoleRepository, UserRoleRepository>();
 
 var app = builder.Build();
     

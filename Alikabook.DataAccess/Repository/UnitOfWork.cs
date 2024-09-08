@@ -19,6 +19,7 @@ namespace Alikabook.DataAccess.Repository
         public IOrderDetailsRepository OrderDetails { get; private set; }
         public IMessagesRepository Messages { get; private set; }
         public ICommentsRepository Comments { get; private set; }
+        public IUserBookRatingsRepository UserBookRatings { get; private set; }
 
 
         public UnitOfWork(ApplicationDbContext db)
@@ -32,6 +33,7 @@ namespace Alikabook.DataAccess.Repository
             OrderDetails = new OrderDetailsRepository(db);
             Messages = new MessagesRepository(db);
             Comments = new CommentsRepository(db);
+            UserBookRatings = new UserBookRatingsRepository(db);
         }
 
         public void Save()

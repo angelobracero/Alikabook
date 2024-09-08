@@ -32,7 +32,7 @@ namespace Alikabook.Models
 
         [Required]
         public int Stock { get; set; }
-
+            
         public double? Rating { get; set; }
 
         public int RatingCount { get; set; } = 0;

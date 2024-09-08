@@ -20,6 +20,8 @@ namespace Alikabook.DataAccess.Data
         public DbSet<OrderDetails> Orders { get; set; }
         public DbSet<OrderHistory> OrderHistory { get; set; }
         public DbSet<ConfirmOrder> ConfirmOrders { get; set; }
+        public DbSet<UserBookRating> UserBookRatings { get; set; }
+        public DbSet<IdentityUserRole<string>> AspNetUsersRoles { get; set; }   
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
