@@ -120,23 +120,23 @@ button {
     font-weight: bold;
 }
 
-.box-buttons {
+.box-buttons form {
     display: flex;
     flex-direction: column;
     gap: 0.2em;
 }
 
-.box-buttons > a {
+.box-buttons form > * {
     color: var(--clr-text);
     padding: 0.3em 0.8em;
     text-align: center;
 }
 
-.box-buttons a:first-child {
+.box-buttons form a {
     background-color: #17209e;
 }
 
-.box-buttons a:last-child {
+.box-buttons form button{
     background-color: #bf0000;
 }
 
@@ -148,12 +148,12 @@ button {
         max-width: 135px;
     }
 
-    .box-buttons {
+    .box-buttons form {
         flex-direction: row;
         justify-content: center;
     }
 
-    .box-buttons > a {
+    .box-buttons form > * {
         flex: 100%;
     }
 }
@@ -785,7 +785,8 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
     justify-items: center;
     gap: 0.5em;
     max-width: 900px;
-    margin: 0 auto;
+    margin-inline: auto;
+    margin-block-end: 1em;
 }
 
 

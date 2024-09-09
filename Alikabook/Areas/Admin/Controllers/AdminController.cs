@@ -15,12 +15,13 @@ namespace Alikabook.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IUserRoleRepository _userRoleRepository;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-
-        public AdminController(IUnitOfWork unitOfWork, IUserRoleRepository userRoleRepository)
+        public AdminController(IUnitOfWork unitOfWork, IUserRoleRepository userRoleRepository, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
             _userRoleRepository = userRoleRepository;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Dashboard()
@@ -34,22 +35,24 @@ namespace Alikabook.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult InsertBook(BookInfo obj)
+        public IActionResult AddBooks(BookInfo obj, IFormFile? file)
         {
-            if (ModelState.IsValid)
+                if (ModelState.IsValid)
             {
-                var insertBook = new BookInfo
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if(file is not null)
                 {
-                    Title = obj.Title,
-                    Author = obj.Author,
-                    Price = obj.Price,
-                    Category = obj.Category,
-                    Description = obj.Description,
-                    Image = obj.Image,
-                    Stock = obj.Stock,
-                };
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string productPath = Path.Combine(wwwRootPath, @"images\books");
 
-                _unitOfWork.BookInfo.Add(insertBook);
+                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    obj.Image = fileName;   
+                }
+
+                _unitOfWork.BookInfo.Add(obj);
                 _unitOfWork.Save();
 
                 return RedirectToAction("AddBooks"); 
@@ -57,6 +60,28 @@ namespace Alikabook.Areas.Admin.Controllers
 
             return View(obj);
         }
+
+        [HttpPost]
+        public IActionResult DeleteBook(int? id)
+        {
+            if (id is null)
+            {
+                return NotFound();
+            }
+
+            var book = _unitOfWork.BookInfo.Get(b => b.BookId == id);
+
+            if (book is null)
+            {
+                return NotFound(); 
+            }
+
+            _unitOfWork.BookInfo.Remove(book); 
+            _unitOfWork.Save(); 
+
+            return RedirectToAction("ViewBook");
+        }
+
 
 
         public IActionResult EditBooks(int? id)

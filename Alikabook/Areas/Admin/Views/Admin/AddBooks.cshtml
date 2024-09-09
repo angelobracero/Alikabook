@@ -1,49 +1,51 @@
-﻿<main class="add-books container">
+﻿@model BookInfo
+
+<main class="add-books container">
     <h1 class="add-books__title">Add Books</h1>
     <div class="add-books__form">
-        <form action="InsertBook" method="post">
+        <form method="post" enctype="multipart/form-data">
             <div class="add-books__form-col">
                 <div class="add-books__form-form-group">
-                    <label for="title">Title</label>
+                    <label asp-for="Title">Title</label>
                     <p>:</p>
-                    <input type="text" name="title" id="title" />
+                    <input asp-for="Title" type="text" />
                 </div>
                 <div class="add-books__form-form-group">
-                    <label for="author">Author</label>
+                    <label asp-for="Author">Author</label>
                     <p>:</p>
-                    <input type="text" name="author" id="author" />
+                    <input asp-for="Author" type="text" />
                 </div>
                 <div class="add-books__form-form-group">
-                    <label for="price">Price</label>
+                    <label asp-for="Price">Price</label>
                     <p>:</p>
-                    <input type="text" name="price" id="price" />
+                    <input asp-for="Price" type="text" />
                 </div>
                 <div class="add-books__form-form-group">
-                    <label for="category">Category</label>
+                    <label asp-for="Category">Category</label>
                     <p>:</p>
-                    <input type="text" name="category" id="category" />
+                    <input asp-for="Category" type="text" />
                 </div>
             </div>
             <div class="add-books__form-col">
                 <div class="add-books__form-form-group">
-                    <label for="description">Description</label>
+                    <label asp-for="Description">Description</label>
                     <p>:</p>
-                    <textarea name="description" id="description" rows="4"></textarea>
+                    <textarea asp-for="Description" rows="4"></textarea>
                 </div>
                 <div class="add-books__form-form-group">
-                    <label for="image">Image</label>
+                    <label for="Image">Image</label>
                     <p>:</p>
-                    <input type="file" name="image" id="image" />
+                    <input name="file" type="file" id="Image" />
                 </div>
                 <div class="add-books__form-form-group">
-                    <label for="quantity">Quantity</label>
+                    <label asp-for="Stock">Stock</label>
                     <p>:</p>
-                    <input type="text" name="quantity" id="quantity" />
+                    <input asp-for="Stock" type="text" />
                 </div>
             </div>
             <div class="add-books__form-buttons">
-                <button>Add Book</button>
-                <button>View Books</button>
+                <button type="submit">Add Book</button>
+                <button type="button">View Books</button>
             </div>
         </form>
     </div>

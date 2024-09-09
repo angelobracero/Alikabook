@@ -25,8 +25,7 @@ namespace Alikabook.Models
         [Required]
         public string Description { get; set; }
 
-        [Required]
-        public string Image { get; set; }
+        public string? Image { get; set; }
 
         public DateTime Date { get; set; } = DateTime.Now;
 
@@ -37,6 +36,6 @@ namespace Alikabook.Models
 
         public int RatingCount { get; set; } = 0;
 
-        public virtual ICollection<Comments> Comments { get; set; }
+        public virtual ICollection<Comments> Comments { get; set; } = new List<Comments>();
     }
 }
