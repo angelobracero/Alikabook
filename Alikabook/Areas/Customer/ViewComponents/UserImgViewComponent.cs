@@ -5,12 +5,12 @@ using Alikabook.ViewModels;
 
 namespace Alikabook.ViewComponents
 {
-    public class UserInfoViewComponent : ViewComponent
+    public class UserImgViewComponent : ViewComponent
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserInfoViewComponent(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor)
+        public UserImgViewComponent(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             _httpContextAccessor = httpContextAccessor;
@@ -23,10 +23,7 @@ namespace Alikabook.ViewComponents
 
             var viewModel = new UserInfoViewModel
             {
-                FirstName = customer.FirstName,
-                LastName = customer.LastName,
-                Email = customer.Email,
-                ProfileImage =  customer.ProfileImage
+                ProfileImage = customer.ProfileImage
             };
 
             return View(viewModel);

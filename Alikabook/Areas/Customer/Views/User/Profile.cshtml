@@ -1,5 +1,13 @@
 ﻿@model CustomerInfo
 
+@{
+    var image = Model.ProfileImage;
+
+    if (image is null)
+    {
+        image = "default_profile.png";
+    }
+}
 
 <h1 class="account__title">My Account</h1>
 <main class="account container">
@@ -14,13 +22,19 @@
     <section class="account__photo">
         <h1>Your Photo</h1>
         <div class="indent account__photo-container">
-            <img src="~/images/books/thehardthing.jpg" alt="" />
-            <div>
-                <button class="account__photo-remove">Remove Photo</button>
-                <button class="account__photo-upload">Upload Photo</button>
-            </div>
+            <form asp-action="AddImage" method="post" enctype="multipart/form-data">
+                <div class="account__photo-img">
+                    <img src="~/images/profile_pic/@image" alt="Your current photo" />
+                    <input type="file" name="file" accept="image/*" />
+                </div>
+                <div>
+                    <button type="submit" class="account__photo-upload">Upload Photo</button>
+                    <button type="submit" formaction="RemoveImage" class="account__photo-remove" onclick="return confirm('Are you sure you want to delete this photo?');">Remove Photo</button>
+                </div>
+            </form>
         </div>
     </section>
+    
     <section class="account__details">
         <h1>Personal Details</h1>
         <div class="indent">

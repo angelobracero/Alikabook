@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.Abstractions;
 using System.Diagnostics;
 using System.Security.Claims;
 
@@ -15,10 +16,12 @@ namespace Alikabook.Areas.User.Controllers
     public class UserController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public UserController(IUnitOfWork unitOfWork)
+        public UserController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Profile()
@@ -55,6 +58,49 @@ namespace Alikabook.Areas.User.Controllers
             }
 
             return View(customer);
+        }
+
+        [HttpPost]
+        public IActionResult AddImage(IFormFile? file)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            CustomerInfo customer = _unitOfWork.Customer.Get(c => c.Id == userId);
+
+            if (ModelState.IsValid)
+            {
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if (file is not null)
+                {
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string productPath = Path.Combine(wwwRootPath, @"images\profile_pic");
+
+                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    customer.ProfileImage = fileName;
+                }
+
+                _unitOfWork.Customer.Update(customer);
+                _unitOfWork.Save();
+
+                return RedirectToAction("Profile");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult RemoveImage()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = _unitOfWork.Customer.Get(u => u.Id == userId);
+
+            user.ProfileImage = null;
+            _unitOfWork.Customer.   Update(user);
+            _unitOfWork.Save();
+
+            return RedirectToAction("Profile");
         }
 
         [HttpPost]

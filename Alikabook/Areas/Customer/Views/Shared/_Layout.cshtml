@@ -1,6 +1,4 @@
-﻿@using Alikabook.Utility
-@using System.Security.Claims
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -60,7 +58,7 @@
                     if (User.IsInRole(SD.Role_Customer))
                     {
                         <div class="header__sub-profile2">
-                            <img id="profilePic" src="~/images/books/thehardthing.jpg" alt="" />
+                            @await Component.InvokeAsync("UserImg")
                         </div>
                     }
                 }
@@ -73,7 +71,6 @@
                 if (User.IsInRole(SD.Role_Customer)) 
                 {
                     <div class="header__sub-profile">
-                        <img src="~/images/books/thehardthing.jpg" alt="" />
                         @await Component.InvokeAsync("UserInfo")
                     </div>
                 }
@@ -130,7 +127,6 @@
             <div class="header__settings" id="headerSetting">
                 <div class="header__settings-wrapper container">
                     <div class="header__settings-info">
-                        <img src="~/images/books/thehardthing.jpg" alt="" />
                         @await Component.InvokeAsync("UserInfo")
                     </div>
                     <hr />
@@ -140,7 +136,7 @@
                                 <a href=""><i class="fa-solid fa-message"></i>Contact</a>
                             </li>
                             <li>
-                                        <a asp-controller="Home" asp-action="Viewcart"><i class="fa-solid fa-cart-shopping"></i>Cart</a>
+                                <a asp-controller="Home" asp-action="Viewcart"><i class="fa-solid fa-cart-shopping"></i>Cart</a>
                             </li>
                             <li>
                                 <a asp-controller="User" asp-action="Profile"><i class="fa-solid fa-user"></i>Account Settings</a>

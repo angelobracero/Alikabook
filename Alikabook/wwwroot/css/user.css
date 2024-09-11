@@ -845,20 +845,56 @@ a {
     padding-bottom: 0.225em;
 }
 
-.account__photo-container {
+.account__photo-container form {
     display: grid;
     gap: 0.5em;
 }
 
-.account__photo img {
+account__photo-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.account__photo-img img {
     width: 12em;
     height: 12em;
     border-radius: 6em;
-    margin: 0.5em auto;
+    margin-inline: auto;
     border: 3px solid var(--clr-primary-light);
 }
 
-.account__photo-container div {
+.account__photo-img input[type="file"] {
+    width: 11.7em;
+    height: 11.7em;
+    justify-self: center;
+    align-self: center;
+    background-color: black;
+    opacity: 0;
+    border-radius: 6em;
+    position: absolute;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.account__photo-img input[type="file"]::file-selector-button {
+    color: white;
+    margin-top: 5.4em;
+    margin-left: 2.7em;
+    border: none;
+    background-color: inherit;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.account__photo-img input[type="file"]:hover,
+.account__photo-img input[type="file"]:focus-within {
+    opacity: 0.8;
+}
+
+.account__photo-container form div:first-child{
     display: grid;
     gap: 0.5em;
     width: 90%;
@@ -879,6 +915,7 @@ a {
 .account__photo-remove {
     background-color: var(--clr-text);
     color: var(--clr-primary);
+    margin-top: 0.5em;
 }
 
 .account__photo-upload {
@@ -1447,18 +1484,16 @@ a {
         padding-bottom: 1em;
     }
 
-    .account__photo-container {
+    .account__photo-container form {
         grid-template-columns: 300px 1fr;
     }
 
-    .account__photo-container div {
+    .account__photo-container form > div:nth-child(2) {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: start;
         max-width: 600px;
     }
-
 
     .account__details form {
         flex-flow: row wrap;

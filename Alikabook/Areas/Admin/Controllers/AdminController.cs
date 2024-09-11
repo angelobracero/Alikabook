@@ -37,7 +37,7 @@ namespace Alikabook.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult AddBooks(BookInfo obj, IFormFile? file)
         {
-                if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 if(file is not null)

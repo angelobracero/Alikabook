@@ -89,7 +89,8 @@ namespace Alikabook.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(64, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
+            [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$", ErrorMessage = "The password must contain at least one uppercase letter, one lowercase letter, and one number.")]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
@@ -98,26 +99,32 @@ namespace Alikabook.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
+            [Required]
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Compare("Password", ErrorMessage = "The password do not match.")]
             public string ConfirmPassword { get; set; }
 
             public string? Role { get; set; }
 
             [Required]
+            [Display(Name = "First Name")]
             public string FirstName { get; set; }
 
             [Required]
+            [Display(Name = "Last Name")]
             public string LastName { get; set; }
 
+            [Required]
             [DataType(DataType.PhoneNumber)]
             [Display(Name = "Phone Number")]
             [RegularExpression(@"^09\d{9}$", ErrorMessage = "The phone number must start with '09' and be 11 digits long.")]
             public string PhoneNumber { get; set; }
 
+            [Range(typeof(bool), "true", "true", ErrorMessage = "You must agree to the terms and conditions to register.")]
+            [Display(Name = "Agree to Terms and Conditions")]
+            public bool AgreeToTerms { get; set; }
         }
-
 
         public async Task OnGetAsync(string returnUrl = null)
         {
