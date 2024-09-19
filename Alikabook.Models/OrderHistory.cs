@@ -21,7 +21,8 @@ namespace Alikabook.Models
         [Required]
         public DateTime OrderDate { get; set; }
 
-        public string ItemStatus { get; set; } = "completed";
+        [Required]
+        public string ItemStatus { get; set; }
 
         [Required]
         public double TotalPrice { get; set; }

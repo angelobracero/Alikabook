@@ -51,7 +51,7 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 85vh;
+    min-height: 55vh;
 }
 
 .empty {
@@ -622,7 +622,7 @@ a {
 /**************************************** || CART ****************************************/
 .cart-page {
     display: grid;
-    min-height: 85vh;
+    min-height: 95vh;
 }
 
 .cart__header {
@@ -774,9 +774,6 @@ a {
     padding-left: 1em;
 }
 
-.summary__total {
-}
-
 .summary__button {
     background-color: var(--clr-primary);
     color: var(--clr-text);
@@ -794,6 +791,49 @@ a {
     transform: scale(1.01);
 }
 
+.payment-method h2 {
+    font-weight: bold;
+}
+
+.payment-radio {
+    display: grid;
+}
+
+.payment-radio-group {
+    display: grid;
+    grid-template-columns: 1fr 30px;
+    align-items: center;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.payment-radio-group:has(input[type="radio"]:checked) {
+    border: 2px solid var(--clr-primary);
+    background-color: var(--clr-primary-light);
+    border-radius: 5px;
+}
+
+.payment-radio-group label {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 80px 1fr;
+    cursor: pointer;
+    padding-inline-start: 0.5em;
+}
+
+.payment-radio-group label p {
+    padding-inline-start: 1em;
+}
+
+
+.payment-radio-group img {
+    width: auto;
+    height: 50px;
+}
+
+#googlepayimg {
+    height: 20px;
+}
 /* || MY ACCOUNT */
 .account__title {
     color: black;
@@ -1624,6 +1664,10 @@ account__photo-img {
         grid-template-columns: 1fr 350px;
     }
 
+    .cart-page.cart-page-full {
+        grid-template-columns: 1fr;
+    }
+
     .cart__header-back,
     .cart__item-price {
         display: none;
@@ -1670,8 +1714,7 @@ account__photo-img {
         height: 85vh;
         display: flex;
         flex-direction: column;
-        gap: 1em;
-        padding: 4em 1em 4em 1em;
+        padding: 1em;
         border-bottom-left-radius: 10px;
         margin: 0;
         background-color: #f0efff;
@@ -1681,7 +1724,7 @@ account__photo-img {
 
     .summary__button {
         padding: 0;
-        margin: 0;
+        margin-top: 1em;
     }
 
     /* || DISPLAY BOOKS IN OTHER CATEGORY */

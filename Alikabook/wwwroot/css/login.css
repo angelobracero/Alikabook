@@ -1,29 +1,4 @@
-﻿.message-container {
-    top: 2em;
-    position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.message {
-    background-color: white;
-    border: 3px solid black;
-    border-radius: 10px;
-    width: 80%;
-    position: absolute;
-    z-index: 10;
-    color: red;
-    padding: 1em 2em;
-    list-style: none;
-}
-
-.text-danger {
-    list-style-type: none;
-}
-
-
-.login-background {
+﻿.login-background {
     background-color: #125a96;
     width: 100vw;
     height: 100vh;
@@ -94,6 +69,7 @@
     padding-right: 2em;
 }
 
+.form-current,
 .form-password,
 .form-confirm {
     position: relative;
@@ -216,7 +192,7 @@
 
 .login-icons > *:hover,
 .login-icons > *:focus-visible {
-    scale: 1.1;
+    transform: scale(1.1);
 }
 
 /* || RESPONSIVE*/
@@ -231,6 +207,7 @@
     .login-container::-webkit-scrollbar {
         display: none;
     }
+
 }
 
 @media only screen and (min-width: 1024px) {
@@ -244,6 +221,10 @@
         border-radius: 0;
     }
 
+    .change-password-container {
+        max-width: 600px;
+    }
+
     .login-container::-webkit-scrollbar {
         display: block;
     }
@@ -252,8 +233,13 @@
         order: 1;
     }
 
+
     .login {
         grid-template-columns: 450px 450px;
+    }
+
+    .change-password {
+        grid-template-columns: 600px;   
     }
 
     .login-design {

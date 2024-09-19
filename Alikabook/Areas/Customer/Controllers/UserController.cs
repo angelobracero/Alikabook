@@ -71,6 +71,17 @@ namespace Alikabook.Areas.User.Controllers
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 if (file is not null)
                 {
+                    // delete the old image after adding new profile image
+                    if (!string.IsNullOrEmpty(customer.ProfileImage))
+                    {
+                        string oldImagePath = Path.Combine(wwwRootPath, @"images\profile_pic", customer.ProfileImage);
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+
+                    // changing the filename to random guid
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string productPath = Path.Combine(wwwRootPath, @"images\profile_pic");
 
@@ -79,14 +90,20 @@ namespace Alikabook.Areas.User.Controllers
                         file.CopyTo(fileStream);
                     }
                     customer.ProfileImage = fileName;
-                }
 
-                _unitOfWork.Customer.Update(customer);
-                _unitOfWork.Save();
+                    _unitOfWork.Customer.Update(customer);
+                    _unitOfWork.Save();
+                    TempData["success"] = "Successfully changed profile image!!";
+                }
+                else
+                {
+                    TempData["error"] = "No image file selected. Please choose an image.";
+                }
 
                 return RedirectToAction("Profile");
             }
 
+            TempData["error"] = "Something went wrong!!";
             return View();
         }
 
@@ -100,22 +117,13 @@ namespace Alikabook.Areas.User.Controllers
             _unitOfWork.Customer.   Update(user);
             _unitOfWork.Save();
 
+            TempData["success"] = "Successfully deleted profile image!!";
             return RedirectToAction("Profile");
         }
 
         [HttpPost]
         public IActionResult EditProfile(CustomerInfo obj)
         {
-
-            if (!ModelState.IsValid)
-            {
-                foreach (var error in ModelState.Values.SelectMany(v => v.Errors))
-                {
-                    Console.WriteLine(error.ErrorMessage);
-                }
-                return View(obj);
-            }
-
             if (ModelState.IsValid)
             {
 
@@ -141,9 +149,12 @@ namespace Alikabook.Areas.User.Controllers
                 _unitOfWork.Customer.Update(existingCustomer);
                 _unitOfWork.Save();
 
+                TempData["success"] = "Successfully updated your information";
                 return RedirectToAction("Profile", "User");
             }
-            return View(obj);
+
+            TempData["error"] = "Something went wrong!!";
+            return View("Profile");
         }
 
 
@@ -162,7 +173,16 @@ namespace Alikabook.Areas.User.Controllers
 
         public IActionResult OrderHistory()
         {
-            return View();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            List<OrderDetails> orders = _unitOfWork.OrderDetails.GetAll()
+                                .Where(o => o.UserId == userId)
+                                .Where(o => o.OrderHistory != null)
+                                .Include(o => o.Book)
+                                .Include(o => o.OrderHistory)
+                                .ToList();
+
+            return View(orders);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

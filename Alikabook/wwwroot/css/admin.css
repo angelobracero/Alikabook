@@ -76,7 +76,7 @@ button {
     left: 0;
     border-left: 15px solid transparent;
     border-bottom: 15px solid var(--clr-primary);
-    rotate: 180deg;
+    transform: rotate(180deg);
     z-index: 2;
 }
 
@@ -87,12 +87,12 @@ button {
     right: 0;
     border-left: 15px solid transparent;
     border-bottom: 15px solid var(--clr-primary);
-    rotate: -90deg;
+    transform: rotate(-90deg);
     z-index: 2;
 }
 
 .box:hover {
-    scale: 1.01;
+    transform: scale(1.01);
     transform: translateY(-0.3em);
 }
 
@@ -301,7 +301,7 @@ button {
     background-color: inherit;
 }
 
-.fa-xmark {
+.xmark {
     font-size: 1.5rem;
 }
 
@@ -381,7 +381,7 @@ button {
 
 .add-books__title {
     background: linear-gradient( to top, #000000 0%, #002646 23%, #003969 44%, #00ffd8 81% );
-    -webkit-background-clip: text;
+    -webkit-background-clip: text;  
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
@@ -477,7 +477,7 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
 .add-books__form-buttons button:hover,
 .add-books__form-buttons button:focus-visible {
     opacity: 0.8;
-    scale: 1.01;
+    transform: scale(1.01);
 }
 
 /**************************************** || ORDER ****************************************/
@@ -486,7 +486,7 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
 }
 
 .order__sub-title {
-    margin-top: -1.5em;
+    margin-top: -1em;
     text-align: center;
 }
 
@@ -594,7 +594,7 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
 .order__table-body-details p {
     font-size: 0.7rem;
 }
-
+    
 .order__table-body-details p:last-child {
     font-weight: bold;
 }
@@ -608,6 +608,10 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
     font-weight: bold;
 }
 
+.fa-ellipsis-vertical {
+    cursor: pointer;
+}
+
 .order__table-body-id p {
 }
 
@@ -615,6 +619,70 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
     color: #086100;
     padding: 0.5em 0.5em;
     border-radius: 5px;
+}
+
+.order__action-cell {
+    position: relative;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 500;
+}
+
+/* Dropdown items */
+.dropdown-item {
+    white-space: nowrap;
+    display: block;
+    padding: 1em 2em;
+    color: #333;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus-visible {
+    color: white;
+    background-color: var(--clr-primary);
+    cursor: pointer;
+    }
+
+.dropdown-item-status-items {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 600
+}
+
+.dropdown-item-status.focus {
+    background-color: var(--clr-primary);
+    color: white;
+}
+
+.dropdown-item-status {
+    cursor: pointer;
+    position: relative;
+}
+
+/* To show dropdown-item-status-items when it's visible */
+.dropdown-item-status-items button {
+    width: 100px;
+    height: 40px;
+    color: #333;
+}
+
+.dropdown-item-status-items button:hover {
+    background-color: var(--clr-primary);
+    color: white;
+    cursor: pointer;
 }
 
 /* || USER */
@@ -724,7 +792,7 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
 .book-details__info-btn:hover,
 .book-details__info-btn:focus-visible {
     opacity: 0.8;
-    scale: 1.01;
+    transform: scale(1.01);
 }
 
 .book-details__info-star-stocks {
@@ -895,6 +963,11 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
     .order__table-body-big .user_PC {
         color: #ff0000;
     }
+
+    .dropdown {
+        right: 2em;
+    }
+
 
 
     /* || BOOK DETAILS */

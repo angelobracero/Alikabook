@@ -41,27 +41,27 @@ namespace Alikabook.DataAccess.Data
                 .HasPrecision(18, 2);
 
             modelBuilder.Entity<OrderDetails>()
-                .HasOne(od => od.Order)
-                .WithMany(o => o.OrderDetails)
-                .HasForeignKey(od => od.OrderId)
+               .HasOne(od => od.Order)
+               .WithMany(co => co.OrderDetails)
+               .HasForeignKey(od => od.OrderId)
+               .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<OrderDetails>()
+                .HasOne(od => od.OrderHistory)
+                .WithMany(oh => oh.OrderDetails)
+                .HasForeignKey(od => od.OrderHistoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<OrderDetails>()
                 .HasOne(od => od.Book)
-                .WithMany()
+                .WithMany(b => b.OrderDetails)
                 .HasForeignKey(od => od.BookId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<OrderDetails>()
                 .HasOne(od => od.User)
-                .WithMany()
+                .WithMany(u => u.OrderDetails)
                 .HasForeignKey(od => od.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<OrderDetails>()
-                .HasOne(od => od.OrderHistory)
-                .WithMany()
-                .HasForeignKey(od => od.OrderHistoryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<BookInfo>().HasData(

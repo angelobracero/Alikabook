@@ -4,6 +4,7 @@ using Alikabook.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Alikabook.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240918084920_AddOrderDetailsAgain")]
+    partial class AddOrderDetailsAgain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,7 +70,7 @@ namespace Alikabook.DataAccess.Migrations
 
                     b.HasKey("BookId");
 
-                    b.ToTable("BookInfos", (string)null);
+                    b.ToTable("BookInfos");
 
                     b.HasData(
                         new
@@ -1090,7 +1093,7 @@ namespace Alikabook.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Cart", (string)null);
+                    b.ToTable("Cart");
                 });
 
             modelBuilder.Entity("Alikabook.Models.Comments", b =>
@@ -1121,7 +1124,7 @@ namespace Alikabook.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Alikabook.Models.ConfirmOrder", b =>
@@ -1154,7 +1157,7 @@ namespace Alikabook.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ConfirmOrders", (string)null);
+                    b.ToTable("ConfirmOrders");
                 });
 
             modelBuilder.Entity("Alikabook.Models.Messages", b =>
@@ -1184,7 +1187,7 @@ namespace Alikabook.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Messages", (string)null);
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("Alikabook.Models.OrderDetails", b =>
@@ -1228,7 +1231,7 @@ namespace Alikabook.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Alikabook.Models.OrderHistory", b =>
@@ -1264,7 +1267,7 @@ namespace Alikabook.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("OrderHistory", (string)null);
+                    b.ToTable("OrderHistory");
                 });
 
             modelBuilder.Entity("Alikabook.Models.UserBookRating", b =>
@@ -1294,7 +1297,7 @@ namespace Alikabook.DataAccess.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserBookRatings", (string)null);
+                    b.ToTable("UserBookRatings");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

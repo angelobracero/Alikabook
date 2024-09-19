@@ -74,7 +74,7 @@ namespace Alikabook.Areas.Identity.Pages.Account
             /// </summary>
             [Required]
             [StringLength(64, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
-            [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$", ErrorMessage = "The password must contain at least one uppercase letter, one lowercase letter, and one number.")]
+            [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$", ErrorMessage = "The password must contain at least one of the following: uppercase letter, lowercase letter, number and symbol.")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
@@ -124,10 +124,12 @@ namespace Alikabook.Areas.Identity.Pages.Account
                     var roles = await _signInManager.UserManager.GetRolesAsync(user);
                     if (roles.Contains("Admin"))
                     {
+                        TempData["success"] = "Login Successfully!";
                         return Redirect("/Admin/Admin/Dashboard");
                     }
                     else if (roles.Contains("Customer"))
                     {
+                        TempData["success"] = "Login Successfully!";
                         return Redirect("/Customer/Home/Index");
                     }
                     else
@@ -148,6 +150,7 @@ namespace Alikabook.Areas.Identity.Pages.Account
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    TempData["error"] = "Invalid login attempt.";
                     return Page();
                 }
             }

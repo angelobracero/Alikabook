@@ -2,7 +2,7 @@
 
 <main class="order container">
     <h1 class="add-books__title">Order</h1>
-    <p class="order__sub-title">22 orders found</p>
+    <p class="order__sub-title">@(Model.Count() == 0 ? "no" : Model.Count().ToString()) completed orders found</p>
 
     <nav class="order__nav">
         <ul>
@@ -14,50 +14,83 @@
         </ul>
     </nav>
 
-    <table class="order__table">
-        <thead class="order__table-header">
-            <tr>
-                <th>
-                    <input type="checkbox" name="" id="" />
-                </th>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Date</th>
-                <th>Total Price</th>
-                <th>Payment Method</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody class="order__table-body">
-            @foreach (var order in Model)
-            {
+    <form asp-action="ChangeStatus" method="post">
+        <input type="hidden" name="orderId" id="orderId" />
+        <input type="hidden" name="status" id="status" />
+
+        <table class="order__table">
+            <thead class="order__table-header">
                 <tr>
-                    <td class="order__table-body-img">
-                        <img src="~/images/books/@order.Book.Image" alt="" />
-                    </td>
-                    <td class="order__table-body-details">
-                        <h1>@order.User.FirstName @order.User.LastName</h1>
-                        <p>@order.Order.OrderDate.ToString("dd MMM yyyy")</p>
-                        <p>₱ @(order.Quantity * order.Price)</p>
-                    </td>
-                    <td class="order__table-body-id">
-                        <p>ID: <span>#2175</span></p>
-                        <div>@order.Order.ItemStatus</div>
-                    </td>
-                    <td><i class="fa-solid fa-ellipsis-vertical"></i></td>
-                    <td class="order__table-body-big">
+                    <th>
                         <input type="checkbox" name="" id="" />
-                        <div>2</div>
-                        <div>@order.User.FirstName @order.User.LastName</div>
-                        <div>@order.Order.OrderDate.ToString("dd MMM yyyy")</div>
-                        <div>P @(order.Quantity * order.Price)</div>
-                        <div>Gcash</div>
-                        <div class="status">@order.Order.ItemStatus</div>
-                        <i class="fa-solid fa-ellipsis"></i>
-                    </td>
+                    </th>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Payment Method</th>
+                    <th>Status</th>
+                    <th>Action</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+
+            <tbody class="order__table-body">
+                @foreach (var order in Model)
+                {
+                    var image = order.User.ProfileImage;
+                    if (image is null) image = "default_profile.png";
+
+                    <tr>
+                        <td class="order__table-body-img">
+                            <img src="~/images/profile_pic/@image" alt="" />
+                        </td>
+                        <td class="order__table-body-details">
+                            <h1>@order.User.FirstName @order.User.LastName</h1>
+                            <p>@order.OrderHistory.OrderDate.ToString("dd MMM yyyy")</p>
+                            <p>₱ @(order.Quantity * order.Price)</p>
+                        </td>
+                        <td class="order__table-body-id">
+                            <p>ID: <span>@order.OrderDetailId</span></p>
+                            <div>@order.OrderHistory.ItemStatus</div>
+                        </td>
+                        <td class="order__action-cell">
+                            <i class="fa-solid fa-ellipsis-vertical" onclick="toggleDropdown(event)"></i>
+                            <div class="dropdown">
+                                @* <div class="dropdown-item dropdown-item-status" onclick="toggleDropdown(event)">Change Status</div>
+                                <div class="dropdown-item-status-items">
+                                    <button type="submit" onclick="setStatus('@order.OrderHistory.OrderHistoryId', 'Completed')">Completed</button>
+                                    <button type="submit" onclick="setStatus('@order.OrderHistory.OrderHistoryId', 'Failed')">Failed</button>
+                                </div> *@
+                                <a href="#view" class="dropdown-item">View Profile</a>
+                                <a href="#delete" class="dropdown-item" onclick="deleteOrder('@order.OrderHistory.OrderHistoryId')">Delete</a>
+                            </div>
+                        </td>
+                        <td class="order__table-body-big">
+                            <input type="checkbox" name="" id="" />
+                            <div>@order.OrderDetailId</div>
+                            <div>@order.User.FirstName @order.User.LastName</div>
+                            <div>@order.OrderHistory.OrderDate.ToString("dd MMM yyyy")</div>
+                            <div>P @(order.Quantity * order.Price)</div>
+                            <div>@order.OrderHistory.PaymentMethod</div>
+                            <div class="status">@order.OrderHistory.ItemStatus</div>
+                            <div class="order__action-cell">
+                                <i class="fa-solid fa-ellipsis-vertical" onclick="toggleDropdown(event)"></i>
+                                <div class="dropdown">
+                                    @*< div class="dropdown-item dropdown-item-status" onclick="toggleDropdown(event)">Change Status</div>
+                                    <div class="dropdown-item-status-items">
+                                        <button type="submit" onclick="setStatus('@order.OrderHistory.OrderHistoryId', 'Completed')">Completed</button>
+                                        <button type="submit" onclick="setStatus('@order.OrderHistory.OrderHistoryId', 'Failed')">Failed</button>
+                                    </div> *@
+                                    <a href="#view" class="dropdown-item">View Profile</a>
+                                    <a href="#delete" class="dropdown-item" onclick="deleteOrder('@order.OrderHistory.OrderHistoryId')">Delete</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </form>
 </main>
+
+<script src="~/js/ellipsis.js" asp-append-version="true"></script>

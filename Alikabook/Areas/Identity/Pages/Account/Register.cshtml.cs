@@ -90,7 +90,7 @@ namespace Alikabook.Areas.Identity.Pages.Account
             /// </summary>
             [Required]
             [StringLength(64, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
-            [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$", ErrorMessage = "The password must contain at least one uppercase letter, one lowercase letter, and one number.")]
+            [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$", ErrorMessage = "The password must contain at least one of the following: uppercase letter, lowercase letter, number and symbol.")]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
@@ -120,10 +120,6 @@ namespace Alikabook.Areas.Identity.Pages.Account
             [Display(Name = "Phone Number")]
             [RegularExpression(@"^09\d{9}$", ErrorMessage = "The phone number must start with '09' and be 11 digits long.")]
             public string PhoneNumber { get; set; }
-
-            [Range(typeof(bool), "true", "true", ErrorMessage = "You must agree to the terms and conditions to register.")]
-            [Display(Name = "Agree to Terms and Conditions")]
-            public bool AgreeToTerms { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -150,6 +146,7 @@ namespace Alikabook.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
@@ -158,8 +155,10 @@ namespace Alikabook.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+                    TempData["success"] = "Succesfully created an account";
 
-                    if(string.IsNullOrEmpty(Input.Role))
+                    //adding a role
+                    if (string.IsNullOrEmpty(Input.Role))
                     {
                         await _userManager.AddToRoleAsync(user, SD.Role_Customer);
                     }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace Alikabook.Areas.Admin.Controllers
 {
@@ -54,10 +55,11 @@ namespace Alikabook.Areas.Admin.Controllers
 
                 _unitOfWork.BookInfo.Add(obj);
                 _unitOfWork.Save();
-
+                TempData["success"] = "Book Added Successfully";
                 return RedirectToAction("AddBooks"); 
             }
 
+            TempData["error"] = "Something went wrong!";
             return View(obj);
         }
 
@@ -77,7 +79,8 @@ namespace Alikabook.Areas.Admin.Controllers
             }
 
             _unitOfWork.BookInfo.Remove(book); 
-            _unitOfWork.Save(); 
+            _unitOfWork.Save();
+            TempData["success"] = "Book Deleted Successfully";
 
             return RedirectToAction("ViewBook");
         }
@@ -216,42 +219,44 @@ namespace Alikabook.Areas.Admin.Controllers
             var orders = _unitOfWork.OrderDetails.GetAll()
                 .Include(od => od.Book)
                 .Include(od => od.Order)
+                .Include(od => od.OrderHistory)
                 .Include(od => od.User)
                 .ToList();
-            return View(orders);
-        }
-
-        public IActionResult DeliveringOrders()
-        {
-            var orders = _unitOfWork.OrderDetails.GetAll()
-                .Include(od => od.Book)
-                .Include(od => od.Order)
-                .Include(od => od.User)
-                .Where(od => od.Order.ItemStatus.ToLower() == "delivering")
-                .ToList();
-
             return View(orders);
         }
 
         public IActionResult PendingOrders()
         {
             var orders = _unitOfWork.OrderDetails.GetAll()
+                .Where(od => od.OrderHistory.ItemStatus.Trim().ToLower() == "pending")
                 .Include(od => od.Book)
                 .Include(od => od.Order)
                 .Include(od => od.User)
-                .Where(od => od.Order.ItemStatus.ToLower() == "pending")
                 .ToList();
 
             return View(orders);
         }
 
-        public IActionResult CompletedOrders()
+        public IActionResult DeliveringOrders()
         {
             var orders = _unitOfWork.OrderDetails.GetAll()
+                 .Where(od => od.OrderHistory.ItemStatus.Trim().ToLower() == "delivering")
                 .Include(od => od.Book)
                 .Include(od => od.Order)
                 .Include(od => od.User)
-                .Where(od => od.Order.ItemStatus.ToLower() == "completed")
+                .ToList();
+
+            return View(orders);
+        }
+
+
+        public IActionResult CompletedOrders()
+        {
+            var orders = _unitOfWork.OrderDetails.GetAll()
+                .Where(od => od.OrderHistory.ItemStatus.Trim().ToLower() == "completed")
+                .Include(od => od.Book)
+                .Include(od => od.OrderHistory)
+                .Include(od => od.User)
                 .ToList();
 
             return View(orders);
@@ -260,14 +265,69 @@ namespace Alikabook.Areas.Admin.Controllers
         public IActionResult FailedOrders()
         {
             var orders = _unitOfWork.OrderDetails.GetAll()
+                .Where(od => od.OrderHistory.ItemStatus.Trim().ToLower() == "failed")
                 .Include(od => od.Book)
-                .Include(od => od.Order)
+                .Include(od => od.OrderHistory)
                 .Include(od => od.User)
-                .Where(od => od.Order.ItemStatus.ToLower() == "failed")
                 .ToList();
 
             return View(orders);
         }
+
+        [HttpPost]
+        public IActionResult ChangeStatus(int orderId, string status)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var confirmOrder = _unitOfWork.ConfirmOrder.Get(co => co.OrderId == orderId);
+
+            if (confirmOrder is not null)
+            {
+                if (status == "Completed" || status == "Failed")
+                {
+                    var orderHistory = new OrderHistory
+                    {
+                        UserId = userId,
+                        PaymentMethod = confirmOrder.PaymentMethod,
+                        OrderDate = confirmOrder.OrderDate,
+                        ItemStatus = status,
+                        TotalPrice = confirmOrder.TotalPrice,
+                        OrderDetails = new List<OrderDetails>(),
+                        DeliveredDate = status == "Completed" ? DateTime.Now : DateTime.MinValue
+                    };
+
+                    var orders = _unitOfWork.OrderDetails.GetAll().Where(o => o.Order.OrderId == orderId).ToList();
+
+                    if (orders.Any())
+                    {
+                        foreach (var order in orders)
+                        {
+                            order.OrderId = null; 
+
+                            orderHistory.OrderDetails.Add(order);
+                        }
+
+                        _unitOfWork.OrderHistory.Add(orderHistory);
+                    }
+
+                    _unitOfWork.ConfirmOrder.Remove(confirmOrder);
+                }
+                else
+                {
+                    confirmOrder.ItemStatus = status;
+                    _unitOfWork.ConfirmOrder.Update(confirmOrder);
+                }
+
+                _unitOfWork.Save();
+            }
+
+            var redirect = status == "Pending" || status == "Delivering" || status == "Completed" || status == "Failed"
+                           ? status + "Orders"
+                           : "AllOrders";
+
+            return RedirectToAction(redirect);
+        }
+
+
 
 
 

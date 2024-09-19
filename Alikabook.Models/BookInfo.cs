@@ -37,5 +37,6 @@ namespace Alikabook.Models
         public int RatingCount { get; set; } = 0;
 
         public virtual ICollection<Comments> Comments { get; set; } = new List<Comments>();
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

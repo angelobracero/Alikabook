@@ -1,16 +1,9 @@
 ﻿@page
 @model RegisterModel
 
-@* <div class="message-container">
-    <div class="message">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    </div>
-</div> *@
-
-
 <div class="login-background">
     <div class="login">
-        <div class="login-container">
+        <div class="login-container register-container">
             <h1 class="login-title register-title">Register</h1>
             <form method="post">
                 <div class="form">
@@ -55,7 +48,7 @@
                     <div class="remember-me">
                         <input type="checkbox" id="agreeTerms" />
                         <label for="agreeTerms">I agree to <a href="">Terms & Conditions</a></label>
-                        <span asp-validation-for="Input.AgreeToTerms" class="text-danger"></span>
+                        @* <span asp-validation-for="Input.AgreeToTerms" class="text-danger"></span> *@
                     </div>
 
                     <button class="login-button" type="submit">Register</button>

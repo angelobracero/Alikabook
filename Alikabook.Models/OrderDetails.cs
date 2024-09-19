@@ -8,15 +8,14 @@ namespace Alikabook.Models
         [Key]
         public int OrderDetailId { get; set; }
 
-        [Required]
-        public int OrderId { get; set; }
+        public int? OrderId { get; set; }
 
         [ForeignKey("OrderId")]
         public virtual ConfirmOrder Order { get; set; }
 
         [Required]
         public int BookId { get; set; }
-
+                    
         [ForeignKey("BookId")]
         public virtual BookInfo Book { get; set; }
 

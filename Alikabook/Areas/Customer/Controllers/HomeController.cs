@@ -154,8 +154,6 @@ namespace Alikabook.Areas.User.Controllers
 
                 _unitOfWork.Cart.Add(newCartItem);
             }
-
-
             //
             // Handles the rating for each books
             //
@@ -184,13 +182,14 @@ namespace Alikabook.Areas.User.Controllers
                 }
                 else
                 {
-                    TempData["Message"] = "You have already rated this book.";
+                    TempData["error"] = "You have already rated this book.";
                 }
                 _unitOfWork.BookInfo.Update(book);
             }
 
             _unitOfWork.Save();
-            return RedirectToAction("ViewCart");
+            TempData["success"] = "Book successfully added.";
+            return RedirectToAction("Index");
         }
 
 
@@ -216,7 +215,7 @@ namespace Alikabook.Areas.User.Controllers
             var cOrder = new ConfirmOrder
             {
                 UserId = userId,
-                PaymentMethod = "",
+                PaymentMethod = confirmOrder.PaymentMethod,
                 TotalPrice = confirmOrder.TotalPrice,
                 OrderDetails = new List<OrderDetails>()
             };
@@ -255,7 +254,7 @@ namespace Alikabook.Areas.User.Controllers
             // If stock is insufficient, prevent saving the order and notify the user
             if (!stockIsSufficient)
             {
-                TempData["StockError"] = $"Insufficient stock for the following books: {string.Join(", ", outOfStockBooks)}";
+                TempData["error"] = $"Insufficient stock for the following books: {string.Join(", ", outOfStockBooks)}";
                 return RedirectToAction("ViewCart");
             }
 
@@ -265,7 +264,8 @@ namespace Alikabook.Areas.User.Controllers
             _unitOfWork.Cart.RemoveRange(cartItems);
             _unitOfWork.Save();
 
-            return RedirectToAction("OrderConfirmation");
+            TempData["success"] = "Your order has been successfully submitted! Thank you for shopping with us.";
+            return RedirectToAction("Index");
         }
 
 

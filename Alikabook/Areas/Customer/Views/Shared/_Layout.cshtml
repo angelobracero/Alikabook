@@ -14,6 +14,7 @@
     />
     <link rel="stylesheet" href="~/css/user.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Alikabook.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 </head>
 <body>
     <header class="header">
@@ -156,6 +157,7 @@
         }
     }
 
+    <partial name="_Notification" />
     @RenderBody()
       
     <footer class="footer">
@@ -168,21 +170,21 @@
                         <li><a asp-controller="Home" asp-action="business">Business</a></li>
                         <li><a asp-controller="Home" asp-action="basic">Basic Programming</a></li>
                         <li><a asp-controller="Home" asp-action="advance">advanced Programming</a></li>
-                        <li><a href="#" onclick="scrollToAbout()">About</a></li>
+                        <li><a asp-action="index" onclick="scrollToAbout()">About</a></li>
 
                     </ul>
                 </nav>
                 <div class="footer__icons">
-                    <a href="">
+                    <a href="#">
                         <img src="~/images/icons/facebook.png" alt="" width="50" height="50" />
                     </a>
-                    <a href="">
+                    <a href="#">
                         <img src="~/images/icons/gmail.png" alt="" width="50" height="50" />
                     </a>
-                    <a href="">
+                    <a href="#">
                         <img src="~/images/icons/instagram.png" alt="" width="50" height="50" />
                     </a>
-                    <a href="">
+                    <a href="#">
                         <img src="~/images/icons/linkedin.png" alt="" width="50" height="50" />
                     </a>
                 </div>

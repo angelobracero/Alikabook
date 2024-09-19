@@ -19,6 +19,8 @@ namespace Alikabook.Models
         public string? Barangay { get; set; }
         public string? City { get; set; }
         public string? Province { get; set; }
+
+        //[RegularExpression(@"(^[0-9]*$|^$)", ErrorMessage = "Please enter a valid zipcode.")]
         public string? ZipCode { get; set; }
         public DateTime? Birthday { get; set; }
         public string? ProfileImage { get; set; }
@@ -27,5 +29,6 @@ namespace Alikabook.Models
         [NotMapped]
         //or [ValidateNever]
         public virtual ICollection<Comments> Comments { get; set; } = new List<Comments>();
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }
