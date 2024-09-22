@@ -32,13 +32,15 @@
                             <td><input type="checkbox" name="" id="" /></td>
                             <td class="order__info">
                                 <div class="order__info-img-container">
-                                    <img src="~/images/books/@order.Book.Image" alt="" />
+                                    <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@order.BookId">
+                                        <img src="~/images/books/@order.Book.Image" alt="" />
+                                    </a>
                                 </div>
                                 <div class="order__info-details-container">
                                     <p class="order__info-title">
                                         @order.BookTitle
                                     </p>
-                                    <p class="order__info-qty">QTY: <span>5</span></p>
+                                    <p class="order__info-qty">QTY: <span>@order.Quantity</span></p>
                                     <p class="order__info-price">
                                         Price: <span>₱ @(order.Price * order.Quantity)</span>
                                     </p>

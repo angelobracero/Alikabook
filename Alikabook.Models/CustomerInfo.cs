@@ -29,6 +29,7 @@ namespace Alikabook.Models
         [NotMapped]
         //or [ValidateNever]
         public virtual ICollection<Comments> Comments { get; set; } = new List<Comments>();
-        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+        [NotMapped]
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();
     }
 }

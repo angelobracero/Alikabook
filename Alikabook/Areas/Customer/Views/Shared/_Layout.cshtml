@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AlikaBook</title>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/180a654a03.js"
             crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -25,9 +26,9 @@
                     bookstore
                 </p>
             </div>
-            <div class="header__main-middle">
-                <form action="">
-                    <input type="text" name="" id="" placeholder="Search Books" />
+            <div class="header__main-middle" method="get">
+                <form asp-action="SearchBook">
+                    <input type="text" name="searchQuery" placeholder="Search Books" />
                     <input type="submit" value="" />
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </form>

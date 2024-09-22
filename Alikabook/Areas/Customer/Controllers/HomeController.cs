@@ -3,9 +3,11 @@ using Alikabook.Models;
 using Alikabook.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Claims;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Alikabook.Areas.User.Controllers
 {
@@ -114,6 +116,13 @@ namespace Alikabook.Areas.User.Controllers
         [HttpPost]
         public IActionResult AddToCart(int bookId, int quantity, int rating)
         {
+            // Check if the user is logged in
+            if (!User.Identity.IsAuthenticated)
+            {
+                TempData["error"] = "You must be logged in to add items to your cart.";
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
+
             if (bookId <= 0 || quantity <= 0)
             {
                 return BadRequest("Invalid data.");
@@ -127,12 +136,8 @@ namespace Alikabook.Areas.User.Controllers
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var inCartAlready = _unitOfWork.Cart.Get(c => c.BookId == bookId && c.UserId == userId);
-           
 
-            //
-            // Check if the item is already in the cart.
-            // It is just adding the quantity if it's there already
-            //
+            // Check if the item is already in the cart
             if (inCartAlready != null)
             {
                 inCartAlready.Quantity += quantity;
@@ -154,9 +159,8 @@ namespace Alikabook.Areas.User.Controllers
 
                 _unitOfWork.Cart.Add(newCartItem);
             }
-            //
-            // Handles the rating for each books
-            //
+
+            // Handle the rating for each book
             if (rating > 0)
             {
                 var userBookRating = _unitOfWork.UserBookRatings.Get(r => r.BookId == book.BookId && r.UserId == userId);
@@ -182,7 +186,7 @@ namespace Alikabook.Areas.User.Controllers
                 }
                 else
                 {
-                    TempData["error"] = "You have already rated this book.";
+                    //TempData["error"] = "You have already rated this book.";
                 }
                 _unitOfWork.BookInfo.Update(book);
             }
@@ -191,6 +195,7 @@ namespace Alikabook.Areas.User.Controllers
             TempData["success"] = "Book successfully added.";
             return RedirectToAction("Index");
         }
+
 
 
         [Authorize(Roles = SD.Role_Customer)]
@@ -272,6 +277,26 @@ namespace Alikabook.Areas.User.Controllers
 
 
 
+
+        public IActionResult SearchBook(string searchQuery)
+        {
+            var viewModel = new SearchBookViewModel();
+
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                viewModel.Books = _unitOfWork.BookInfo.GetAll().ToList();
+                viewModel.SearchTerm = string.Empty;
+            }
+            else
+            {
+                viewModel.Books = _unitOfWork.BookInfo.GetAll()
+                    .Where(b => b.Title.ToLower().Contains(searchQuery.ToLower()))
+                    .ToList();
+                viewModel.SearchTerm = searchQuery; 
+            }
+
+            return View(viewModel);
+        }
 
 
 

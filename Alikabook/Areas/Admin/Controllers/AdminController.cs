@@ -228,7 +228,7 @@ namespace Alikabook.Areas.Admin.Controllers
         public IActionResult PendingOrders()
         {
             var orders = _unitOfWork.OrderDetails.GetAll()
-                .Where(od => od.OrderHistory.ItemStatus.Trim().ToLower() == "pending")
+                .Where(od => od.Order.ItemStatus.Trim().ToLower() == "pending")
                 .Include(od => od.Book)
                 .Include(od => od.Order)
                 .Include(od => od.User)
@@ -240,7 +240,7 @@ namespace Alikabook.Areas.Admin.Controllers
         public IActionResult DeliveringOrders()
         {
             var orders = _unitOfWork.OrderDetails.GetAll()
-                 .Where(od => od.OrderHistory.ItemStatus.Trim().ToLower() == "delivering")
+                 .Where(od => od.Order.ItemStatus.Trim().ToLower() == "delivering")
                 .Include(od => od.Book)
                 .Include(od => od.Order)
                 .Include(od => od.User)
@@ -324,6 +324,7 @@ namespace Alikabook.Areas.Admin.Controllers
                            ? status + "Orders"
                            : "AllOrders";
 
+            TempData["success"] = "Change Status Successfully";
             return RedirectToAction(redirect);
         }
 

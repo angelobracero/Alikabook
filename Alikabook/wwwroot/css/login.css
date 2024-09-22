@@ -186,12 +186,17 @@
     gap: 1em;
 }
 
-.login-icons > * {
+.login-icons button{
+    border: none;
+    background-color:inherit;
     transition: all 0.15s;
+    cursor: pointer;
+    margin-block-start: 1em;
 }
 
-.login-icons > *:hover,
-.login-icons > *:focus-visible {
+
+.login-icons > button img:hover,
+.login-icons > button img:focus-visible {
     transform: scale(1.1);
 }
 

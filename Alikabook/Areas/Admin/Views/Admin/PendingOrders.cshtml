@@ -72,7 +72,7 @@
                             <div>@order.OrderDetailId</div>
                             <div>@order.User.FirstName @order.User.LastName</div>
                             <div>@order.Order.OrderDate.ToString("dd MMM yyyy")</div>
-                            <div>P @(order.Quantity * order.Price)</div>
+                            <div>₱ @(order.Quantity * order.Price)</div>
                             <div>@order.Order.PaymentMethod</div>
                             <div class="status">@order.Order.ItemStatus</div>
                             <div class="order__action-cell">

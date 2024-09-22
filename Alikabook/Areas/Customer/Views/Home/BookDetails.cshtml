@@ -67,17 +67,14 @@
                     </div>
                 </div>
                 <h2 class="book-details__info-price" id="bookPrice">&#8369; @Model.Book.Price</h2>
-                @if(User.IsInRole(SD.Role_Customer))
-                {
-                    <div class="book-details__info-qty">
-                        Quantity:
-                        <button type="button" id="btnDecrease">-</button>
-                        <p id="itemQty">1</p>
-                        <button type="button" id="btnIncrease">+</button>
-                    </div>
+                <div class="book-details__info-qty">
+                    Quantity:
+                    <button type="button" id="btnDecrease">-</button>
+                    <p id="itemQty">1</p>
+                    <button type="button" id="btnIncrease">+</button>
+                </div>
 
-                    <button type="submit" class="book-details__info-btn">Add to Cart</button>
-                }
+                <button type="submit" class="book-details__info-btn">Add to Cart</button>
             </form>
         </div>
     </section>

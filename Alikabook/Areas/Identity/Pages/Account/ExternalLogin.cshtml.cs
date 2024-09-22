@@ -17,6 +17,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Alikabook.Models;
+using Alikabook.Utility;
 
 namespace Alikabook.Areas.Identity.Pages.Account
 {
@@ -36,7 +38,7 @@ namespace Alikabook.Areas.Identity.Pages.Account
             IUserStore<IdentityUser> userStore,
             ILogger<ExternalLoginModel> logger,
             IEmailSender emailSender)
-        {
+        {       
             _signInManager = signInManager;
             _userManager = userManager;
             _userStore = userStore;
@@ -84,7 +86,22 @@ namespace Alikabook.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+
+            [Required]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+
+            [Required]
+            [DataType(DataType.PhoneNumber)]
+            [Display(Name = "Phone Number")]
+            [RegularExpression(@"^09\d{9}$", ErrorMessage = "The phone number must start with '09' and be 11 digits long.")]
+            public string PhoneNumber { get; set; }
         }
+
         
         public IActionResult OnGet() => RedirectToPage("./Login");
 
@@ -129,9 +146,14 @@ namespace Alikabook.Areas.Identity.Pages.Account
                 ProviderDisplayName = info.ProviderDisplayName;
                 if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
                 {
+                    string fullName = info.Principal.FindFirstValue(ClaimTypes.Name);
+                    string[] nameParts = fullName?.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
                     Input = new InputModel
                     {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                        Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+                        FirstName = nameParts?.FirstOrDefault() ?? string.Empty, 
+                        LastName = nameParts?.Length > 1 ? nameParts.Last() : string.Empty 
                     };
                 }
                 return Page();
@@ -155,10 +177,14 @@ namespace Alikabook.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+                user.PhoneNumber = Input.PhoneNumber;
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, SD.Role_Customer);
                     result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
@@ -197,11 +223,11 @@ namespace Alikabook.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdentityUser CreateUser()
+        private CustomerInfo CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdentityUser>();
+                return Activator.CreateInstance<CustomerInfo>();
             }
             catch
             {

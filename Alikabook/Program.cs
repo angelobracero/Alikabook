@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Identity;
 using Alikabook.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Alikabook.DataAccess.Repository.IUserRepository;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Facebook;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,17 +19,40 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
+.AddGoogle(googleOptions =>
+{
+    googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+    googleOptions.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
+
+    googleOptions.CallbackPath = "/signin-google";
+})
+.AddFacebook(facebookOptions =>
+{
+    facebookOptions.AppId = builder.Configuration["Authentication:Facebook:AppId"];
+    facebookOptions.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
+    facebookOptions.CallbackPath = "/signin-facebook";
+});
+
 builder.Services.ConfigureApplicationCookie(option =>
 {
     option.LoginPath = $"/Identity/Account/Login";
     option.LogoutPath = $"/Identity/Account/Logout";
     option.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+    option.SlidingExpiration = true;
+    option.ExpireTimeSpan = TimeSpan.FromMinutes(60);
 });
 
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+
 
 var app = builder.Build();
     

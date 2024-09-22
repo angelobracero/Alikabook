@@ -1,0 +1,35 @@
+﻿@model SearchBookViewModel
+
+<main class="container">
+    <div style="margin-block: 3em; margin-inline-start: 3em; font-weight: bold;">
+        You Search for: "@Model.SearchTerm"
+    </div>
+    <div style="min-height: 70vh;">
+        <section class="display-category">
+
+            @if (Model.Books.Count == 0)
+            {
+                <p style="color:red; font-weight: bold; padding-block-start: 8em;">No books found matching your search.</p>
+            }
+            else
+            {
+                @foreach (var book in Model.Books)
+                {
+                    var truncatedTitle = SD.TruncateTitle(book.Title, 12);
+
+                    <div class="box">
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="" /></a>
+                        <div class="book-info">
+                            <p class="title">@truncatedTitle</p>
+                            <p class="price">&#8369;@book.Price</p>
+                            <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId">
+                                <p class="see-more">see more</p>
+                            </a>
+                        </div>
+                    </div>
+                }
+            }
+        </section>
+    </div>
+</main>
+

@@ -163,10 +163,11 @@ namespace Alikabook.Areas.User.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             List<OrderDetails> orders = _unitOfWork.OrderDetails.GetAll()
-                                .Where(o => o.UserId == userId)
-                                .Include(o => o.Book)
-                                .Include(o => o.Order)
-                                .ToList();
+                       .Where(o => o.UserId == userId)
+                       .Where(o => o.Order.ItemStatus.ToLower() == "pending" || o.Order.ItemStatus.ToLower() == "delivering")
+                       .Include(o => o.Book)
+                       .Include(o => o.Order)
+                       .ToList();
 
             return View(orders);
         }
