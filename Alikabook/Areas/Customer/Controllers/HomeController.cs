@@ -263,6 +263,21 @@ namespace Alikabook.Areas.User.Controllers
                 return RedirectToAction("ViewCart");
             }
 
+            var customerInfo = _unitOfWork.Customer.Get(c => c.Id == userId);
+            if (string.IsNullOrEmpty(customerInfo.FirstName) ||
+                string.IsNullOrEmpty(customerInfo.LastName) ||
+                string.IsNullOrEmpty(customerInfo.PhoneNumber) ||
+                string.IsNullOrEmpty(customerInfo.Email) ||
+                string.IsNullOrEmpty(customerInfo.House) ||
+                string.IsNullOrEmpty(customerInfo.Barangay) ||
+                string.IsNullOrEmpty(customerInfo.City) ||
+                string.IsNullOrEmpty(customerInfo.Province) ||
+                string.IsNullOrEmpty(customerInfo.ZipCode))
+            {
+                TempData["error"] = "Please complete your profile information before placing an order.";
+                return RedirectToAction("Profile", "User"); 
+            }
+
             _unitOfWork.ConfirmOrder.Add(cOrder);
             _unitOfWork.Save();
 

@@ -28,15 +28,33 @@ builder.Services.AddAuthentication(options =>
 {
     googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
     googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-    googleOptions.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
-
     googleOptions.CallbackPath = "/signin-google";
+
+    googleOptions.Events = new Microsoft.AspNetCore.Authentication.OAuth.OAuthEvents
+    {
+        OnRemoteFailure = context =>
+        {
+            context.Response.Redirect("/Identity/Account/Login");
+            context.HandleResponse();
+            return Task.CompletedTask;
+        }
+    };
 })
 .AddFacebook(facebookOptions =>
 {
     facebookOptions.AppId = builder.Configuration["Authentication:Facebook:AppId"];
     facebookOptions.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
     facebookOptions.CallbackPath = "/signin-facebook";
+
+    facebookOptions.Events = new Microsoft.AspNetCore.Authentication.OAuth.OAuthEvents
+    {
+        OnRemoteFailure = context =>
+        {
+            context.Response.Redirect("/Identity/Account/Login");
+            context.HandleResponse();
+            return Task.CompletedTask;
+        }
+    };
 });
 
 builder.Services.ConfigureApplicationCookie(option =>
