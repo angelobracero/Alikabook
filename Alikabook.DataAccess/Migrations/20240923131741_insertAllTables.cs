@@ -8,11 +8,389 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Alikabook.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class insertBooksInBookInfo : Migration
+    public partial class insertAllTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Discriminator = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    House = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Barangay = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Province = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ZipCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ProfileImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    dateCreated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BookInfos",
+                columns: table => new
+                {
+                    BookId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Stock = table.Column<int>(type: "int", nullable: false),
+                    Rating = table.Column<double>(type: "float", nullable: true),
+                    RatingCount = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BookInfos", x => x.BookId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetRoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ClaimType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClaimValue = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoleId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ConfirmOrders",
+                columns: table => new
+                {
+                    OrderId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ItemStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TotalPrice = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ConfirmOrders", x => x.OrderId);
+                    table.ForeignKey(
+                        name: "FK_ConfirmOrders_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Messages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MessageContent = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Messages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Messages_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderHistory",
+                columns: table => new
+                {
+                    OrderHistoryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ItemStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TotalPrice = table.Column<double>(type: "float", nullable: false),
+                    DeliveredDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderHistory", x => x.OrderHistoryId);
+                    table.ForeignKey(
+                        name: "FK_OrderHistory_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cart",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Total = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cart", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Cart_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Cart_BookInfos_BookId",
+                        column: x => x.BookId,
+                        principalTable: "BookInfos",
+                        principalColumn: "BookId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    CommentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.CommentId);
+                    table.ForeignKey(
+                        name: "FK_Comments_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Comments_BookInfos_BookId",
+                        column: x => x.BookId,
+                        principalTable: "BookInfos",
+                        principalColumn: "BookId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserBookRatings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    BookId = table.Column<int>(type: "int", nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: false),
+                    RatedOn = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserBookRatings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserBookRatings_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserBookRatings_BookInfos_BookId",
+                        column: x => x.BookId,
+                        principalTable: "BookInfos",
+                        principalColumn: "BookId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    OrderDetailId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderId = table.Column<int>(type: "int", nullable: true),
+                    BookId = table.Column<int>(type: "int", nullable: false),
+                    BookTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    OrderHistoryId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.OrderDetailId);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Orders_BookInfos_BookId",
+                        column: x => x.BookId,
+                        principalTable: "BookInfos",
+                        principalColumn: "BookId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Orders_ConfirmOrders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "ConfirmOrders",
+                        principalColumn: "OrderId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Orders_OrderHistory_OrderHistoryId",
+                        column: x => x.OrderHistoryId,
+                        principalTable: "OrderHistory",
+                        principalColumn: "OrderHistoryId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "BookInfos",
                 columns: new[] { "BookId", "Author", "Category", "Date", "Description", "Image", "Price", "Rating", "RatingCount", "Stock", "Title" },
@@ -94,385 +472,159 @@ namespace Alikabook.DataAccess.Migrations
                     { 74, "Niels Ferguson, Bruce Schneier, and Tadayoshi Kohn", "Advance Programming", new DateTime(2024, 5, 8, 14, 46, 30, 0, DateTimeKind.Unspecified), "The ultimate guide to cryptography, updated from an author team of the world's top cryptography experts. Cryptography is vital to keeping information safe, in an era when the formula to do so becomes more and more challenging. Written by a team of world-renowned cryptography experts, this essential guide is the definitive introduction to all major areas of cryptography: message security, key negotiation, and key management. You'll learn how to think like a cryptographer. You'll discover techniques for building cryptography into products from the start and you'll examine the many technical changes in the field.", "14.PNG", 2125.35m, null, 0, 150, "Cryptography Engineering: Design Principles and Practical Applications" },
                     { 75, "Olivier Bonaventure", "Business", new DateTime(2024, 5, 8, 14, 51, 50, 0, DateTimeKind.Unspecified), "This open textbook aims to fill the gap between the open-source implementations and the open-source network specifications by providing a detailed but pedagogical description of the key principles that guide the operation of the Internet. 1 Preface 2 Introduction 3 The application Layer 4 The transport layer 5 The network layer 6 The datalink layer and the Local Area Networks 7 Glossary 8 Bibliography", "15.PNG", 2010.48m, null, 0, 149, "Computer Networking: Principles, Protocols and Practice" }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
+                unique: true,
+                filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "AspNetUsers",
+                column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                table: "AspNetUsers",
+                column: "NormalizedUserName",
+                unique: true,
+                filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cart_BookId",
+                table: "Cart",
+                column: "BookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cart_UserId",
+                table: "Cart",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_BookId",
+                table: "Comments",
+                column: "BookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_UserId",
+                table: "Comments",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ConfirmOrders_UserId",
+                table: "ConfirmOrders",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Messages_UserId",
+                table: "Messages",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderHistory_UserId",
+                table: "OrderHistory",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_BookId",
+                table: "Orders",
+                column: "BookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_OrderHistoryId",
+                table: "Orders",
+                column: "OrderHistoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_OrderId",
+                table: "Orders",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_UserId",
+                table: "Orders",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserBookRatings_BookId",
+                table: "UserBookRatings",
+                column: "BookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserBookRatings_UserId",
+                table: "UserBookRatings",
+                column: "UserId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 1);
+            migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
 
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 2);
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
 
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 3);
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
 
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 4);
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
 
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 5);
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
 
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 6);
+            migrationBuilder.DropTable(
+                name: "Cart");
 
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 7);
+            migrationBuilder.DropTable(
+                name: "Comments");
 
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 8);
+            migrationBuilder.DropTable(
+                name: "Messages");
 
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 9);
+            migrationBuilder.DropTable(
+                name: "Orders");
 
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 10);
+            migrationBuilder.DropTable(
+                name: "UserBookRatings");
 
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 11);
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
 
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 12);
+            migrationBuilder.DropTable(
+                name: "ConfirmOrders");
 
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 13);
+            migrationBuilder.DropTable(
+                name: "OrderHistory");
 
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 14);
+            migrationBuilder.DropTable(
+                name: "BookInfos");
 
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 15);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 16);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 17);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 18);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 19);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 20);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 21);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 22);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 23);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 24);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 25);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 26);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 27);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 28);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 29);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 30);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 31);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 32);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 33);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 34);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 35);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 36);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 37);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 38);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 39);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 40);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 41);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 42);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 43);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 44);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 45);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 46);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 47);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 48);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 49);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 50);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 51);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 52);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 53);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 54);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 55);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 56);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 57);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 58);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 59);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 60);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 61);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 62);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 63);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 64);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 65);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 66);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 67);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 68);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 69);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 70);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 71);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 72);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 73);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 74);
-
-            migrationBuilder.DeleteData(
-                table: "BookInfos",
-                keyColumn: "BookId",
-                keyValue: 75);
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
         }
     }
 }
