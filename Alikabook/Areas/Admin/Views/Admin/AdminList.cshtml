@@ -1,5 +1,10 @@
 ﻿@model AllUser
 
+@{
+    var i = 1;
+}
+
+
 <main class="order container">
     <h1 class="add-books__title">User</h1>
     <p class="order__sub-title">122 orders found</p>
@@ -30,9 +35,12 @@
         <tbody class="order__table-body">
             @foreach (var customer in Model.allUser)
             {
+                var image = customer.ProfileImage;
+                if (image is null) image = "default_profile.png";
+
                 <tr>
                     <td class="order__table-body-img">
-                        <img src="~/images/books/thehardthing.jpg" alt="" />
+                        <img src="~/images/profile_pic/@image" alt="" />
                     </td>
                     <td class="order__table-body-details">
                         <h1>@customer.FirstName @customer.LastName</h1>
@@ -40,13 +48,13 @@
                         <p>@customer.PhoneNumber</p>
                     </td>
                     <td class="order__table-body-id">
-                        <p>ID: <span>#2175</span></p>
+                        <p>#<span>@i</span></p>
                         <div class="admin_Mobile">@Model.Roles</div>
                     </td>
                     <td><i class="fa-solid fa-ellipsis-vertical"></i></td>
                     <td class="order__table-body-big">
                         <input type="checkbox" name="" id="" />
-                        <div>2</div>
+                        <div>@i</div>
                         <div>@customer.FirstName @customer.LastName</div>
                         <div>@customer.Email</div>
                         <div>@customer.dateCreated.ToString("MMM. dd, yyyy")</div>
@@ -55,6 +63,7 @@
                         <i class="fa-solid fa-ellipsis"></i>
                     </td>
                 </tr>
+                i++;
             }
         </tbody>
     </table>

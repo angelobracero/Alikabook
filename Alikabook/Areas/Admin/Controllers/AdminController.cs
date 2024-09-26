@@ -41,7 +41,7 @@ namespace Alikabook.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if(file is not null)
+                if (file is not null)
                 {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string productPath = Path.Combine(wwwRootPath, @"images\books");
@@ -50,13 +50,13 @@ namespace Alikabook.Areas.Admin.Controllers
                     {
                         file.CopyTo(fileStream);
                     }
-                    obj.Image = fileName;   
+                    obj.Image = fileName;
                 }
 
                 _unitOfWork.BookInfo.Add(obj);
                 _unitOfWork.Save();
                 TempData["success"] = "Book Added Successfully";
-                return RedirectToAction("AddBooks"); 
+                return RedirectToAction("AddBooks");
             }
 
             TempData["error"] = "Something went wrong!";
@@ -75,10 +75,10 @@ namespace Alikabook.Areas.Admin.Controllers
 
             if (book is null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
-            _unitOfWork.BookInfo.Remove(book); 
+            _unitOfWork.BookInfo.Remove(book);
             _unitOfWork.Save();
             TempData["success"] = "Book Deleted Successfully";
 
@@ -115,7 +115,7 @@ namespace Alikabook.Areas.Admin.Controllers
 
         public IActionResult BookDetails(int? id)
         {
-            if( id == null || id == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
@@ -160,7 +160,7 @@ namespace Alikabook.Areas.Admin.Controllers
         public async Task<IActionResult> AdminList()
         {
             var allUserRoles = await _userRoleRepository.GetAllUserRolesAsync();
-            var adminRoleId = "3b44ba50-fd84-41b4-b431-d513fb98533a"; 
+            var adminRoleId = "d9846abc-cbad-44d3-b426-5dec0fb91f53";
 
             var adminUserIds = allUserRoles
                 .Where(ur => ur.RoleId == adminRoleId)
@@ -183,7 +183,7 @@ namespace Alikabook.Areas.Admin.Controllers
         public async Task<IActionResult> CustomerList()
         {
             var allUserRoles = await _userRoleRepository.GetAllUserRolesAsync();
-            var customerRoleId = "6424f45a-410a-4f0f-abd1-f91d2ee4b6be"; 
+            var customerRoleId = "1275e0cd-9627-4fdc-bc4b-3cc59727c510";
 
             var customerUserIds = allUserRoles
                 .Where(ur => ur.RoleId == customerRoleId)
@@ -277,7 +277,7 @@ namespace Alikabook.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult ChangeStatus(int orderId, string status)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var confirmOrder = _unitOfWork.ConfirmOrder.Get(co => co.OrderId == orderId);
 
             if (confirmOrder is not null)
@@ -301,7 +301,7 @@ namespace Alikabook.Areas.Admin.Controllers
                     {
                         foreach (var order in orders)
                         {
-                            order.OrderId = null; 
+                            order.OrderId = null;
 
                             orderHistory.OrderDetails.Add(order);
                         }

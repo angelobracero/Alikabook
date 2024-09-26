@@ -2,6 +2,7 @@
 
 @{
     var customerRoles = ViewBag.CustomerRoles as Dictionary<string, List<string>>;
+    var i = 1;
 }
 
 <main class="order container">
@@ -22,7 +23,7 @@
                 <th>
                     <input type="checkbox" name="" id="" />
                 </th>
-                <th>Id</th>
+                <th>No.</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Date Created</th>
@@ -34,9 +35,13 @@
         <tbody class="order__table-body">
             @foreach (var customer in Model)
             {
+
+                var image = customer.ProfileImage;
+                if (image is null) image = "default_profile.png";
+
                 <tr>
                     <td class="order__table-body-img">
-                        <img src="~/images/books/thehardthing.jpg" alt="" />
+                        <img src="~/images/profile_pic/@image" alt="" />
                     </td>
                     <td class="order__table-body-details">
                         <h1>@customer.FirstName @customer.LastName</h1>
@@ -44,14 +49,14 @@
                         <p>@customer.PhoneNumber</p>
                     </td>
                     <td class="order__table-body-id">
-                        <p>ID: <span>#2175</span></p>
+                        <p>#<span>@i</span></p>
                         <div>
                             @if (customerRoles != null && customerRoles.ContainsKey(customer.Id))
                             {
                                 var roles = customerRoles[customer.Id];
                                 foreach (var role in roles)
                                 {
-                                    if (role == "6424f45a-410a-4f0f-abd1-f91d2ee4b6be")
+                                    if (role == "1275e0cd-9627-4fdc-bc4b-3cc59727c510")
                                     {
                                         <span class="user_Mobile">User</span>
                                     }
@@ -66,7 +71,7 @@
                     <td><i class="fa-solid fa-ellipsis-vertical"></i></td>
                     <td class="order__table-body-big">
                         <input type="checkbox" name="" id="" />
-                        <div>2</div>
+                        <div>#@i</div>
                         <div>@customer.FirstName @customer.LastName</div>
                         <div>@customer.Email</div>
                         <div>@customer.dateCreated.ToString("MMM. dd, yyyy")</div>
@@ -77,7 +82,7 @@
                                 var roles = customerRoles[customer.Id];
                                 foreach (var role in roles)
                                 {
-                                    if (role == "6424f45a-410a-4f0f-abd1-f91d2ee4b6be")
+                                    if (role == "1275e0cd-9627-4fdc-bc4b-3cc59727c510")
                                     {
                                         <span class="user_PC">User</span>
                                     }
@@ -91,6 +96,7 @@
                         <i class="fa-solid fa-ellipsis"></i>
                     </td>
                 </tr>
+                i++;
             }
         </tbody>
     </table>
