@@ -10,7 +10,12 @@ namespace Alikabook.Models
     {
         public List<BookInfo> RecentBooks { get; set; }
         public List<BookInfo> BusinessBooks { get; set; }
-        public List<BookInfo> BasicBooks { get; set; }
-        public List<BookInfo> AdvancedBooks { get; set; }
+        public List<BookInfo> ProgrammingBooks { get; set; }
+        public List<BookInfo> FictionBooks { get; set; }
+        public List<BookInfo> NonFictionBooks { get; set; }
+        public List<BookInfo> ChildrenBooks { get; set; }
+        public List<BookInfo> GraphicBooks { get; set; }
+        public List<BookInfo> ScienceBooks { get; set; }
+
     }
 }

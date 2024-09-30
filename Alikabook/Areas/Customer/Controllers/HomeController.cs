@@ -27,58 +27,90 @@ namespace Alikabook.Areas.User.Controllers
                                   .OrderByDescending(book => book.Date) 
                                   .Take(10)
                                   .ToList();
+            List<BookInfo> programming = _unitOfWork.BookInfo.GetAll()
+                                  .Where(book => book.Category == "Programming & Technology")
+                                  .OrderBy(book => Guid.NewGuid())
+                                  .Take(10)
+                                  .ToList();
             List<BookInfo> business = _unitOfWork.BookInfo.GetAll()
-                                  .Where(book => book.Category == "Business")
+                                  .Where(book => book.Category == "Business & Economics")
                                   .OrderBy(book => Guid.NewGuid())
                                   .Take(10)
                                   .ToList();
-            List<BookInfo> basic = _unitOfWork.BookInfo.GetAll()
-                                  .Where(book => book.Category == "Basic Programming")
-                                  .OrderBy(book => Guid.NewGuid())
-                                  .Take(10)
-                                  .ToList();
-            List<BookInfo> advanced = _unitOfWork.BookInfo.GetAll()
-                                  .Where(book => book.Category == "Advance Programming")
-                                  .OrderBy(book => Guid.NewGuid())
-                                  .Take(10)
-                                  .ToList();
+            List<BookInfo> fiction = _unitOfWork.BookInfo.GetAll()
+                                 .Where(book => book.Category == "Fiction")
+                                 .OrderBy(book => Guid.NewGuid())
+                                 .Take(10)
+                                 .ToList();
+            List<BookInfo> nonfiction = _unitOfWork.BookInfo.GetAll()
+                                 .Where(book => book.Category == "Non-Fiction")
+                                 .OrderBy(book => Guid.NewGuid())
+                                 .Take(10)
+                                 .ToList();
+            List<BookInfo> children = _unitOfWork.BookInfo.GetAll()
+                                 .Where(book => book.Category == "Children’s Books")
+                                 .OrderBy(book => Guid.NewGuid())
+                                 .Take(10)
+                                 .ToList();
+            List<BookInfo> graphic = _unitOfWork.BookInfo.GetAll()
+                                 .Where(book => book.Category == "Graphic Novels & Comics")
+                                 .OrderBy(book => Guid.NewGuid())
+                                 .Take(10)
+                                 .ToList();
+            List<BookInfo> science = _unitOfWork.BookInfo.GetAll()
+                                 .Where(book => book.Category == "Science & Nature")
+                                 .OrderBy(book => Guid.NewGuid())
+                                 .Take(10)
+                                 .ToList();
+
 
             var model = new BookViewModel
             {
                 RecentBooks = recent,
-                BusinessBooks = business,
-                BasicBooks = basic,
-                AdvancedBooks = advanced
+                ProgrammingBooks = business,
+                BusinessBooks = programming,
+                FictionBooks = fiction,
+                NonFictionBooks = nonfiction,
+                ChildrenBooks = children,
+                GraphicBooks = graphic,
+                ScienceBooks = science
             };
 
             return View(model);
         }
-            
-        public IActionResult Business()
+
+        [HttpGet]
+        public IActionResult DisplayCategory(string? category )
         {
+
+            if(category == "Recently Added")
+            {
+                List<BookInfo> recent = _unitOfWork.BookInfo.GetAll()
+                                 .OrderByDescending(book => book.Date)
+                                 .ToList();
+
+                var books = new DisplayBooksModel
+                {
+                    Books = recent,
+                    Category = "Recently Added"
+                };
+
+                return View(books);
+            }
+
             List<BookInfo> bookList = _unitOfWork.BookInfo.GetAll()
-                                   .Where(book => book.Category == "Business")
+                                   .Where(book => book.Category == category)
                                    .ToList();
-            return View(bookList);
+
+            var model = new DisplayBooksModel
+            {
+                Books = bookList,
+                Category = category
+            };
+
+            return View(model);
         }
 
-        public IActionResult Basic()
-        {
-            List<BookInfo> bookList = _unitOfWork.BookInfo.GetAll()
-                                   .Where(book => book.Category == "Basic Programming")
-                                   .ToList();
-
-            return View(bookList);
-        }
-
-        public IActionResult Advance()
-        {
-            List<BookInfo> bookList = _unitOfWork.BookInfo.GetAll()
-                                   .Where(book => book.Category == "Advance Programming")
-                                   .ToList();
-
-            return View(bookList);
-        }
 
         public IActionResult BookDetails(int? id)
         {

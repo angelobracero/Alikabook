@@ -68,6 +68,10 @@
             <i class="fa-solid fa-bars"></i>
         </div>
         <nav class="header__sub">
+            <form asp-action="SearchBook" id="searchBar2">
+                <input type="text" name="searchQuery" placeholder="Search Books" />
+            </form>
+
             @if (User.Identity.IsAuthenticated)
             {
                 if (User.IsInRole(SD.Role_Customer)) 
@@ -79,22 +83,49 @@
             }
             <ul class="header__sub-ul">
                 <li>
-                    <a asp-controller="Home" asp-action="index"><i class="fa-solid fa-house"></i>home </a>
+                    <a asp-controller="Home" asp-action="index"><i class="fa-solid fa-house"></i>home</a>
                 </li>
                 <li>
-                    <a asp-controller="Home" asp-action="business">
-                        <i class="fa-solid fa-business-time"></i>business
-                    </a>
+                    <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Fiction">Fiction</a>
+                </li>
+                 <li>
+                    <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Non-Fiction">Non-Fiction</a>
                 </li>
                 <li>
-                    <a asp-controller="Home" asp-action="basic">
-                        <i class="fa-solid fa-code"></i>basic programming
-                    </a>
+                    <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Programming & Technology">Programming & Technology</a>
                 </li>
                 <li>
-                    <a asp-controller="Home" asp-action="advance">
-                        <i class="fa-solid fa-code-fork"></i>advanced programming
-                    </a>
+                    <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Business & Economics">Business & Economics</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Education & Teaching">Education & Teaching</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Children’s Books">Children’s Books</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Graphic Novels & Comics">Graphic Novels & Comics</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Poetry & Drama">Poetry & Drama</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Science & Nature">Science & Nature</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Arts & Photography">Arts & Photography</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="History">History</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Spirituality & Religion">Spirituality & Religion</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Lifestyle">Lifestyle</a>
+                </li>
+                <li>
+                    <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Miscellaneous">Miscellaneous</a>
                 </li>
             </ul>
             <hr class="hr" />
@@ -102,6 +133,14 @@
             {
                 if (User.IsInRole(SD.Role_Customer))
                 {
+                   <nav class="header_sub_ul_sm">
+                       <ul>
+                            <li><a asp-controller="Home" asp-action="index"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
+                            <li><a asp-controller="Home" asp-action="ViewCart"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></a></li>
+                            <li><a asp-controller="User" asp-action="Profile"><i class="fa-solid fa-user"></i><span>Account Settings</span></a></li>
+                            <li><a asp-controller="" asp-action=""><i class="fa-solid fa-message"></i><span>Contact</span></a></li>
+                       </ul>
+                   </nav>
                     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "Customer" })" method="post">
                         <button class="header__sub-logout">
                             <i class="fa-regular fa-user"></i>
@@ -167,10 +206,10 @@
                 <p class="footer__heading">Alikabook <span>Bookstore</span></p>
                 <nav class="footer__nav">
                     <ul>
-                        <li><a asp-controller="Home" asp-action="index">Home</a></li>
-                        <li><a asp-controller="Home" asp-action="business">Business</a></li>
-                        <li><a asp-controller="Home" asp-action="basic">Basic Programming</a></li>
-                        <li><a asp-controller="Home" asp-action="advance">advanced Programming</a></li>
+                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Business">Business</a></li>
+                        <li><a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Basic Programming">Basic Programming</a></li>
+                        <li><a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Advance Programming">advanced Programming</a></li>
                         <li><a asp-action="index" onclick="scrollToAbout()">About</a></li>
 
                     </ul>

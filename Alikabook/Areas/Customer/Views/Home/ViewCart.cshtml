@@ -9,7 +9,7 @@
     <main class="cart-page container @(Model is null || !Model.Any() ? "cart-page-full" : "")">
         <section class="cart">
             <div class="cart__header">
-                <i class="cart__header-back">&#8592;</i>
+                <i class="cart__header-back" onclick="history.back()">&#8592;</i>
                 <h1 class="cart__header-title">My Cart</h1>
             </div>
 

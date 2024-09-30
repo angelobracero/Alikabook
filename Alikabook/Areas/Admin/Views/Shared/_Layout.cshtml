@@ -22,10 +22,10 @@
         <button class="header__menu"><i class="fa-solid fa-bars"></i></button>
         <p class="header__title">Admin Pannel</p>
         <form class="header__logout" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Customer" })" method="post">
-            <button class="header__settings-nav-btn">
-                <i class="fa-regular fa-user"></i>
-                <p>Log Out</p>
+            <button>
+                <i class="fa-solid fa-power-off"></i>
             </button>
+            <div>Logout</div>
         </form>
 
     </header>
@@ -67,8 +67,8 @@
                 <i class="fa-solid fa-angle-right"></i>
             </button>
             <div class="sidebar__submenu">
-                <a asp-controller="" asp-action="">&#8226; &nbsp; Inventory Dashboard</a>
-                <a asp-controller="" asp-action="">&#8226; &nbsp; Stock Management</a>
+                <a asp-action="InventoryDashboard">&#8226; &nbsp; Inventory Dashboard</a>
+                <a asp-action="StockManagement">&#8226; &nbsp; Stock Management</a>
             </div>
             <button>
                 <i class="fa-solid fa-book"></i>
@@ -77,7 +77,6 @@
             </button>
             <div class="sidebar__submenu">
                 <a asp-controller="Admin" asp-action="AllUserList">&#8226; &nbsp; All Customers</a>
-                <a asp-controller="" asp-action="">&#8226; &nbsp; </a>
             </div>
         </div>
     </aside>

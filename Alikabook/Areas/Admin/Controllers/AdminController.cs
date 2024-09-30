@@ -86,7 +86,6 @@ namespace Alikabook.Areas.Admin.Controllers
         }
 
 
-
         public IActionResult EditBooks(int? id)
         {
 
@@ -105,10 +104,87 @@ namespace Alikabook.Areas.Admin.Controllers
             return View(book);
         }
 
+        [HttpPost]
+        public IActionResult EditBooks(BookInfo obj, IFormFile? file)
+        {
+            var book = _unitOfWork.BookInfo.Get(b => b.BookId == obj.BookId);
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            // Update book fields
+            book.Title = obj.Title;
+            book.Author = obj.Author;
+            book.Price = obj.Price;
+            book.Category = obj.Category;
+            book.Subcategory = obj.Subcategory;
+            book.Description = obj.Description;
+            book.Stock = obj.Stock;
+
+            if (ModelState.IsValid)
+            {
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if (file is not null)
+                {
+                    // Delete the old image if it exists
+                    if (!string.IsNullOrEmpty(book.Image))
+                    {
+                        string oldImagePath = Path.Combine(wwwRootPath, @"images\books", book.Image);
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+
+                    // Save the new image
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string productPath = Path.Combine(wwwRootPath, @"images\books");
+
+                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+
+                    // Update the image path in the book object
+                    book.Image = fileName;
+                }
+
+                _unitOfWork.BookInfo.Update(book);
+                _unitOfWork.Save();
+                TempData["success"] = "Book Updated Successfully";
+                return RedirectToAction("ViewBook");
+            }
+
+            TempData["error"] = "Something went wrong!!";
+            return View(obj);
+        }
+
+
         public IActionResult ViewBook()
         {
             List<BookInfo> Books = _unitOfWork.BookInfo.GetAll()
                                   .ToList();
+
+            return View(Books);
+        }
+
+        [HttpGet]
+        public IActionResult ViewBook(string searchQuery)
+        {
+            List<BookInfo> Books;
+
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                Books = _unitOfWork.BookInfo.GetAll().ToList();
+            }
+            else
+            {
+                Books = _unitOfWork.BookInfo.GetAll()
+                    .Where(b => b.Title.ToLower().Contains(searchQuery.ToLower()))
+                    .ToList();
+            }
 
             return View(Books);
         }
@@ -331,7 +407,14 @@ namespace Alikabook.Areas.Admin.Controllers
 
 
 
-
+        public IActionResult InventoryDashboard()
+        {
+            return View();
+        }
+        public IActionResult StockManagement()
+        {
+            return View();
+        }
 
 
 

@@ -3,50 +3,186 @@
 <main class="add-books container">
     <h1 class="add-books__title">Edit Books</h1>
     <div class="add-books__form">
-        <form action="">
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" name="BookId" value="@Model.BookId" />
+
             <div class="add-books__form-col">
                 <div class="add-books__form-form-group">
-                    <label for="title">Title</label>
+                    <label asp-for="Title">Title</label>
                     <p>:</p>
-                    <input type="text" name="title" id="title" value="@Model.Title" readonly/>
+                    <input asp-for="Title" type="text" />
+                    </div>
+                    <div class="add-books__form-form-group">
+                    <label asp-for="Author">Author</label>
+                    <p>:</p>
+                    <input asp-for="Author" type="text"  />
                 </div>
                 <div class="add-books__form-form-group">
-                    <label for="author">Author</label>
+                    <label asp-for="Price">Price</label>
                     <p>:</p>
-                    <input type="text" name="author" id="author" value="@Model.Author" readonly/>
+                    <input asp-for="Price" type="text" value="@Model.Price" />
                 </div>
                 <div class="add-books__form-form-group">
-                    <label for="price">Price</label>
+                    <label asp-for="Category">Category</label>
                     <p>:</p>
-                    <input type="text" name="price" id="price" value="@Model.Price" readonly/>
+                    <select id="categorySelect" asp-for="Category" onchange="updateSubcategory()">
+                        <option value="">Select a Category</option>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Non-Fiction">Non-Fiction</option>
+                        <option value="Business & Economics">Business & Economics</option>
+                        <option value="Programming & Technology">Programming & Technology</option>
+                        <option value="Education & Teaching">Education & Teaching</option>
+                        <option value="Children’s Books">Children’s Books</option>
+                        <option value="Graphic Novels & Comics">Graphic Novels & Comics</option>
+                        <option value="Poetry & Drama">Poetry & Drama</option>
+                        <option value="Science & Nature">Science & Nature</option>
+                        <option value="Arts & Photography">Arts & Photography</option>
+                        <option value="History">History</option>
+                        <option value="Spirituality & Religion">Spirituality & Religion</option>
+                        <option value="Lifestyle">Lifestyle</option>
+                        <option value="Miscellaneous">Miscellaneous</option>
+                    </select>
                 </div>
-                <div class="add-books__form-form-group">
-                    <label for="category">Category</label>
+
+                <div id="subcategoryContainer" class="add-books__form-form-group">
+                    <label asp-for="Subcategory">Subcategory</label>
                     <p>:</p>
-                    <input type="text" name="category" id="category" value="@Model.Category" readonly/>
+                    <select id="subcategorySelect" asp-for="Subcategory">
+                        <option value="">Select a Subcategory</option>
+                    </select>
                 </div>
             </div>
             <div class="add-books__form-col">
                 <div class="add-books__form-form-group">
-                    <label for="description">Description</label>
+                    <label asp-for="Description">Description</label>
                     <p>:</p>
-                    <textarea name="description" id="description" rows="4" readonly>@Model.Description</textarea>
+                    <textarea asp-for="Description" rows="4"></textarea>
                 </div>
                 <div class="add-books__form-form-group">
-                    <label for="image">Image</label>
+                    <label for="Image">Image</label>
                     <p>:</p>
-                    <input type="file" name="image" id="image" value="@Model.Image" readonly/>
+                    <input type="file" name="file" id="Image"/>
                 </div>
                 <div class="add-books__form-form-group">
-                    <label for="quantity">Quantity</label>
+                    <label asp-for="Stock">Quantity</label>
                     <p>:</p>
-                    <input type="text" name="quantity" id="quantity" value="@Model.Stock" readonly/>
+                    <input asp-for="Stock" type="text" />
                 </div>
             </div>
             <div class="add-books__form-buttons">
                 <button>Update Book</button>
-                <button>View Books</button>
+                <button type="button" onClick="history.back()">View Book</button>
             </div>
         </form>
     </div>
 </main>
+
+<script>
+    function updateSubcategory() {
+        var categorySelect = document.getElementById("categorySelect");
+        var selectedCategory = categorySelect.value;
+        var subcategorySelect = document.getElementById("subcategorySelect");
+        var subcategoryContainer = document.getElementById("subcategoryContainer");
+
+        // Clear previous subcategories
+        subcategorySelect.innerHTML = '<option value="">Select a Subcategory</option>';
+
+        // Show subcategory container if a category is selected
+        if (selectedCategory) {
+
+            // Add subcategories based on selected category
+            if (selectedCategory === "Fiction") {
+                subcategorySelect.innerHTML += '<option value="Literary Fiction">Literary Fiction</option>';
+                subcategorySelect.innerHTML += '<option value="Mystery & Thriller">Mystery & Thriller</option>';
+                subcategorySelect.innerHTML += '<option value="Science Fiction & Fantasy">Science Fiction & Fantasy</option>';
+                subcategorySelect.innerHTML += '<option value="Romance">Romance</option>';
+                subcategorySelect.innerHTML += '<option value="Historical Fiction">Historical Fiction</option>';
+                subcategorySelect.innerHTML += '<option value="Young Adult Fiction">Young Adult Fiction</option>';
+
+            } else if (selectedCategory === "Non-Fiction") {
+                subcategorySelect.innerHTML += '<option value="Biography & Memoir">Biography & Memoir</option>';
+                subcategorySelect.innerHTML += '<option value="Self-Help">Self-Help</option>';
+                subcategorySelect.innerHTML += '<option value="Health & Wellness">Health & Wellness</option>';
+                subcategorySelect.innerHTML += '<option value="Travel">Travel</option>';
+                subcategorySelect.innerHTML += '<option value="Cooking & Food">Cooking & Food</option>';
+                subcategorySelect.innerHTML += '<option value="True Crime">True Crime</option>';
+                subcategorySelect.innerHTML += '<option value="Politics & Current Events">Politics & Current Events</option>';
+
+            } else if (selectedCategory === "Business & Economics") {
+                subcategorySelect.innerHTML += '<option value="Entrepreneurship">Entrepreneurship</option>';
+                subcategorySelect.innerHTML += '<option value="Management">Management</option>';
+                subcategorySelect.innerHTML += '<option value="Personal Finance">Personal Finance</option>';
+                subcategorySelect.innerHTML += '<option value="Marketing">Marketing</option>';
+                subcategorySelect.innerHTML += '<option value="Investing">Investing</option>';
+                subcategorySelect.innerHTML += '<option value="Leadership">Leadership</option>';
+
+            } else if (selectedCategory === "Programming & Technology") {
+                subcategorySelect.innerHTML += '<option value="Basic Programming">Basic Programming</option>';
+                subcategorySelect.innerHTML += '<option value="Advanced Programming">Advanced Programming</option>';
+                subcategorySelect.innerHTML += '<option value="Web Development">Web Development</option>';
+                subcategorySelect.innerHTML += '<option value="Data Science & AI">Data Science & AI</option>';
+                subcategorySelect.innerHTML += '<option value="Software Engineering">Software Engineering</option>';
+
+            } else if (selectedCategory === "Education & Teaching") {
+                subcategorySelect.innerHTML += '<option value="Educational Materials">Educational Materials</option>';
+                subcategorySelect.innerHTML += '<option value="Teaching Strategies">Teaching Strategies</option>';
+                subcategorySelect.innerHTML += '<option value="Early Childhood Education">Early Childhood Education</option>';
+                subcategorySelect.innerHTML += '<option value="Study Guides & Test Prep">Study Guides & Test Prep</option>';
+
+            } else if (selectedCategory === "Children’s Books") {
+                subcategorySelect.innerHTML += '<option value="Picture Books">Picture Books</option>';
+                subcategorySelect.innerHTML += '<option value="Early Readers">Early Readers</option>';
+                subcategorySelect.innerHTML += '<option value="Chapter Books">Chapter Books</option>';
+                subcategorySelect.innerHTML += '<option value="Middle Grade Fiction">Middle Grade Fiction</option>';
+
+            } else if (selectedCategory === "Graphic Novels & Comics") {
+                subcategorySelect.innerHTML += '<option value="Manga">Manga</option>';
+                subcategorySelect.innerHTML += '<option value="Superhero Comics">Superhero Comics</option>';
+                subcategorySelect.innerHTML += '<option value="Independent Comics">Independent Comics</option>';
+
+
+            } else if (selectedCategory === "Poetry & Drama") {
+                subcategorySelect.innerHTML += '<option value="Poetry Collections">Poetry Collections</option>';
+                subcategorySelect.innerHTML += '<option value="Plays & Screenplays">Plays & Screenplays</option>';
+
+
+            } else if (selectedCategory === "Science & Nature") {
+                subcategorySelect.innerHTML += '<option value="Biology">Biology</option>';
+                subcategorySelect.innerHTML += '<option value="Physics">Physics</option>';
+                subcategorySelect.innerHTML += '<option value="Environmental Science">Environmental Science</option>';
+                subcategorySelect.innerHTML += '<option value="Astronomy">Astronomy</option>';
+
+
+            } else if (selectedCategory === "Arts & Photography") {
+                subcategorySelect.innerHTML += '<option value="Art History">Art History</option>';
+                subcategorySelect.innerHTML += '<option value="Photography Techniques">Photography Techniques</option>';
+                subcategorySelect.innerHTML += '<option value="Crafts & Hobbies">Crafts & Hobbies</option>';
+
+            } else if (selectedCategory === "History") {
+                subcategorySelect.innerHTML += '<option value="Ancient History">Ancient History</option>';
+                subcategorySelect.innerHTML += '<option value="Modern History">Modern History</option>';
+                subcategorySelect.innerHTML += '<option value="Military History">Military History</option>';
+                subcategorySelect.innerHTML += '<option value="World History">World History</option>';
+
+            } else if (selectedCategory === "Spirituality & Religion") {
+                subcategorySelect.innerHTML += '<option value="Spiritual Growth">Spiritual Growth</option>';
+                subcategorySelect.innerHTML += '<option value="World Religions">World Religions</option>';
+                subcategorySelect.innerHTML += '<option value="Inspirational">Inspirational</option>';
+
+            } else if (selectedCategory === "Lifestyle") {
+                subcategorySelect.innerHTML += '<option value="Home & Garden">Home & Garden</option>';
+                subcategorySelect.innerHTML += '<option value="Hobbies & Crafts">Hobbies & Crafts</option>';
+                subcategorySelect.innerHTML += '<option value="Fashion & Beauty">Fashion & Beauty</option>';
+
+            } else if (selectedCategory === "Miscellaneous") {
+                subcategorySelect.innerHTML += '<option value="Reference Books">Reference Books</option>';
+                subcategorySelect.innerHTML += '<option value="Language Learning">Language Learning</option>';
+                subcategorySelect.innerHTML += '<option value="Humor">Humor</option>';
+
+            } else {
+                subcategorySelect.innerHTML += '<option value="">Please enter subcategory</option>';
+            }
+        } else {
+        }
+    }
+</script>

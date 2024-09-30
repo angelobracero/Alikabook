@@ -33,14 +33,17 @@
 
     <div class="book-section-container">
         <section class="book-section">
-            <div class="book-category book-category--recently">
-                <p>Recently Added</p>
-            </div>
-            <div class="arrow arrow-left" id="arrowLeft1">
-                <i class="fa-solid fa-angle-left"></i>
-            </div>
-            <div class="arrow arrow-right">
-                <i class="fa-solid fa-angle-right" id="arrowRight1"></i>
+            <div class="book-title-container">
+                <div class="book-category">
+                    <p>Recently Added</p>
+                </div>
+                <a class="see-all" asp-action="DisplayCategory" asp-route-category="Recently Added">See All</a>
+                <div class="arrow arrow-left" id="arrowLeft1">
+                    <i class="fa-solid fa-angle-left"></i>
+                </div>
+                <div class="arrow arrow-right" id="arrowRight1">
+                    <i class="fa-solid fa-angle-right" ></i>
+                </div>
             </div>
             <div class="book-container" id="scrollContainer1">
                 @foreach (var book in Model.RecentBooks)
@@ -60,15 +63,19 @@
                 }
             </div>
         </section>
+
         <section class="book-section">
-            <div class="book-category book-category--business">
-                <p>Business</p>
-            </div>
-            <div class="arrow arrow-left" id="arrowLeft2">
-                <i class="fa-solid fa-angle-left"></i>
-            </div>
-            <div class="arrow arrow-right">
-                <i class="fa-solid fa-angle-right" id="arrowRight2"></i>
+            <div class="book-title-container">
+                <div class="book-category">
+                    <p>Business & Economics</p>
+                </div>
+                <a class="see-all" asp-action="DisplayCategory" asp-route-category="Business & Economics">See All</a>
+                <div class="arrow arrow-left" id="arrowLeft2">
+                    <i class="fa-solid fa-angle-left"></i>
+                </div>
+                <div class="arrow arrow-right" id="arrowRight2">
+                    <i class="fa-solid fa-angle-right" ></i>
+                </div>
             </div>
             <div class="book-container" id="scrollContainer2">
                 @foreach (var book in Model.BusinessBooks)
@@ -88,18 +95,22 @@
                 }
             </div>
         </section>
+
         <section class="book-section">
-            <div class="book-category book-category--basic">
-                <p>Basic Programming</p>
-            </div>
-            <div class="arrow arrow-left" id="arrowLeft3">
-                <i class="fa-solid fa-angle-left"></i>
-            </div>
-            <div class="arrow arrow-right">
-                <i class="fa-solid fa-angle-right" id="arrowRight3"></i>
+            <div class="book-title-container">
+                <div class="book-category">
+                    <p>Programming & Technology</p>
+                </div>
+                <a class="see-all" asp-action="DisplayCategory" asp-route-category="Programming & Technology">See All</a>
+                <div class="arrow arrow-left" id="arrowLeft3">
+                    <i class="fa-solid fa-angle-left"></i>
+                </div>
+                <div class="arrow arrow-right" id="arrowRight3">
+                    <i class="fa-solid fa-angle-right" ></i>
+                </div>
             </div>
             <div class="book-container" id="scrollContainer3">
-                @foreach (var book in Model.BasicBooks)
+                @foreach (var book in Model.ProgrammingBooks)
                 {
                     var truncatedTitle = SD.TruncateTitle(book.Title, 12);
 
@@ -116,18 +127,22 @@
                 }
             </div>
         </section>
+
         <section class="book-section">
-            <div class="book-category book-category--advanced">
-                <p>Advanced Programming</p>
-            </div>
-            <div class="arrow arrow-left" id="arrowLeft4">
-                <i class="fa-solid fa-angle-left"></i>
-            </div>
-            <div class="arrow arrow-right">
-                <i class="fa-solid fa-angle-right" id="arrowRight4"></i>
+            <div class="book-title-container">
+                <div class="book-category">
+                    <p>Fiction</p>
+                </div>
+                <a class="see-all" asp-action="DisplayCategory" asp-route-category="Fiction">See All</a>
+                <div class="arrow arrow-left" id="arrowLeft4">
+                    <i class="fa-solid fa-angle-left"></i>
+                </div>
+                <div class="arrow arrow-right" id="arrowRight4">
+                    <i class="fa-solid fa-angle-right"></i>
+                </div>
             </div>
             <div class="book-container" id="scrollContainer4">
-                @foreach (var book in Model.AdvancedBooks)
+                @foreach (var book in Model.FictionBooks)
                 {
                     var truncatedTitle = SD.TruncateTitle(book.Title, 12);
 
@@ -141,9 +156,138 @@
                             </a>
                         </div>
                     </div>
-                }        
+                }
             </div>
         </section>
+
+        <section class="book-section">
+            <div class="book-title-container">
+                <div class="book-category">
+                    <p>Non-Fiction</p>
+                </div>
+                <a class="see-all" asp-action="DisplayCategory" asp-route-category="Non-Fiction">See All</a>
+                <div class="arrow arrow-left" id="arrowLeft5">
+                    <i class="fa-solid fa-angle-left"></i>
+                </div>
+                <div class="arrow arrow-right" id="arrowRight5">
+                    <i class="fa-solid fa-angle-right"></i>
+                </div>
+            </div>
+            <div class="book-container" id="scrollContainer5">
+                @foreach (var book in Model.NonFictionBooks)
+                {
+                    var truncatedTitle = SD.TruncateTitle(book.Title, 12);
+
+                    <div class="box">
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="" /></a>
+                        <div class="book-info">
+                            <p class="title">@truncatedTitle</p>
+                            <p class="price">&#8369;@book.Price</p>
+                            <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId">
+                                <p class="see-more">see more</p>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+
+        <section class="book-section">
+            <div class="book-title-container">
+                <div class="book-category">
+                    <p>Children’s Books</p>
+                </div>
+                <a class="see-all" asp-action="DisplayCategory" asp-route-category="Children’s Books">See All</a>
+                <div class="arrow arrow-left" id="arrowLeft6">
+                    <i class="fa-solid fa-angle-left"></i>
+                </div>
+                <div class="arrow arrow-right" id="arrowRight6">
+                    <i class="fa-solid fa-angle-right"></i>
+                </div>
+            </div>
+            <div class="book-container" id="scrollContainer6">
+                @foreach (var book in Model.ChildrenBooks)
+                {
+                    var truncatedTitle = SD.TruncateTitle(book.Title, 12);
+
+                    <div class="box">
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="" /></a>
+                        <div class="book-info">
+                            <p class="title">@truncatedTitle</p>
+                            <p class="price">&#8369;@book.Price</p>
+                            <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId">
+                                <p class="see-more">see more</p>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+
+        <section class="book-section">
+            <div class="book-title-container">
+                <div class="book-category">
+                    <p>Graphic Novels & Comics</p>
+                </div>
+                <a class="see-all" asp-action="DisplayCategory" asp-route-category="Graphic Novels & Comics">See All</a>
+                <div class="arrow arrow-left" id="arrowLeft7">
+                    <i class="fa-solid fa-angle-left"></i>
+                </div>
+                <div class="arrow arrow-right" id="arrowRight7">
+                    <i class="fa-solid fa-angle-right"></i>
+                </div>
+            </div>
+            <div class="book-container" id="scrollContainer7">
+                @foreach (var book in Model.GraphicBooks)
+                {
+                    var truncatedTitle = SD.TruncateTitle(book.Title, 12);
+
+                    <div class="box">
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="" /></a>
+                        <div class="book-info">
+                            <p class="title">@truncatedTitle</p>
+                            <p class="price">&#8369;@book.Price</p>
+                            <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId">
+                                <p class="see-more">see more</p>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+
+        <section class="book-section">
+            <div class="book-title-container">
+                <div class="book-category">
+                    <p>Science & Nature</p>
+                </div>
+                <a class="see-all" asp-action="DisplayCategory" asp-route-category="Science & Nature">See All</a>
+                <div class="arrow arrow-left" id="arrowLeft8">
+                    <i class="fa-solid fa-angle-left"></i>
+                </div>
+                <div class="arrow arrow-right" id="arrowRight8">
+                    <i class="fa-solid fa-angle-right"></i>
+                </div>
+            </div>
+            <div class="book-container" id="scrollContainer8">
+                @foreach (var book in Model.ScienceBooks)
+                {
+                    var truncatedTitle = SD.TruncateTitle(book.Title, 12);
+
+                    <div class="box">
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="" /></a>
+                        <div class="book-info">
+                            <p class="title">@truncatedTitle</p>
+                            <p class="price">&#8369;@book.Price</p>
+                            <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId">
+                                <p class="see-more">see more</p>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+
     </div>
 </main>
 

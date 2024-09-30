@@ -1,4 +1,6 @@
 ﻿//Navigation for small screen size
+
+
 const hamburger = document.querySelector(".fa-bars");
 const subHeader = document.querySelector(".header__sub");
 

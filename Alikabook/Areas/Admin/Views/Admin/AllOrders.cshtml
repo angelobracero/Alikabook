@@ -2,7 +2,7 @@
 
 <main class="order container">
     <h1 class="add-books__title">Order</h1>
-    <p class="order__sub-title">22 orders found</p>
+    <p class="order__sub-title">@(Model.Count() == 0 ? "no" : Model.Count().ToString()) orders found</p>
 
     <nav class="order__nav">
         <ul>

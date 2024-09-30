@@ -252,18 +252,33 @@ button {
 
 .header__logout {
     margin-left: auto;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 
-.header__logout a {
+.header__logout div {
+    display: none;
+}
+
+.header__logout:has(button:is(:hover, :focus-visible)) div {
     display: block;
-    padding: 1.2em;
+    font-size: 0.8rem;
+    position: absolute;
+    top: 1.2em;
+    right: 4em;
+    background-color: white;
+    color: var(--clr-primary);
+    padding: 0.2em;
+}
+
+.header__logout button {
+    display: block;
+    padding: 1em;
     transition: all 0.15s;
     white-space: nowrap;
 }
 
-.header__logout a:hover,
-.header__logout a:focus-visible {
+.header__logout button:hover,
+.header__logout button:focus-visible {
     background-color: #006fca;
 }
 
@@ -374,6 +389,41 @@ button {
     color: var(--clr-secondary);
 }
 
+
+/**************************************** || VIEW BOOKS ****************************************/
+
+.view__books-search {
+    position: relative;
+    margin-block-end: 2em;
+}
+
+.view__books-search input {
+    padding: 0.3em 1em;
+}
+
+.view__books-search input[type="text"] {
+    width: 100%;
+    border-radius: 2em;
+}
+
+.view__books-search input[type="submit"] {
+    position: absolute;
+    width: 3rem;
+    top: 0;
+    right: 0;
+    background-color: var(--clr-secondary);
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    cursor: pointer;
+}
+
+.fa-magnifying-glass {
+    position: absolute;
+    top: 0.5em;
+    right: 1.1em;
+    pointer-events: none;
+}
+
 /**************************************** || ADD BOOKS ****************************************/
 .add-books {
     color: black;
@@ -443,12 +493,15 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
     display: none;
 }
 
-.add-books__form-form-group input {
+.add-books__form-form-group input,
+.add-books__form-form-group select {
     padding: 0.5em;
     max-width: 100%;
 }
 
-.add-books__form-form-group input:not(input[type="file"]) {
+
+.add-books__form-form-group input:not(input[type="file"]),
+.add-books__form-form-group select {
     border-radius: 6px;
     border: 1px solid black;
 }
@@ -468,7 +521,7 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
     border-radius: 5px;
 }
 
-.add-books__form-buttons button:last-child {
+.add-books__form-buttons button:last-child   {
     background-color: var(--clr-text);
     color: var(--clr-primary);
     border: 2px solid var(--clr-primary);

@@ -121,11 +121,24 @@ a {
 
 .header__sub {
     display: none;
-    background-color: var(--clr-primary-light);
+    background-color: #003374;
     color: white;
     font-family: var(--ff-heading);
     font-size: 1rem;
-    min-height: 92vh;
+    min-height: 100vh;
+    width: 100%;
+}
+
+#searchBar2 {
+    width: 100%;
+    padding-block: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+#searchBar2 input {
+    width: 90%;
+    padding: 0.3em 1em;
 }
 
 .header__sub-profile {
@@ -151,7 +164,7 @@ a {
     align-items: center;
 }
 
-.header__sub-ul {
+.header__sub-ul, {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -160,14 +173,21 @@ a {
 
 .header__sub-ul li {
     width: 100%;
+    display: none;
 }
 
-.header__sub-ul a {
+.header_sub_ul_sm span {
+    padding-inline-start: 2em;
+}
+
+.header__sub-ul a,
+.header_sub_ul_sm ul a {
     display: block;
     padding: 1em;
     text-align: start;
     width: 100%;
 }
+
 
 .header__sub-ul .fa-solid {
     padding-right: 2em;
@@ -279,28 +299,30 @@ a {
     display: flex;
     align-items: center;
     font-family: var(--ff-heading);
-    padding-left: 1em;
+    padding-inline-start: 1em;
+    padding-inline-end: 4em;
     color: var(--clr-secondary);
     height: 2rem;
     background-color: var(--clr-primary);
     position: relative;
     clip-path: polygon( 0 0, 100% calc(50% - 30px), calc(100% - 50px) 50%, 100% calc(50% + 30px), 0 100% );
+    z-index: 99;
 }
 
-.book-category--recently {
-    width: 13rem;
+.book-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.book-category--business {
-    width: 10rem;
+.see-all {
+    color: var(--clr-primary);
+    padding-inline-end: 2em;
+    cursor: pointer;
 }
 
-.book-category--basic {
-    width: 15rem;
-}
-
-.book-category--advanced {
-    width: 17rem;
+.see-all:hover {
+    font-weight:bold;
 }
 
 .arrow-left {
@@ -441,6 +463,14 @@ a {
     background-color: var(--clr-primary);
     padding: 0.4em 2em;
     border-radius: 10em;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.sort-books {
+    display: flex;
+    justify-content: center;
+    margin-block-end: 2em;
 }
 
 .display-category {
@@ -1212,8 +1242,18 @@ account__photo-img {
 
     .header__main-middle,
     .header__main-right,
-    .header__sub {
+    .header__sub,
+    .header__sub-ul li{
         display: block;
+    }
+
+    #searchBar2,
+    .header_sub_ul_sm {
+        display: none;
+    }
+
+    .header__sub {
+        background-color: var(--clr-primary-light);
     }
 
     .header__main-middle {
@@ -1286,9 +1326,15 @@ account__photo-img {
 
     .header__sub {
         min-height: fit-content;
+        overflow-x: scroll;
+    }
+
+    .header__sub::-webkit-scrollbar {
+        display: none;
     }
 
     .header__sub-ul {
+        display: flex;
         flex-flow: row nowrap;
         margin: 0;
         gap: 0;
@@ -1299,9 +1345,9 @@ account__photo-img {
     }
 
     .header__sub-ul li a {
-        width: 100%;
         text-align: center;
-        padding: 0.3em 0;
+        padding: 0.3em 1em;
+        white-space: nowrap;
     }
 
     .header__sub-ul .fa-solid,
@@ -1443,22 +1489,6 @@ account__photo-img {
         height: 2.5rem;
     }
 
-    .book-category--recently {
-        width: 17rem;
-    }
-
-    .book-category--business {
-        width: 13rem;
-    }
-
-    .book-category--basic {
-        width: 20rem;
-    }
-
-    .book-category--advanced {
-        width: 23rem;
-    }
-
     .book-container {
         gap: 1.7em;
         padding: 1em 2em;
@@ -1471,8 +1501,17 @@ account__photo-img {
     }
 
     /* || DISPLAY BOOKS IN OTHER CATEGORY */
+    .category-title p {
+        font-size: 1.5rem;
+    }
+
     .display-category {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    .sort-books {
+        justify-content: flex-end;
+        margin-inline-end: 2em;
     }
 
     /* || BOOK DETAILS */
@@ -1608,22 +1647,6 @@ account__photo-img {
         height: 3rem;
     }
 
-    .book-category--recently {
-        width: 22rem;
-    }
-
-    .book-category--business {
-        width: 15rem;
-    }
-
-    .book-category--basic {
-        width: 25rem;
-    }
-
-    .book-category--advanced {
-        width: 29rem;
-    }
-
     .book-container {
         gap: 2.5em;
         padding: 1em 3em;
@@ -1730,6 +1753,10 @@ account__photo-img {
     .display-category {
         grid-template-columns: repeat(5, 1fr);
         gap: 3em;
+    }
+
+    .sort-books {
+        margin-inline-end: 5em;
     }
 
     /* || ORDER */

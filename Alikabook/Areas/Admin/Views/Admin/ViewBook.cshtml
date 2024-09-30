@@ -3,6 +3,14 @@
 <main class="add-books container">
     <h1 class="add-books__title">View Books</h1>
 
+    <div>
+        <form asp-action="ViewBook" method="get" class="view__books-search">
+            <input type="text" name="searchQuery" placeholder="Search Books" />
+            <input type="submit" value="" />
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </form>
+    </div>
+
     <div class="view-books">
         @foreach(var book in Model)
         {

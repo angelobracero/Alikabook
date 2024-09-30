@@ -1,0 +1,52 @@
+﻿@model DisplayBooksModel
+
+<main class="container" style="min-height: 83vh">
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="index">Home</a></li>
+        <li><a href="" class="active">@Model.Category</a></li>
+    </ol>
+    <div class="category-title">
+        <p>@Model.Category</p>
+    </div>
+    @if (Model.Books is null || Model.Books.Any())
+    {
+        <div class="sort-books">
+            <label for="sortSelect">Sort by: </label>
+            <form id="sortForm" method="get" asp-controller="YourControllerName" asp-action="YourActionName">
+                <select id="sortSelect" name="sortOption" onchange="document.getElementById('sortForm').submit();">
+                    <option value="a-z">Title (A-Z)</option>
+                    <option value="z-a">Title (Z-A)</option>
+                    <option value="price-asc">Price (Low to High)</option>
+                    <option value="price-desc">Price (High to Low)</option>
+                    <option value="rating-desc">Rating (High to Low)</option>
+                    <option value="rating-asc">Rating (Low to High)</option>
+                </select>
+            </form>
+        </div>
+    }
+    <section class="display-category">
+        @if(Model.Books is null || Model.Books.Any()) {
+            @foreach (var book in Model.Books)
+            {
+                var truncatedTitle = SD.TruncateTitle(book.Title, 12);
+
+                <div class="box">
+                    <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="" /></a>
+                    <div class="book-info">
+                        <p class="title">@truncatedTitle</p>
+                        <p class="price">&#8369;@book.Price</p>
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId">
+                            <p class="see-more">see more</p>
+                        </a>
+                    </div>
+                </div>
+            }
+        } else
+        {
+            <div style="min-height: 65vh;">
+                <h1 style="margin-block-start: 8rem; font-size: 1.5rem; color: blue; font-weight: bold;">No Books Yet!!</h1>
+            </div>
+        }
+    </section>
+</main>
+

@@ -23,6 +23,9 @@ namespace Alikabook.Models
         public string Category { get; set; }
 
         [Required]
+        public string Subcategory { get; set; }
+
+        [Required]
         public string Description { get; set; }
 
         public string? Image { get; set; }
@@ -37,6 +40,6 @@ namespace Alikabook.Models
         public int RatingCount { get; set; } = 0;
 
         public virtual ICollection<Comments> Comments { get; set; } = new List<Comments>();
-        public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+        public virtual ICollection<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();
     }
 }
