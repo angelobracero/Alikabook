@@ -80,7 +80,7 @@ namespace Alikabook.Areas.User.Controllers
         }
 
         [HttpGet]
-        public IActionResult DisplayCategory(string? category )
+        public IActionResult DisplayCategory(string? category, string sortOption = "All")
         {
 
             if(category == "Recently Added")
@@ -98,19 +98,32 @@ namespace Alikabook.Areas.User.Controllers
                 return View(books);
             }
 
-            List<BookInfo> bookList = _unitOfWork.BookInfo.GetAll()
+            List<BookInfo> bookList;
+
+            if (sortOption == "All")
+            {
+                // Get all books in the selected category
+                bookList = _unitOfWork.BookInfo.GetAll()
                                    .Where(book => book.Category == category)
                                    .ToList();
+            }   
+            else
+            {
+                // Get books based on the selected category and subcategory
+                bookList = _unitOfWork.BookInfo.GetAll()
+                                   .Where(book => book.Category == category && book.Subcategory == sortOption)
+                                   .ToList();
+            }
 
             var model = new DisplayBooksModel
             {
                 Books = bookList,
-                Category = category
+                Category = category,
+                SubCategory = sortOption
             };
 
             return View(model);
         }
-
 
         public IActionResult BookDetails(int? id)
         {
