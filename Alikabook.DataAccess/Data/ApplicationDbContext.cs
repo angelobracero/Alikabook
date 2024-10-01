@@ -1354,7 +1354,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Science Fiction & Fantasy",
                         Description = "Case was the sharpest data-thief in the matrix—until he crossed the wrong people and they crippled his nervous system, banishing him from cyberspace. Now a mysterious new employer has recruited him for a last-chance run at an unthinkably powerful artificial intelligence. With a dead man riding shotgun and Molly, a mirror-eyed street-samurai, to watch his back, Case is ready for the adventure that upped the ante on an entire genre of fiction.\n\nNeuromancer was the first fully-realized glimpse of humankind’s digital future—a shocking vision that has challenged our assumptions about technology and ourselves, reinvented the way we speak and think, and forever altered the landscape of our imaginations.",
                         Image = "e4e3b79d-c2c2-4b70-89d4-ec71a29aaadd.webp",
-                        Date = new DateTime(2024, 09, 29, 14, 53, 03, 1929631),
+                        Date = new DateTime(2024, 09, 29, 14, 53, 03),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1369,7 +1369,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Romance",
                         Description = "Jane Austen’s enduring classic of the Bennet sisters’ quest for marriage, now with a creatively embroidered cover.\n\nFirst published in 1813, Pride and Prejudice is one of the most popular and beloved British novels of all time, maintaining its allure for contemporary readers everywhere and selling millions of copies worldwide. Jane Austen’s novel tells the story of the five unmarried Bennet sisters, daughters of a humble country squire, as they deal with the issues of marriage, manners, and upbringing in English country life. This Crafted Classics edition features a decorative embroidered cover to give the book a unique, handcrafted appearance.",
                         Image = "ae4f9bb7-b124-4db9-ac1d-a9dcef4c28e6.webp",
-                        Date = new DateTime(2024, 09, 29, 14, 53, 48, 8952831),
+                        Date = new DateTime(2024, 09, 29, 14, 53, 48),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1384,7 +1384,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Romance",
                         Description = "Debut author Sally Thorne bursts on the scene with a hilarious and sexy workplace comedy all about that thin, fine line between hate and love.\n\nNemesis (n.) 1) An opponent or rival whom a person cannot best or overcome.\n\n2) A person's undoing\n\n3) Joshua Templeman\n\nLucy Hutton and Joshua Templeman hate each other. Not dislike. Not begrudgingly tolerate. Hate. And they have no problem displaying their feelings through a series of ritualistic passive aggressive maneuvers as they sit across from each other, executive assistants to co-CEOs of a publishing company. Lucy can't understand Joshua's joyless, uptight, meticulous approach to his job. Joshua is clearly baffled by Lucy's overly bright clothes, quirkiness, and Pollyanna attitude.\n\nNow up for the same promotion, their battle of wills has come to a head and Lucy refuses to back down when their latest game could cost her her dream job…but the tension between Lucy and Joshua has also reached its boiling point, and Lucy is discovering that maybe she doesn't hate Joshua. And maybe, he doesn't hate her either. Or maybe this is just another game.",
                         Image = "4fe71734-52bc-4b64-8280-627aa77f8d2b.webp",
-                        Date = new DateTime(2024, 09, 29, 14, 54, 43, 9146107),
+                        Date = new DateTime(2024, 09, 29, 14, 54, 43),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1399,7 +1399,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Romance",
                         Description = "They had nothing in common until love gave them everything to lose . . .\n\nLouisa Clark is an ordinary girl living an exceedingly ordinary life--steady boyfriend, close family--who has barely been farther afield than their tiny village. She takes a badly needed job working for ex-Master of the Universe Will Traynor, who is wheelchair bound after an accident. Will has always lived a huge life--big deals, extreme sports, worldwide travel--and now he's pretty sure he cannot live the way he is.\n\nWill is acerbic, moody, bossy--but Lou refuses to treat him with kid gloves, and soon his happiness means more to her than she expected. When she learns that Will has shocking plans of his own, she sets out to show him that life is still worth living.",
                         Image = "592862fe-e197-40e7-ae69-a1a6fab37e61.webp",
-                        Date = new DateTime(2024, 09, 29, 14, 55, 46, 7539888),
+                        Date = new DateTime(2024, 09, 29, 14, 55, 46),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1414,7 +1414,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Romance",
                         Description = "First Son Alex Claremont-Diaz is the closest thing to a prince this side of the Atlantic. With his intrepid sister and the Veep’s genius granddaughter, they’re the White House Trio, a beautiful millennial marketing strategy for his mother, President Ellen Claremont. International socialite duties do have downsides—namely, when photos of a confrontation with his longtime nemesis Prince Henry at a royal wedding leak to the tabloids and threaten American/British relations.\n\nThe plan for damage control: staging a fake friendship between the First Son and the Prince. Alex is busy enough handling his mother’s bloodthirsty opponents and his own political ambitions without an uptight royal slowing him down. But beneath Henry’s Prince Charming veneer, there’s a soft-hearted eccentric with a dry sense of humor and more than one ghost haunting him.",
                         Image = "016a930c-46a4-43b7-b525-21a979ca46a8.webp",
-                        Date = new DateTime(2024, 09, 29, 14, 56, 51, 8565204),
+                        Date = new DateTime(2024, 09, 29, 14, 56, 51),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1429,7 +1429,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Romance",
                         Description = "Unrivaled storytelling. Unforgettable characters. Rich historical detail. These are the hallmarks of Diana Gabaldon’s work. Her New York Times bestselling Outlander novels have earned the praise of critics and captured the hearts of millions of fans. Here is the story that started it all, introducing two remarkable characters, Claire Beauchamp Randall and Jamie Fraser, in a spellbinding novel of passion and history that combines exhilarating adventure with a love story for the ages.\n\nScottish Highlands, 1945. Claire Randall, a former British combat nurse, is just back from the war and reunited with her husband on a second honeymoon when she walks through a standing stone in one of the ancient circles that dot the British Isles. Suddenly she is a Sassenach—an “outlander”—in a Scotland torn by war and raiding clans in the year of Our Lord . . . 1743.",
                         Image = "ebeff6fc-a2b9-4d37-aa3b-50d80ce01528.webp",
-                        Date = new DateTime(2024, 09, 29, 14, 57, 35, 6229275),
+                        Date = new DateTime(2024, 09, 29, 14, 57, 35),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1444,7 +1444,7 @@ namespace Alikabook.DataAccess.Data
                          Subcategory = "Historical Fiction",
                          Description = "France, 1939 - In the quiet village of Carriveau, Vianne Mauriac says goodbye to her husband, Antoine, as he heads for the Front. She doesn't believe that the Nazis will invade France—but invade they do, in droves of marching soldiers, in caravans of trucks and tanks, in planes that fill the skies and drop bombs upon the innocent. When a German captain requisitions Vianne's home, she and her daughter must live with the enemy or lose everything. Without food or money or hope, as danger escalates all around them, she is forced to make one impossible choice after another to keep her family alive.\n\nVianne's sister, Isabelle, is a rebellious eighteen-year-old girl, searching for purpose with all the reckless passion of youth. While thousands of Parisians march into the unknown terrors of war, she meets GÃ¤tan, a partisan who believes the French can fight the Nazis from within France, and she falls in love as only the young can—completely. But when he betrays her, Isabelle joins the Resistance and never looks back, risking her life time and again to save others.",
                          Image = "82a3ab33-cac3-45df-a9fd-47ad4a774823.webp",
-                         Date = new DateTime(2024, 09, 29, 14, 59, 34, 0093381),
+                         Date = new DateTime(2024, 09, 29, 14, 59, 34),
                          Stock = 99,
                          Rating = null,
                          RatingCount = 0
@@ -1459,7 +1459,7 @@ namespace Alikabook.DataAccess.Data
                          Subcategory = "Historical Fiction",
                          Description = "Marie-Laure lives with her father in Paris near the Museum of Natural History where he works as the master of its thousands of locks. When she is six, Marie-Laure goes blind and her father builds a perfect miniature of their neighborhood so she can memorize it by touch and navigate her way home. When she is twelve, the Nazis occupy Paris, and father and daughter flee to the walled citadel of Saint-Malo, where Marie-Laure’s reclusive great uncle lives in a tall house by the sea. With them they carry what might be the museum’s most valuable and dangerous jewel.\n\nIn a mining town in Germany, the orphan Werner grows up with his younger sister, enchanted by a crude radio they find. Werner becomes an expert at building and fixing these crucial new instruments, a talent that wins him a place at a brutal academy for Hitler Youth, then a special assignment to track the Resistance. More and more aware of the human cost of his intelligence, Werner travels through the heart of the war and, finally, into Saint-Malo, where his story and Marie-Laure’s converge.",
                          Image = "d5dfe210-8b56-454e-8b7d-43e5df08ee4a.webp",
-                         Date = new DateTime(2024, 09, 29, 15, 00, 34, 3845840),
+                         Date = new DateTime(2024, 09, 29, 15, 00, 34),
                          Stock = 99,
                          Rating = null,
                          RatingCount = 0
@@ -1474,7 +1474,7 @@ namespace Alikabook.DataAccess.Data
                          Subcategory = "Historical Fiction",
                          Description = "The extraordinary #1 New York Times bestseller about the ability of books to feed the soul even in the darkest of times.\n\nNominated as one of America's best-loved novels by PBS's The Great American Read.\n\nWhen Death has a story to tell, you listen.\n\nIt is 1939. Nazi Germany. The country is holding its breath. Death has never been busier, and will become busier still.\n\nLiesel Meminger is a foster girl living outside of Munich, who scratches out a meager existence for herself by stealing when she encounters something she can't resist—books. With the help of her accordion-playing foster father, she learns to read and shares her stolen books with her neighbors during bombing raids as well as with the Jewish man hidden in her basement.\n\nIn superbly crafted writing that burns with intensity, award-winning author Markus Zusak, author of I Am the Messenger, has given us one of the most enduring stories of our time.\n\nDON'T MISS BRIDGE OF CLAY, MARKUS ZUSAK'S FIRST NOVEL SINCE THE BOOK THIEF.",
                          Image = "9da696c1-7d31-4e9c-b3e8-33b824f54953.webp",
-                         Date = new DateTime(2024, 09, 29, 15, 01, 22, 6802239),
+                         Date = new DateTime(2024, 09, 29, 15, 01, 22),
                          Stock = 99,
                          Rating = null,
                          RatingCount = 0
@@ -1489,7 +1489,7 @@ namespace Alikabook.DataAccess.Data
                          Subcategory = "Historical Fiction",
                          Description = "This beautiful, illuminating tale of hope and courage is based on interviews that were conducted with Holocaust survivor and Auschwitz-Birkenau tattooist Ludwig (Lale) Sokolov—an unforgettable love story in the midst of atrocity.\n\nThe Tattooist of Auschwitz is an extraordinary document, a story about the extremes of human behavior existing side by side: calculated brutality alongside impulsive and selfless acts of love. I find it hard to imagine anyone who would not be drawn in, confronted and moved. I would recommend it unreservedly to anyone, whether they'd read a hundred Holocaust stories or none.",
                          Image = "c4c981fd-e1ae-4722-935e-91be8fcebc8f.webp",
-                         Date = new DateTime(2024, 09, 29, 15, 02, 11, 5536323),
+                         Date = new DateTime(2024, 09, 29, 15, 02, 11),
                          Stock = 99,
                          Rating = null,
                          RatingCount = 0
@@ -1504,7 +1504,7 @@ namespace Alikabook.DataAccess.Data
                          Subcategory = "Young Adult Fiction",
                          Description = "The second book in the ground-breaking Hunger Games trilogy.\nAfter winning the brutal Hunger Games, Katniss and Peeta return to their district, hoping for a peaceful future. But their victory has caused rebellion to break out ... and the Capitol has decided that someone must pay.\n\nAs Katniss and Peeta are forced to visit the districts on the Capitol's Victory Tour, the stakes are higher than ever. Unless they can convince the world that they are still lost in their love for each other, the consequences will be horrifying.\n\nThen comes the cruellest twist: the contestants for the next Hunger Games are announced, and Katniss and Peeta are forced into the arena once more.",
                          Image = "cd288ff8-d552-4dd0-9725-0e4dcc4517f7.webp",
-                         Date = new DateTime(2024, 09, 29, 15, 02, 58, 5954923),
+                         Date = new DateTime(2024, 09, 29, 15, 02, 58),
                          Stock = 99,
                          Rating = null,
                          RatingCount = 0
@@ -1519,7 +1519,7 @@ namespace Alikabook.DataAccess.Data
                          Subcategory = "Young Adult Fiction",
                          Description = "Beatrice Prior's society is divided into five factions—Candor (the honest), Abnegation (the selfless), Dauntless (the brave), Amity (the peaceful), and Erudite (the intelligent). Beatrice must choose between staying with her Abnegation family and transferring factions. Her choice will shock her community and herself. But the newly christened Tris also has a secret, one she's determined to keep hidden, because in this world, what makes you different makes you dangerous.\n\nA memorable, unpredictable journey from which it is nearly impossible to turn away.",
                          Image = "0e30b3fa-2bfa-43f0-9b04-0a905a846e71.webp",
-                         Date = new DateTime(2024, 09, 29, 15, 03, 54, 3941711),
+                         Date = new DateTime(2024, 09, 29, 15, 03, 54),
                          Stock = 99,
                          Rating = null,
                          RatingCount = 0
@@ -1534,7 +1534,7 @@ namespace Alikabook.DataAccess.Data
                          Subcategory = "Young Adult Fiction",
                          Description = "When Thomas wakes up in the lift, the only thing he can remember is his name. He's surrounded by strangers--boys whose memories are also gone. Outside the towering stone walls that surround them is a limitless, ever-changing maze. It's the only way out--and no one's ever made it through alive. Then a girl arrives. The first girl ever. And the message she delivers is terrifying: Remember. Survive. Run.\n\nThe Maze Runner and Maze Runner: The Scorch Trials, and Maze Runner: The Death Cure all are now major motion pictures featuring the star of MTV's Teen Wolf, Dylan O'Brien; Kaya Scodelario; Aml Ameen; Will Poulter; and Thomas Brodie-Sangster.",
                          Image = "c83f29e9-d9e7-40b5-9077-1856661c24ef.webp",
-                         Date = new DateTime(2024, 09, 29, 15, 05, 02, 4971652),
+                         Date = new DateTime(2024, 09, 29, 15, 05, 02),
                          Stock = 99,
                          Rating = null,
                          RatingCount = 0
@@ -1549,7 +1549,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Young Adult Fiction",
                         Description = "The tenth anniversary of Cassandra Clare's phenomenal City of Bones demands a luxe new edition. The pride of any fan's collection, City of Bones now has new cover art, gilded edges, over thirty interior illustrations, and six new full-page color portraits of everyone's favorite characters! This beautifully crafted collector's item also includes the Clave's official files on some of the series' most beloved characters, written by Cassandra Clare. A perfect gift for the Shadowhunter fan in your life.\n\nThis is the book where Clary Fray first discovered the Shadowhunters, a secret cadre of warriors dedicated to driving demons out of our world and back to their own. The book where she first met Jace Wayland, the best Shadowhunter of his generation. The book that started it all.",
                         Image = "9711bbec-1546-4952-b0f7-42ac6d22a5e2.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 05, 55, 6216389),
+                        Date = new DateTime(2024, 09, 29, 15, 05, 55),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1564,7 +1564,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Biography & Memoir",
                         Description = "In a life filled with meaning and accomplishment, Michelle Obama has emerged as one of the most iconic and compelling women of our era. As First Lady of the United States of America--the first African American to serve in that role--she helped create the most welcoming and inclusive White House in history, while also establishing herself as a powerful advocate for women and girls in the U.S. and around the world, dramatically changing the ways that families pursue healthier and more active lives, and standing with her husband as he led America through some of its most harrowing moments. Along the way, she showed us a few dance moves, crushed Carpool Karaoke, and raised two down-to-earth daughters under an unforgiving media glare.",
                         Image = "34eec40d-a013-4942-8250-e12e72858ea9.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 07, 41, 8370497),
+                        Date = new DateTime(2024, 09, 29, 15, 07, 41),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1579,7 +1579,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Biography & Memoir",
                         Description = "Educated: A Memoir, Export Edition is #1 New York Times Bestseller.\n\nIt is also a Book Club Pick for Now Read This, from PBS NewsHour and The New York Times. Educated: A Memoir is also longlisted for the Carnegie Medal for Excellence in Nonfiction.\n\nThe novel is an unforgettable memoir about a young girl who, kept out of school, leaves her survivalist family and goes on to earn a PhD from Cambridge University.\n\nBorn to survivalists in the mountains of Idaho, Tara Westover was seventeen the first time she set foot in a classroom. Her family was so isolated from mainstream society that there was no one to ensure the children received an education, and no one to intervene when one of Tara's older brothers became violent. When another brother got himself into college, Tara decided to try a new kind of life. Her quest for knowledge transformed her, taking her over oceans and across continents, to Harvard and to Cambridge University. Only then would she wonder if she'd traveled too far, if there was still a way home.",
                         Image = "6db58bb2-353b-40ed-9cc1-451c19748b19.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 08, 26, 0291304),
+                        Date = new DateTime(2024, 09, 29, 15, 08, 26),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1594,7 +1594,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Biography & Memoir",
                         Description = "Based on more than forty interviews with Steve Jobs conducted over two years—as well as interviews with more than 100 family members, friends, adversaries, competitors, and colleagues—Walter Isaacson has written a riveting story of the roller-coaster life and searingly intense personality of a creative entrepreneur whose passion for perfection and ferocious drive revolutionized six industries: personal computers, animated movies, music, phones, tablet computing, and digital publishing.\n\nAt a time when America is seeking ways to sustain its innovative edge, Jobs stands as the ultimate icon of inventiveness and applied imagination. He knew that the best way to create value in 21st century was to connect creativity with technology. He built a company where leaps of the imagination were combined with remarkable feats of engineering.",
                         Image = "95a81ae9-18e7-4d3b-ae13-464006fbdb30.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 09, 48, 1775151),
+                        Date = new DateTime(2024, 09, 29, 15, 09, 48),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1609,7 +1609,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Self-Help",
                         Description = "No matter your goals, Atomic Habits offers a proven framework for improving--every day. James Clear, one of the world's leading experts on habit formation, reveals practical strategies that will teach you exactly how to form good habits, break bad ones, and master the tiny behaviors that lead to remarkable results.\n\nIf you're having trouble changing your habits, the problem isn't you. The problem is your system. Bad habits repeat themselves again and again not because you don't want to change, but because you have the wrong system for change. You do not rise to the level of your goals. You fall to the level of your systems. Here, you'll get a proven system that can take you to new heights.",
                         Image = "38820d15-c989-4e4f-b178-43f520001ddf.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 10, 56, 9804660),
+                        Date = new DateTime(2024, 09, 29, 15, 10, 56),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1624,7 +1624,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Self-Help",
                         Description = "It's no wonder that The Power of Now has sold over 2 million copies worldwide and has been translated into over 30 foreign languages. Much more than simple principles and platitudes, the book takes readers on an inspiring spiritual journey to find their true and deepest self and reach the ultimate in personal growth and spirituality: the discovery of truth and light.\n\nIn the first chapter, Tolle introduces readers to enlightenment and its natural enemy, the mind. He awakens readers to their role as a creator of pain and shows them how to have a pain-free identity by living fully in the present. The journey is thrilling, and along the way, the author shows how to connect to the indestructible essence of our Being, 'the eternal, ever-present One Life beyond the myriad forms of life that are subject to birth and death.'\n\nFeaturing a new preface by the author, this paperback shows that only after regaining awareness of Being, liberated from Mind and intensely in the Now, is there Enlightenment.",
                         Image = "79b93933-7172-4163-b4cc-58eac5801f56.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 11, 38, 2056671),
+                        Date = new DateTime(2024, 09, 29, 15, 11, 38),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1639,7 +1639,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Self-Help",
                         Description = "You Are a Badass at Making Money will launch you past the fears and stumbling blocks that have kept financial success beyond your reach. Drawing on her own transformation--over just a few years--from a woman living in a converted garage with tumbleweeds blowing through her bank account to a woman who travels the world in style, Jen Sincero channels the inimitable sass and practicality that made You Are a Badass an indomitable bestseller. She combines hilarious personal essays with bite-size, aha concepts that unlock earning potential and get real results.",
                         Image = "48afec1f-f022-4c6e-8578-44c70173e853.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 12, 18, 6261483),
+                        Date = new DateTime(2024, 09, 29, 15, 12, 18),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1654,7 +1654,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Health & Wellness",
                         Description = "With two appearances on CBS This Morning and Fresh Air's most popular interview of 2017, Matthew Walker has made abundantly clear that sleep is one of the most important but least understood aspects of our life. Until very recently, science had no answer to the question of why we sleep, or what good it served, or why we suffer such devastating health consequences when it is absent. Compared to the other basic drives in life--eating, drinking, and reproducing--the purpose of sleep remains more elusive.\n\nWithin the brain, sleep enriches a diversity of functions, including our ability to learn, memorize, and make logical decisions. It recalibrates our emotions, restocks our immune system, fine-tunes our metabolism, and regulates our appetite. Dreaming creates a virtual reality space in which the brain melds past and present knowledge, inspiring creativity.",
                         Image = "afa9c28b-0b71-4cde-b3fd-5aaa8f11af05.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 13, 35, 4613143),
+                        Date = new DateTime(2024, 09, 29, 15, 13, 35),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1669,7 +1669,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Health & Wellness",
                         Description = "A pioneering researcher transforms our understanding of trauma and offers a bold new paradigm for healing in this New York Times bestseller.\n\nTrauma is a fact of life. Veterans and their families deal with the painful aftermath of combat; one in five Americans has been molested; one in four grew up with alcoholics; one in three couples have engaged in physical violence. Dr. Bessel van der Kolk, one of the world’s foremost experts on trauma, has spent over three decades working with survivors. In The Body Keeps the Score, he uses recent scientific advances to show how trauma literally reshapes both body and brain, compromising sufferers’ capacities for pleasure, engagement, self-control, and trust. He explores innovative treatments—from neurofeedback and meditation to sports, drama, and yoga—that offer new paths to recovery by activating the brain’s natural neuroplasticity. Based on Dr. van der Kolk’s own research and that of other leading specialists, The Body Keeps the Score exposes the tremendous power of our relationships both to hurt and to heal—and offers new hope for reclaiming lives.",
                         Image = "38a8df1f-bb43-427a-9bcb-fac0eee89db6.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 14, 36, 5558278),
+                        Date = new DateTime(2024, 09, 29, 15, 14, 36),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1684,7 +1684,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Health & Wellness",
                         Description = "Dr. Michael Greger's first book, How Not to Die, presented the scientific evidence behind the only diet that can prevent and reverse many of the causes of premature death and disability. Now, The How Not to Die Cookbook puts that science into action. From Superfood Breakfast Bites to Spaghetti Squash Puttanesca to Two-Berry Pie with Pecan-Sunflower Crust, every recipe in The How Not to Die Cookbook offers a delectable, easy-to-prepare, plant-based dish to help anyone eat their way to better health.\n\nRooted in the latest nutrition science, these easy-to-follow, stunningly photographed recipes will appeal to anyone looking to live a longer, healthier life. Featuring Dr. Greger's Daily Dozen--the best ingredients to add years to your life--The How Not to Die Cookbook is destined to become an essential tool in healthy kitchens everywhere.",
                         Image = "5cc9135e-1136-450a-9fdc-1d890af8814d.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 15, 50, 9404709),
+                        Date = new DateTime(2024, 09, 29, 15, 15, 50),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1699,7 +1699,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Cooking & Food",
                         Description = "In the tradition of The Joy of Cooking and How to Cook Everything comes Salt, Fat, Acid, Heat, an ambitious new approach to cooking by a major new culinary voice. Chef and writer Samin Nosrat have taught everyone from professional chefs to middle school kids to author Michael Pollan to cook using her revolutionary, yet simple, philosophy. Master the use of just four elements—Salt, which enhances flavor; Fat, which delivers flavor and generates texture; Acid, which balances flavor; and Heat, which ultimately determines the texture of food—and anything you cook will be delicious. By explaining the hows and whys of good cooking, Salt, Fat, Acid, Heat will teach and inspire a new generation of cooks how to confidently make better decisions in the kitchen and cook delicious meals with any ingredients, anywhere, at any time.",
                         Image = "2267ac89-55e7-49db-a7f5-01ccf8b46d2d.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 18, 58, 8174079),
+                        Date = new DateTime(2024, 09, 29, 15, 18, 58),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1714,7 +1714,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Cooking & Food",
                         Description = "The French Chef Cookbook is a comprehensive (Aïoli to Velouté, Bouillabaisse to Ratatouille) collection of more than 300 classic French recipes.\n\nBy 1963, Julia Child had already achieved widespread recognition as the bestselling author of Mastering the Art of French Cooking, but it wasn’t until her television debut with The French Chef that she became the superstar we know and love today. Over the course of ten seasons, millions of Americans learned not only how to cook, but how to embrace food. The series completely changing the way that we eat today, and it earned Julia a Peabody Award in 1965 and an Emmy Award in 1966.",
                         Image = "601da4e3-14cb-4fb8-b0ce-6da6eaa8fe59.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 20, 32, 8664158),
+                        Date = new DateTime(2024, 09, 29, 15, 20, 32),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1729,7 +1729,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Politics & Current Events",
                         Description = "In The Sixth Extinction, two-time winner of the National Magazine Award and New Yorker writer Elizabeth Kolbert draws on the work of scores of researchers in half a dozen disciplines, accompanying many of them into the field: geologists who study deep ocean cores, botanists who follow the tree line as it climbs up the Andes, marine biologists who dive off the Great Barrier Reef. She introduces us to a dozen species, some already gone, others facing extinction, including the Panamian golden frog, staghorn coral, the great auk, and the Sumatran rhino. Through these stories, Kolbert provides a moving account of the disappearances occurring all around us and shows that they are often caused by our own actions, altering life on Earth in ways we do not yet understand.",
                         Image = "017cfc1b-7bc0-41cc-8bb2-e3d8c1e82832.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 23, 1, 8550064),
+                        Date = new DateTime(2024, 09, 29, 15, 23, 1),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1744,7 +1744,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Biography & Memoir",
                         Description = "Tara Westover grew up preparing for the End of Days, her survivalist family didn't believe in public education. Educated is an account of her struggle to reconcile her desire for education and her family’s rigid belief system, ultimately leading her to leave her home and family behind.\n\nIn this memoir, she chronicles her journey from her isolated upbringing in rural Idaho to her time at Harvard and Cambridge University, providing an unforgettable story of the transformative power of education and a testament to the resilience of the human spirit.",
                         Image = "0d7f78c5-9fa0-4827-93d7-9445b787635f.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 26, 15, 1350276),
+                        Date = new DateTime(2024, 09, 29, 15, 26, 15),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1759,7 +1759,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Politics & Current Events",
                         Description = "In Sapiens, Yuval Noah Harari explores the history of humankind, weaving together anthropology, history, and economics to understand how Homo sapiens became the dominant species on the planet. Through this lens, he examines how our collective narratives and beliefs have shaped societies and influenced our behavior over time, making it an essential read for anyone interested in understanding the complex web of human existence.",
                         Image = "f79d3d3c-ece5-494c-9145-7d558fefb57d.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 28, 41, 4968249),
+                        Date = new DateTime(2024, 09, 29, 15, 28, 41),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1774,7 +1774,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Biography & Memoir",
                         Description = "In her memoir, Becoming, former First Lady Michelle Obama invites readers into her world, chronicling the experiences that have shaped her into the woman she is today. From her childhood in the South Side of Chicago to her role as an advocate for education and health, she shares personal stories that illuminate the values that guide her and the challenges she faced on her journey to the White House and beyond.",
                         Image = "1b40f0e8-0424-4e84-aaf0-33789938cc9d.webp",
-                        Date = new DateTime(2024, 09, 29, 15, 30, 58, 9185122),
+                        Date = new DateTime(2024, 09, 29, 15, 30, 58),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1789,7 +1789,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Picture Books",
                         Description = "The all-time classic picture book, from generation to generation, sold somewhere in the world every 30 seconds! A sturdy and beautiful book to give as a gift for new babies, baby showers, birthdays, and other new beginnings!\n\nFeaturing interactive die-cut pages, this board book edition is the perfect size for little hands and great for teaching counting and days of the week.",
                         Image = "15df3bfc-2a25-4c2b-b21a-359dd8ba41a5.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 35, 26, 2044836),
+                        Date = new DateTime(2024, 09, 29, 18, 35, 26),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1804,7 +1804,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Early Childhood Education",
                         Description = "Handpicked by Amazon kids' books editor, Seira Wilson, for Prime Book Box a children's subscription that inspires a love of reading.\n\nA big happy frog, a plump purple cat, a handsome blue horse, and a soft yellow duck all parade across the pages of this delightful book. Children will immediately respond to Eric Carle's flat, boldly colored collages. Combined with Bill Martin's singsong text, they create unforgettable images of these endearing animals.",
                         Image = "7af68300-bf82-4ca7-a145-00bb969b362c.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 36, 19, 6150069),
+                        Date = new DateTime(2024, 09, 29, 18, 36, 19),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1819,7 +1819,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Early Childhood Education",
                         Description = "The Cat is back—along with some surprise friends—in this beloved Beginner Book by Dr. Seuss. Dick and Sally have no time to play. It’s winter and they have mountains of snow to shovel. So when the Cat comes to visit, he decides to go inside and to take a bath. No problem, right? Wrong! The pink ring he leaves in the tub creates is a very BIG pink problem when he transfers the stubborn stain from the bath onto Mother’s white dress, Dad’s shoes, the floors, the walls, and ultimately, over the entire yard full of snow! Will the kids EVER clean up the mess? You bet they will, with some help from the Cat and his helpers: 26 miniature cats (AKA Little Cats A-Z) who live inside the Cat’s hat! This classic Dr. Seuss story is the perfect choice for beginning readers and read-alouds, especially on snow days! And with a peel-off 60th Anniversary sticker on the front cover, it makes a perfect gift for all ages.",
                         Image = "361a53c9-b994-499f-a23c-eda3f22b79bd.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 37, 27, 4423880),
+                        Date = new DateTime(2024, 09, 29, 18, 37, 27),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1834,7 +1834,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Study Guides & Test Prep",
                         Description = "SUCCEED ON THE SAT WITH THE PRINCETON REVIEW! With 6 full-length practice tests (4 in the book and 2 online), in-depth reviews for all exam content, and strategies for scoring success, SAT Prep, 2023 covers every facet of this challenging and important test.\n\nTechniques That Actually Work\n· Powerful tactics to help you avoid traps and beat the SAT\n· Pacing tips to help you maximize your time\n· Detailed examples showing how to employ each strategy to your advantage.",
                         Image = "d6382628-112f-47bb-a95e-220f1404f5db.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 39, 1, 6154180),
+                        Date = new DateTime(2024, 09, 29, 18, 39, 1),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1849,7 +1849,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Study Guides & Test Prep",
                         Description = "The Official Digital SAT Study Guide™ provides a comprehensive resource for understanding updates to the SAT® in the digital format. It includes four official practice tests―all created by the test maker. As part of College Board’s commitment to access, practice tests are also available in the digital testing platform, Bluebook™, at no charge. However, the guide is the only place to find practice tests in print accompanied by over 300 pages of additional instruction, guidance, and test information.\n\nThe Official Digital SAT Study Guide will help students get ready for the digital SAT with:\n• four official digital SAT practice tests, created from the same process used for the actual test.\n• detailed descriptions of the Reading and Writing and Math sections of the digital SAT.\n• targeted sample questions for each question type.\n• question drills by topic.\n• test-taking approaches and suggestions.\n• detailed explanations of right and wrong answers.\n• information on preparing for the digital PSAT/NMSQT® or PSAT™ 10.",
                         Image = "6e70daea-d85a-447b-8453-9f3e05c7b86d.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 40, 38, 1735140),
+                        Date = new DateTime(2024, 09, 29, 18, 40, 38),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1864,7 +1864,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Early Readers",
                         Description = "Gerald is careful. Piggie is not.\nPiggie cannot help smiling. Gerald can.\nGerald worries so that Piggie does not have to. Gerald and Piggie are best friends. In Elephants Cannot Dance! Piggie tries to teach Gerald some new moves. But will Gerald teach Piggie something even more important?",
                         Image = "63274981-5f7f-4323-af7b-27f9ece5dd9c.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 42, 30, 1707181),
+                        Date = new DateTime(2024, 09, 29, 18, 42, 30),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1879,7 +1879,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Early Readers",
                         Description = "Woof, woof! What could be more fun than making new friends with Biscuit, the little yellow puppy?\n\nMeet Biscuit’s friends, including Puddles, Nibbles the rabbit, the little girl, and many more, in this tabbed board book. Featuring eight colorful tabs and simple text, this sturdy, easy to grip board book is perfect for the littlest fans of Biscuit, everyone’s favorite little yellow puppy.",
                         Image = "5c47c35d-f7cb-4f2c-9b2a-f85a7aaa422b.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 43, 11, 2717797),
+                        Date = new DateTime(2024, 09, 29, 18, 43, 11),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1894,7 +1894,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Chapter Books",
                         Description = "Jack and Annie head to 18th-century Austria, where they must find and help a musician by the name of Mozart. Decked out in the craziest outfits they’ve ever worn—including a wig for Jack and a giant hoopskirt for Annie!—the two siblings search an entire palace to no avail. Their hunt is further hampered by the appearance of a mischievous little boy who is determined to follow them everywhere. But when they finally find Mozart, he needs help getting back to the palace to perform. Will they make it in time? Or will the little boy’s antics ruin everything? Full of excitement, danger, and a touch of magic, this adventure is sure to entertain young readers!",
                         Image = "fd178e86-3d8d-4818-9aa3-8ac0fd8b63f9.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 44, 41, 3055724),
+                        Date = new DateTime(2024, 09, 29, 18, 44, 41),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1909,7 +1909,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Chapter Books",
                         Description = "Meet the World's Funniest Kindergartner--Junie B. Jones! That meanie Jim has invited everyone in Room Nine to his birthday party on Saturday--except Junie B.! Should she have her own birthday party six months early and not invite Jim? Or should she move to It's a Small World After All in Disneyland?",
                         Image = "8f8c33ef-7927-4223-885f-0fa6828f2037.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 44, 46, 5241973),
+                        Date = new DateTime(2024, 09, 29, 18, 44, 46),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1924,7 +1924,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Middle Grade Fiction",
                         Description = "It was a dark and stormy night; Meg Murry, her small brother Charles Wallace, and her mother had come down to the kitchen for a midnight snack when they were upset by the arrival of a most disturbing stranger.\n\n\"Wild nights are my glory,\" the unearthly stranger told them. \"I just got caught in a downdraft and blown off course. Let me sit down for a moment, and then I'll be on my way. Speaking of ways, by the way, there is such a thing as a tesseract.\"",
                         Image = "00437f61-f4bb-4c53-948e-9d48fba958c0.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 46, 15, 3307209),
+                        Date = new DateTime(2024, 09, 29, 18, 46, 15),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1939,7 +1939,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Middle Grade Fiction",
                         Description = "For the first time, the Giver Quartet, four critically acclaimed modern classics, in one paperback boxed set. From two-time Newbery Medal winner and New York Times bestselling author Lois Lowry.\n\nFollow Jonas on his journey to discover the dark implications of his seemingly ideal community; witness Kira’s fight for survival and pursuit of an unmatched talent in a society blinded by prejudice; join Matty’s desperate mission to save Village and the practice of openness and honesty fostered there; and complete the story with Claire’s utter devotion to a child that was stolen from her, no matter what it takes to find him again.",
                         Image = "26c83209-99bd-4c77-845b-d192fac33446.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 47, 15, 1879765),
+                        Date = new DateTime(2024, 09, 29, 18, 47, 15),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1954,7 +1954,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Manga",
                         Description = "Naruto is a young shinobi with an incorrigible knack for mischief. He’s got a wild sense of humor, but Naruto is completely serious about his mission to be the world’s greatest ninja!\n\nNaruto and his team engage in an intense battle with the Akatsuki organization as both sides seek the power to determine the future of their land. Internecine fighting weakens the Akatsuki, but will their dark forces sideline Naruto?!",
                         Image = "b6f9c49c-0e9b-4bce-af5c-d649d1245472.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 50, 34, 5865523),
+                        Date = new DateTime(2024, 09, 29, 18, 50, 34),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1969,7 +1969,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Manga",
                         Description = "Join Monkey D. Luffy and his swashbuckling crew in their search for the ultimate treasure, One Piece! As a child, Monkey D. Luffy dreamed of becoming King of the Pirates. But his life changed when he accidentally gained the power to stretch like rubber...at the cost of never being able to swim again!\n\nYears later, Luffy sets off in search of the One Piece, said to be the greatest treasure in the world... As the battle of Onigashima heats up, Kaido's daughter Yamato actually wants to join Luffy's side. Meanwhile, Kaido reveals his grand plans and together with Big Mom, prepare to plunge the entire world in fear!",
                         Image = "278c534e-0654-4e8a-bcda-0ed87bc61b2f.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 51, 21, 1520053),
+                        Date = new DateTime(2024, 09, 29, 18, 51, 21),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1984,7 +1984,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Manga",
                         Description = "HUMANITY PUSHES BACK!\n\nThe Survey Corps develop a risky gambit—have Eren in Titan form attempt to repair Wall Rose, reclaiming human territory from the monsters for the first time in a century. But Titan-Eren’s self-control is far from perfect, and when he goes on a rampage, not even Armin can stop him! With the survival of humanity on his massive shoulders, will Eren be able to return to his senses, or will he lose himself forever?",
                         Image = "84420467-d643-494e-be09-66e4078a7a31.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 52, 4, 5787479),
+                        Date = new DateTime(2024, 09, 29, 18, 52, 4),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -1999,7 +1999,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Manga",
                         Description = "Light Yagami is an ace student with great prospects--and he's bored out of his mind. But all that changes when he finds the Death Note, a notebook dropped by a rogue Shinigami death god. Any human whose name is written in the notebook dies, and now Light has vowed to use the power of the Death Note to rid the world of evil. But when criminals begin dropping dead, the authorities send the legendary detective L to track down the killer. With L hot on his heels, will Light lose sight of his noble goal...or his life?\n\nAlthough they've collected plenty of evidence tying the seven Yotsuba members to the newest Kira, Light, L and the rest of the task force are no closer to discovering which one actually possesses the Death Note. Desperate for some headway, L recruits Misa to infiltrate the group and feed them information calculated to bring Kira into the open. But the Shinigami Rem reveals to Misa who the Kiras really are, and, armed with this knowledge, Misa will do anything to help Light. But what will that mean for L...?",
                         Image = "6198e70d-74a7-4b1e-9bbf-160323235b6b.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 52, 47, 5901899),
+                        Date = new DateTime(2024, 09, 29, 18, 52, 47),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2014,7 +2014,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Manga",
                         Description = "What would the world be like if 80 percent of the population manifested superpowers called \"Quirks\"? Heroes and villains would be battling it out everywhere! Being a hero would mean learning to use your power, but where would you go to study? The Hero Academy of course! But what would you do if you were one of the 20 percent who were born Quirkless?\n\nThe final stages of the U.A. High sports festival promise to be explosive, as Uraraka takes on Bakugo in a head-to-head match! Bakugo never gives anyone a break, and the crowd holds its breath as the battle begins. The finals will push the students of Class 1-A to their limits and beyond!",
                         Image = "f5b77b03-fd1c-4910-be83-4e7ceb6d0c3e.webp",
-                        Date = new DateTime(2024, 09, 29, 18, 53, 45, 9406207),
+                        Date = new DateTime(2024, 09, 29, 18, 53, 45),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2029,7 +2029,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Superhero Comics",
                         Description = "Batman: The Killing Joke is Alan Moore's unforgettable meditation on the razor-thin line between sanity and insanity, heroism and villainy, comedy and tragedy.\n\nOne bad day is all it takes according to the grinning engine of madness and mayhem known as the Joker, that's all that separates the sane from the psychotic. Freed once again from the confines of Arkham Asylum, he's out to prove his deranged point. And he's going to use Gotham City's top cop, Commissioner Jim Gordon, and the Commissioner's brilliant and beautiful daughter Barbara to do it.",
                         Image = "b8d98594-008f-48f1-8108-248919bf2d30.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 03, 21, 4302915),
+                        Date = new DateTime(2024, 09, 29, 19, 03, 21),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2044,7 +2044,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Superhero Comics",
                         Description = "In an alternate world where the mere presence of American superheroes changed history, the US won the Vietnam War, Nixon is still president, and the cold war is in full effect!\n\nWatchmen begins as a murder-mystery, but soon unfolds into a planet-altering conspiracy. As the resolution comes to a head, the unlikely group of reunited heroes--Rorschach, Nite Owl, Silk Spectre, Dr. Manhattan and Ozymandias--have to test the limits of their convictions and ask themselves where the true line is between good and evil.\n\nIn the mid-eighties, Alan Moore and Dave Gibbons created Watchmen, changing the course of comics' history and essentially remaking how popular culture perceived the genre. Popularly cited as the point where comics came of age, Watchmen's sophisticated take on superheroes has been universally acclaimed for its psychological depth and realism.",
                         Image = "ee32f552-c5f3-4743-b179-7a161abe2556.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 04, 54, 0452255),
+                        Date = new DateTime(2024, 09, 29, 19, 04, 54),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2059,7 +2059,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Superhero Comics",
                         Description = "The X-Men have fought many battles, been on galaxy-spanning adventures and defeated enemies of limitless might ― but none of it prepared them for the most shocking struggle they would ever face. One of their own, Jean Grey, has gained cosmic power beyond all comprehension ― and that power has corrupted her absolutely! Now, the X-Men must decide whether the life of the friend they cherish is worth the possible destruction of the entire universe!\n\nThis touching tale of ultimate power and the triumph of the human spirit has been a cornerstone of the X-Men mythos for decades. Relive the saga that changed everything!",
                         Image = "7e8a29ef-c94b-47d9-b134-f2f28d451539.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 05, 50, 2043854),
+                        Date = new DateTime(2024, 09, 29, 19, 05, 50),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2074,7 +2074,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Superhero Comics",
                         Description = "The Penguin Classics Marvel Collection presents the origin stories, seminal tales, and characters of the Marvel Universe to explore Marvel's transformative and timeless influence on an entire genre of fantasy. A Penguin Classics Marvel Collection Edition Collects Spider-Man!” from Amazing Fantasy #15 (1962); The Amazing Spider-Man #1-4, #9, #10, #13, #14, #17-19 (1963-1964); Goodbye to Linda Brown” from Strange Tales #97 (1962); How Stan Lee and Steve Ditko Create Spider-Man!” from The Amazing Spider-Man Annual #1 (1964).\n\nIt is impossible to imagine American popular culture without Marvel Comics. For decades, Marvel has published groundbreaking visual narratives that sustain attention on multiple levels: as metaphors for the experience of difference and otherness; as meditations on the fluid nature of identity; and as high-water marks in the artistic tradition of American cartooning, to name a few. This anthology contains twelve key stories from the first two years of Spider-Man's publication history (from 1962 to 1964).",
                         Image = "7045bac4-8073-44c4-9264-1ba144637aa7.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 06, 34, 2628880),
+                        Date = new DateTime(2024, 09, 29, 19, 06, 34),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2089,7 +2089,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Independent Comics",
                         Description = "BRIAN K. VAUGHAN and FIONA STAPLES have been hard at work on the second half of Hazels epic journey. Exciting news is coming, and anyone looking for a cool new way to catch up on the Eisner Award-winning series can look no further than this gorgeous box set, collecting all nine of the bestselling trade paperback collections in one affordable package. This is the perfect way for any mature readers” who havent yet tried SAGA to dip their toes into this weirdly wonderful universe. Collects SAGA VOL. 1-9 trade paperback with a set of 6 x 9 cover prints exclusive to the box set!",
                         Image = "95d68321-bd28-4411-b67b-c507f989e7c9.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 08, 01, 0303678),
+                        Date = new DateTime(2024, 09, 29, 19, 08, 01),
                         Stock = 20,
                         Rating = null,
                         RatingCount = 0
@@ -2104,7 +2104,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Independent Comics",
                         Description = "In powerful black-and-white comic strip images, Satrapi tells the coming-of-age story of her life in Tehran from ages six to fourteen, years that saw the overthrow of the Shah’s regime, the triumph of the Islamic Revolution, and the devastating effects of war with Iraq. The intelligent and outspoken only child of committed Marxists and the great-granddaughter of one of Iran’s last emperors, Marjane bears witness to a childhood uniquely entwined with the history of her country.",
                         Image = "bbd46ca2-4329-4996-a56f-7e035fcd60c7.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 08, 52, 5863321),
+                        Date = new DateTime(2024, 09, 29, 19, 08, 52),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2119,7 +2119,7 @@ namespace Alikabook.DataAccess.Data
                        Subcategory = "Independent Comics",
                        Description = "Alison Bechdel’s groundbreaking, bestselling graphic memoir that charts her fraught relationship with her late father. Distant and exacting, Bruce Bechdel was an English teacher and director of the town funeral home, which Alison and her family referred to as the \"Fun Home.\" It was not until college that Alison, who had recently come out as a lesbian, discovered that her father was also gay. A few weeks after this revelation, he was dead, leaving a legacy of mystery for his daughter to resolve. In her hands, personal history becomes a work of amazing subtlety and power, written with controlled force and enlivened with humor, rich literary allusion, and heartbreaking detail.",
                        Image = "aa683c1e-1cb7-46ea-8bc6-7bfdd275ca2d.webp",
-                       Date = new DateTime(2024, 09, 29, 19, 09, 42, 8009474),
+                       Date = new DateTime(2024, 09, 29, 19, 09, 42),
                        Stock = 99,
                        Rating = null,
                        RatingCount = 0
@@ -2134,7 +2134,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Poetry Collections",
                         Description = "From rupi kaur, the #1 New York Times bestselling author of milk and honey, comes her long-awaited second collection of poetry. A vibrant and transcendent journey about growth and healing. Ancestry and honoring one's roots. Expatriation and rising up to find a home within yourself. Divided into five chapters and illustrated by kaur, the sun and her flowers is a journey of wilting, falling, rooting, rising, and blooming. A celebration of love in all its forms. this is the recipe of life said my mother as she held me in her arms as i wept think of those flowers you plant in the garden each year they will teach you that people too must wilt fall root rise in order to bloom.",
                         Image = "9bda16c0-734e-4297-9997-4b1713e35e8f.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 10, 50, 4778257),
+                        Date = new DateTime(2024, 09, 29, 19, 10, 50),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2149,7 +2149,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Poetry Collections",
                         Description = "#1 New York Times bestseller milk and honey is a collection of poetry and prose about survival. About the experience of violence, abuse, love, loss, and femininity. The book is divided into four chapters, and each chapter serves a different purpose. Deals with a different pain. Heals a different heartache. milk and honey takes readers through a journey of the most bitter moments in life and finds sweetness in them because there is sweetness everywhere if you are just willing to look.",
                         Image = "3edf039b-df6b-4228-b7de-47a67cb2260d.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 11, 32, 7209633),
+                        Date = new DateTime(2024, 09, 29, 19, 11, 32),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2164,7 +2164,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Poetry Collections",
                         Description = "When Sylvia Plath died, she not only left behind a prolific life but also her unpublished literary masterpiece, Ariel. When her husband, Ted Hughes, first brought this collection to life, it garnered worldwide acclaim, though it wasn't the draft Sylvia had wanted her readers to see. This facsimile edition restores, for the first time, Plath's original manuscript - including handwritten notes - and her own selection and arrangement of poems. This edition also includes in facsimile the complete working drafts of her poem \"Ariel,\" which provide a rare glimpse into the creative process of a beloved writer. This publication introduces a truer version of Plath's works, and will no doubt alter her legacy forever. This P.S. edition features an extra 16 pages of insights into the book, including author interviews, recommended reading, and more.",
                         Image = "41308f5a-94bd-4cba-823f-80b22228d378.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 12, 44, 1566888),
+                        Date = new DateTime(2024, 09, 29, 19, 12, 44),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2179,7 +2179,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Plays & Screenplays",
                         Description = "Considered one of Shakespeare’s most rich and enduring plays, the depiction of its hero Hamlet as he vows to avenge the murder of his father by his brother Claudius is both powerful and complex. As Hamlet tries to find out the truth of the situation, his troubled relationship with his mother comes to the fore, as do the paradoxes in his personality. A play of carefully crafted conflict and tragedy, Shakespeare’s intricate dialogue continues to fascinate audiences to this day.",
                         Image = "1bc3eebf-fff2-4afa-9ac0-d68b9d46d8eb.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 13, 21, 3390645),
+                        Date = new DateTime(2024, 09, 29, 19, 13, 21),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2194,7 +2194,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Biology",
                         Description = "Her name was Henrietta Lacks, but scientists know her as HeLa. She was a poor Southern tobacco farmer who worked the same land as her slave ancestors, yet her cells—taken without her knowledge—became one of the most important tools in medicine: The first “immortal” human cells grown in culture, which are still alive today, though she has been dead for more than sixty years. HeLa cells were vital for developing the polio vaccine; uncovered secrets of cancer, viruses, and the atom bomb’s effects; helped lead to important advances like in vitro fertilization, cloning, and gene mapping; and have been bought and sold by the billions. Yet Henrietta Lacks remains virtually unknown, buried in an unmarked grave.",
                         Image = "06a9d080-8986-449f-bb32-faa550759626.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 16, 0, 6981961),
+                        Date = new DateTime(2024, 09, 29, 19, 16, 0),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2209,7 +2209,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Biology",
                         Description = "From a renowned historian comes a groundbreaking narrative of humanity's creation and evolution--a #1 international bestseller--that explores the ways in which biology and history have defined us and enhanced our understanding of what it means to be \"human.\" One hundred thousand years ago, at least six different species of humans inhabited Earth. Yet today there is only one--homo sapiens. What happened to the others? And what may happen to us? Most books about the history of humanity pursue either a historical or a biological approach, but Dr. Yuval Noah Harari breaks the mold with this highly original book that begins about 70,000 years ago with the appearance of modern cognition. From examining the role evolving humans have played in the global ecosystem to charting the rise of empires, Sapiens integrates history and science to reconsider accepted narratives, connect past developments with contemporary concerns, and examine specific events within the context of larger ideas.",
                         Image = "071123e1-c964-469d-af46-29f6e390c18f.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 17, 8, 3820410),
+                        Date = new DateTime(2024, 09, 29, 19, 17, 8),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2224,7 +2224,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Physics",
                         Description = "A landmark volume in science writing by one of the great minds of our time, Stephen Hawking's book explores such profound questions as: How did the universe begin--and what made its start possible? Does time always flow forward? Is the universe unending--or are there boundaries? Are there other dimensions in space? What will happen when it all ends? Told in language we all can understand, A Brief History of Time plunges into the exotic realms of black holes and quarks, of antimatter and \"arrows of time,\" of the big bang and a bigger God--where the possibilities are wondrous and unexpected. With exciting images and profound imagination, Stephen Hawking brings us closer to the ultimate secrets at the very heart of creation.",
                         Image = "e110da54-cbd3-4d27-b021-b77a552ceb25.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 18, 23, 1271275),
+                        Date = new DateTime(2024, 09, 29, 19, 18, 23),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2239,7 +2239,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Physics",
                         Description = "Are you short of time but hungry for knowledge? This beginner's quantum physics book proves that sometimes less is more. Bold graphics and easy-to-understand explanations make it the most accessible guide to quantum physics on the market. This smart but powerful guide cuts through the jargon and gives you the facts in a clear, visual way. Step inside the strange and fascinating world of subatomic physics that at times seems to conflict with common sense. Unlock the mysteries of more than 100 key ideas, from quantum mechanics basics to the uncertainty principle and quantum tunneling.",
                         Image = "0afd4b9c-5b8a-4b8e-bcf8-c57652e23e12.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 20, 23, 7969013),
+                        Date = new DateTime(2024, 09, 29, 19, 20, 23),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2254,7 +2254,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Physics",
                         Description = "The Wonders of Learning series helps your child to learn about the incredible world around them. With captivating illustrations and detailed analyses of key facts and fascinating information, these books are fun and fact-packed!",
                         Image = "dec8cf3d-4667-4dca-a28c-ae2fbc047f9e.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 21, 9, 2521526),
+                        Date = new DateTime(2024, 09, 29, 19, 21, 9),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2269,7 +2269,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Environmental Science",
                         Description = "In The Sixth Extinction, two-time winner of the National Magazine Award and New Yorker writer Elizabeth Kolbert draws on the work of scores of researchers in half a dozen disciplines, accompanying many of them into the field: geologists who study deep ocean cores, botanists who follow the tree line as it climbs up the Andes, marine biologists who dive off the Great Barrier Reef. She introduces us to a dozen species, some already gone, others facing extinction, including the Panamian golden frog, staghorn coral, the great auk, and the Sumatran rhino. Through these stories, Kolbert provides a moving account of the disappearances occurring all around us and traces the evolution of extinction as concept, from its first articulation by Georges Cuvier in revolutionary Paris up through the present day. In the ten years since the book was originally published, evidence of the Sixth Extinction has continued to mount, making its message more urgent than ever.",
                         Image = "0dd68ac0-a461-4969-95c0-94ad2b1fdac4.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 22, 51, 9124457),
+                        Date = new DateTime(2024, 09, 29, 19, 22, 51),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2284,7 +2284,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Environmental Science",
                         Description = "In This Changes Everything Naomi Klein argues that climate change isn't just another issue to be neatly filed between taxes and health care. It's an alarm that calls us to fix an economic system that is already failing us in many ways. Klein meticulously builds the case for how massively reducing our greenhouse emissions is our best chance to simultaneously reduce gaping inequalities, re-imagine our broken democracies, and rebuild our gutted local economies. She exposes the ideological desperation of the climate-change deniers, the messianic delusions of the would-be geoengineers, and the tragic defeatism of too many mainstream green initiatives. And she demonstrates precisely why the market has not--and cannot--fix the climate crisis but will instead make things worse, with ever more extreme and ecologically damaging extraction methods, accompanied by rampant disaster capitalism.",
                         Image = "b0d4afe9-f227-4f5d-9c8c-822f6409e8c0.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 23, 59, 1974161),
+                        Date = new DateTime(2024, 09, 29, 19, 23, 59),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2299,7 +2299,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Astronomy",
                         Description = "Cosmos is one of the bestselling science books of all time. In clear-eyed prose, Sagan reveals a jewel-like blue world inhabited by a life form that is just beginning to discover its own identity and to venture into the vast ocean of space. Featuring a new Introduction by Sagan’s collaborator, Ann Druyan, full color illustrations, and a new Foreword by astrophysicist Neil deGrasse Tyson, Cosmos retraces the fourteen billion years of cosmic evolution that have transformed matter into consciousness, exploring such topics as the origin of life, the human brain, Egyptian hieroglyphics, spacecraft missions, the death of the Sun, the evolution of galaxies, and the forces and individuals who helped to shape modern science.",
                         Image = "2d796ff2-a9da-4a90-8d3b-43928f7713ab.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 24, 58, 4913547),
+                        Date = new DateTime(2024, 09, 29, 19, 24, 58),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2314,7 +2314,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Astronomy",
                         Description = "The #1 New York Times Bestseller: The essential universe, from our most celebrated and beloved astrophysicist. What is the nature of space and time? How do we fit within the universe? How does the universe fit within us? There's no better guide through these mind-expanding questions than acclaimed astrophysicist and best-selling author Neil deGrasse Tyson. But today, few of us have time to contemplate the cosmos. So Tyson brings the universe down to Earth succinctly and clearly, with sparkling wit, in tasty chapters consumable anytime and anywhere in your busy day. While you wait for your morning coffee to brew, for the bus, the train, or a plane to arrive, Astrophysics for People in a Hurry will reveal just what you need to be fluent and ready for the next cosmic headlines: from the Big Bang to black holes, from quarks to quantum mechanics, and from the search for planets to the search for life in the universe.",
                         Image = "93eb8ed4-b51a-4565-8dbb-0e4bd9dc2140.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 25, 46, 0897470),
+                        Date = new DateTime(2024, 09, 29, 19, 25, 46),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2329,7 +2329,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Astronomy",
                         Description = "From Brian Greene, one of the world's leading physicists and author the Pulitzer Prize finalist 'The Elegant Universe,' comes a grand tour of the universe that makes us look at reality in a completely different way. Space and time form the very fabric of the cosmos. Yet they remain among the most mysterious of concepts. Is space an entity? Why does time have a direction? Could the universe exist without space and time? Can we travel to the past? Greene has set himself a daunting task: to explain non-intuitive, mathematical concepts like String Theory, the Heisenberg Uncertainty Principle, and Inflationary Cosmology with analogies drawn from common experience. From Newton's unchanging realm in which space and time are absolute, to Einstein's fluid conception of spacetime, to quantum mechanics' entangled arena where vastly distant objects can instantaneously coordinate their behavior, Greene takes us all, regardless of our scientific backgrounds, on an irresistible and revelatory journey to the new layers of reality that modern physics has discovered lying just beneath the surface of our everyday world.",
                         Image = "fb5b3c90-fc4f-4476-b3d2-48bb405d2374.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 26, 57, 0871592),
+                        Date = new DateTime(2024, 09, 29, 19, 26, 57),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2344,7 +2344,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Art History",
                         Description = "The Story of Art has been a global bestseller for over half a century – the finest and most popular introduction ever written, published globally in more than 30 languages. Attracted by the simplicity and clarity of his writing, readers of all ages and backgrounds have found in Professor Gombrich a true master, who combines knowledge and wisdom with a unique gift for communicating his deep love of the subject.",
                         Image = "63a5b7b9-63d6-41ad-a309-1bda2005838e.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 28, 14, 5136201),
+                        Date = new DateTime(2024, 09, 29, 19, 28, 14),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2359,7 +2359,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Art History",
                         Description = "John Berger's seminal text on how to look at art. John Berger's Ways of Seeing is one of the most stimulating and the most influential books on art in any language. First published in 1972, it was based on the BBC television series about which the Sunday Times critic commented: 'This is an eye-opener in more ways than one: by concentrating on how we look at paintings . . . he will almost certainly change the way you look at pictures.' By now he has.",
                         Image = "ae384aa9-ba14-4043-b8f7-0e1057cd8c6d.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 29, 03, 1807672),
+                        Date = new DateTime(2024, 09, 29, 19, 29, 03),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2374,7 +2374,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Crafts & Hobbies",
                         Description = "Swirled and sprinkled, dipped and glazed, or otherwise fancifully decorated, cupcakes are the treats that make everyone smile. They are the star attraction for special days, such as birthdays, showers, and holidays, as well as perfect everyday goodies. In Martha Stewart’s Cupcakes, the editors of Martha Stewart Living share 175 ideas for simple to spectacular creations–with cakes, frostings, fillings, toppings, and embellishments that can be mixed and matched to produce just the right cupcake for any occasion.",
                         Image = "ed969f43-24c2-4949-9209-087952fe88c7.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 33, 17, 8835555),
+                        Date = new DateTime(2024, 09, 29, 19, 33, 17),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2389,7 +2389,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Ancient History",
                         Description = "Why did Eurasians conquer, displace, or decimate Native Americans, Australians, and Africans, instead of the reverse? In this 'artful, informative, and delightful' (William H. McNeill, New York Review of Books) book, a classic of our time, evolutionary biologist Jared Diamond dismantles racist theories of human history by revealing the environmental factors actually responsible for its broadest patterns.",
                         Image = "b50bc979-3828-47ae-be23-04dd2f089c77.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 34, 10, 1159602),
+                        Date = new DateTime(2024, 09, 29, 19, 34, 10),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2404,7 +2404,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Ancient History",
                         Description = "In Tom Holland's vibrant translation, one of the great masterpieces of Western history springs to life. Herodotus of Halicarnassus--hailed by Cicero as the 'Father of History'--composed his histories around 440 BC. The earliest surviving work of nonfiction, The Histories works its way from the Trojan War through an epic account of the war between the Persian empire and the Greek city-states in the fifth century BC, recording landmark events that ensured the development of Western culture and still capture our modern imagination.",
                         Image = "79e71137-f332-4a24-a9b3-cba2efdf483c.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 34, 59, 0633040),
+                        Date = new DateTime(2024, 09, 29, 19, 34, 59),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2419,7 +2419,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Modern History",
                         Description = "In a modern translation, this definitive edition contains entries about Anne’s burgeoning sexuality and confrontations with her mother that were cut from previous editions. Anne Frank’s The Diary of a Young Girl is among the most enduring documents of the twentieth century. Since its publication in 1947, it has been a beloved and deeply admired monument to the indestructible nature of the human spirit, read by millions of people and translated into more than fifty-five languages.",
                         Image = "109b10ec-5290-4185-86a1-4e8a008738d9.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 36, 38, 9564319),
+                        Date = new DateTime(2024, 09, 29, 19, 36, 38),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2434,7 +2434,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Military History",
                         Description = "Writing at the time of Napoleon's greatest campaigns, Prussian soldier and writer Carl von Clausewitz created this landmark treatise on the art of warfare, which presented war as part of a coherent system of political thought. In line with Napoleon's own military actions, Clausewitz illustrated the need to annihilate the enemy and to make a strong display of one's power in an 'absolute war' without compromise.",
                         Image = "38cfda27-e474-4b60-af39-66d6b6f7028f.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 38, 07, 8966165),
+                        Date = new DateTime(2024, 09, 29, 19, 38, 07),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2449,7 +2449,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Military History",
                         Description = "\"The Art of War\" is an ancient Chinese military treatise attributed to Sun Tzu, a military strategist and philosopher, dating back to the 5th century BC. The book is composed of 13 chapters, each addressing different aspects of warfare and military strategy. It emphasizes the importance of strategy, deception, and flexibility in combat and offers timeless insights that apply not only to military conflicts but also to various aspects of life, including business and leadership.",
                         Image = "0f8082b3-8146-4d1b-9bfe-afbd70da3e4f.webp",
-                        Date = new DateTime(2024, 09, 29, 19, 39, 06, 7881975),
+                        Date = new DateTime(2024, 09, 29, 19, 39, 06),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2464,7 +2464,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "World Religions",
                         Description = "This Precious Moments Catholic Bible is the perfect choice for celebrating the special milestones in the life of your child. This beautiful gift can become a usable keepsake for Baptism or First Communion, and it can be the Bible your child carries to Mass. This contains the full Catholic canon, along with helps such as prayers, reading plans, and helpful verses. And the beautiful full-color Precious Moments artwork will invite your child into the pages of Scripture.",
                         Image = "f8775f8f-60a8-4257-818a-0076b12b0582.webp",
-                        Date = DateTime.Parse("2024-09-29 19:42:48.2093465"),
+                        Date = new DateTime(2024, 09, 29, 19, 39, 06),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2479,7 +2479,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "World Religions",
                         Description = "The 20th anniversary edition of the classic text, updated, revised, and featuring a Mindful Living Journal. Buddha and Christ, perhaps the two most pivotal figures in the history of humankind, each left behind a legacy of teachings and practices that have shaped the lives of billions of people over two millennia. If they were to meet on the road today, what would each think of the other's spiritual views and practices?",
                         Image = "fb471cbb-c7dd-4116-a952-af88c87af98e.webp",
-                        Date = DateTime.Parse("2024-09-29 19:43:51.0458926"),
+                        Date = new DateTime(2024, 09, 29, 19, 39, 06),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2494,7 +2494,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Spiritual Growth",
                         Description = "The Alchemist by Paulo Coelho continues to change the lives of its readers forever. With more than two million copies sold around the world, The Alchemist has established itself as a modern classic, universally admired. Paulo Coelho's masterpiece tells the magical story of Santiago, an Andalusian shepherd boy who yearns to travel in search of a worldly treasure as extravagant as any ever found. The story of the treasures Santiago finds along the way teaches us, as only a few stories can, about the essential wisdom of listening to our hearts, learning to read the omens strewn along life's path, and, above all, following our dreams.",
                         Image = "91891ef1-b04c-4fd8-afe9-b945ca4ebcae.webp",
-                        Date = DateTime.Parse("2024-09-29 19:45:54.0150548"),
+                        Date = new DateTime(2024, 09, 29, 19, 39, 06),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2509,7 +2509,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Inspirational",
                         Description = "We needed to stop asking about the meaning of life, and instead to think of ourselves as those who were being questioned by life-daily and hourly. Our answer must consist not in talk and meditation, but in right action and in right conduct. Life ultimately means taking the responsibility to find the right answer to its problems and to fulfill the tasks which it constantly sets for each individual. When Man's Search for Meaning was first published in 1959, it was hailed by Carl Rogers as 'one of the outstanding contributions to psychological thought in the last fifty years.' Now, more than forty years and 4 million copies later, this tribute to hope in the face of unimaginable loss has emerged as a true classic. Man's Search for Meaning--at once a memoir, a self-help book, and a psychology manual-is the story of psychiatrist Viktor Frankl's struggle for survival during his three years in Auschwitz and other Nazi concentration camps. Yet rather than 'a tale concerned with the great horrors,' Frankl focuses in on the 'hard fight for existence' waged by 'the great army of unknown and unrecorded.'",
                         Image = "12b2c75e-76ae-4796-ab31-54d6ac066fc9.webp",
-                        Date = DateTime.Parse("2024-09-29 19:46:43.7896052"),
+                        Date = new DateTime(2024, 09, 29, 19, 39, 06),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2524,7 +2524,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Inspirational",
                         Description = "For over a decade, Brene Brown has found a special place in our hearts as a gifted mapmaker and a fellow traveler. She is both a social scientist and a kitchen-table friend whom you can always count on to tell the truth, make you laugh, and, on occasion, cry with you. And what's now become a movement all started with The Gifts of Imperfection, which has sold more than two million copies in thirty-five different languages across the globe. What transforms this book from words on a page to effective daily practices are the ten guideposts to wholehearted living. The guideposts not only help us understand the practices that will allow us to change our lives and families, they also walk us through the unattainable and sabotaging expectations that get in the way.",
                         Image = "fa3835fd-6184-49d7-9f06-9e58c8b1fadd.webp",
-                        Date = DateTime.Parse("2024-09-29 19:47:22.4753555"),
+                        Date = new DateTime(2024, 09, 29, 19, 39, 06),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2539,7 +2539,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Home & Garden",
                         Description = "Marie Kondo presents the fictional story of Chiaki, a young woman in Tokyo who struggles with a cluttered apartment, messy love life, and lack of direction. After receiving a complaint from her attractive next-door neighbor about the sad state of her balcony, Chiaki gets Kondo to take her on as a client. Through a series of entertaining and insightful lessons, Kondo helps Chiaki get her home--and life--in order. This insightful, illustrated case study is perfect for people looking for a fun introduction to the KonMari Method of tidying up, as well as tried-and-true fans of Marie Kondo eager for a new way to think about what sparks joy. Featuring illustrations by award-winning manga artist Yuko Uramoto, this book also makes a great read for manga and graphic novel lovers of all ages.",
                         Image = "1d7766d8-0632-442f-9918-2aa520f7b65c.webp",
-                        Date = DateTime.Parse("2024-09-29 19:48:19.7836273"),
+                        Date = new DateTime(2024, 09, 29, 19, 39, 06),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2554,7 +2554,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Fashion & Beauty",
                         Description = "Apo Whang-Od is the face of Vogue Philippines’ Beauty issue, which also highlights the female gaze with creative couple Kim Jones and Jericho Rosales, photographer-stylist Melissa Levy, and Joey Samson's new romantic collection.",
                         Image = "3dd993c9-dbb0-4cf5-ae9f-ab835e10f426.webp",
-                        Date = DateTime.Parse("2024-09-29 19:51:44.9224679"),
+                        Date = new DateTime(2024, 09, 29, 19, 39, 06),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2569,7 +2569,7 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Reference Books",
                         Description = "The most up-to-date and information-packed dictionary of its size available. With spelling, grammar and pronunciation help, plus a practical writing guide, the Pocket Dictionary gives you all the everyday words you need – at your fingertips.\n\nUp-to-date language coverage along with practical guidance on effective English for everyday use.",
                         Image = "eb0ad0d8-cb6e-4723-bab2-c70bc2498de4.webp",
-                        Date = DateTime.Parse("2024-09-29 19:53:42.3682271"),
+                        Date = new DateTime(2024, 09, 29, 19, 39, 06),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
@@ -2584,17 +2584,11 @@ namespace Alikabook.DataAccess.Data
                         Subcategory = "Language Learning",
                         Description = "Seconds before Earth is demolished to make way for a galactic freeway, Arthur Dent is plucked off the planet by his friend Ford Prefect, a researcher for the revised edition of The Hitchhiker’s Guide to the Galaxy who, for the last fifteen years, has been posing as an out-of-work actor.\n\nTogether, this dynamic pair began a journey through space aided by a galaxyful of fellow travelers: Zaphod Beeblebrox—the two-headed, three-armed ex-hippie and out-to-lunch president of the galaxy; Trillian (formerly Tricia McMillan), Zaphod’s girlfriend, whom Arthur tried to pick up at a cocktail party once upon a time zone; Marvin, a paranoid, brilliant, and chronically depressed robot; and Veet Voojagig, a graduate student obsessed with the disappearance of all the ballpoint pens he’s bought over the years.",
                         Image = "4a6119d2-acd4-4706-ba37-c3ba832c6884.webp",
-                        Date = DateTime.Parse("2024-09-29 19:56:29.6377156"),
+                        Date = new DateTime(2024, 09, 29, 19, 39, 06),
                         Stock = 99,
                         Rating = null,
                         RatingCount = 0
                     }
-
-
-
-
-
-
 
 
 
