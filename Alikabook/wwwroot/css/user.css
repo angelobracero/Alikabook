@@ -149,7 +149,8 @@ a {
 }
 
 .header__sub-profile2,
-.header__settings {
+.header__settings,
+.header__sub .fa-solid {
     display: none;
 }
 
@@ -1247,14 +1248,6 @@ account__photo-img {
         display: block;
     }
 
-    #searchBar2,
-    .header_sub_ul_sm {
-        display: none;
-    }
-
-    .header__sub {
-        background-color: var(--clr-primary-light);
-    }
 
     .header__main-middle {
         flex: 1;
@@ -1324,9 +1317,39 @@ account__photo-img {
         display: none;
     }
 
+    #searchBar2,
+    .header_sub_ul_sm {
+        display: none;
+    }
+
     .header__sub {
         min-height: fit-content;
-        overflow-x: scroll;
+        overflow-x: auto;
+        background-color: var(--clr-primary-light);
+        position: relative;
+    }
+    
+    .header__sub .fa-solid {
+        position: fixed;
+        color: white;
+        font-size: 1.5rem;
+        padding-block: 0.12em;
+        padding-inline: 0.15em;
+        cursor: pointer;
+        background-color: var(--clr-primary-light);
+        display:block;
+    }
+
+    .header__sub .fa-solid:hover {
+        background-color: #409cff;
+        color: var(--clr-secondary);
+    }
+
+    .header__sub .fa-chevron-left {
+        left: 0;
+    }
+    .header__sub .fa-chevron-right {
+        right: 0;
     }
 
     .header__sub::-webkit-scrollbar {
@@ -1336,12 +1359,16 @@ account__photo-img {
     .header__sub-ul {
         display: flex;
         flex-flow: row nowrap;
-        margin: 0;
         gap: 0;
+        margin-inline: 1.45em;
     }
 
     .header__sub-ul li {
         flex: 1;
+    }
+
+    .header__sub-ul li:last-child {
+        padding-inline-end: 1.45em;
     }
 
     .header__sub-ul li a {

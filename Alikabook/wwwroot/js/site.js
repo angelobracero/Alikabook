@@ -1,6 +1,4 @@
 ﻿//Navigation for small screen size
-
-
 const hamburger = document.querySelector(".fa-bars");
 const subHeader = document.querySelector(".header__sub");
 
@@ -13,6 +11,35 @@ hamburger.addEventListener("click", () => {
 });
 
 
+//scroll the sub header
+const scrollLeft = document.getElementById('scrollLeft');
+const scrollRight = document.getElementById('scrollRight');
+const scrollContainer = document.querySelector('.header__sub');
+
+function smoothScroll(container, distance, duration) {
+    let start = container.scrollLeft;
+    let startTime = null;
+
+    function scrollStep(timestamp) {
+        if (!startTime) startTime = timestamp;
+        let progress = timestamp - startTime;
+        let percent = Math.min(progress / duration, 1);
+        container.scrollLeft = start + distance * percent;
+        if (percent < 1) {
+            window.requestAnimationFrame(scrollStep);
+        }
+    }
+    window.requestAnimationFrame(scrollStep);
+}
+
+scrollLeft.addEventListener('click', () => {
+    smoothScroll(scrollContainer, -2500, 1000);
+});
+
+scrollRight.addEventListener('click', () => {
+    smoothScroll(scrollContainer, 2500, 1000);  
+});
+
 
 //Open Profile Settings
 const headerSetting = document.getElementById("headerSetting");
@@ -21,3 +48,4 @@ const profilePic = document.getElementById("profilePic");
 profilePic.addEventListener("click", () => {
     headerSetting.classList.toggle("show");
 });
+
