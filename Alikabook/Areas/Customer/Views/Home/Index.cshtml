@@ -4,7 +4,7 @@
     <section class="hero">
         <img class="hero__image"
              src="/images/background-images/library-lg.jpg"
-             alt="" />
+             alt="library" />
     </section>
 
     <section class="about">
@@ -20,7 +20,7 @@
                 and business strategy.
             </div>
             <div class="about__img-container">
-                <img src="~/images/background-images/reading-book.png" alt="" loading="lazy"  />
+                <img src="~/images/background-images/reading-book.png" alt="boy reading book"  />
             </div>
             <div class="about__description">
                 <span>AlikaBook</span> has something for everyone. Our user-friendly
@@ -38,10 +38,10 @@
                     <p>Recently Added</p>
                 </div>
                 <a class="see-all" asp-action="DisplayCategory" asp-route-category="Recently Added">See All</a>
-                <div class="arrow arrow-left" id="arrowLeft1">
+                <div class="arrow arrow-left" id="arrowLeft1" aria-label="Scroll Right" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-left"></i>
                 </div>
-                <div class="arrow arrow-right" id="arrowRight1">
+                <div class="arrow arrow-right" id="arrowRight1" aria-label="Scroll Right" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-right" ></i>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     var truncatedTitle = SD.TruncateTitle(book.Title, 12);
 
                     <div class="box">
-                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="" loading="lazy" /></a>
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="@book.Title" loading="lazy" /></a>
                         <div class="book-info">
                             <p class="title">@truncatedTitle</p>
                             <p class="price">&#8369;@book.Price</p>
@@ -70,10 +70,10 @@
                     <p>Business & Economics</p>
                 </div>
                 <a class="see-all" asp-action="DisplayCategory" asp-route-category="Business & Economics">See All</a>
-                <div class="arrow arrow-left" id="arrowLeft2">
+                <div class="arrow arrow-left" id="arrowLeft2" aria-label="Scroll Left" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-left"></i>
                 </div>
-                <div class="arrow arrow-right" id="arrowRight2">
+                <div class="arrow arrow-right" id="arrowRight2" aria-label="Scroll Right" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-right" ></i>
                 </div>
             </div>
@@ -83,7 +83,7 @@
                     var truncatedTitle = SD.TruncateTitle(book.Title, 12);
 
                     <div class="box">
-                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="" loading="lazy" /></a>
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="@book.Title" loading="lazy" /></a>
                         <div class="book-info">
                             <p class="title">@truncatedTitle</p>
                             <p class="price">&#8369;@book.Price</p>
@@ -102,10 +102,10 @@
                     <p>Programming & Technology</p>
                 </div>
                 <a class="see-all" asp-action="DisplayCategory" asp-route-category="Programming & Technology">See All</a>
-                <div class="arrow arrow-left" id="arrowLeft3">
+                <div class="arrow arrow-left" id="arrowLeft3" aria-label="Scroll Left" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-left"></i>
                 </div>
-                <div class="arrow arrow-right" id="arrowRight3">
+                <div class="arrow arrow-right" id="arrowRight3" aria-label="Scroll Right" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-right" ></i>
                 </div>
             </div>
@@ -115,7 +115,7 @@
                     var truncatedTitle = SD.TruncateTitle(book.Title, 12);
 
                     <div class="box">
-                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="" loading="lazy" /></a>
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="@book.Title" loading="lazy" /></a>
                         <div class="book-info">
                             <p class="title">@truncatedTitle</p>
                             <p class="price">&#8369;@book.Price</p>
@@ -134,10 +134,10 @@
                     <p>Fiction</p>
                 </div>
                 <a class="see-all" asp-action="DisplayCategory" asp-route-category="Fiction">See All</a>
-                <div class="arrow arrow-left" id="arrowLeft4">
+                <div class="arrow arrow-left" id="arrowLeft4" aria-label="Scroll Left" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-left"></i>
                 </div>
-                <div class="arrow arrow-right" id="arrowRight4">
+                <div class="arrow arrow-right" id="arrowRight4" aria-label="Scroll Right" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-right"></i>
                 </div>
             </div>
@@ -147,7 +147,7 @@
                     var truncatedTitle = SD.TruncateTitle(book.Title, 12);
 
                     <div class="box">
-                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="" loading="lazy" /></a>
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="@book.Title" loading="lazy" /></a>
                         <div class="book-info">
                             <p class="title">@truncatedTitle</p>
                             <p class="price">&#8369;@book.Price</p>
@@ -166,10 +166,10 @@
                     <p>Non-Fiction</p>
                 </div>
                 <a class="see-all" asp-action="DisplayCategory" asp-route-category="Non-Fiction">See All</a>
-                <div class="arrow arrow-left" id="arrowLeft5">
+                <div class="arrow arrow-left" id="arrowLeft5" aria-label="Scroll Left" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-left"></i>
                 </div>
-                <div class="arrow arrow-right" id="arrowRight5">
+                <div class="arrow arrow-right" id="arrowRight5" aria-label="Scroll Right" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-right"></i>
                 </div>
             </div>
@@ -179,7 +179,7 @@
                     var truncatedTitle = SD.TruncateTitle(book.Title, 12);
 
                     <div class="box">
-                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="" loading="lazy" /></a>
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="@book.Title" loading="lazy" /></a>
                         <div class="book-info">
                             <p class="title">@truncatedTitle</p>
                             <p class="price">&#8369;@book.Price</p>
@@ -198,10 +198,10 @@
                     <p>Children’s Books</p>
                 </div>
                 <a class="see-all" asp-action="DisplayCategory" asp-route-category="Children’s Books">See All</a>
-                <div class="arrow arrow-left" id="arrowLeft6">
+                <div class="arrow arrow-left" id="arrowLeft6" aria-label="Scroll Left" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-left"></i>
                 </div>
-                <div class="arrow arrow-right" id="arrowRight6">
+                <div class="arrow arrow-right" id="arrowRight6" aria-label="Scroll Right" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-right"></i>
                 </div>
             </div>
@@ -211,7 +211,7 @@
                     var truncatedTitle = SD.TruncateTitle(book.Title, 12);
 
                     <div class="box">
-                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="" loading="lazy" /></a>
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="@book.Title" loading="lazy" /></a>
                         <div class="book-info">
                             <p class="title">@truncatedTitle</p>
                             <p class="price">&#8369;@book.Price</p>
@@ -230,10 +230,10 @@
                     <p>Graphic Novels & Comics</p>
                 </div>
                 <a class="see-all" asp-action="DisplayCategory" asp-route-category="Graphic Novels & Comics">See All</a>
-                <div class="arrow arrow-left" id="arrowLeft7">
+                <div class="arrow arrow-left" id="arrowLeft7" aria-label="Scroll Left" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-left"></i>
                 </div>
-                <div class="arrow arrow-right" id="arrowRight7">
+                <div class="arrow arrow-right" id="arrowRight7" aria-label="Scroll Right" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-right"></i>
                 </div>
             </div>
@@ -243,7 +243,7 @@
                     var truncatedTitle = SD.TruncateTitle(book.Title, 12);
 
                     <div class="box">
-                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="" loading="lazy" /></a>
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="@book.Title" loading="lazy" /></a>
                         <div class="book-info">
                             <p class="title">@truncatedTitle</p>
                             <p class="price">&#8369;@book.Price</p>
@@ -262,10 +262,10 @@
                     <p>Science & Nature</p>
                 </div>
                 <a class="see-all" asp-action="DisplayCategory" asp-route-category="Science & Nature">See All</a>
-                <div class="arrow arrow-left" id="arrowLeft8">
+                <div class="arrow arrow-left" id="arrowLeft8" aria-label="Scroll Left" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-left"></i>
                 </div>
-                <div class="arrow arrow-right" id="arrowRight8">
+                <div class="arrow arrow-right" id="arrowRight8" aria-label="Scroll Right" role="button" tabindex="0">
                     <i class="fa-solid fa-angle-right"></i>
                 </div>
             </div>
@@ -275,7 +275,7 @@
                     var truncatedTitle = SD.TruncateTitle(book.Title, 12);
 
                     <div class="box">
-                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="" loading="lazy" /></a>
+                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@book.BookId"><img src="~/images/books/@book.Image" alt="@book.Title" loading="lazy" /></a>
                         <div class="book-info">
                             <p class="title">@truncatedTitle</p>
                             <p class="price">&#8369;@book.Price</p>

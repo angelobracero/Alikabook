@@ -33,7 +33,7 @@
                             <td class="order__info">
                                 <div class="order__info-img-container">
                                     <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@order.BookId">
-                                        <img src="~/images/books/@order.Book.Image" alt="" />
+                                        <img src="~/images/books/@order.Book.Image" alt="@order.Book.Title" />
                                     </a>
                                 </div>
                                 <div class="order__info-details-container">

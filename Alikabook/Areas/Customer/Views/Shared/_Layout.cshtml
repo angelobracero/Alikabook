@@ -28,8 +28,8 @@
             </div>
             <div class="header__main-middle" method="get">
                 <form asp-action="SearchBook">
-                    <input type="text" name="searchQuery" placeholder="Search Books" />
-                    <input type="submit" value="" />
+                    <input type="text" name="searchQuery" placeholder="Search Books" aria-label="Search" />
+                    <input type="submit" value="" aria-label="submit" />
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </form>
             </div>
@@ -69,7 +69,7 @@
         </div>
         <nav class="header__sub">
             <form asp-action="SearchBook" id="searchBar2">
-                <input type="text" name="searchQuery" placeholder="Search Books" />
+                <input type="text" name="searchQuery" placeholder="Search Books" aria-label="Search" />
             </form>
 
             @if (User.Identity.IsAuthenticated)
@@ -81,8 +81,8 @@
                     </div>
                 }
             }
-            <i class="fa-solid fa-chevron-left" id="scrollLeft"></i>
-            <i class="fa-solid fa-chevron-right" id="scrollRight"></i>
+            <i class="fa-solid fa-chevron-left" id="scrollLeft" aria-label="Scroll Left" role="button" tabindex="0"></i>
+            <i class="fa-solid fa-chevron-right" id="scrollRight" aria-label="Scroll Right" role="button" tabindex="0"></i>
             <ul class="header__sub-ul" id="subHeaderUl">
                 <li>
                     <a asp-controller="Home" asp-action="index"><i class="fa-solid fa-house"></i>home</a>
@@ -218,16 +218,16 @@
                 </nav>
                 <div class="footer__icons">
                     <a href="#">
-                        <img src="~/images/icons/facebook.png" alt="" width="50" height="50" />
+                        <img src="~/images/icons/facebook.png" alt="facebook icon" width="50" height="50" />
                     </a>
                     <a href="#">
-                        <img src="~/images/icons/gmail.png" alt="" width="50" height="50" />
+                        <img src="~/images/icons/gmail.png" alt="gmail icon" width="50" height="50" />
                     </a>
                     <a href="#">
-                        <img src="~/images/icons/instagram.png" alt="" width="50" height="50" />
+                        <img src="~/images/icons/instagram.png" alt="instagram icon" width="50" height="50" />
                     </a>
                     <a href="#">
-                        <img src="~/images/icons/linkedin.png" alt="" width="50" height="50" />
+                        <img src="~/images/icons/linkedin.png" alt="linked icon" width="50" height="50" />
                     </a>
                 </div>
             </div>

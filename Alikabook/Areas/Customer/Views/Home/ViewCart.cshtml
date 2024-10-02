@@ -34,7 +34,7 @@
                             <tr>
                                 <td class="cart__item">
                                     <div class="cart__item-img-container">
-                                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@cart.BookId"><img src="~/images/books/@cart.Image" alt="" /></a>
+                                        <a asp-controller="Home" asp-action="BookDetails" asp-route-id="@cart.BookId"><img src="~/images/books/@cart.Image" alt="@cart.Book.Image" /></a>
                                     </div>
                                     <div class="cart__item-details">
                                         <h1>@cart.Title</h1>
@@ -100,21 +100,21 @@
                 <div class="payment-radio">
                     <div class="payment-radio-group">
                         <label for="payment">
-                            <img src="~/images/icons/cod.png" alt="" />
+                            <img src="~/images/icons/cod.png" alt="cash on delivery icon" />
                             <p>Cash on Delivery</p>
                         </label>
                         <input type="radio" name="ConfirmOrder.PaymentMethod" value="cod" id="payment" checked />
                     </div>
                     <div class="payment-radio-group">
                         <label for="gcash">
-                            <img src="~/images/icons/gcash.png" alt="" />
+                            <img src="~/images/icons/gcash.png" alt="gcash icon" />
                             <p>Gcash</p>
                         </label>
                         <input type="radio" name="ConfirmOrder.PaymentMethod" value="gcash" id="gcash" />
                     </div>
                     <div class="payment-radio-group">
                         <label for="googlepay">
-                            <img src="~/images/icons/googlepay.png" alt="" id="googlepayimg" />
+                            <img src="~/images/icons/googlepay.png" alt="googlepay icon" id="googlepayimg" />
                             <p>Google Pay</p>
                         </label>
                         <input type="radio" name="ConfirmOrder.PaymentMethod" value="googlepay" id="googlepay" />

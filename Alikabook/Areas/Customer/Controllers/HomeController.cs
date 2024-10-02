@@ -3,6 +3,7 @@ using Alikabook.Models;
 using Alikabook.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -250,6 +251,7 @@ namespace Alikabook.Areas.User.Controllers
 
             List<Cart> cartItems = _unitOfWork.Cart.GetAll()
                                 .Where(c => c.UserId == userId)
+                                .Include(c => c.Book)
                                 .ToList();
             return View(cartItems);
         }
