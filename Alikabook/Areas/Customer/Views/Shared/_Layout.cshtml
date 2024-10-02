@@ -46,6 +46,15 @@
                             </div>
                         </a>
                     }
+                    else if (User.IsInRole(SD.Role_Admin))
+                    {
+                        <a asp-area="Admin" asp-controller="Admin" asp-action="Dashboard">
+                            <div class="header__main-cart">
+                                <i class="fa-regular fa-user"></i>
+                                <p>Go to Admin</p>
+                            </div>
+                        </a>
+                    }
                 }
                 else
                 {
