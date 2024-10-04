@@ -368,6 +368,11 @@ namespace Alikabook.Areas.User.Controllers
             return View();
         }
 
+        public IActionResult DataDeletion()
+        {
+            return View();
+        }
+
 
 
 
