@@ -21,12 +21,12 @@
 <body>
     <header class="header">
         <div class="header__main">
-            <div class="header__main-left">
+            <a asp-controller="Home" asp-action="Index" class="header__main-left">
                 <p class="header__main-logo">alikabook</p>
                 <p class="header__main-logo header__main-logo--secondary">
                     bookstore
                 </p>
-            </div>
+            </a>
             <div class="header__main-middle" method="get">
                 <form asp-action="SearchBook">
                     <input type="text" name="searchQuery" placeholder="Search Books" aria-label="Search" />
@@ -66,7 +66,7 @@
                     </a>
                 }
                 @if (User.Identity.IsAuthenticated)
-            {
+                {
                     if (User.IsInRole(SD.Role_Customer))
                     {
                         <div class="header__sub-profile2">
@@ -77,8 +77,8 @@
             </div>
             <i class="fa-solid fa-bars"></i>
         </div>
-        <nav class="header__sub">
-            <form asp-action="SearchBook" id="searchBar2">
+            <nav class="header__sub">
+                <form asp-action="SearchBook" id="searchBar2">
                 <input type="text" name="searchQuery" placeholder="Search Books" aria-label="Search" />
             </form>
 
@@ -150,6 +150,8 @@
                             <li><a asp-controller="Home" asp-action="index"><i class="fa-solid fa-house"></i><span>Home</span></a></li>
                             <li><a asp-controller="Home" asp-action="ViewCart"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span></a></li>
                             <li><a asp-controller="User" asp-action="Profile"><i class="fa-solid fa-user"></i><span>Account Settings</span></a></li>
+                            <li><a asp-controller="User" asp-action="MyOrder"><i class="fa-solid fa-book"></i><span>My Order</span></a></li>
+                            <li><a asp-controller="User" asp-action="OrderHistory"><i class="fa-solid fa-clock-rotate-left"></i><span>Order History</span></a></li>
                             <li><a asp-controller="" asp-action=""><i class="fa-solid fa-message"></i><span>Contact</span></a></li>
                        </ul>
                    </nav>
@@ -193,6 +195,12 @@
                             </li>
                             <li>
                                 <a asp-controller="User" asp-action="Profile"><i class="fa-solid fa-user"></i>Account Settings</a>
+                            </li>
+                            <li>
+                                <a asp-controller="User" asp-action="MyOrder"><i class="fa-solid fa-book"></i>My Order</a>
+                            </li>
+                            <li>
+                                <a asp-controller="User" asp-action="OrderHistory"><i class="fa-solid fa-clock-rotate-left"></i>Order History</a>
                             </li>
                             <li>
                                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "Customer" })" method="post">

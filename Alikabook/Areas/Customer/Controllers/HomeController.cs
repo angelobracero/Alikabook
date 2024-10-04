@@ -363,7 +363,10 @@ namespace Alikabook.Areas.User.Controllers
 
 
 
-
+        public IActionResult PrivacyPolicy()
+        {
+            return View();
+        }
 
 
 

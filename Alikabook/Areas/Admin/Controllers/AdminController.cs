@@ -236,7 +236,7 @@ namespace Alikabook.Areas.Admin.Controllers
         public async Task<IActionResult> AdminList()
         {
             var allUserRoles = await _userRoleRepository.GetAllUserRolesAsync();
-            var adminRoleId = "d9846abc-cbad-44d3-b426-5dec0fb91f53";
+            var adminRoleId = "099cb002-4428-4431-a277-6cf5f49a133e";
 
             var adminUserIds = allUserRoles
                 .Where(ur => ur.RoleId == adminRoleId)
@@ -259,7 +259,7 @@ namespace Alikabook.Areas.Admin.Controllers
         public async Task<IActionResult> CustomerList()
         {
             var allUserRoles = await _userRoleRepository.GetAllUserRolesAsync();
-            var customerRoleId = "1275e0cd-9627-4fdc-bc4b-3cc59727c510";
+            var customerRoleId = "4e9a7297-f0bb-40d4-9f3e-e8c200615700";
 
             var customerUserIds = allUserRoles
                 .Where(ur => ur.RoleId == customerRoleId)

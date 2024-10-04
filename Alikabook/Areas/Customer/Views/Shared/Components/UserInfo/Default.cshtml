@@ -9,7 +9,9 @@
     }
 }
 
-<img src="~/images/profile_pic/@image" alt="" />
+<a asp-controller="User" asp-action="Profile">
+    <img src="~/images/profile_pic/@image" alt="your profile picture" />
+</a>
 <div>
     <p>Hello, @Model.FirstName @Model.LastName!</p>
     <p>@Model.Email</p>
