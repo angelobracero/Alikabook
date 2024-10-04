@@ -1132,21 +1132,12 @@ account__photo-img {
     background-color: #343a40;
     color: var(--clr-text);
     position: sticky;
-    min-height: 90vh;
+    min-height: 92.1vh;
     text-transform: uppercase;
 }
 
-.footer__container {
-    display: grid;
-    padding-top: 8rem;
-}
-
 .footer__column {
-    display: flex;
-    flex-direction: column;
-    margin: 1em 0;
-    line-height: 1.6;
-    gap: 2em;
+    text-align: center
 }
 
 .footer__heading {
@@ -1154,30 +1145,63 @@ account__photo-img {
     color: var(--clr-secondary);
     font-size: 1.5rem;
     text-align: center;
+    padding-block: 1em;
+}
+.footer__heading span {
+    color: var(--clr-text);
 }
 
-    .footer__heading span {
-        color: var(--clr-text);
-    }
-
-.footer__nav ul {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    gap: 1em;
-}
-
-.footer__nav ul li {
+.footer__slogan {
     text-align: center;
+    font-style: italic;
+    line-height: 1;
 }
 
-.footer__nav ul li a {
-    display: inline-block;
+.footer__slogan::before {
+    content: open-quote;
+    font-size: 2rem;
+    vertical-align: -0.2em;
 }
 
-.footer__nav :is(a:hover, a:focus-visible) {
+.footer__slogan::after {
+    content: close-quote;
+    font-size: 2rem;
+    vertical-align: -0.2em;
+}
+
+.footer-titles {
+    padding-block-start: 1em;
+    font-weight: bold;
     color: var(--clr-secondary);
-    transform: scale(1.1);
+}
+
+
+.footer__inquiries-email {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    padding-block-start: 0.5em;
+}
+
+.footer__inquiries-email .fa-envelope {
+    font-size: 1.3rem;
+}
+
+.footer__website {
+    margin-block: 0.5em;
+    display: inline-grid;
+    row-gap: 0.5em;
+}
+
+.footer__website a {
+    transition: all 0.15s;
+}
+
+.footer__website a:hover,
+.footer__website a:focus-visible {
+    transform: scale(1);
+    font-weight: bold;
 }
 
 .footer__icons {
@@ -1185,37 +1209,32 @@ account__photo-img {
     display: flex;
     justify-content: center;
     gap: 1em;
+    margin-block-start: 0.5em;
 }
-
 .footer__icons a {
     cursor: pointer;
 }
-
 .footer__icons img {
     width: 30px;
     height: auto;
     transition: all 0.15s;
 }
-
 .footer__icons :is(a:hover, a:focus-visible) > img {
     transform: scale(1.3);
 }
-
 .footer__copyright {
     display: flex;
     flex-direction: column;
-    margin-top: 7rem;
+    margin-top: 1em;
 }
-
 .footer__text {
     text-align: center;
     padding: 0.5em 0;
     font-size: 0.75rem;
 }
-
-    .footer__text span {
-        color: var(--clr-secondary);
-    }
+.footer__text span {
+    color: var(--clr-secondary);
+}
 
 /**************************************** || RESPONSIVE LAYOUT ****************************************/
 /**************************************** || RESPONSIVE LAYOUT ****************************************/
@@ -1624,16 +1643,16 @@ account__photo-img {
         align-items: center;
     }
 
-        .account__details-btn > * {
-            max-width: 560px;
-        }
+    .account__details-btn > * {
+        max-width: 560px;
+    }
 
-        .account-change-delete {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            text-align: center;
-            padding-bottom: 2em;
-        }
+    .account-change-delete {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        text-align: center;
+        padding-bottom: 2em;
+    }
 
     .account-change-delete h1 {
         text-align: center;
@@ -1646,25 +1665,35 @@ account__photo-img {
         min-height: fit-content;
     }
 
-    .footer__container {
-        padding-top: 0;
+    .footer__grid {
+        margin-block-start: 2em;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 
-    .footer__column {
-        gap: 0.5em;
+    .footer-titles + div > * {
+        text-align: start;
     }
 
-    .footer__copyright {
-        margin-top: 0;
-    }
-
-    .footer__text {
-        font-size: 1rem;
-    }
+   
 }
 
 /********* || MIN-WIDTH: 1024px *********/
 @media only screen and (min-width: 1024px) {
+
+    /* || FOOTER */
+    .footer__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .footer-titles.follow-us {
+        padding-block-start: 2em;
+    }
+
+
+    /* || ABOUT */
+
     .about__description {
         font-size: clamp(1.2rem, 1.7vw, 2rem);
     }

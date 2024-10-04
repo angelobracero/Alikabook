@@ -224,16 +224,39 @@
         <div class="container footer__container">
             <div class="footer__column">
                 <p class="footer__heading">Alikabook <span>Bookstore</span></p>
-                <nav class="footer__nav">
-                    <ul>
-                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Business">Business</a></li>
-                        <li><a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Basic Programming">Basic Programming</a></li>
-                        <li><a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Advance Programming">advanced Programming</a></li>
-                        <li><a asp-action="index" onclick="scrollToAbout()">About</a></li>
+                <blockquote class="footer__slogan"> Inspiring Readers with One Story, One Mind </blockquote>
 
-                    </ul>
-                </nav>
+                <div class="footer__grid">
+                    <div>
+                        <p class="footer-titles">inquiries or concern?</p>    
+                        <div class="footer__inquiries-email">
+                            <i class="fa-solid fa-envelope"></i>
+                            <p>Alikabookbookstor@gmail.com</p>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="footer-titles">Website</p>
+                        <div class="footer__website">
+                            <a asp-controller="Home" asp-action="Index">ABOUT</a>
+                            <a asp-controller="Home" asp-action="FeaturedAuthors">FEATURED AUTHORS</a>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="footer-titles">Service</p>
+                        <div class="footer__website">
+                            <a asp-controller="Home" asp-action="Index">Contact Us</a>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="footer-titles">Payment Methods</p>
+                        <div class="footer__website">
+                            <p>Cash on delivery</p>
+                            <p>Gcash / Paypal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="footer-titles follow-us">Follow us</p>
                 <div class="footer__icons">
                     <a href="#">
                         <img src="~/images/icons/facebook.png" alt="facebook icon" width="50" height="50" />
