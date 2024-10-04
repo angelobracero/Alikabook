@@ -40,6 +40,24 @@ scrollRight.addEventListener('click', () => {
     smoothScroll(scrollContainer, 2500, 1000);  
 });
 
+// Save the scroll position of the .header__sub element
+window.addEventListener("beforeunload", function () {
+    const subHeader = document.querySelector(".header__sub");
+    if (subHeader) {
+        localStorage.setItem("subHeaderScrollPosition", subHeader.scrollLeft);
+    }
+});
+
+// Restore the scroll position of the .header__sub element
+window.addEventListener("load", function () {
+    const subHeader = document.querySelector(".header__sub");
+    const savedPosition = localStorage.getItem("subHeaderScrollPosition");
+
+    if (subHeader && savedPosition !== null) {
+        subHeader.scrollLeft = parseInt(savedPosition, 10);
+    }
+});
+
 
 //Open Profile Settings
 const headerSetting = document.getElementById("headerSetting");
