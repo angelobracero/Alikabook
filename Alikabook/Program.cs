@@ -7,7 +7,6 @@ using Alikabook.Utility;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Alikabook.DataAccess.Repository.IUserRepository;
 using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 
@@ -31,22 +30,6 @@ builder.Services.AddAuthentication(options =>
     googleOptions.CallbackPath = "/signin-google";
 
     googleOptions.Events = new Microsoft.AspNetCore.Authentication.OAuth.OAuthEvents
-    {
-        OnRemoteFailure = context =>
-        {
-            context.Response.Redirect("/Identity/Account/Login");
-            context.HandleResponse();
-            return Task.CompletedTask;
-        }
-    };
-})
-.AddFacebook(facebookOptions =>
-{
-    facebookOptions.AppId = builder.Configuration["Authentication:Facebook:AppId"];
-    facebookOptions.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
-    facebookOptions.CallbackPath = "/signin-facebook";
-
-    facebookOptions.Events = new Microsoft.AspNetCore.Authentication.OAuth.OAuthEvents
     {
         OnRemoteFailure = context =>
         {

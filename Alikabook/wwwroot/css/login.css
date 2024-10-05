@@ -186,22 +186,30 @@
     gap: 1em;
 }
 
-.login-icons button{
-    border: none;
-    background-color:inherit;
+.google-button {
+    width: 95%;
+    gap: 0.5em;
+    border-radius: 5px; 
+    background-color: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-block-start: 1em;
+    padding-block: 0.225em;
     transition: all 0.15s;
     cursor: pointer;
-    margin-block-start: 1em;
+    border: 1px solid black;
 }
 
-
-.login-icons > button img:hover,
-.login-icons > button img:focus-visible {
-    transform: scale(1.1);
+.google-button:hover,
+.google-button:focus-visible {
+    opacity: 0.8;
+    transform: scale(1.01);
 }
+
 
 /* || RESPONSIVE*/
-
 @media only screen and (min-width: 600px) {
     .login-container {
         height: 90vh;
@@ -212,7 +220,6 @@
     .login-container::-webkit-scrollbar {
         display: none;
     }
-
 }
 
 @media only screen and (min-width: 1024px) {

@@ -362,6 +362,10 @@ namespace Alikabook.Areas.User.Controllers
 
 
 
+        public IActionResult FeaturedAuthors()
+        {
+            return View();
+        }
 
         public IActionResult PrivacyPolicy()
         {

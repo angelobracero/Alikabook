@@ -44,14 +44,7 @@
                     @foreach (var provider in Model.ExternalLogins!)
                     {
                         <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" >
-                            @if(provider.Name == "Google")
-                            {
-                                <img src="~/images/background-images/google.png" alt="Login with Google" height="36" width="36" /> 
-                            }
-                            else
-                            {
-                                <img src="~/images/background-images/facebook.png" alt="Login with Facebook" height="41" width="41" />
-                            }
+                            <img src="~/images/background-images/google.png" alt="Login with Google" height="36" width="36" /> 
                         </button>
                     }
                 </div>
