@@ -43,8 +43,9 @@
                 <div class="login-icons">
                     @foreach (var provider in Model.ExternalLogins!)
                     {
-                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" >
-                            <img src="~/images/background-images/google.png" alt="Login with Google" height="36" width="36" /> 
+                        <button type="submit" class="google-button" name="provider" value="@provider.Name">
+                            <img src="~/images/background-images/google.png" alt="Login with Google" height="25" width="25" />
+                            <p>Sign in with Google</p>
                         </button>
                     }
                 </div>
