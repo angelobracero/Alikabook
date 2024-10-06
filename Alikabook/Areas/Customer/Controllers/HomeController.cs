@@ -361,6 +361,48 @@ namespace Alikabook.Areas.User.Controllers
         }
 
 
+        public IActionResult Contact()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (!User.Identity.IsAuthenticated)
+            {
+                TempData["error"] = "You must be logged in first";
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
+            }
+
+            var userInfo = _unitOfWork.Customer.Get(c => c.Id == userId);
+
+            return View(userInfo);
+        }
+
+
+        [HttpPost]
+        public IActionResult Contact(string messageContent)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userInfo = _unitOfWork.Customer.Get(c => c.Id == userId);
+
+            if (ModelState.IsValid)
+            {
+                var newMessage = new Messages
+                {
+                    UserId = userId,
+                    Name = userInfo.FirstName + " " + userInfo.LastName,
+                    MessageContent = messageContent
+                };
+
+                _unitOfWork.Messages.Add(newMessage);
+                _unitOfWork.Save();
+
+                TempData["success"] = "Your message was successfully sent";
+                return RedirectToAction("Index", "Home");
+            }
+
+            TempData["error"] = "Your message was not sent";
+            return View(userInfo);
+        }
+
 
         public IActionResult FeaturedAuthors()
         {

@@ -1,0 +1,18 @@
+﻿@model CustomerInfo
+
+<div class="contact">
+    <div class="contact-container">
+        <h1>Contact Us</h1>
+        <h3>Hello <span>@Model.FirstName @Model.LastName,</span> how we can help you?</h3>
+        <form method="post">
+            <div class="form">
+                <textarea name="messageContent" placeholder="Your message" autofocus></textarea>
+                <div class="contact-btn">
+                    <input type="submit" value="Send">
+                    <input type="button" onclick="history.back()" value="Back" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
