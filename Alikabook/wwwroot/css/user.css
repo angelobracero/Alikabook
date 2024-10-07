@@ -1127,7 +1127,7 @@ account__photo-img {
 }
 /**************************************** || Contact Form ******************************/
 .contact {
-    background: url(../images/background-images/contact-bg.jpg) no-repeat center;
+    background: url(../images/background-images/contact-bg.webp) no-repeat center;
     background-size: cover;
     min-height: 85vh;
     padding: 40px 0;
@@ -1222,7 +1222,6 @@ account__photo-img {
 
 .featured-authors-container {
     display: grid;
-    gap: 2em;
     line-height: 1.5;
 }
 
@@ -1239,14 +1238,21 @@ account__photo-img {
     display: grid;
     width: 90%;
     margin-inline: auto;
+    gap: 2em;
+}
+
+
+.featured-author-wrapper > div {
+    display: grid;
+    gap: 1em;
 }
 
 .author-pic {
-    max-width: 100%;
+    max-width: 300px;
     height: auto;
     margin-inline: auto;
     object-fit: cover;
-    flex: 1 1 auto; 
+    flex: 1 1 auto;
 }
 .author-name {
     font-size: 1.5rem;
@@ -1791,6 +1797,7 @@ account__photo-img {
     /* || FEATURED AUTHORS */
     .featured-author {
         min-height: 70vh;
+        align-content: center;
     }
 
     .author-pic {
@@ -1800,6 +1807,7 @@ account__photo-img {
     .featured-author-wrapper {
         grid-template-columns: 1fr 1fr;
         align-items: center;
+        width: 90%;
     }
 
     .featured-author-wrapper div {
@@ -1846,6 +1854,12 @@ account__photo-img {
         padding-block-start: 2em;
     }
 
+    /* || FEATURED AUTHORS */
+    .featured-author-wrapper {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        width: 70%;
+    }
 
     /* || ABOUT */
 
