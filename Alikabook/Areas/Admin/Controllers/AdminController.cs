@@ -27,6 +27,15 @@ namespace Alikabook.Areas.Admin.Controllers
 
         public IActionResult Dashboard()
         {
+            var topSellingBooks = new List<string> { "Book A", "Book B", "Book C", "Book D", "Book E" };
+            var unitsSold = new List<int> { 150, 120, 100, 90, 85 }; 
+
+            ViewBag.TopSellingBooks = topSellingBooks;
+            ViewBag.UnitsSold = unitsSold;
+            ViewBag.Categories = new List<string> { "Fiction", "Non-Fiction", "Science", "History", "Biography" };
+            ViewBag.SalesByCategory = new List<int> { 100, 200, 150, 50, 75 };
+
+
             return View();
         }
 

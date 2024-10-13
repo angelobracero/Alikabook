@@ -296,6 +296,10 @@ button {
     transition: all 0.5s;
     overflow-y: auto;
     z-index: 1000;
+    scrollbar-gutter:stable;
+}
+
+.sidebar::-webkit-scrollbar {
 }
 
 .sidebar.show {
@@ -332,8 +336,14 @@ button {
     text-transform: uppercase;
     font-size: 1.2rem;
     text-align: center;
+    display:block;
     margin-bottom: 1em;
+    transition: all 0.15s;
 }
+
+.sidebar__dashboard:hover {
+    color: var(--clr-secondary);
+} 
 
 .sidebar__logo p:first-child {
     color: var(--clr-secondary);
@@ -389,9 +399,129 @@ button {
     color: var(--clr-secondary);
 }
 
+/**************************************** || DASHBOARD ****************************************/
+.dashboard-section {
+    width: 90%;
+    margin-inline: auto;
+
+}
+
+.display-dashboards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.data-box {
+    flex: 1;
+    min-width: 300px;
+    display: grid;
+    grid-template-rows: 1fr 30px;
+    border-radius: 10px;
+    height: 150px;
+    background-color: #da3a00;
+    cursor: pointer;
+}
+.data-grid {
+    display: grid;
+    grid-template-columns: 1fr 100px;
+    background-color: #df6033;
+    border-radius: 10px;
+}
+
+.data-box.customer {
+    background-color: #0081fe;
+}
+.data-box.customer .data-grid {
+    background-color: #3295fe;
+}
+
+.data-box.books {
+    background-color: #00a73b;
+}
+.data-box.books .data-grid {
+    background-color: #33b85f;
+}
+
+.data-box.books-sold {
+    background-color: #0d37da;
+}
+.data-box.books-sold .data-grid {
+    background-color: #385fe0;
+}
+
+.data-box.sales {
+    background-color: #d42e40;
+}
+.data-box.sales .data-grid {
+    background-color: #dd5765;
+}
+
+.data-box.idk {
+    background-color: #777777;
+}
+.data-box.idk .data-grid {
+    background-color: #929292;
+}
+
+
+
+.data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline-start: 1em;
+}
+
+.data p {
+    font-family: var(--ff-heading);
+    font-size: 3rem;
+}
+
+.data-img {
+    justify-self: end;
+    align-self: center;
+    padding-inline-end: 1em;
+}
+
+.data-img img {
+    width: 80px;
+}
+
+.data-links {
+    font-size: 0.8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.data-analytics {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1em;
+}
+
+.bar-graph-container {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    border-radius: 10px;
+    flex: 1;
+}
+
+.doughnut-graph-container {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 10px;
+}
+
 
 /**************************************** || VIEW BOOKS ****************************************/
-
 .view__books-search {
     position: relative;
     margin-block-end: 2em;

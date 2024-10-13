@@ -1,5 +1,176 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<main class="dashboard-section">
+    <h1 class="add-books__title">Admin Dashboard</h1>
+    <section class="display-dashboards">
+        <a class="data-box" asp-action="AllOrders">
+            <div class="data-grid">
+                <div class="data">
+                    <p>254</p>
+                    <h4>Pending Orders</h4>
+                </div>
+                <div class="data-img">
+                    <img src="~/images/icons/order-icon.png" alt="" />
+                </div>
+            </div>
+            <div class="data-links">
+                <p>Go to Pending Orders</p>
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+        </a>
+        <a class="data-box customer" asp-action="CustomerList">
+            <div class="data-grid">
+                <div class="data">
+                    <p>24</p>
+                    <h4>No. of Customer</h4>
+                </div>
+                <div class="data-img">
+                    <img src="~/images/icons/order-icon.png" alt="" />
+                </div>
+            </div>
+            <div class="data-links">
+                <p>Go to Customers</p>
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+        </a>
+        <a class="data-box books" asp-action="ViewBook">
+            <div class="data-grid">
+                <div class="data">
+                    <p>124</p>
+                    <h4>No. of Books</h4>
+                </div>
+                <div class="data-img">
+                    <img src="~/images/icons/order-icon.png" alt="" />
+                </div>
+            </div>
+            <div class="data-links">
+                <p>Go to Books Section</p>
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+        </a>
+        <a class="data-box books-sold">
+            <div class="data-grid">
+                <div class="data">
+                    <p>254</p>
+                    <h4>No. of Books Sold</h4>
+                </div>
+                <div class="data-img">
+                    <img src="~/images/icons/order-icon.png" alt="" />
+                </div>
+            </div>
+            <div class="data-links">
+                @* <p>Go to Pending Orders</p>
+                <i class="fa-solid fa-arrow-right"></i> *@
+            </div>
+        </a>
+        <a class="data-box sales">
+            <div class="data-grid">
+                <div class="data">
+                    <p style="font-size: 2rem;gap: 0;padding-bottom: 0.4em;">P254, 242.00</p>
+                    <h4>Total Sales</h4>
+                </div>
+                <div class="data-img">
+                    <img src="~/images/icons/order-icon.png" alt="" />
+                </div>
+            </div>
+            <div class="data-links">
+                @* <p>Go to Pending Orders</p>
+                <i class="fa-solid fa-arrow-right"></i> *@
+            </div>
+        </a>
+        <a class="data-box idk" >
+            <div class="data-grid">
+                <div class="data">
+                    <p>254</p>
+                    <h4>Pending Orders</h4>
+                </div>
+                <div class="data-img">
+                    <img src="~/images/icons/order-icon.png" alt="" />
+                </div>
+            </div>
+            <div class="data-links">
+             @*    <p>Go to Pending Orders</p>
+                <i class="fa-solid fa-arrow-right"></i> *@
+            </div>
+        </a>
+    </section>
+
+    <h1 class="add-books__title" style="text-align: start; font-size: 2em;">Data Analytics</h1>
+    <section class="data-analytics">
+        <div class="bar-graph-container">
+            <canvas id="topSellingBooksChart" class="bar-graph"></canvas>
+        </div>
+        <div class="doughnut-graph-container">
+            <canvas id="salesByCategoryChart" class="doughnut-graph"></canvas>
+        </div>
+    </section>
+</main>
+
+
+<script>
+    // Bar chart for top-selling books
+    var bookTitles = @Html.Raw(Json.Serialize(ViewBag.TopSellingBooks));
+    var unitsSold = @Html.Raw(Json.Serialize(ViewBag.UnitsSold));
+
+    var ctx = document.getElementById('topSellingBooksChart').getContext('2d');
+    var topSellingBooksChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: bookTitles, // X-axis: Book titles
+            datasets: [{
+                label: 'Most Sold Books',
+                data: unitsSold, // Y-axis: Number of units sold
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true
+                }
+            }
+        }
+    });
+
+    // Doughnut chart for sales by category
+    var categories = @Html.Raw(Json.Serialize(ViewBag.Categories));
+    var salesByCategory = @Html.Raw(Json.Serialize(ViewBag.SalesByCategory));
+
+    var ctx2 = document.getElementById('salesByCategoryChart').getContext('2d');
+    var salesByCategoryChart = new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+            labels: categories, // e.g., Fiction, Non-Fiction, etc.
+            datasets: [{
+                data: salesByCategory, // Sales by category
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: true
+                }
+            }
+        }
+    });
+</script>

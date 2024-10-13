@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AlikaBook</title>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://kit.fontawesome.com/180a654a03.js"
             crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,7 +40,7 @@
 
         <button class="sidebar__exit"><i class="fa-solid fa-xmark"></i></button>
 
-        <p class="sidebar__dashboard">Dashboard</p>
+        <a asp-action="Dashboard" class="sidebar__dashboard">Dashboard</a>
         <div class="sidebar__menu">
             <button>
                 <i class="fa-solid fa-book"></i>
