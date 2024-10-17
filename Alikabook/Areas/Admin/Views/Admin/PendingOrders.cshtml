@@ -48,7 +48,7 @@
                         <td class="order__table-body-details">
                             <h1>@order.User.FirstName @order.User.LastName</h1>
                             <p>@order.Order.OrderDate.ToString("dd MMM yyyy")</p>
-                            <p>₱ @(order.Quantity * order.Price)</p>
+                            <p>₱ @order.Order.TotalPrice</p>
                         </td>
                         <td class="order__table-body-id">
                             <p>ID: <span>@order.OrderDetailId</span></p>
@@ -72,7 +72,7 @@
                             <div>@order.OrderDetailId</div>
                             <div>@order.User.FirstName @order.User.LastName</div>
                             <div>@order.Order.OrderDate.ToString("dd MMM yyyy")</div>
-                            <div>₱ @(order.Quantity * order.Price)</div>
+                            <div>₱ @order.Order.TotalPrice</div>
                             <div>@order.Order.PaymentMethod</div>
                             <div class="status">@order.Order.ItemStatus</div>
                             <div class="order__action-cell">

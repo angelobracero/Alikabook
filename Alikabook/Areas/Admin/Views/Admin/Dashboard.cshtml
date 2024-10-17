@@ -1,10 +1,12 @@
-﻿<main class="dashboard-section">
+﻿@model DashboardStatsViewModel
+
+<main class="dashboard-section">
     <h1 class="add-books__title">Admin Dashboard</h1>
     <section class="display-dashboards">
-        <a class="data-box" asp-action="AllOrders">
+        <a class="data-box" asp-action="PendingOrders">
             <div class="data-grid">
                 <div class="data">
-                    <p>254</p>
+                    <p>@Model.TotalPendingOrders</p>
                     <h4>Pending Orders</h4>
                 </div>
                 <div class="data-img">
@@ -19,7 +21,7 @@
         <a class="data-box customer" asp-action="CustomerList">
             <div class="data-grid">
                 <div class="data">
-                    <p>24</p>
+                    <p>@Model.TotalCustomers</p>
                     <h4>No. of Customer</h4>
                 </div>
                 <div class="data-img">
@@ -34,7 +36,7 @@
         <a class="data-box books" asp-action="ViewBook">
             <div class="data-grid">
                 <div class="data">
-                    <p>124</p>
+                    <p>@Model.TotalBooks</p>
                     <h4>No. of Books</h4>
                 </div>
                 <div class="data-img">
@@ -49,7 +51,7 @@
         <a class="data-box books-sold">
             <div class="data-grid">
                 <div class="data">
-                    <p>254</p>
+                    <p>@Model.TotalBooksSold</p>
                     <h4>No. of Books Sold</h4>
                 </div>
                 <div class="data-img">
@@ -64,7 +66,7 @@
         <a class="data-box sales">
             <div class="data-grid">
                 <div class="data">
-                    <p style="font-size: 2rem;gap: 0;padding-bottom: 0.4em;">P254, 242.00</p>
+                    <p style="font-size: 2rem;gap: 0;padding-bottom: 0.4em;">P @Model.TotalSales</p>
                     <h4>Total Sales</h4>
                 </div>
                 <div class="data-img">
@@ -76,21 +78,7 @@
                 <i class="fa-solid fa-arrow-right"></i> *@
             </div>
         </a>
-        <a class="data-box idk" >
-            <div class="data-grid">
-                <div class="data">
-                    <p>254</p>
-                    <h4>Pending Orders</h4>
-                </div>
-                <div class="data-img">
-                    <img src="~/images/icons/order-icon.png" alt="" />
-                </div>
-            </div>
-            <div class="data-links">
-             @*    <p>Go to Pending Orders</p>
-                <i class="fa-solid fa-arrow-right"></i> *@
-            </div>
-        </a>
+        
     </section>
 
     <h1 class="add-books__title" style="text-align: start; font-size: 2em;">Data Analytics</h1>

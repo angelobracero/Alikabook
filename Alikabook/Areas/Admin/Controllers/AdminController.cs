@@ -25,8 +25,52 @@ namespace Alikabook.Areas.Admin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public IActionResult Dashboard()
+        public async Task<IActionResult> Dashboard()
         {
+            var allUserRoles = await _userRoleRepository.GetAllUserRolesAsync();
+            var customerRoleId = "4e9a7297-f0bb-40d4-9f3e-e8c200615700";
+
+            // Getting the total no. of pending orders
+            var totalPendingOrders = _unitOfWork.OrderDetails.GetAll()
+                .Where(od => od.Order.ItemStatus.Trim().ToLower() == "pending")
+                .Count();
+
+            // Getting the no. of customers
+            var customerUserIds = allUserRoles
+                .Where(ur => ur.RoleId == customerRoleId)
+                .Select(ur => ur.UserId)
+                .Distinct();
+
+            var totalCustomers = _unitOfWork.Customer.GetAll()
+                .Where(c => customerUserIds.Contains(c.Id))
+                .Count();
+
+            // Getting the no. of books
+            var totalBooks = _unitOfWork.BookInfo.GetAll()
+                .Count();
+
+            // Getting the no. of books sold
+            var totalBooksSold = _unitOfWork.OrderDetails.GetAll()
+                .Where(od => od.OrderHistory.ItemStatus.Trim().ToLower() == "completed")
+                .Count();
+
+
+            // Now use Aggregate on the in-memory collection
+            var totalSales = _unitOfWork.OrderDetails.GetAll()
+                .Where(od => od.OrderHistory.ItemStatus.Trim().ToLower() == "completed")
+                .Sum(od => od.OrderHistory != null ? od.OrderHistory.TotalPrice : 0.0);
+
+
+
+            var dashboardStats = new DashboardStatsViewModel
+            {
+                TotalPendingOrders = totalPendingOrders,
+                TotalCustomers = totalCustomers,
+                TotalBooks = totalBooks,
+                TotalBooksSold = totalBooksSold,
+                TotalSales = totalSales
+            };
+
             var topSellingBooks = new List<string> { "Book A", "Book B", "Book C", "Book D", "Book E" };
             var unitsSold = new List<int> { 150, 120, 100, 90, 85 }; 
 
@@ -36,7 +80,7 @@ namespace Alikabook.Areas.Admin.Controllers
             ViewBag.SalesByCategory = new List<int> { 100, 200, 150, 50, 75 };
 
 
-            return View();
+            return View(dashboardStats);
         }
 
         public IActionResult AddBooks()

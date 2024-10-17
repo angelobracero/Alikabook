@@ -50,7 +50,7 @@
                             <td class="order__table-body-details">
                                 <h1>@order.User.FirstName @order.User.LastName</h1>
                                 <p>@order.OrderHistory.OrderDate.ToString("dd MMM yyyy")</p>
-                                <p>₱ @(order.Quantity * order.Price)</p>
+                                <p>₱ @order.OrderHistory.TotalPrice</p>
                             </td>
                             <td class="order__table-body-id">
                                 <p>ID: <span>@order.OrderDetailId</span></p>
@@ -68,7 +68,7 @@
                                 <div>@order.OrderDetailId</div>
                                 <div>@order.User.FirstName @order.User.LastName</div>
                                 <div>@order.OrderHistory.OrderDate.ToString("dd MMM yyyy")</div>
-                                <div>₱ @(order.Quantity * order.Price)</div>
+                                <div>₱ @order.OrderHistory.TotalPrice</div>
                                 <div>@order.OrderHistory.PaymentMethod</div>
                                 <div class="status">@order.OrderHistory.ItemStatus</div>
                                 <div class="order__action-cell">
@@ -90,7 +90,7 @@
                             <td class="order__table-body-details">
                                 <h1>@order.User.FirstName @order.User.LastName</h1>
                                 <p>@order.Order.OrderDate.ToString("dd MMM yyyy")</p>
-                                <p>₱ @(order.Quantity * order.Price)</p>
+                                <p>₱ @order.Order.TotalPrice</p>
                             </td>
                             <td class="order__table-body-id">
                                 <p>ID: <span>@order.OrderDetailId</span></p>
@@ -107,7 +107,7 @@
                                         <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Failed')">Failed</button>
                                     </div>
                                     <a href="#view" class="dropdown-item">View Profile</a>
-                                    <a href="#delete" class="dropdown-item" onclick="deleteOrder('@order.Order.OrderId')">Delete</a>
+                                    @* <a href="#delete" class="dropdown-item" onclick="deleteOrder('@order.Order.OrderId')">Delete</a> *@
                                 </div>
                             </td>
                             <td class="order__table-body-big">
@@ -115,7 +115,7 @@
                                 <div>@order.OrderDetailId</div>
                                 <div>@order.User.FirstName @order.User.LastName</div>
                                 <div>@order.Order.OrderDate.ToString("dd MMM yyyy")</div>
-                                <div>₱ @(order.Quantity * order.Price)</div>
+                                <div>₱ @order.Order.TotalPrice</div>
                                 <div>@order.Order.PaymentMethod</div>
                                 <div class="status">@order.Order.ItemStatus</div>
                                 <div class="order__action-cell">
@@ -129,7 +129,7 @@
                                             <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Failed')">Failed</button>
                                         </div>
                                         <a href="#view" class="dropdown-item">View Profile</a>
-                                        <a href="#delete" class="dropdown-item" onclick="deleteOrder('@order.Order.OrderId')">Delete</a>
+                                        @* <a href="#delete" class="dropdown-item" onclick="deleteOrder('@order.Order.OrderId')">Delete</a> *@
                                     </div>
                                 </div>
                             </td>
