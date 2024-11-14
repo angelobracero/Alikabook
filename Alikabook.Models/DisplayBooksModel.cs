@@ -2,8 +2,9 @@
 
 public class DisplayBooksModel
 {
-    public List<BookInfo> Books { get; set; }
+    public IEnumerable<BookInfo> Books { get; set; }
     public string Category { get; set; }
     public string SubCategory { get; set; }
+    public int CurrentPage { get; set; }
+    public int TotalPages { get; set; }
 }
-

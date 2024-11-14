@@ -215,50 +215,75 @@ namespace Alikabook.Areas.Admin.Controllers
         }
 
 
-        public IActionResult ViewBook()
+        public IActionResult ViewBook(int page = 1, int pageSize = 12, string searchQuery = "")
         {
-            List<BookInfo> Books = _unitOfWork.BookInfo.GetAll()
-                                  .ToList();
+            var query = _unitOfWork.BookInfo.GetAll().AsQueryable();
 
-            return View(Books);
-        }
-
-        [HttpGet]
-        public IActionResult ViewBook(string searchQuery)
-        {
-            List<BookInfo> Books;
-
-            if (string.IsNullOrEmpty(searchQuery))
+            if (!string.IsNullOrEmpty(searchQuery))
             {
-                Books = _unitOfWork.BookInfo.GetAll().ToList();
+                query = query.Where(b => EF.Functions.Like(b.Title, $"%{searchQuery}%"));
+            }
+
+            int totalBooks = query.Count();
+
+            int totalPages = (totalBooks + pageSize - 1) / pageSize;  
+
+            if (totalBooks == 0)
+            {
+                page = 1; 
             }
             else
             {
-                Books = _unitOfWork.BookInfo.GetAll()
-                    .Where(b => b.Title.ToLower().Contains(searchQuery.ToLower()))
-                    .ToList();
+                page = Math.Max(1, Math.Min(page, totalPages));
             }
 
-            return View(Books);
+            List<BookInfo> books = query.OrderByDescending(book => book.Date) 
+                                         .Skip((page - 1) * pageSize)
+                                         .Take(pageSize)
+                                         .ToList();
+
+            var pageNumbersToDisplay = GetPageNumbersToDisplay(page, totalPages);
+
+            var model = new PaginatedBooksViewModel
+            {
+                Books = books,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalPages = totalPages,
+                SearchQuery = searchQuery,
+                PageNumbersToDisplay = pageNumbersToDisplay 
+            };
+
+            return View(model);
         }
 
-        public IActionResult BookDetails(int? id)
+
+        private List<int> GetPageNumbersToDisplay(int currentPage, int totalPages)
         {
-            if (id == null || id == 0)
+            int range = 2; 
+
+            List<int> pageNumbers = new List<int>();
+
+            pageNumbers.Add(1);
+
+            for (int i = currentPage - range; i <= currentPage + range; i++)
             {
-                return NotFound();
+                if (i > 1 && i < totalPages)
+                {
+                    pageNumbers.Add(i);
+                }
             }
 
-            BookInfo book = _unitOfWork.BookInfo.Get(b => b.BookId == id);
-
-            if (book == null)
+            if (totalPages > 1 && !pageNumbers.Contains(totalPages))
             {
-                return NotFound();
-
+                pageNumbers.Add(totalPages);
             }
 
-            return View(book);
+            pageNumbers = pageNumbers.Distinct().OrderBy(x => x).ToList();
+
+            return pageNumbers;
         }
+
 
 
 

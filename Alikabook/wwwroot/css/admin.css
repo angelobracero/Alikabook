@@ -551,6 +551,32 @@ button {
     pointer-events: none;
 }
 
+.pagination {
+    display: flex;
+    width: fit-content;
+    height: auto;
+    margin-inline: auto;
+    margin-block-start: 4em;
+    margin-block-end: 1em;
+    color: lightslategray;
+}
+
+    .pagination a .pagination-box {
+        padding-inline: 0.75em;
+        padding-block: 0.3em;
+        transition: all 0.05s;
+    }
+
+    .pagination a.active .pagination-box {
+        background-color: var(--clr-primary);
+        color: white;
+    }
+
+    .pagination a:hover .pagination-box {
+        background-color: var(--clr-primary);
+        color: white;
+    }
+
 /**************************************** || ADD BOOKS ****************************************/
 .add-books {
     color: black;

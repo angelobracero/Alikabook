@@ -4,11 +4,8 @@ using Alikabook.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Security.Claims;
-using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Alikabook.Areas.User.Controllers
 {
@@ -81,50 +78,58 @@ namespace Alikabook.Areas.User.Controllers
         }
 
         [HttpGet]
-        public IActionResult DisplayCategory(string? category, string sortOption = "All")
+        public IActionResult DisplayCategory(string? category, string sortOption = "All", int page = 1, int pageSize = 10)
         {
+            List<BookInfo> bookList;
 
-            if(category == "Recently Added")
+            if (category == "Recently Added")
             {
-                List<BookInfo> recent = _unitOfWork.BookInfo.GetAll()
-                                 .OrderByDescending(book => book.Date)
-                                 .ToList();
+                var recent = _unitOfWork.BookInfo.GetAll()
+                                .OrderByDescending(book => book.Date);
+
+                bookList = recent.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
                 var books = new DisplayBooksModel
                 {
-                    Books = recent,
-                    Category = "Recently Added"
+                    Books = bookList,
+                    Category = "Recently Added",
+                    CurrentPage = page,
+                    TotalPages = (int)Math.Ceiling((double)recent.Count() / pageSize)
                 };
 
                 return View(books);
             }
 
-            List<BookInfo> bookList;
+            IQueryable<BookInfo> query;
 
             if (sortOption == "All")
             {
-                // Get all books in the selected category
-                bookList = _unitOfWork.BookInfo.GetAll()
-                                   .Where(book => book.Category == category)
-                                   .ToList();
-            }   
+                query = _unitOfWork.BookInfo.GetAll()
+                          .Where(book => book.Category == category);
+            }
             else
             {
-                // Get books based on the selected category and subcategory
-                bookList = _unitOfWork.BookInfo.GetAll()
-                                   .Where(book => book.Category == category && book.Subcategory == sortOption)
-                                   .ToList();
+                query = _unitOfWork.BookInfo.GetAll()
+                          .Where(book => book.Category == category && book.Subcategory == sortOption);
             }
+
+            bookList = query
+                        .Skip((page - 1) * pageSize)
+                        .Take(pageSize)
+                        .ToList();
 
             var model = new DisplayBooksModel
             {
                 Books = bookList,
                 Category = category,
-                SubCategory = sortOption
+                SubCategory = sortOption,
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling((double)query.Count() / pageSize)
             };
 
             return View(model);
         }
+
 
         public IActionResult BookDetails(int? id)
         {
