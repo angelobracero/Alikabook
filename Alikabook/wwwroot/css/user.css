@@ -3,7 +3,8 @@
     --clr-primary-light: #6eb5ff;
     --clr-secondary: #00ffd8;
     --clr-text: white;
-    --ff-heading: "Luckiest Guy", cursive;
+    --ff-heading: "Montserrat", sans-serif;
+    --ff-logo: "Luckiest Guy", cursive;
     --ff: "Roboto", sans-serif;
 }
 
@@ -87,6 +88,8 @@ a {
     position: sticky;
     top: 0;
     z-index: 100;
+    border-bottom: 2px solid var(--clr-secondary);
+    font-weight: bold;
 }
 
 .header__main {
@@ -104,6 +107,12 @@ a {
 .header__main-logo {
     color: var(--clr-secondary);
     display: inline-block;
+    text-transform: uppercase;
+}
+
+
+.header__category, .header__category-popup {
+    display: none;
 }
 
 .header__main-logo--secondary {
@@ -247,6 +256,7 @@ a {
 .hero-container h1 {
     font-size: 2.5rem;
     font-family: var(--ff-heading);
+    font-weight: bold;
 }
 
 .hero-container h2 {
@@ -301,6 +311,8 @@ a {
     color: var(--clr-secondary);
     line-height: 1;
     text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .about__title p span {
@@ -358,6 +370,7 @@ a {
     position: relative;
     clip-path: polygon( 0 0, 100% calc(50% - 30px), calc(100% - 50px) 50%, 100% calc(50% + 30px), 0 100% );
     z-index: 99;
+    font-weight: bold;
 }
 
 .book-title-container {
@@ -508,6 +521,7 @@ a {
     color: var(--clr-secondary);
     position: relative;
     margin: 1em 0;
+    font-weight: bold;
 }
 
 .category-title p {
@@ -918,7 +932,7 @@ a {
 .account__title {
     color: black;
     text-align: center;
-    padding-bottom: 0;
+    padding-bottom: 1em;
     font-weight: bold;
     font-size: 2.5rem;
     margin-top: 1em;
@@ -1212,6 +1226,7 @@ account__photo-img {
 .contact-container h1 {
     font-size: 2rem;
     font-family: var(--ff-heading);
+    font-weight: bold;
 }
 
 .contact-container h3 {
@@ -1332,6 +1347,7 @@ account__photo-img {
     font-size: 1.5rem;
     text-align: center;
     padding-block: 1em;
+    font-weight: bold;
 }
 .footer__heading span {
     color: var(--clr-text);
@@ -1444,6 +1460,57 @@ account__photo-img {
 
     .header__main-logo--secondary {
         display: block;
+    }
+
+
+    .header__category {
+        color: var(--clr-secondary);
+        font-weight: bold;
+        font-family: var(--ff-heading);
+        cursor: pointer;
+        display: flex;
+        gap: 0.5em;
+        align-items: center;
+        height: 100%;
+        padding-inline: 1em;
+    }
+
+    .header__category:hover {
+        background-color: #00579e;
+    }
+
+
+    .header__category-popup {
+        display: none;
+        background-color: var(--clr-primary);
+        font-family: var(--ff-heading);
+        font-weight: 500;
+        color: white;
+        position: fixed;
+        left: 12.4em;
+        top: 4.3em;
+        z-index: 999;
+        padding-block: 0.5em;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .header__category-popup.show {
+        display: block;
+    }
+
+    .header__category-popup ul {
+        list-style-type: none;
+    }
+
+    .header__category-popup ul li a {
+        display: block;
+        padding-block: 0.25em;
+        padding-inline: 1em;
+    }
+
+    .header__category-popup ul li:hover {
+        background-color: #00579e;
     }
 
     .header__main-middle,
@@ -1611,7 +1678,7 @@ account__photo-img {
         position: fixed;
         width: 350px;
         height: 400px;
-        top: 6.1em;
+        top: 4.2em;
         right: 0;
         transform: translateY(-100%);
         transition: transform 0.15s ease;
@@ -1683,7 +1750,7 @@ account__photo-img {
     /* || MAIN */
     /* hero */
     .hero {
-        height: 86vh;
+        height: 90vh;
     }
 
     .hero-container h1 {

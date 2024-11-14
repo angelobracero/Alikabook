@@ -10,53 +10,71 @@ hamburger.addEventListener("click", () => {
     }
 });
 
+//toggle category
+const headerCategoryPopup = document.getElementById('headerCategoryPopup');
+const headerCategory = document.getElementById('headerCategory');
+const categoryCaret = document.getElementById('categoryCaret');
 
-//scroll the sub header
-const scrollLeft = document.getElementById('scrollLeft');
-const scrollRight = document.getElementById('scrollRight');
-const scrollContainer = document.querySelector('.header__sub');
 
-function smoothScroll(container, distance, duration) {
-    let start = container.scrollLeft;
-    let startTime = null;
+headerCategory.addEventListener('click', () => {
+    headerCategoryPopup.classList.toggle('show');
 
-    function scrollStep(timestamp) {
-        if (!startTime) startTime = timestamp;
-        let progress = timestamp - startTime;
-        let percent = Math.min(progress / duration, 1);
-        container.scrollLeft = start + distance * percent;
-        if (percent < 1) {
-            window.requestAnimationFrame(scrollStep);
-        }
+    if (headerCategoryPopup.classList.contains('show')) {
+        categoryCaret.style.transform = 'rotate(180deg)';
+    } else {
+        categoryCaret.style.transform = 'rotate(0deg)';
     }
-    window.requestAnimationFrame(scrollStep);
-}
+})
 
-scrollLeft.addEventListener('click', () => {
-    smoothScroll(scrollContainer, -2500, 1000);
-});
 
-scrollRight.addEventListener('click', () => {
-    smoothScroll(scrollContainer, 2500, 1000);  
-});
 
-// Save the scroll position of the .header__sub element
-window.addEventListener("beforeunload", function () {
-    const subHeader = document.querySelector(".header__sub");
-    if (subHeader) {
-        localStorage.setItem("subHeaderScrollPosition", subHeader.scrollLeft);
-    }
-});
 
-// Restore the scroll position of the .header__sub element
-window.addEventListener("load", function () {
-    const subHeader = document.querySelector(".header__sub");
-    const savedPosition = localStorage.getItem("subHeaderScrollPosition");
+////scroll the sub header
+//const scrollLeft = document.getElementById('scrollLeft');
+//const scrollRight = document.getElementById('scrollRight');
+//const scrollContainer = document.querySelector('.header__sub');
 
-    if (subHeader && savedPosition !== null) {
-        subHeader.scrollLeft = parseInt(savedPosition, 10);
-    }
-});
+//function smoothScroll(container, distance, duration) {
+//    let start = container.scrollLeft;
+//    let startTime = null;
+
+//    function scrollStep(timestamp) {
+//        if (!startTime) startTime = timestamp;
+//        let progress = timestamp - startTime;
+//        let percent = Math.min(progress / duration, 1);
+//        container.scrollLeft = start + distance * percent;
+//        if (percent < 1) {
+//            window.requestAnimationFrame(scrollStep);
+//        }
+//    }
+//    window.requestAnimationFrame(scrollStep);
+//}
+
+//scrollLeft.addEventListener('click', () => {
+//    smoothScroll(scrollContainer, -2500, 1000);
+//});
+
+//scrollRight.addEventListener('click', () => {
+//    smoothScroll(scrollContainer, 2500, 1000);  
+//});
+
+//// Save the scroll position of the .header__sub element
+//window.addEventListener("beforeunload", function () {
+//    const subHeader = document.querySelector(".header__sub");
+//    if (subHeader) {
+//        localStorage.setItem("subHeaderScrollPosition", subHeader.scrollLeft);
+//    }
+//});
+
+//// Restore the scroll position of the .header__sub element
+//window.addEventListener("load", function () {
+//    const subHeader = document.querySelector(".header__sub");
+//    const savedPosition = localStorage.getItem("subHeaderScrollPosition");
+
+//    if (subHeader && savedPosition !== null) {
+//        subHeader.scrollLeft = parseInt(savedPosition, 10);
+//    }
+//});
 
 
 //Open Profile Settings

@@ -299,9 +299,6 @@ button {
     scrollbar-gutter:stable;
 }
 
-.sidebar::-webkit-scrollbar {
-}
-
 .sidebar.show {
     transform: translateX(0);
 }

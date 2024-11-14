@@ -35,7 +35,6 @@
             <form method="post" asp-action="AddToCart" asp-controller="Home">
                 <input type="hidden" name="bookId" value="@Model.Book.BookId" />
                 <input type="hidden" id="hiddenQty" name="quantity" value="1" />
-                <input type="hidden" id="rating" name="rating" value="@Model.UserBookRating?.Rating" />
                 <h2 class="book-details__info-title">
                     @Model.Book.Title
                 </h2>
@@ -43,24 +42,7 @@
                     By @Model.Book.Author
                 </p>
                 <div class="book-details__info-star-stocks">
-                    <div class="rating">
-                        <p id="itemRating">@Model.UserBookRating?.Rating</p>
-
-                        <input type="radio" id="star5" name="rating" value="5" @(Model.UserBookRating?.Rating == 5 ? "checked" : "") />
-                        <label for="star5" title="5 stars">&#9733;</label>
-
-                        <input type="radio" id="star4" name="rating" value="4" @(Model.UserBookRating?.Rating == 4 ? "checked" : "") />
-                        <label for="star4" title="4 stars">&#9733;</label>
-
-                        <input type="radio" id="star3" name="rating" value="3" @(Model.UserBookRating?.Rating == 3 ? "checked" : "") />
-                        <label for="star3" title="3 stars">&#9733;</label>
-
-                        <input type="radio" id="star2" name="rating" value="2" @(Model.UserBookRating?.Rating == 2 ? "checked" : "") />
-                        <label for="star2" title="2 stars">&#9733;</label>
-
-                        <input type="radio" id="star1" name="rating" value="1" @(Model.UserBookRating?.Rating == 1 ? "checked" : "") />
-                        <label for="star1" title="1 star">&#9733;</label>
-                    </div>
+                   
                     <div class="stocks">
                         <p>Stocks: &nbsp;</p>
                         <p>@Model.Book.Stock</p>
