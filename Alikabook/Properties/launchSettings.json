@@ -7,7 +7,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://192.168.0.19:5142"
+      "applicationUrl": "http://192.168.254.208:5142"
     },
     "https": {
       "commandName": "Project",

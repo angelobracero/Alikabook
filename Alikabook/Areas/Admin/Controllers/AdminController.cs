@@ -214,6 +214,24 @@ namespace Alikabook.Areas.Admin.Controllers
             return View(obj);
         }
 
+        public IActionResult BookDetails(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            var book = _unitOfWork.BookInfo.Get(b => b.BookId == id);
+
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            return View(book);
+        }
+
+
 
         public IActionResult ViewBook(int page = 1, int pageSize = 12, string searchQuery = "")
         {
