@@ -26,8 +26,8 @@ builder.Services.AddAuthentication(options =>
 })
 .AddGoogle(googleOptions =>
 {
-    googleOptions.ClientId = builder.Configuration["Authentication_Google_ClientId"];
-    googleOptions.ClientSecret = builder.Configuration["Authentication_Google_ClientSecret"];
+    googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
     googleOptions.CallbackPath = "/signin-google";
 
     googleOptions.Events = new Microsoft.AspNetCore.Authentication.OAuth.OAuthEvents
