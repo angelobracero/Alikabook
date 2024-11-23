@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - alikabook
+name: Build and deploy ASP.Net Core app to Azure Web App - Alikabook
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -21,23 +21,20 @@ jobs:
         with:
           dotnet-version: '8.x'
 
-      - name: Restore dependencies
-        run: dotnet restore ./Alikabook/Alikabook.csproj
-
       - name: Build with dotnet
-        run: dotnet build ./Alikabook/Alikabook.csproj --configuration Release
+        run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish ./Alikabook/Alikabook.csproj -c Release -o ./publish
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ./publish
+          path: ${{env.DOTNET_ROOT}}/myapp
 
   deploy:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     needs: build
     environment:
       name: 'Production'
@@ -54,15 +51,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_3C191A8BBC0140B1B42D8FEF2534CF77 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_52F2B8FC2FCD4B72876B8B612030500D }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_30050537E4D349BBB32E8F23687E92BC }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_A7DC6F8C57EB4B8B9998C104E5CBC88F }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_88DD53E536614D3E85A975CCD17F1BBE }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_C5F78E09104F4F219708FED76ACA926E }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'alikabook'
+          app-name: 'Alikabook'
           slot-name: 'Production'
           package: .
           
