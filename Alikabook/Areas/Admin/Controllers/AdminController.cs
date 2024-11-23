@@ -28,7 +28,7 @@ namespace Alikabook.Areas.Admin.Controllers
         public async Task<IActionResult> Dashboard()
         {
             var allUserRoles = await _userRoleRepository.GetAllUserRolesAsync();
-            var customerRoleId = "4e9a7297-f0bb-40d4-9f3e-e8c200615700";
+            var customerRoleId = "611568ea-f96a-45b0-b520-129f7b964cb9";
 
             // Getting the total no. of pending orders
             var totalPendingOrders = _unitOfWork.OrderDetails.GetAll()
@@ -235,7 +235,7 @@ namespace Alikabook.Areas.Admin.Controllers
 
         public IActionResult ViewBook(int page = 1, int pageSize = 12, string searchQuery = "")
         {
-            var query = _unitOfWork.BookInfo.GetAll().AsQueryable();
+            var query = _unitOfWork.BookInfo.GetAll().AsNoTracking();
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
@@ -318,7 +318,7 @@ namespace Alikabook.Areas.Admin.Controllers
 
             var userIds = allUserRoles.Select(ur => ur.UserId).Distinct().ToList();
 
-            var allCustomers = await _unitOfWork.Customer.GetAllAsync(c => userIds.Contains(c.Id)); // Use async method
+            var allCustomers = await _unitOfWork.Customer.GetAllAsync(c => userIds.Contains(c.Id)); 
 
             var customerRoles = allUserRoles
                 .GroupBy(ur => ur.UserId)
@@ -332,7 +332,7 @@ namespace Alikabook.Areas.Admin.Controllers
         public async Task<IActionResult> AdminList()
         {
             var allUserRoles = await _userRoleRepository.GetAllUserRolesAsync();
-            var adminRoleId = "099cb002-4428-4431-a277-6cf5f49a133e";
+            var adminRoleId = "1a90e711-4f5c-4839-b776-5a0e360299d6";
 
             var adminUserIds = allUserRoles
                 .Where(ur => ur.RoleId == adminRoleId)
@@ -355,7 +355,7 @@ namespace Alikabook.Areas.Admin.Controllers
         public async Task<IActionResult> CustomerList()
         {
             var allUserRoles = await _userRoleRepository.GetAllUserRolesAsync();
-            var customerRoleId = "4e9a7297-f0bb-40d4-9f3e-e8c200615700";
+            var customerRoleId = "611568ea-f96a-45b0-b520-129f7b964cb9";
 
             var customerUserIds = allUserRoles
                 .Where(ur => ur.RoleId == customerRoleId)
@@ -389,6 +389,7 @@ namespace Alikabook.Areas.Admin.Controllers
         public IActionResult AllOrders()
         {
             var orders = _unitOfWork.OrderDetails.GetAll()
+                .AsNoTracking()
                 .Include(od => od.Book)
                 .Include(od => od.Order)
                 .Include(od => od.OrderHistory)
@@ -401,6 +402,18 @@ namespace Alikabook.Areas.Admin.Controllers
         {
             var orders = _unitOfWork.OrderDetails.GetAll()
                 .Where(od => od.Order.ItemStatus.Trim().ToLower() == "pending")
+                .Include(od => od.Book)
+                .Include(od => od.Order)
+                .Include(od => od.User)
+                .ToList();
+
+            return View(orders);
+        }
+
+        public IActionResult ProcessingOrders()
+        {
+            var orders = _unitOfWork.OrderDetails.GetAll()
+                 .Where(od => od.Order.ItemStatus.Trim().ToLower() == "processing")
                 .Include(od => od.Book)
                 .Include(od => od.Order)
                 .Include(od => od.User)
@@ -492,7 +505,7 @@ namespace Alikabook.Areas.Admin.Controllers
                 _unitOfWork.Save();
             }
 
-            var redirect = status == "Pending" || status == "Delivering" || status == "Completed" || status == "Failed"
+            var redirect = status == "Pending" || status == "Processing" || status == "Delivering" || status == "Completed" || status == "Failed"
                            ? status + "Orders"
                            : "AllOrders";
 

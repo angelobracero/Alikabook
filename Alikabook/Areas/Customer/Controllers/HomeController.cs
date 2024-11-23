@@ -2,8 +2,11 @@ using Alikabook.DataAccess.Repository.IRepository;
 using Alikabook.Models;
 using Alikabook.Utility;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using PayPal.Api.OpenIdConnect;
 using System.Diagnostics;
 using System.Security.Claims;
 
@@ -13,60 +16,77 @@ namespace Alikabook.Areas.User.Controllers
     public class HomeController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public HomeController(IUnitOfWork unitOfWork)
+
+        public HomeController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
         {
             List<BookInfo> recent = _unitOfWork.BookInfo.GetAll()
-                                  .OrderByDescending(book => book.Date) 
-                                  .Take(10)
-                                  .ToList();
-            List<BookInfo> programming = _unitOfWork.BookInfo.GetAll()
-                                  .Where(book => book.Category == "Programming & Technology")
-                                  .OrderBy(book => Guid.NewGuid())
-                                  .Take(10)
-                                  .ToList();
-            List<BookInfo> business = _unitOfWork.BookInfo.GetAll()
-                                  .Where(book => book.Category == "Business & Economics")
-                                  .OrderBy(book => Guid.NewGuid())
-                                  .Take(10)
-                                  .ToList();
-            List<BookInfo> fiction = _unitOfWork.BookInfo.GetAll()
-                                 .Where(book => book.Category == "Fiction")
-                                 .OrderBy(book => Guid.NewGuid())
-                                 .Take(10)
-                                 .ToList();
-            List<BookInfo> nonfiction = _unitOfWork.BookInfo.GetAll()
-                                 .Where(book => book.Category == "Non-Fiction")
-                                 .OrderBy(book => Guid.NewGuid())
-                                 .Take(10)
-                                 .ToList();
-            List<BookInfo> children = _unitOfWork.BookInfo.GetAll()
-                                 .Where(book => book.Category == "Children’s Books")
-                                 .OrderBy(book => Guid.NewGuid())
-                                 .Take(10)
-                                 .ToList();
-            List<BookInfo> graphic = _unitOfWork.BookInfo.GetAll()
-                                 .Where(book => book.Category == "Graphic Novels & Comics")
-                                 .OrderBy(book => Guid.NewGuid())
-                                 .Take(10)
-                                 .ToList();
-            List<BookInfo> science = _unitOfWork.BookInfo.GetAll()
-                                 .Where(book => book.Category == "Science & Nature")
-                                 .OrderBy(book => Guid.NewGuid())
-                                 .Take(10)
-                                 .ToList();
+                                     .AsNoTracking()
+                                     .OrderByDescending(book => book.Date)
+                                     .Take(10)
+                                     .ToList();
 
+            List<BookInfo> programming = _unitOfWork.BookInfo.GetAll()
+                                     .AsNoTracking()
+                                     .Where(book => book.Category == "Programming & Technology")
+                                     .OrderBy(book => Guid.NewGuid())
+                                     .Take(10)
+                                     .ToList();
+
+            List<BookInfo> business = _unitOfWork.BookInfo.GetAll()
+                                   .AsNoTracking()
+                                   .Where(book => book.Category == "Business & Economics")
+                                   .OrderBy(book => Guid.NewGuid())
+                                   .Take(10)
+                                   .ToList();
+
+            List<BookInfo> fiction = _unitOfWork.BookInfo.GetAll()
+                                  .AsNoTracking()
+                                  .Where(book => book.Category == "Fiction")
+                                  .OrderBy(book => Guid.NewGuid())
+                                  .Take(10)
+                                  .ToList();
+
+            List<BookInfo> nonfiction = _unitOfWork.BookInfo.GetAll()
+                                  .AsNoTracking()
+                                  .Where(book => book.Category == "Non-Fiction")
+                                  .OrderBy(book => Guid.NewGuid())
+                                  .Take(10)
+                                  .ToList();
+
+            List<BookInfo> children = _unitOfWork.BookInfo.GetAll()
+                                  .AsNoTracking()
+                                  .Where(book => book.Category == "Children’s Books")
+                                  .OrderBy(book => Guid.NewGuid())
+                                  .Take(10)
+                                  .ToList();
+
+            List<BookInfo> graphic = _unitOfWork.BookInfo.GetAll()
+                                  .AsNoTracking()
+                                  .Where(book => book.Category == "Graphic Novels & Comics")
+                                  .OrderBy(book => Guid.NewGuid())
+                                  .Take(10)
+                                  .ToList();
+
+            List<BookInfo> science = _unitOfWork.BookInfo.GetAll()
+                                  .AsNoTracking()
+                                  .Where(book => book.Category == "Science & Nature")
+                                  .OrderBy(book => Guid.NewGuid())
+                                  .Take(10)
+                                  .ToList();
 
             var model = new BookViewModel
             {
                 RecentBooks = recent,
-                ProgrammingBooks = business,
-                BusinessBooks = programming,
+                ProgrammingBooks = programming,
+                BusinessBooks = business,
                 FictionBooks = fiction,
                 NonFictionBooks = nonfiction,
                 ChildrenBooks = children,
@@ -77,6 +97,7 @@ namespace Alikabook.Areas.User.Controllers
             return View(model);
         }
 
+
         [HttpGet]
         public IActionResult DisplayCategory(string? category, string sortOption = "All", int page = 1, int pageSize = 10)
         {
@@ -85,7 +106,8 @@ namespace Alikabook.Areas.User.Controllers
             if (category == "Recently Added")
             {
                 var recent = _unitOfWork.BookInfo.GetAll()
-                                .OrderByDescending(book => book.Date);
+                                                 .AsNoTracking()
+                                                 .OrderByDescending(book => book.Date);
 
                 bookList = recent.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
@@ -105,12 +127,14 @@ namespace Alikabook.Areas.User.Controllers
             if (sortOption == "All")
             {
                 query = _unitOfWork.BookInfo.GetAll()
-                          .Where(book => book.Category == category);
+                                            .AsNoTracking()
+                                            .Where(book => book.Category == category);
             }
             else
             {
                 query = _unitOfWork.BookInfo.GetAll()
-                          .Where(book => book.Category == category && book.Subcategory == sortOption);
+                                            .AsNoTracking()
+                                            .Where(book => book.Category == category && book.Subcategory == sortOption);
             }
 
             bookList = query
@@ -148,10 +172,11 @@ namespace Alikabook.Areas.User.Controllers
             var userBookRating = _unitOfWork.UserBookRatings.Get(r => r.BookId == book.BookId && r.UserId == userId);
 
             List<BookInfo> bookList = _unitOfWork.BookInfo.GetAll()
-                        .Where(b => b.Category == book.Category)
-                        .OrderBy(b => Guid.NewGuid())
-                        .Take(6)
-                        .ToList();
+                                                          .AsNoTracking()
+                                                          .Where(b => b.Category == book.Category)
+                                                          .OrderBy(b => Guid.NewGuid())
+                                                          .Take(6)
+                                                          .ToList();
 
             var model = new BookDetailsViewModel
             {
@@ -165,9 +190,8 @@ namespace Alikabook.Areas.User.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddToCart(int bookId, int quantity, int rating)
+        public IActionResult AddToCart(int bookId, int quantity)
         {
-            // Check if the user is logged in
             if (!User.Identity.IsAuthenticated)
             {
                 TempData["error"] = "You must be logged in to add items to your cart.";
@@ -188,7 +212,6 @@ namespace Alikabook.Areas.User.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var inCartAlready = _unitOfWork.Cart.Get(c => c.BookId == bookId && c.UserId == userId);
 
-            // Check if the item is already in the cart
             if (inCartAlready != null)
             {
                 inCartAlready.Quantity += quantity;
@@ -211,37 +234,6 @@ namespace Alikabook.Areas.User.Controllers
                 _unitOfWork.Cart.Add(newCartItem);
             }
 
-            // Handle the rating for each book
-            if (rating > 0)
-            {
-                var userBookRating = _unitOfWork.UserBookRatings.Get(r => r.BookId == book.BookId && r.UserId == userId);
-
-                if (userBookRating == null)
-                {
-                    // Calculate new average rating
-                    var currentAverageRating = book.RatingCount > 0 ? book.Rating / book.RatingCount : 0;
-                    var newAverageRating = ((currentAverageRating * book.RatingCount) + rating) / (book.RatingCount + 1);
-
-                    // Update book rating
-                    book.Rating = newAverageRating;
-                    book.RatingCount += 1;
-
-                    var newUserRating = new UserBookRating
-                    {
-                        BookId = book.BookId,
-                        UserId = userId,
-                        Rating = rating,
-                        RatedOn = DateTime.Now
-                    };
-                    _unitOfWork.UserBookRatings.Add(newUserRating);
-                }
-                else
-                {
-                    //TempData["error"] = "You have already rated this book.";
-                }
-                _unitOfWork.BookInfo.Update(book);
-            }
-
             _unitOfWork.Save();
             TempData["success"] = "Book successfully added.";
             return RedirectToAction("Index");
@@ -255,9 +247,10 @@ namespace Alikabook.Areas.User.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             List<Cart> cartItems = _unitOfWork.Cart.GetAll()
-                                .Where(c => c.UserId == userId)
-                                .Include(c => c.Book)
-                                .ToList();
+                                                   .AsNoTracking()
+                                                   .Where(c => c.UserId == userId)
+                                                   .Include(c => c.Book)
+                                                   .ToList();
             return View(cartItems);
         }
 
@@ -266,8 +259,8 @@ namespace Alikabook.Areas.User.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             List<Cart> cartItems = _unitOfWork.Cart.GetAll()
-                                .Where(c => c.UserId == userId)
-                                .ToList();
+                                                   .Where(c => c.UserId == userId)
+                                                   .ToList();
 
             var cOrder = new ConfirmOrder
             {
@@ -327,9 +320,18 @@ namespace Alikabook.Areas.User.Controllers
                 string.IsNullOrEmpty(customerInfo.ZipCode))
             {
                 TempData["error"] = "Please complete your profile information before placing an order.";
-                return RedirectToAction("Profile", "User"); 
+                return RedirectToAction("Profile", "User");
             }
 
+            // Redirect to GCashPayment view if the payment method is GCash
+            if (confirmOrder.PaymentMethod.Equals("GCash", StringComparison.OrdinalIgnoreCase))
+            {
+                TempData["success"] = "Redirecting to GCash payment...";
+                TempData["ConfirmOrder"] = JsonConvert.SerializeObject(cOrder);
+                return View("GcashPayment"); 
+            }
+
+            // Save the order to the database for other payment methods
             _unitOfWork.ConfirmOrder.Add(cOrder);
             _unitOfWork.Save();
 
@@ -341,29 +343,72 @@ namespace Alikabook.Areas.User.Controllers
         }
 
 
+        
 
-
-
-
-        public IActionResult SearchBook(string searchQuery)
+        public IActionResult GcashPayment()
         {
-            var viewModel = new SearchBookViewModel();
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if (string.IsNullOrEmpty(searchQuery))
+            if (!User.Identity.IsAuthenticated)
             {
-                viewModel.Books = _unitOfWork.BookInfo.GetAll().ToList();
-                viewModel.SearchTerm = string.Empty;
-            }
-            else
-            {
-                viewModel.Books = _unitOfWork.BookInfo.GetAll()
-                    .Where(b => b.Title.ToLower().Contains(searchQuery.ToLower()))
-                    .ToList();
-                viewModel.SearchTerm = searchQuery; 
+                TempData["error"] = "You must be logged in first";
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
             }
 
-            return View(viewModel);
+            // Save the order temporarily, e.g., in the session (or another mechanism)
+            var confirmOrderJson = TempData["ConfirmOrder"]?.ToString();
+            if (string.IsNullOrEmpty(confirmOrderJson))
+            {
+                TempData["error"] = "Order data is missing. Please try again.";
+                return RedirectToAction("ViewCart");
+            }
+
+            var confirmOrder = JsonConvert.DeserializeObject<ConfirmOrder>(confirmOrderJson);
+            return View();
         }
+
+
+        [HttpPost]
+        public IActionResult SubmitProof(IFormFile? file)
+        {
+            // Retrieve the ConfirmOrder from TempData
+            var confirmOrderJson = TempData["ConfirmOrder"]?.ToString();
+            if (string.IsNullOrEmpty(confirmOrderJson))
+            {
+                TempData["error"] = "Order data is missing. Please try again.";
+                return RedirectToAction("GcashPayment");
+            }
+
+            var confirmOrder = JsonConvert.DeserializeObject<ConfirmOrder>(confirmOrderJson);
+
+            if (file == null || !ModelState.IsValid)
+            {
+                TempData["error"] = "Invalid file or data.";
+                return RedirectToAction("GcashPayment");
+            }
+
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            string proofPath = Path.Combine(wwwRootPath, @"images\proofofpayment");
+
+            if (!Directory.Exists(proofPath))
+            {
+                Directory.CreateDirectory(proofPath);
+            }
+
+            using (var fileStream = new FileStream(Path.Combine(proofPath, fileName), FileMode.Create))
+            {
+                file.CopyTo(fileStream);
+            }
+
+            confirmOrder.ProofOfPayment = fileName;
+            _unitOfWork.ConfirmOrder.Add(confirmOrder);
+            _unitOfWork.Save();
+
+            TempData["success"] = "Proof of payment submitted successfully! Your order is now pending admin review.";
+            return RedirectToAction("Index");
+        }
+
 
 
         public IActionResult Contact()
@@ -379,6 +424,26 @@ namespace Alikabook.Areas.User.Controllers
             var userInfo = _unitOfWork.Customer.Get(c => c.Id == userId);
 
             return View(userInfo);
+        }
+
+        public IActionResult SearchBook(string searchQuery)
+        {
+            var viewModel = new SearchBookViewModel();
+
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                viewModel.Books = _unitOfWork.BookInfo.GetAll().ToList();
+                viewModel.SearchTerm = string.Empty;
+            }
+            else
+            {
+                viewModel.Books = _unitOfWork.BookInfo.GetAll()
+                    .Where(b => b.Title.ToLower().Contains(searchQuery.ToLower()))
+                    .ToList();
+                viewModel.SearchTerm = searchQuery;
+            }
+
+            return View(viewModel);
         }
 
 
@@ -407,6 +472,8 @@ namespace Alikabook.Areas.User.Controllers
             TempData["error"] = "Your message was not sent";
             return View(userInfo);
         }
+
+
 
 
         public IActionResult FeaturedAuthors()

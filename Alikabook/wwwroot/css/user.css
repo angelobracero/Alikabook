@@ -418,7 +418,6 @@ a {
     display: grid;
     grid-template-rows: 160px 1fr;
     border: 3px solid var(--clr-primary);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1);
     position: relative;
     min-width: 125px;
     max-width: 125px;
@@ -1355,6 +1354,124 @@ account__photo-img {
 .author-description {
 }
 
+/**************************************** || GCASH  ****************************************/
+.payment-container {
+    width: 90%;
+    margin-inline: auto;
+    font-family: var(--ff);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-block: 1em;
+}
+
+.payment-container h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--clr-primary);
+}
+
+.payment-container h2 {
+    margin-block-start: 1em;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.payment-container h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.payment-container .qr-section {
+    display:flex;
+    flex-direction: column;
+}
+
+
+.payment-container button{
+    margin-top: 0.5em;
+    background-color: var(--clr-primary);
+    color: white;
+    padding-block: 0.5em;
+    padding-inline: 2em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.15s
+}
+
+.payment-container .qr-section button:hover {
+    opacity: 0.9;
+}
+
+.instructions h1{ 
+    font-size: 1.5rem;
+    margin-top: 1em;
+}
+
+.instructions ul {
+    padding-inline-start: 1em;
+    list-style-type: none;
+}
+
+
+.payment-container .upload-section {2100474
+   
+}
+
+.payment-container .upload-section h1 {
+    font-size: 1.5rem;
+    margin-top: 1em;
+}
+
+.payment-container .upload-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-container .upload-section form label {
+    margin-top: 0.5em;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+
+}
+
+.modal-content img{
+    height: 90vh;
+    width: auto;
+
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
 
 
 /**************************************** || FOOTER ****************************************/

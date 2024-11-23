@@ -26,6 +26,8 @@ namespace Alikabook.Models
         [Required]
         public double TotalPrice { get; set; }
 
+        public string? ProofOfPayment { get; set; }
+
         public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

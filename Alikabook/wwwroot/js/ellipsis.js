@@ -1,4 +1,31 @@
-﻿//
+﻿const showProofModalBtn = document.querySelectorAll("[id='showProofModalBtn']");
+const proofModal = document.getElementById("proofModal");
+const closeModal = document.getElementById("closeModal");
+const proofImage = document.getElementById("proofImage");
+
+// Show modal on button click
+showProofModalBtn.forEach(button => {
+    button.addEventListener("click", () => {
+        // Get the proof of payment file name from the data-* attribute
+        const proofImagePath = "/images/proofofpayment/" + button.getAttribute("data-proof-of-payment");
+        proofImage.src = proofImagePath;
+        proofModal.style.display = "flex";
+    });
+});
+
+// Close modal on close button click
+closeModal.addEventListener("click", () => {
+    proofModal.style.display = "none";
+});
+
+// Close modal if clicked outside the modal content
+window.addEventListener("click", (event) => {
+    if (event.target === proofModal) {
+        proofModal.style.display = "none";
+    }
+});
+
+//
 // For dropdown
 //
 function toggleDropdown(event) {

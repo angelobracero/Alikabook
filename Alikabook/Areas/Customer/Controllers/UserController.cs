@@ -164,7 +164,7 @@ namespace Alikabook.Areas.User.Controllers
 
             List<OrderDetails> orders = _unitOfWork.OrderDetails.GetAll()
                        .Where(o => o.UserId == userId)
-                       .Where(o => o.Order.ItemStatus.ToLower() == "pending" || o.Order.ItemStatus.ToLower() == "delivering")
+                       .Where(o => o.Order.ItemStatus.ToLower() == "pending"|| o.Order.ItemStatus.ToLower() == "processing" || o.Order.ItemStatus.ToLower() == "delivering")
                        .Include(o => o.Book)
                        .Include(o => o.Order)
                        .ToList();

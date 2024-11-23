@@ -1,0 +1,64 @@
+﻿<main class="payment-container">
+    <h1>Pay with GCash</h1>
+    <h2>Da**y B.</h2>
+    <h3>0977 417 0997</h3>
+
+    <div class="qr-section">
+        <!-- Button to Show Modal -->
+        <button id="showQrModal" class="btn btn-primary">View QR Code</button>
+
+        <!-- Download QR Code -->
+        <a href="~/images/background-images/qr.jpg" download="GCash-QR-Code.png">
+            <button class="btn btn-secondary">Download QR Code</button>
+        </a>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="qrModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <img src="~/images/background-images/qr.jpg" alt="GCash QR Code" />
+        </div>
+    </div>
+    <div class="instructions">
+        <h1 class="how">How to Pay</h1>
+        <ul>
+            <li>1. Open your GCash app.</li>
+            <li>2. Tap "Pay QR" and scan the code or type the details.</li>
+            <li>3. Enter the total amount and confirm payment.</li>
+            <li>4. Save a screenshot of the payment receipt.</li>
+            <li>5. Upload the screenshot of the payment receipt here.</li>
+        </ul>
+    </div>
+    <div class="upload-section">
+        <h1>Upload Proof of Payment</h1>
+        <form asp-action="SubmitProof" method="post" enctype="multipart/form-data">
+            <label for="proof">Upload Screenshot:</label>
+            <input type="file" name="file" id="proof" accept="image/*" required />
+            <button type="submit">Submit Payment Proof</button>
+        </form>
+    </div>
+</main>
+
+<script>
+    const showQrModal = document.getElementById("showQrModal");
+    const qrModal = document.getElementById("qrModal");
+    const closeModal = document.getElementById("closeModal");
+
+    // Show modal on button click
+    showQrModal.addEventListener("click", () => {
+        qrModal.style.display = "flex";
+    });
+
+    // Close modal on close button click
+    closeModal.addEventListener("click", () => {
+        qrModal.style.display = "none";
+    });
+
+    // Close modal if clicked outside the modal content
+    window.addEventListener("click", (event) => {
+        if (event.target === qrModal) {
+            qrModal.style.display = "none";
+        }
+    });
+</script>

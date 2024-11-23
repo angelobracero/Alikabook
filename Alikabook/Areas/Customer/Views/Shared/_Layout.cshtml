@@ -29,7 +29,7 @@
                 <i class="fa-solid fa-caret-down" id="categoryCaret"></i>
             </div>
             <div class="header__main-middle" method="get">
-                <form asp-action="SearchBook">
+                <form asp-controller="Home" asp-action="SearchBook">
                     <input type="text" name="searchQuery" placeholder="Search Books" aria-label="Search" />
                     <input type="submit" value="" aria-label="submit" />
                     <i class="fa-solid fa-magnifying-glass"></i>

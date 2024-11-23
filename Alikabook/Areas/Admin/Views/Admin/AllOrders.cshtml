@@ -8,6 +8,7 @@
         <ul>
             <li class="active"><a>All Orders</a></li>
             <li><a asp-action="PendingOrders">Pending</a></li>
+            <li><a asp-action="ProcessingOrders">Processing</a></li>
             <li><a asp-action="DeliveringOrders">Delivering</a></li>
             <li><a asp-action="CompletedOrders">Completed</a></li>
             <li><a asp-action="FailedOrders">Failed</a></li>
@@ -39,6 +40,8 @@
                 {
                     var image = order.User.ProfileImage;
                     if (image is null) image = "default_profile.png";
+                    var proofOfPayment = order.Order?.ProofOfPayment; 
+
 
                     if(order.Order is null)
                     {
@@ -60,6 +63,11 @@
                                 <i class="fa-solid fa-ellipsis-vertical" onclick="toggleDropdown(event)"></i>
                                 <div class="dropdown">
                                     <a href="#view" class="dropdown-item">View Profile</a>
+                                    @if (!string.IsNullOrEmpty(proofOfPayment) && order.Order?.PaymentMethod == "GCash")
+                                    {
+                                        <button type="button" class="dropdown-item" data-proof-of-payment="@proofOfPayment" id="showProofModalBtn">View Proof of Payment</button>
+                                    }
+
                                     @* <a href="#delete" class="dropdown-item" onclick="deleteOrder('@order.OrderHistory.OrderHistoryId')">Delete</a> *@
                                 </div>
                             </td>
@@ -75,6 +83,11 @@
                                     <i class="fa-solid fa-ellipsis-vertical" onclick="toggleDropdown(event)"></i>
                                     <div class="dropdown">
                                         <a href="#view" class="dropdown-item">View Profile</a>
+                                        @if (!string.IsNullOrEmpty(proofOfPayment) && order.Order?.PaymentMethod == "GCash")
+                                        {
+                                            <button type="button" class="dropdown-item" data-proof-of-payment="@proofOfPayment" id="showProofModalBtn">View Proof of Payment</button>
+                                        }
+
                                         @* <a href="#delete" class="dropdown-item" onclick="deleteOrder('@order.OrderHistory.OrderHistoryId')">Delete</a> *@
                                     </div>
                                 </div>
@@ -102,10 +115,16 @@
                                     <div class="dropdown-item dropdown-item-status" onclick="toggleDropdown(event)">Change Status</div>
                                     <div class="dropdown-item-status-items">
                                         <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Pending')">Pending</button>
+                                        <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Processing')">Processing</button>
                                         <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Delivering')">Delivering</button>
                                         <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Completed')">Completed</button>
                                         <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Failed')">Failed</button>
                                     </div>
+                                    @if (!string.IsNullOrEmpty(proofOfPayment) && order.Order?.PaymentMethod == "GCash")
+                                    {
+                                        <button type="button" class="dropdown-item" data-proof-of-payment="@proofOfPayment" id="showProofModalBtn">View Proof of Payment</button>
+                                    }
+
                                     <a href="#view" class="dropdown-item">View Profile</a>
                                     @* <a href="#delete" class="dropdown-item" onclick="deleteOrder('@order.Order.OrderId')">Delete</a> *@
                                 </div>
@@ -124,11 +143,16 @@
                                         <div class="dropdown-item dropdown-item-status" onclick="toggleDropdown(event)">Change Status</div>
                                         <div class="dropdown-item-status-items">
                                             <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Pending')">Pending</button>
+                                            <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Processing')">Processing</button>
                                             <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Delivering')">Delivering</button>
                                             <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Completed')">Completed</button>
                                             <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Failed')">Failed</button>
                                         </div>
-                                        <a href="#view" class="dropdown-item">View Profile</a>
+                                            @if (!string.IsNullOrEmpty(proofOfPayment) && order.Order?.PaymentMethod == "GCash")
+                                            {
+                                                <button type="button" class="dropdown-item" data-proof-of-payment="@proofOfPayment" id="showProofModalBtn">View Proof of Payment</button>
+                                            }
+
                                         @* <a href="#delete" class="dropdown-item" onclick="deleteOrder('@order.Order.OrderId')">Delete</a> *@
                                     </div>
                                 </div>
@@ -141,5 +165,13 @@
         </table>
     </form>
 </main>
+
+<div id="proofModal" class="modal">
+    <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <img id="proofImage" src="" alt="Proof of Payment" />
+    </div>
+</div>
+
 
 <script src="~/js/ellipsis.js" asp-append-version="true"></script>
