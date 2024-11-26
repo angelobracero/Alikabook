@@ -371,6 +371,10 @@ namespace Alikabook.Areas.User.Controllers
         [HttpPost]
         public IActionResult SubmitProof(IFormFile? file)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            List<Cart> cartItems = _unitOfWork.Cart.GetAll()
+                                                   .Where(c => c.UserId == userId)
+                                                   .ToList();
             // Retrieve the ConfirmOrder from TempData
             var confirmOrderJson = TempData["ConfirmOrder"]?.ToString();
             if (string.IsNullOrEmpty(confirmOrderJson))
@@ -388,8 +392,12 @@ namespace Alikabook.Areas.User.Controllers
             }
 
             string wwwRootPath = _webHostEnvironment.WebRootPath;
+            if (string.IsNullOrEmpty(wwwRootPath))
+            {
+                throw new Exception("wwwRootPath is null or empty");
+            }
             string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-            string proofPath = Path.Combine(wwwRootPath, @"images\proofofpayment");
+            string proofPath = Path.Combine(wwwRootPath, @"images/proofofpayment");
 
             if (!Directory.Exists(proofPath))
             {
@@ -403,6 +411,9 @@ namespace Alikabook.Areas.User.Controllers
 
             confirmOrder.ProofOfPayment = fileName;
             _unitOfWork.ConfirmOrder.Add(confirmOrder);
+            _unitOfWork.Save();
+
+            _unitOfWork.Cart.RemoveRange(cartItems);
             _unitOfWork.Save();
 
             TempData["success"] = "Proof of payment submitted successfully! Your order is now pending admin review.";
