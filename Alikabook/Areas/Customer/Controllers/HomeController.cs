@@ -61,13 +61,6 @@ namespace Alikabook.Areas.User.Controllers
                                   .Take(10)
                                   .ToList();
 
-            List<BookInfo> children = _unitOfWork.BookInfo.GetAll()
-                                  .AsNoTracking()
-                                  .Where(book => book.Category == "Children’s Books")
-                                  .OrderBy(book => Guid.NewGuid())
-                                  .Take(10)
-                                  .ToList();
-
             List<BookInfo> graphic = _unitOfWork.BookInfo.GetAll()
                                   .AsNoTracking()
                                   .Where(book => book.Category == "Graphic Novels & Comics")
@@ -89,7 +82,6 @@ namespace Alikabook.Areas.User.Controllers
                 BusinessBooks = business,
                 FictionBooks = fiction,
                 NonFictionBooks = nonfiction,
-                ChildrenBooks = children,
                 GraphicBooks = graphic,
                 ScienceBooks = science
             };

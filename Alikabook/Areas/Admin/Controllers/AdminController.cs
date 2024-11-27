@@ -386,78 +386,127 @@ namespace Alikabook.Areas.Admin.Controllers
         // For Handling Orders
         //
         //
-        public IActionResult AllOrders()
+        public IActionResult AllOrders(string status = "All", int page = 1, int pageSize = 10)
         {
-            var orders = _unitOfWork.OrderDetails.GetAll()
+            ViewBag.Status = status;
+            // Declare as IQueryable
+            IQueryable<OrderDetails> ordersQuery = _unitOfWork.OrderDetails.GetAll()
                 .AsNoTracking()
                 .Include(od => od.Book)
                 .Include(od => od.Order)
                 .Include(od => od.OrderHistory)
-                .Include(od => od.User)
-                .ToList();
-            return View(orders);
-        }
+                .Include(od => od.User);
 
-        public IActionResult PendingOrders()
-        {
-            var orders = _unitOfWork.OrderDetails.GetAll()
-                .Where(od => od.Order.ItemStatus.Trim().ToLower() == "pending")
-                .Include(od => od.Book)
-                .Include(od => od.Order)
-                .Include(od => od.User)
-                .ToList();
+            // Apply status filtering
+            if (status == "Completed")
+            {
+                ordersQuery = ordersQuery.Where(od => od.OrderHistory.ItemStatus == "Completed");
+            }
+            else if (status == "Failed")
+            {
+                ordersQuery = ordersQuery.Where(od => od.OrderHistory.ItemStatus == "Failed");
+            }
+            else if (!string.IsNullOrEmpty(status) && status != "All")
+            {
+                // Filter orders based on ItemStatus in the Order entity if not Completed/Failed
+                ordersQuery = ordersQuery.Where(od => od.Order.ItemStatus == status);
+            }
 
-            return View(orders);
-        }
+            // Group by OrderHistoryId if from OrderHistory, otherwise group by OrderId
+            var groupedOrdersQuery = ordersQuery
+                .Where(od => od.Order != null || od.OrderHistory != null) // Ensure valid data
+                .GroupBy(od => od.OrderHistory != null ? od.OrderHistoryId : od.OrderId) // Group by OrderHistoryId or OrderId
+                .Select(g => g.FirstOrDefault());
 
-        public IActionResult ProcessingOrders()
-        {
-            var orders = _unitOfWork.OrderDetails.GetAll()
-                 .Where(od => od.Order.ItemStatus.Trim().ToLower() == "processing")
-                .Include(od => od.Book)
-                .Include(od => od.Order)
-                .Include(od => od.User)
-                .ToList();
-
-            return View(orders);
-        }
-
-        public IActionResult DeliveringOrders()
-        {
-            var orders = _unitOfWork.OrderDetails.GetAll()
-                 .Where(od => od.Order.ItemStatus.Trim().ToLower() == "delivering")
-                .Include(od => od.Book)
-                .Include(od => od.Order)
-                .Include(od => od.User)
+            // Pagination logic
+            var totalOrders = groupedOrdersQuery.Count();
+            var totalPages = (int)Math.Ceiling((double)totalOrders / pageSize);
+            var orders = groupedOrdersQuery
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToList();
 
-            return View(orders);
-        }
-
-
-        public IActionResult CompletedOrders()
-        {
-            var orders = _unitOfWork.OrderDetails.GetAll()
-                .Where(od => od.OrderHistory.ItemStatus.Trim().ToLower() == "completed")
-                .Include(od => od.Book)
-                .Include(od => od.OrderHistory)
-                .Include(od => od.User)
+            // Page numbers to display (handles pagination UI)
+            var pageNumbersToDisplay = Enumerable.Range(1, totalPages)
+                .Skip(Math.Max(0, page - 5))
+                .Take(10)
                 .ToList();
 
-            return View(orders);
+            // ViewModel preparation
+            var viewModel = new OrdersViewModel
+            {
+                Orders = orders,
+                TotalPages = totalPages,
+                CurrentPage = page,
+                PageNumbersToDisplay = pageNumbersToDisplay,
+                Status = status
+            };
+
+            return View(viewModel);
         }
 
-        public IActionResult FailedOrders()
-        {
-            var orders = _unitOfWork.OrderDetails.GetAll()
-                .Where(od => od.OrderHistory.ItemStatus.Trim().ToLower() == "failed")
-                .Include(od => od.Book)
-                .Include(od => od.OrderHistory)
-                .Include(od => od.User)
-                .ToList();
 
-            return View(orders);
-        }
+
+        //public IActionResult PendingOrders()
+        //{
+        //    var orders = _unitOfWork.OrderDetails.GetAll()
+        //        .Where(od => od.Order.ItemStatus.Trim().ToLower() == "pending")
+        //        .Include(od => od.Book)
+        //        .Include(od => od.Order)
+        //        .Include(od => od.User)
+        //        .ToList();
+
+        //    return View(orders);
+        //}
+
+        //public IActionResult ProcessingOrders()
+        //{
+        //    var orders = _unitOfWork.OrderDetails.GetAll()
+        //         .Where(od => od.Order.ItemStatus.Trim().ToLower() == "processing")
+        //        .Include(od => od.Book)
+        //        .Include(od => od.Order)
+        //        .Include(od => od.User)
+        //        .ToList();
+
+        //    return View(orders);
+        //}
+
+        //public IActionResult DeliveringOrders()
+        //{
+        //    var orders = _unitOfWork.OrderDetails.GetAll()
+        //         .Where(od => od.Order.ItemStatus.Trim().ToLower() == "delivering")
+        //        .Include(od => od.Book)
+        //        .Include(od => od.Order)
+        //        .Include(od => od.User)
+        //        .ToList();
+
+        //    return View(orders);
+        //}
+
+
+        //public IActionResult CompletedOrders()
+        //{
+        //    var orders = _unitOfWork.OrderDetails.GetAll()
+        //        .Where(od => od.OrderHistory.ItemStatus.Trim().ToLower() == "completed")
+        //        .Include(od => od.Book)
+        //        .Include(od => od.OrderHistory)
+        //        .Include(od => od.User)
+        //        .ToList();
+
+        //    return View(orders);
+        //}
+
+        //public IActionResult FailedOrders()
+        //{
+        //    var orders = _unitOfWork.OrderDetails.GetAll()
+        //        .Where(od => od.OrderHistory.ItemStatus.Trim().ToLower() == "failed")
+        //        .Include(od => od.Book)
+        //        .Include(od => od.OrderHistory)
+        //        .Include(od => od.User)
+        //        .ToList();
+
+        //    return View(orders);
+        //}
 
         [HttpPost]
         public IActionResult ChangeStatus(int orderId, string status)
@@ -505,12 +554,12 @@ namespace Alikabook.Areas.Admin.Controllers
                 _unitOfWork.Save();
             }
 
-            var redirect = status == "Pending" || status == "Processing" || status == "Delivering" || status == "Completed" || status == "Failed"
-                           ? status + "Orders"
-                           : "AllOrders";
+            //var redirect = status == "Pending" || status == "Processing" || status == "Delivering" || status == "Completed" || status == "Failed"
+            //               ? status + "Orders"
+            //               : "AllOrders";
 
             TempData["success"] = "Change Status Successfully";
-            return RedirectToAction(redirect);
+            return RedirectToAction("AllOrders");
         }
 
 

@@ -6,24 +6,24 @@
         <form method="post" enctype="multipart/form-data">
             <div class="add-books__form-col">
                 <div class="add-books__form-form-group">
-                    <label asp-for="Title">Title</label>
+                    <label asp-for="Title">Title<span style="color:red"> *</span></label>
                     <p>:</p>
-                    <input asp-for="Title" type="text" />
+                    <input asp-for="Title" type="text" required/>
                 </div>
                 <div class="add-books__form-form-group">
-                    <label asp-for="Author">Author</label>
+                    <label asp-for="Author">Author<span style="color:red"> *</span></label>
                     <p>:</p>
-                    <input asp-for="Author" type="text" />
+                    <input asp-for="Author" type="text" required />
                 </div>
                 <div class="add-books__form-form-group">
-                    <label asp-for="Price">Price</label>
+                    <label asp-for="Price">Price<span style="color:red"> *</span></label>
                     <p>:</p>
-                    <input asp-for="Price" type="text" />
+                    <input asp-for="Price" type="text" required />
                 </div>
                 <div class="add-books__form-form-group">
-                    <label asp-for="Category">Category</label>
+                    <label asp-for="Category">Category<span style="color:red"> *</span></label>
                     <p>:</p>
-                    <select id="categorySelect" asp-for="Category" onchange="updateSubcategory()">
+                    <select id="categorySelect" asp-for="Category" onchange="updateSubcategory()" required>
                         <option value="">Select a Category</option>
                         <option value="Fiction">Fiction</option>
                         <option value="Non-Fiction">Non-Fiction</option>
@@ -42,29 +42,29 @@
                     </select>
                 </div>
 
-                <div id="subcategoryContainer" class="add-books__form-form-group">
-                    <label asp-for="Subcategory">Subcategory</label>
+                <div id="subcategoryContainer" class="add-books__form-form-group" >
+                    <label asp-for="Subcategory">Subcategory<span style="color:red"> *</span></label>
                     <p>:</p>
-                    <select id="subcategorySelect" asp-for="Subcategory">
+                    <select id="subcategorySelect" asp-for="Subcategory" required>
                         <option value="">Select a Subcategory</option>
                     </select>
                 </div>
             </div>
             <div class="add-books__form-col">
                 <div class="add-books__form-form-group">
-                    <label asp-for="Description">Description</label>
+                    <label asp-for="Description">Description<span style="color:red"> *</span></label>
                     <p>:</p>
-                    <textarea asp-for="Description" rows="4"></textarea>
+                    <textarea asp-for="Description" rows="4" required></textarea>
                 </div>
                 <div class="add-books__form-form-group">
-                    <label for="Image">Image</label>
+                    <label for="Image">Image<span style="color:red"> *</span></label>
                     <p>:</p>
                     <input name="file" type="file" id="Image" />
                 </div>
                 <div class="add-books__form-form-group">
-                    <label asp-for="Stock">Stock</label>
+                    <label asp-for="Stock">Stock<span style="color:red"> *</span></label>
                     <p>:</p>
-                    <input asp-for="Stock" type="text" />
+                    <input asp-for="Stock" type="text" required/>
                 </div>
             </div>
             <div class="add-books__form-buttons">

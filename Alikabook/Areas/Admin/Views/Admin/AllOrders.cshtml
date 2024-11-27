@@ -1,19 +1,32 @@
-﻿@model List<OrderDetails>
+﻿@model OrdersViewModel
 
 <main class="order container">
     <h1 class="add-books__title">Order</h1>
-    <p class="order__sub-title">@(Model.Count() == 0 ? "no" : Model.Count().ToString()) orders found</p>
+    <p class="order__sub-title">@(Model.Orders.Count() == 0 ? "no" : Model.Orders.Count().ToString()) orders found</p>
 
     <nav class="order__nav">
         <ul>
-            <li class="active"><a>All Orders</a></li>
-            <li><a asp-action="PendingOrders">Pending</a></li>
-            <li><a asp-action="ProcessingOrders">Processing</a></li>
-            <li><a asp-action="DeliveringOrders">Delivering</a></li>
-            <li><a asp-action="CompletedOrders">Completed</a></li>
-            <li><a asp-action="FailedOrders">Failed</a></li>
+            <li class="@("All" == ViewBag.Status ? "active" : "")">
+                <a asp-action="AllOrders" asp-route-status="All" asp-route-page="1">All Orders</a>
+            </li>
+            <li class="@("Pending" == ViewBag.Status ? "active" : "")">
+                <a asp-action="AllOrders" asp-route-status="Pending" asp-route-page="1">Pending</a>
+            </li>
+            <li class="@("Processing" == ViewBag.Status ? "active" : "")">
+                <a asp-action="AllOrders" asp-route-status="Processing" asp-route-page="1">Processing</a>
+            </li>
+            <li class="@("Delivering" == ViewBag.Status ? "active" : "")">
+                <a asp-action="AllOrders" asp-route-status="Delivering" asp-route-page="1">Delivering</a>
+            </li>
+            <li class="@("Completed" == ViewBag.Status ? "active" : "")">
+                <a asp-action="AllOrders" asp-route-status="Completed" asp-route-page="1">Completed</a>
+            </li>
+            <li class="@("Failed" == ViewBag.Status ? "active" : "")">
+                <a asp-action="AllOrders" asp-route-status="Failed" asp-route-page="1">Failed</a>
+            </li>
         </ul>
     </nav>
+
 
     <form asp-action="ChangeStatus" method="post">
         <input type="hidden" name="orderId" id="orderId" />
@@ -36,9 +49,9 @@
             </thead>
 
             <tbody class="order__table-body">
-                @foreach(var order in Model)
+                @foreach (var order in Model.Orders.Where(o => o != null))
                 {
-                    var image = order.User.ProfileImage;
+                    var image = order.User.ProfileImage; 
                     if (image is null) image = "default_profile.png";
                     var proofOfPayment = order.Order?.ProofOfPayment; 
 
@@ -164,6 +177,35 @@
             </tbody>
         </table>
     </form>
+
+    @if (Model.TotalPages > 1)
+    {
+        <div class="pagination">
+            @if (Model.CurrentPage > 1)
+            {
+                <a asp-action="AllOrders" asp-route-page="@(Model.CurrentPage - 1)" asp-route-status="@Model.Status">
+                    <div class="pagination-box">Previous</div>
+                </a>
+            }
+
+            @foreach (var pageNumber in Model.PageNumbersToDisplay)
+            {
+                <a asp-action="AllOrders" asp-route-page="@pageNumber" asp-route-status="@Model.Status"
+                   class="@(pageNumber == Model.CurrentPage ? "active" : "")">
+                    <div class="pagination-box">@pageNumber</div>
+                </a>
+            }
+
+            @if (Model.CurrentPage < Model.TotalPages)
+            {
+                <a asp-action="AllOrders" asp-route-page="@(Model.CurrentPage + 1)" asp-route-status="@Model.Status">
+                    <div class="pagination-box">Next</div>
+                </a>
+            }
+        </div>
+    }
+
+
 </main>
 
 <div id="proofModal" class="modal">
