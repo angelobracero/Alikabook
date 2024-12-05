@@ -237,32 +237,30 @@
     </footer>
 
     <script>
-                document.addEventListener("DOMContentLoaded", function () {
-            const categoryPopup = document.getElementById("headerCategoryPopup");
+        document.addEventListener("DOMContentLoaded", function () {
+        const categoryPopup = document.getElementById("headerCategoryPopup");
 
-            // Fetch categories from the API
-            fetch('/Home/GetCategories') // Use relative path
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to fetch categories.');
-                    }
-                    return response.json();
-                })
-                .then(categories => {
-                    const ul = categoryPopup.querySelector("ul");
-                    ul.innerHTML = ""; // Clear existing content
+        fetch('/Home/GetCategories') // Use relative path
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch categories.');
+                }
+                return response.json();
+            })
+            .then(categories => {
+                const ul = categoryPopup.querySelector("ul");
+                ul.innerHTML = ""; 
 
-                    // Populate categories dynamically
-                    categories.forEach(category => {
-                        const li = document.createElement("li");
-                        const link = `/Customer/Home/DisplayCategory?category=${encodeURIComponent(category.name)}`;
-                        li.innerHTML = `<a href="${link}">${category.name}</a>`;
-                        ul.appendChild(li);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error fetching categories:', error);
+                categories.forEach(category => {
+                    const li = document.createElement("li");
+                    const link = `/Customer/Home/DisplayCategory?category=${encodeURIComponent(category.name)}`;
+                    li.innerHTML = `<a href="${link}">${category.name}</a>`;
+                    ul.appendChild(li);
                 });
+            })
+            .catch(error => {
+                console.error('Error fetching categories:', error);
+            });
         });
 
     </script>

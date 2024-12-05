@@ -95,6 +95,15 @@ namespace Alikabook.Areas.User.Controllers
         {
             List<BookInfo> bookList;
 
+            var subcategories = _unitOfWork.BookInfo.GetAll()
+                .AsNoTracking()
+                .Where(book => book.Category.Name == category)
+                .Select(book => book.Subcategory.Name)
+                .Distinct()
+                .ToList();
+
+            ViewBag.Subcategories = subcategories;
+
             if (category == "Recently Added")
             {
                 var recent = _unitOfWork.BookInfo.GetAll()
@@ -107,6 +116,7 @@ namespace Alikabook.Areas.User.Controllers
                 {
                     Books = bookList,
                     Category = "Recently Added",
+                    Subcategory = sortOption,
                     CurrentPage = page,
                     TotalPages = (int)Math.Ceiling((double)recent.Count() / pageSize)
                 };
