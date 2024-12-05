@@ -131,48 +131,6 @@
 
     <nav class="header__category-popup" id="headerCategoryPopup">
         <ul>
-            <li>
-                <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Fiction">Fiction</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Non-Fiction">Non-Fiction</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Programming & Technology">Programming & Technology</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Business & Economics">Business & Economics</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Education & Teaching">Education & Teaching</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Children’s Books">Children’s Books</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Graphic Novels & Comics">Graphic Novels & Comics</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Poetry & Drama">Poetry & Drama</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Science & Nature">Science & Nature</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Arts & Photography">Arts & Photography</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="History">History</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Spirituality & Religion">Spirituality & Religion</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Lifestyle">Lifestyle</a>
-            </li>
-            <li>
-                <a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="Miscellaneous">Miscellaneous</a>
-            </li>
         </ul> 
     </nav>
 
@@ -278,7 +236,37 @@
         </div>
     </footer>
 
- 
+    <script>
+                document.addEventListener("DOMContentLoaded", function () {
+            const categoryPopup = document.getElementById("headerCategoryPopup");
+
+            // Fetch categories from the API
+            fetch('/Home/GetCategories') // Use relative path
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch categories.');
+                    }
+                    return response.json();
+                })
+                .then(categories => {
+                    const ul = categoryPopup.querySelector("ul");
+                    ul.innerHTML = ""; // Clear existing content
+
+                    // Populate categories dynamically
+                    categories.forEach(category => {
+                        const li = document.createElement("li");
+                        const link = `/Customer/Home/DisplayCategory?category=${encodeURIComponent(category.name)}`;
+                        li.innerHTML = `<a href="${link}">${category.name}</a>`;
+                        ul.appendChild(li);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching categories:', error);
+                });
+        });
+
+    </script>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

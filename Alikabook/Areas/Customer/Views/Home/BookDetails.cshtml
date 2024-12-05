@@ -3,27 +3,25 @@
 @{
     var truncatedBreadCrumb = SD.TruncateTitle(Model.Book.Title, 30);
 
-    var category = Model.Book.Category;
-    var words = category.Trim().Split(' ');
-    var firstWord = "";
-    string modifiedCategory = category;
+    var category = Model.Book.Category.Name;
+    // var words = category.Trim().Split(' ');
+    // var firstWord = "";
 
-    if (words.Length > 1)
-    {
-        modifiedCategory = modifiedCategory == "Advance Programming" ? "Advanced Programming" : modifiedCategory;
-        firstWord = words[0];
-    }
-    else
-    {
-        firstWord = category; 
-    }
+    // if (words.Length > 1)
+    // {
+    //     firstWord = words[0];
+    // }
+    // else
+    // {
+    //     firstWord = category; 
+    // }
 }
 
 
 <main class="container">
     <ol class="breadcrumb">
         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-        <li><a asp-controller="Home" asp-action="@firstWord">@modifiedCategory</a></li>
+        <li><a asp-controller="Home" asp-action="DisplayCategory" asp-route-category="@category">@category</a></li>
         <li><a href="" class="active">@truncatedBreadCrumb</a></li>
     </ol>
 

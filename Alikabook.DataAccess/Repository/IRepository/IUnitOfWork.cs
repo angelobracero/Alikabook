@@ -17,6 +17,9 @@ namespace Alikabook.DataAccess.Repository.IRepository
         IMessagesRepository Messages { get; }
         ICommentsRepository Comments { get; }
         IUserBookRatingsRepository UserBookRatings { get; }
+        ICategoryRepository Category { get; }
+        ISubcategoryRepository Subcategory { get; }
+
 
         void Save();
     }

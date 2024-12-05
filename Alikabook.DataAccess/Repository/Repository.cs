@@ -33,6 +33,19 @@ namespace Alikabook.DataAccess.Repository
             return query.FirstOrDefault();
         }
 
+        public IQueryable<T> GetWithIncludes(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = dbSet;
+
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+
+            return query.Where(filter);
+        }
+
+
         public IQueryable<T> GetAll()
         {
             IQueryable<T> query = dbSet;

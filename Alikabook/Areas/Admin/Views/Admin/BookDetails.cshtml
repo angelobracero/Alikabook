@@ -1,11 +1,6 @@
 ﻿@model BookInfo
 
 <main class="container book-details-container">
-    <ol class="breadcrumb">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="" class="active">Business</a></li>
-        <li><a href="" class="active">Traction: Get a Drip</a></li>
-    </ol>
 
     <section class="book-details">
         <div class="book-details__container">
@@ -34,7 +29,7 @@
                         <p>@Model.Stock</p>
                     </div>
                 </div>
-                <h2 class="book-details__info-price">&#8369; 935.75</h2>
+                <h2 class="book-details__info-price">&#8369; @Model.Price</h2>
                 <a asp-controller="Admin" asp-action="EditBooks" asp-route-id="@Model.BookId" class="book-details__info-btn">Update Book</a>
                 <button type="submit" class="book-details__info-btn delete" onclick="return confirm('Are you sure you want to delete this book?');">Delete Book</button>
             </form>
@@ -46,6 +41,49 @@
         <hr class="book-description__hr" />
         <p class="book-description__p">
             @Model.Description
+        </p>
+    </section>
+
+    <section class="book-description">
+        <h1 class="book-description__h1">Other Book Details</h1>
+        <hr class="book-description__hr" />
+        <p class="book-description__p">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>ISBN</td>
+                        <td>9781444727364</td>
+                    </tr>
+                    <tr>
+                        <td>Author</td>
+                        <td>Sun Tzu</td>
+                    </tr>
+                    <tr>
+                        <td>Publisher</td>
+                        <td>Hodder & Stoughton</td>
+                    </tr>
+                    <tr>
+                        <td>Publication Year</td>
+                        <td>1981</td>
+                    </tr>
+                    <tr>
+                        <td>Length</td>
+                        <td>12.9</td>
+                    </tr>
+                    <tr>
+                        <td>Width</td>
+                        <td>0.7</td>
+                    </tr>
+                    <tr>
+                        <td>Height</td>
+                        <td>19.7</td>
+                    </tr>
+                    <tr>
+                        <td>Pages</td>
+                        <td>102</td>
+                    </tr>
+                </tbody>
+            </table>
         </p>
     </section>
 </main>

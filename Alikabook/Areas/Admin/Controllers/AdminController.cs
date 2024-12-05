@@ -85,36 +85,86 @@ namespace Alikabook.Areas.Admin.Controllers
 
         public IActionResult AddBooks()
         {
+            var categories = _unitOfWork.Category.GetAll()
+                .AsNoTracking()
+                .ToList();
+
+            var subCategories = _unitOfWork.Subcategory.GetAll()
+            .AsNoTracking()
+            .ToList();
+
+            ViewBag.Categories = categories;
+            ViewBag.Subcategories = subCategories;
+
             return View();
         }
+
 
         [HttpPost]
         public IActionResult AddBooks(BookInfo obj, IFormFile? file)
         {
-            if (ModelState.IsValid)
+            // Retrieve categories and subcategories for the view
+            var categories = _unitOfWork.Category.GetAll()
+                .AsNoTracking()
+                .ToList();
+
+            var subCategories = _unitOfWork.Subcategory.GetAll()
+                .AsNoTracking()
+                .ToList();
+
+            ViewBag.Categories = categories;
+            ViewBag.Subcategories = subCategories;
+
+            // Manual validation
+            var errors = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(obj.Title))
+                errors.Add("The Title field is required.");
+
+            if (string.IsNullOrWhiteSpace(obj.Author))
+                errors.Add("The Author field is required.");
+
+            if (obj.Price <= 0)
+                errors.Add("The Price must be greater than zero.");
+
+            if (string.IsNullOrWhiteSpace(obj.Description))
+                errors.Add("The Description field is required.");
+
+            if (obj.Stock < 1)
+                errors.Add("The Stock must be at least 1.");
+
+            // If any errors exist, return the view with the error messages
+            if (errors.Any())
             {
-                string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if (file is not null)
-                {
-                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string productPath = Path.Combine(wwwRootPath, @"images\books");
+                foreach (var error in errors)
+                    ModelState.AddModelError(string.Empty, error);
 
-                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
-                    {
-                        file.CopyTo(fileStream);
-                    }
-                    obj.Image = fileName;
-                }
-
-                _unitOfWork.BookInfo.Add(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Book Added Successfully";
-                return RedirectToAction("AddBooks");
+                TempData["error"] = "Please fix the errors below.";
+                return View(obj);
             }
 
-            TempData["error"] = "Something went wrong!";
-            return View(obj);
+            // Proceed with file upload if file is provided
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            if (file is not null)
+            {
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                string productPath = Path.Combine(wwwRootPath, @"images\books");
+
+                using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+                obj.Image = fileName;
+            }
+
+            // Save the book information to the database
+            _unitOfWork.BookInfo.Add(obj);
+            _unitOfWork.Save();
+
+            TempData["success"] = "Book added successfully!";
+            return RedirectToAction("AddBooks");
         }
+
 
         [HttpPost]
         public IActionResult DeleteBook(int? id)
@@ -141,6 +191,16 @@ namespace Alikabook.Areas.Admin.Controllers
 
         public IActionResult EditBooks(int? id)
         {
+            var categories = _unitOfWork.Category.GetAll()
+               .AsNoTracking()
+               .ToList();
+
+            var subCategories = _unitOfWork.Subcategory.GetAll()
+                .AsNoTracking()
+                .ToList();
+
+            ViewBag.Categories = categories;
+            ViewBag.Subcategories = subCategories;
 
             if (id == null || id == 0)
             {
@@ -160,11 +220,56 @@ namespace Alikabook.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult EditBooks(BookInfo obj, IFormFile? file)
         {
+            var categories = _unitOfWork.Category.GetAll()
+                .AsNoTracking()
+                .ToList();
+
+            var subCategories = _unitOfWork.Subcategory.GetAll()
+                .AsNoTracking()
+                .ToList();
+
+            ViewBag.Categories = categories;
+            ViewBag.Subcategories = subCategories;
+
             var book = _unitOfWork.BookInfo.Get(b => b.BookId == obj.BookId);
 
             if (book == null)
             {
                 return NotFound();
+            }
+
+            // Custom validation
+            var errors = new List<string>();
+
+            if (string.IsNullOrWhiteSpace(obj.Title))
+            {
+                errors.Add("Title is required.");
+            }
+            if (string.IsNullOrWhiteSpace(obj.Author))
+            {
+                errors.Add("Author is required.");
+            }
+            if (obj.Price <= 0)
+            {
+                errors.Add("Price must be greater than zero.");
+            }
+            if (string.IsNullOrWhiteSpace(obj.ISBN))
+            {
+                errors.Add("ISBN is required.");
+            }
+            if (obj.Year < 1000 || obj.Year > DateTime.Now.Year)
+            {
+                errors.Add("Year is invalid.");
+            }
+            if (file != null && !new[] { ".jpg", ".jpeg", ".png" }.Contains(Path.GetExtension(file.FileName).ToLower()))
+            {
+                errors.Add("Only .jpg, .jpeg, and .png files are allowed for the image.");
+            }
+
+            if (errors.Any())
+            {
+                TempData["error"] = string.Join(" ", errors);
+                return View(obj);
             }
 
             // Update book fields
@@ -175,44 +280,46 @@ namespace Alikabook.Areas.Admin.Controllers
             book.Subcategory = obj.Subcategory;
             book.Description = obj.Description;
             book.Stock = obj.Stock;
+            book.ISBN = obj.ISBN;
+            book.Publisher = obj.Publisher;
+            book.Year = obj.Year;
+            book.Height = obj.Height;
+            book.Length = obj.Length;
+            book.Width = obj.Width;
+            book.Pages = obj.Pages;
 
-            if (ModelState.IsValid)
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            if (file is not null)
             {
-                string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if (file is not null)
+                // Delete the old image if it exists
+                if (!string.IsNullOrEmpty(book.Image))
                 {
-                    // Delete the old image if it exists
-                    if (!string.IsNullOrEmpty(book.Image))
+                    string oldImagePath = Path.Combine(wwwRootPath, @"images\books", book.Image);
+                    if (System.IO.File.Exists(oldImagePath))
                     {
-                        string oldImagePath = Path.Combine(wwwRootPath, @"images\books", book.Image);
-                        if (System.IO.File.Exists(oldImagePath))
-                        {
-                            System.IO.File.Delete(oldImagePath);
-                        }
+                        System.IO.File.Delete(oldImagePath);
                     }
-
-                    // Save the new image
-                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string productPath = Path.Combine(wwwRootPath, @"images\books");
-
-                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
-                    {
-                        file.CopyTo(fileStream);
-                    }
-
-                    // Update the image path in the book object
-                    book.Image = fileName;
                 }
 
-                _unitOfWork.BookInfo.Update(book);
-                _unitOfWork.Save();
-                TempData["success"] = "Book Updated Successfully";
-                return RedirectToAction("ViewBook");
+                // Save the new image
+                string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                string productPath = Path.Combine(wwwRootPath, @"images\books");
+
+                using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+
+                // Update the image path in the book object
+                book.Image = fileName;
             }
 
-            TempData["error"] = "Something went wrong!!";
-            return View(obj);
+            _unitOfWork.BookInfo.Update(book);
+            _unitOfWork.Save();
+            TempData["success"] = "Book Updated Successfully";
+            return RedirectToAction("ViewBook");
         }
+
 
         public IActionResult BookDetails(int? id)
         {
@@ -301,6 +408,101 @@ namespace Alikabook.Areas.Admin.Controllers
 
             return pageNumbers;
         }
+
+
+        // GET: Manage Categories
+        [HttpGet]
+        public IActionResult ManageCategory()
+        {
+            var categories = _unitOfWork.Category.GetAll()
+                .AsNoTracking()
+                .ToList();
+
+            return View(categories);
+        }
+
+        [HttpGet]
+        public IActionResult ManageSubcategory(int? id)
+        {
+            if (id == null)
+            {
+                return BadRequest("Category ID is required.");
+            }
+
+            var subCategories = _unitOfWork.Subcategory.GetAll()
+                .Where(sc => sc.CategoryId == id)
+                .AsNoTracking()
+                .ToList();
+
+            ViewData["CategoryId"] = id;
+
+                return View(subCategories);
+        }
+
+        [HttpGet]
+        public IActionResult AddCategory()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddCategory(Category category)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(category.Name))
+                {
+                    throw new ArgumentException("Title is required", nameof(category.Name));
+                }
+                _unitOfWork.Category.Add(category);
+                _unitOfWork.Save();
+                TempData["success"] = "Category Added Successfully";
+                return RedirectToAction("ManageCategory");
+            }       
+            catch(Exception e)
+            {
+                TempData["error"] = e;
+                return View(category);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult AddSubcategory(int? id)
+        {
+            ViewData["CategoryId"] = id;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddSubcategory(Subcategory subcategory)
+        {
+            Subcategory cate = subcategory;
+            try
+            {
+                subcategory.Id = 0;
+
+                if (string.IsNullOrWhiteSpace(subcategory.Name))
+                {
+                    throw new ArgumentException("Title is required", nameof(subcategory.Name));
+                }
+
+                _unitOfWork.Subcategory.Add(subcategory);
+                _unitOfWork.Save();
+                TempData["success"] = "Subcategory Added Successfully";
+                return RedirectToAction("ManageCategory");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                TempData["error"] = e;
+                return View(subcategory);
+            }
+        }
+
+
+
 
 
 

@@ -20,6 +20,9 @@ namespace Alikabook.DataAccess.Repository
         public IMessagesRepository Messages { get; private set; }
         public ICommentsRepository Comments { get; private set; }
         public IUserBookRatingsRepository UserBookRatings { get; private set; }
+        public ICategoryRepository Category { get; private set; }
+        public ISubcategoryRepository Subcategory { get; private set; }
+
 
 
         public UnitOfWork(ApplicationDbContext db)
@@ -34,6 +37,9 @@ namespace Alikabook.DataAccess.Repository
             Messages = new MessagesRepository(db);
             Comments = new CommentsRepository(db);
             UserBookRatings = new UserBookRatingsRepository(db);
+            Category = new CategoryRepository(db);
+            Subcategory = new SubcategoryRepository(db);
+
         }
 
         public void Save()

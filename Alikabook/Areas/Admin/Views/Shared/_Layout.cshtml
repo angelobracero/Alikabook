@@ -22,7 +22,7 @@
 <body>
     <header class="header">
         <button class="header__menu"><i class="fa-solid fa-bars"></i></button>
-        <p class="header__title">Admin Pannel</p>
+        <p class="header__title">Admin Panel</p>
         <form class="header__logout" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Customer" })" method="post">
             <button>
                 <i class="fa-solid fa-power-off"></i>
@@ -49,6 +49,7 @@
             <div class="sidebar__submenu">
                 <a asp-controller="Admin" asp-action="AddBooks">&#8226; &nbsp; Add Books</a>
                 <a asp-controller="Admin" asp-action="ViewBook">&#8226; &nbsp; View Books</a>
+                <a asp-controller="Admin" asp-action="ManageCategory">&#8226; &nbsp; Manage Category</a>
             </div>
             <button>
                 <i class="fa-solid fa-book"></i>

@@ -33,55 +33,55 @@ namespace Alikabook.Areas.User.Controllers
                                      .Take(10)
                                      .ToList();
 
-            List<BookInfo> programming = _unitOfWork.BookInfo.GetAll()
-                                     .AsNoTracking()
-                                     .Where(book => book.Category == "Programming & Technology")
-                                     .OrderBy(book => Guid.NewGuid())
-                                     .Take(10)
-                                     .ToList();
-
-            List<BookInfo> business = _unitOfWork.BookInfo.GetAll()
-                                   .AsNoTracking()
-                                   .Where(book => book.Category == "Business & Economics")
-                                   .OrderBy(book => Guid.NewGuid())
-                                   .Take(10)
-                                   .ToList();
-
             List<BookInfo> fiction = _unitOfWork.BookInfo.GetAll()
-                                  .AsNoTracking()
-                                  .Where(book => book.Category == "Fiction")
-                                  .OrderBy(book => Guid.NewGuid())
-                                  .Take(10)
-                                  .ToList();
+                                      .AsNoTracking()
+                                      .Where(book => book.CategoryId == 1)
+                                      .OrderBy(book => Guid.NewGuid())
+                                      .Take(10)
+                                      .ToList();
 
             List<BookInfo> nonfiction = _unitOfWork.BookInfo.GetAll()
-                                  .AsNoTracking()
-                                  .Where(book => book.Category == "Non-Fiction")
-                                  .OrderBy(book => Guid.NewGuid())
-                                  .Take(10)
-                                  .ToList();
+                                      .AsNoTracking()
+                                      .Where(book => book.CategoryId == 2)
+                                      .OrderBy(book => Guid.NewGuid())
+                                      .Take(10)
+                                      .ToList();
+
+            List<BookInfo> business = _unitOfWork.BookInfo.GetAll()
+                                       .AsNoTracking()
+                                       .Where(book => book.CategoryId == 3)
+                                       .OrderBy(book => Guid.NewGuid())
+                                       .Take(10)
+                                       .ToList();
+
+            List<BookInfo> programming = _unitOfWork.BookInfo.GetAll()
+                                         .AsNoTracking()
+                                         .Where(book => book.CategoryId == 4)
+                                         .OrderBy(book => Guid.NewGuid())
+                                         .Take(10)
+                                         .ToList();
 
             List<BookInfo> graphic = _unitOfWork.BookInfo.GetAll()
-                                  .AsNoTracking()
-                                  .Where(book => book.Category == "Graphic Novels & Comics")
-                                  .OrderBy(book => Guid.NewGuid())
-                                  .Take(10)
-                                  .ToList();
+                                      .AsNoTracking()
+                                      .Where(book => book.CategoryId == 7)
+                                      .OrderBy(book => Guid.NewGuid())
+                                      .Take(10)
+                                      .ToList();
 
             List<BookInfo> science = _unitOfWork.BookInfo.GetAll()
-                                  .AsNoTracking()
-                                  .Where(book => book.Category == "Science & Nature")
-                                  .OrderBy(book => Guid.NewGuid())
-                                  .Take(10)
-                                  .ToList();
+                                      .AsNoTracking()
+                                      .Where(book => book.CategoryId == 9)
+                                      .OrderBy(book => Guid.NewGuid())
+                                      .Take(10)
+                                      .ToList();
 
             var model = new BookViewModel
             {
                 RecentBooks = recent,
-                ProgrammingBooks = programming,
-                BusinessBooks = business,
                 FictionBooks = fiction,
                 NonFictionBooks = nonfiction,
+                BusinessBooks = business,
+                ProgrammingBooks = programming,
                 GraphicBooks = graphic,
                 ScienceBooks = science
             };
@@ -94,6 +94,16 @@ namespace Alikabook.Areas.User.Controllers
         public IActionResult DisplayCategory(string? category, string sortOption = "All", int page = 1, int pageSize = 10)
         {
             List<BookInfo> bookList;
+
+            var subcategories = _unitOfWork.BookInfo.GetAll()
+                .AsNoTracking()
+                .Where(book => book.Category.Name == category)
+                .Select(book => book.Subcategory.Name)
+                .Distinct()
+                .ToList();
+
+            ViewBag.Subcategories = subcategories;
+
 
             if (category == "Recently Added")
             {
@@ -120,13 +130,13 @@ namespace Alikabook.Areas.User.Controllers
             {
                 query = _unitOfWork.BookInfo.GetAll()
                                             .AsNoTracking()
-                                            .Where(book => book.Category == category);
+                                            .Where(book => book.Category.Name == category);
             }
             else
             {
                 query = _unitOfWork.BookInfo.GetAll()
                                             .AsNoTracking()
-                                            .Where(book => book.Category == category && book.Subcategory == sortOption);
+                                            .Where(book => book.Category.Name == category && book.Subcategory.Name == sortOption);
             }
 
             bookList = query
@@ -138,7 +148,7 @@ namespace Alikabook.Areas.User.Controllers
             {
                 Books = bookList,
                 Category = category,
-                SubCategory = sortOption,
+                Subcategory = sortOption,
                 CurrentPage = page,
                 TotalPages = (int)Math.Ceiling((double)query.Count() / pageSize)
             };
@@ -154,7 +164,12 @@ namespace Alikabook.Areas.User.Controllers
                 return NotFound();
             }
 
-            BookInfo book = _unitOfWork.BookInfo.Get(b => b.BookId == id);
+
+            BookInfo book = _unitOfWork.BookInfo
+                .GetWithIncludes(b => b.BookId == id, b => b.Category, b => b.Subcategory)
+                .AsNoTracking()
+                .FirstOrDefault();
+
 
             if (book == null)
             {
@@ -165,7 +180,7 @@ namespace Alikabook.Areas.User.Controllers
 
             List<BookInfo> bookList = _unitOfWork.BookInfo.GetAll()
                                                           .AsNoTracking()
-                                                          .Where(b => b.Category == book.Category)
+                                                          .Where(b => b.Category == book.Category && b.BookId != book.BookId)
                                                           .OrderBy(b => Guid.NewGuid())
                                                           .Take(6)
                                                           .ToList();
@@ -180,6 +195,26 @@ namespace Alikabook.Areas.User.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        [Route("Home/GetCategories")]
+        public async Task<IActionResult> GetCategories()
+        {
+            try
+            {
+                var categories = await _unitOfWork.Category.GetAll()
+                    .AsNoTracking()
+                    .Select(c => new Category { Id = c.Id, Name = c.Name })
+                    .ToListAsync();
+                return Ok(categories);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred while fetching categories.", error = ex.Message });
+            }
+        }
+
+
 
         [HttpPost]
         public IActionResult AddToCart(int bookId, int quantity)

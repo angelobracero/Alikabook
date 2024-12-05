@@ -1,0 +1,34 @@
+﻿@model List<Subcategory>
+
+<main class="add-books container">
+    <h1 class="add-books__title">Manage Subcategory</h1>
+    <div class="add-subcategory-container">
+        <a asp-controller="Admin" asp-action="AddSubcategory" asp-route-id="@ViewData["CategoryId"]" class="add-subcategory">Add Subcategory+</a>
+    </div>
+    <section class="display-dashboards" style="margin-bottom: 20px;">
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var subcategory in Model)
+            {
+                <a class="data-box books-sold">
+                    <div class="data-grid">
+                        <div class="data">
+                            <h4 style="color:white; font-size:20px;">@subcategory.Name</h4>
+                        </div>
+                        <div class="data-img">
+                            <img src="~/images/icons/order-icon.png" alt="" />
+                        </div>
+                    </div>
+                    <div class="data-links">
+                        @* <p>Go to Pending Orders</p>
+                <i class="fa-solid fa-arrow-right"></i> *@
+                    </div>
+                </a>
+            }
+        }
+        else
+        {
+            <p>No subcategories available.</p>
+        }
+    </section>
+</main>

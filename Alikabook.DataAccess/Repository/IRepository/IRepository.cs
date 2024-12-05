@@ -12,6 +12,7 @@ namespace Alikabook.DataAccess.Repository.IRepository
         IQueryable<T> GetAll();
         Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filter = null);
         T Get(Expression<Func<T, bool>> filter);
+        IQueryable<T> GetWithIncludes(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includes);
 
         void Add(T entity);
         void Remove(T entity);

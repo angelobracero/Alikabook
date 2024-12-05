@@ -1,0 +1,18 @@
+﻿@model Subcategory
+
+<main class="add-books container">
+    <h1 class="add-books__title">Add Subcategory</h1>
+    <div class="add-books__form">
+        <form method="post">
+            <div class="add-books__form-form-group required" style="grid-column: span 2">
+                <label asp-for="Name">Subcategory Name</label>
+                <input asp-for="Name" type="text" required />
+                <input asp-for="CategoryId" type="hidden" value="@ViewData["CategoryId"]" />
+            </div>
+            <div class="add-books__form-buttons">
+                <button type="submit">Add Subcategory</button>
+            </div>
+        </form>
+    </div>
+</main>
+
