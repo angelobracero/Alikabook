@@ -92,76 +92,76 @@
 </main>
 
 <script>
-    // function updateSubcategory() {
-    //     const selectedCategory = document.getElementById("category").textContent.trim();
-    //     const sortSelect = document.getElementById("sortSelect");
-    //     const currentSubcategory = document.getElementById("subCategory").textContent.trim();
-    //     sortSelect.innerHTML = "";
+    function updateSubcategory() {
+        const selectedCategory = document.getElementById("category").textContent.trim();
+        const sortSelect = document.getElementById("sortSelect");
+        const currentSubcategory = document.getElementById("subCategory").textContent.trim();
+        sortSelect.innerHTML = "";
 
-    //     const subcategories = {
-    //         "Fiction": [
-    //             "All", "Literary Fiction", "Mystery & Thriller", 
-    //             "Science Fiction & Fantasy", "Romance", 
-    //             "Historical Fiction", "Young Adult Fiction"
-    //         ],
-    //         "Non-Fiction": [
-    //             "All", "Biography & Memoir", "Self-Help", 
-    //             "Health & Wellness", "Travel", 
-    //             "Cooking & Food", "True Crime", 
-    //             "Politics & Current Events"
-    //         ],
-    //         "Business & Economics": [
-    //             "All", "Entrepreneurship", "Management", 
-    //             "Personal Finance", "Marketing", 
-    //             "Investing", "Leadership"
-    //         ],
-    //         "Programming & Technology": [
-    //             "All", "Basic Programming", "Advanced Programming", 
-    //             "Web Development", "Data Science & AI", 
-    //             "Software Engineering"
-    //         ],
-    //         "Education & Teaching": [
-    //             "All", "Educational Materials", "Teaching Strategies", 
-    //             "Early Childhood Education", "Study Guides & Test Prep"
-    //         ],
-    //         "Children’s Books": [
-    //             "All", "Picture Books", "Early Readers", 
-    //             "Chapter Books", "Middle Grade Fiction"
-    //         ],
-    //         "Graphic Novels & Comics": [
-    //             "All", "Manga", "Superhero Comics", "Independent Comics"
-    //         ],
-    //         "Poetry & Drama": [
-    //             "All", "Poetry Collections", "Plays & Screenplays"
-    //         ],
-    //         "Science & Nature": [
-    //             "All", "Biology", "Physics", 
-    //             "Environmental Science", "Astronomy"
-    //         ],
-    //         "Arts & Photography": [
-    //             "All", "Art History", "Photography Techniques", "Crafts & Hobbies"
-    //         ],
-    //         "History": [
-    //             "All", "Ancient History", "Modern History", 
-    //             "Military History", "World History"
-    //         ],
-    //         "Spirituality & Religion": [
-    //             "All", "Spiritual Growth", "World Religions", "Inspirational"
-    //         ],
-    //         "Lifestyle": [
-    //             "All", "Home & Garden", "Hobbies & Crafts", "Fashion & Beauty"
-    //         ],
-    //         "Miscellaneous": [
-    //             "All", "Reference Books", "Language Learning", "Humor"
-    //         ]
-    //     };
+        const subcategories = {
+            "Fiction": [
+                "All", "Literary Fiction", "Mystery & Thriller", 
+                "Science Fiction & Fantasy", "Romance", 
+                "Historical Fiction", "Young Adult Fiction"
+            ],
+            "Non-Fiction": [
+                "All", "Biography & Memoir", "Self-Help", 
+                "Health & Wellness", "Travel", 
+                "Cooking & Food", "True Crime", 
+                "Politics & Current Events"
+            ],
+            "Business & Economics": [
+                "All", "Entrepreneurship", "Management", 
+                "Personal Finance", "Marketing", 
+                "Investing", "Leadership"
+            ],
+            "Programming & Technology": [
+                "All", "Basic Programming", "Advanced Programming", 
+                "Web Development", "Data Science & AI", 
+                "Software Engineering"
+            ],
+            "Education & Teaching": [
+                "All", "Educational Materials", "Teaching Strategies", 
+                "Early Childhood Education", "Study Guides & Test Prep"
+            ],
+            "Children’s Books": [
+                "All", "Picture Books", "Early Readers", 
+                "Chapter Books", "Middle Grade Fiction"
+            ],
+            "Graphic Novels & Comics": [
+                "All", "Manga", "Superhero Comics", "Independent Comics"
+            ],
+            "Poetry & Drama": [
+                "All", "Poetry Collections", "Plays & Screenplays"
+            ],
+            "Science & Nature": [
+                "All", "Biology", "Physics", 
+                "Environmental Science", "Astronomy"
+            ],
+            "Arts & Photography": [
+                "All", "Art History", "Photography Techniques", "Crafts & Hobbies"
+            ],
+            "History": [
+                "All", "Ancient History", "Modern History", 
+                "Military History", "World History"
+            ],
+            "Spirituality & Religion": [
+                "All", "Spiritual Growth", "World Religions", "Inspirational"
+            ],
+            "Lifestyle": [
+                "All", "Home & Garden", "Hobbies & Crafts", "Fashion & Beauty"
+            ],
+            "Miscellaneous": [
+                "All", "Reference Books", "Language Learning", "Humor"
+            ]
+        };
 
-    //     if (subcategories[selectedCategory]) {
-    //         subcategories[selectedCategory].forEach(subcategory => {
-    //             sortSelect.innerHTML += `<option value="${subcategory}" ${subcategory === currentSubcategory ? "selected" : ""}>${subcategory}</option>`;
-    //         });
-    //     }
-    // }
+        if (subcategories[selectedCategory]) {
+            subcategories[selectedCategory].forEach(subcategory => {
+                sortSelect.innerHTML += `<option value="${subcategory}" ${subcategory === currentSubcategory ? "selected" : ""}>${subcategory}</option>`;
+            });
+        }
+    }
 
-    // updateSubcategory();
+    updateSubcategory();
  </script>
