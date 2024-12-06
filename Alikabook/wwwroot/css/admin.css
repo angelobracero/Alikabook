@@ -259,8 +259,16 @@ button {
     display: none;
 }
 
-.header__logout:has(button:is(:hover, :focus-visible)) div {
-    display: block;
+.header__logout button:hover, .header__logout button:focus-visible {
+    /* Change styles when the button is hovered or focused */
+}
+
+.header__logout div {
+    display: none; /* Default state */
+}
+
+.header__logout button:hover + div, .header__logout button:focus-visible + div {
+    display: block; /* Show the div when the button is hovered or focused */
     font-size: 0.8rem;
     position: absolute;
     top: 1.2em;
@@ -269,6 +277,7 @@ button {
     color: var(--clr-primary);
     padding: 0.2em;
 }
+
 
 .header__logout button {
     display: block;
@@ -966,9 +975,11 @@ input[type="file"]:focus-visible::-webkit-file-upload-button {
     color: gray;
 }
 
-.breadcrumb :is(li:hover, li:focus-visible) {
+.breadcrumb li:hover,
+.breadcrumb li:focus-visible {
     color: var(--clr-primary);
 }
+
 
 .book-details-container {
     color: #000000;

@@ -1,0 +1,38 @@
+﻿[
+  {
+    "outputFileName": "wwwroot/css/admin.min.css",
+    "inputFiles": [ "wwwroot/css/admin.css" ]
+  },
+  {
+    "outputFileName": "wwwroot/css/login.min.css",
+    "inputFiles": [ "wwwroot/css/login.css" ]
+  },
+  {
+    "outputFileName": "wwwroot/css/user.min.css",
+    "inputFiles": [ "wwwroot/css/user.css" ]
+  },
+  {
+    "outputFileName": "wwwroot/js/admin.min.js",
+    "inputFiles": [ "wwwroot/js/admin.js" ]
+  },
+  {
+    "outputFileName": "wwwroot/js/bookDetails.min.js",
+    "inputFiles": [ "wwwroot/js/bookDetails.js" ]
+  },
+  {
+    "outputFileName": "wwwroot/js/cart.min.js",
+    "inputFiles": [ "wwwroot/js/cart.js" ]
+  },
+  {
+    "outputFileName": "wwwroot/js/ellipsis.min.js",
+    "inputFiles": [ "wwwroot/js/ellipsis.js" ]
+  },
+  {
+    "outputFileName": "wwwroot/js/index.min.js",
+    "inputFiles": [ "wwwroot/js/index.js" ]
+  },
+  {
+    "outputFileName": "wwwroot/js/login.min.js",
+    "inputFiles": [ "wwwroot/js/login.js" ]
+  }
+]
