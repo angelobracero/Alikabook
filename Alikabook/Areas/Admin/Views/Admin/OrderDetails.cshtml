@@ -67,10 +67,10 @@
             <div class="order-details__summary-estimated">
                 <h2>Estimated Total</h2>
                 <h2>₱ @total.ToString("N2")</h2>
-                <h2>Payment Status</h2>
-                <select></select>
+                <h2>Item Status</h2>
+                <h2>@Model[0].Order.ItemStatus</h2>
                 <h2>Payment Method</h2>
-                <h2>Cash on Delivery</h2>
+                <h2>@Model[0].Order.PaymentMethod</h2>
             </div>
             @if (!string.IsNullOrEmpty(proofOfPayment) && Model[0].Order.PaymentMethod == "GCash")
             {

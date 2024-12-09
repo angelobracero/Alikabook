@@ -66,10 +66,10 @@
             <div class="order-details__summary-estimated">
                 <h2>Estimated Total</h2>
                 <h2>₱ @total.ToString("N2")</h2>
-                <h2>Payment Status</h2>
-                <select></select>
+                <h2>Item Status</h2>
+                <h2>@Model[0].OrderHistory.ItemStatus</h2>
                 <h2>Payment Method</h2>
-                <h2>Cash on Delivery</h2>
+                <h2>@Model[0].OrderHistory.PaymentMethod</h2>
             </div>
          @*    <div class="order-details__summary-button-container">
                 <button class="order-details__summary-button">View Proof of Payment</button>
