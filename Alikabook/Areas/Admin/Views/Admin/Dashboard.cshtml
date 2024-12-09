@@ -3,7 +3,7 @@
 <main class="dashboard-section">
     <h1 class="add-books__title">Admin Dashboard</h1>
     <section class="display-dashboards">
-        <a class="data-box" asp-action="PendingOrders">
+        <a class="data-box" asp-action="AllOrders" asp-route-status="Pending">
             <div class="data-grid">
                 <div class="data">
                     <p>@Model.TotalPendingOrders</p>
@@ -81,15 +81,19 @@
         
     </section>
 
-    @* <h1 class="add-books__title" style="text-align: start; font-size: 2em;">Data Analytics</h1> *@
-    @* <section class="data-analytics"> *@
-    @*     <div class="bar-graph-container"> *@
-    @*         <canvas id="topSellingBooksChart" class="bar-graph"></canvas> *@
-    @*     </div> *@
-    @*     <div class="doughnut-graph-container"> *@
-    @*         <canvas id="salesByCategoryChart" class="doughnut-graph"></canvas> *@
-    @*     </div> *@
-    @* </section> *@
+     <h1 class="add-books__title" style="text-align: start; font-size: 2em;">Data Analytics</h1> 
+     <section class="data-analytics"> 
+         <div class="bar-graph-container"> 
+             <canvas id="topSellingBooksChart" class="bar-graph"></canvas> 
+         </div> 
+         <div class="doughnut-graph-container"> 
+             <canvas id="salesByCategoryChart" class="doughnut-graph"></canvas> 
+         </div>
+        <div class="bar-graph-container">
+            <canvas id="salesOverTimeChart" width="400" height="200"></canvas>
+        </div>
+
+     </section>
 </main>
 
 
@@ -98,28 +102,47 @@
     var bookTitles = @Html.Raw(Json.Serialize(ViewBag.TopSellingBooks));
     var unitsSold = @Html.Raw(Json.Serialize(ViewBag.UnitsSold));
 
+    // Truncate long book titles
+    bookTitles = bookTitles.map(function(title) {
+        return title.length > 20 ? title.substring(0, 20) + "..." : title;
+    });
+
     var ctx = document.getElementById('topSellingBooksChart').getContext('2d');
     var topSellingBooksChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: bookTitles, // X-axis: Book titles
+            labels: bookTitles,  // Shortened book titles
             datasets: [{
-                label: 'Most Sold Books',
-                data: unitsSold, // Y-axis: Number of units sold
+                label: 'Units Sold',  // Label for data
+                data: unitsSold,
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
             }]
         },
         options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
+            responsive: true,
             plugins: {
+                title: {
+                    display: true,
+                    text: 'Top-Selling Books'  // Title for the chart
+                },
                 legend: {
                     display: true
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        maxRotation: 45,  // Rotate labels to make them fit better
+                        minRotation: 30,
+                    },
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    beginAtZero: true
                 }
             }
         }
@@ -133,9 +156,9 @@
     var salesByCategoryChart = new Chart(ctx2, {
         type: 'doughnut',
         data: {
-            labels: categories, // e.g., Fiction, Non-Fiction, etc.
+            labels: categories,  // Categories
             datasets: [{
-                data: salesByCategory, // Sales by category
+                data: salesByCategory,  // Sales data
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -155,10 +178,43 @@
         },
         options: {
             plugins: {
+                title: {
+                    display: true,
+                    text: 'Sales by Category'  // Title for the chart
+                },
                 legend: {
                     display: true
                 }
             }
         }
     });
+
+    var ctx1 = document.getElementById('salesOverTimeChart').getContext('2d');
+    var salesOverTimeChart = new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], // Months
+            datasets: [{
+                label: 'Sales Over Time',
+                data: [500, 600, 700, 800, 900, 1000, 1100, 1300, 1500, 1700, 1900, 2100], // Sample sales data
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: false,
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Sales Over Time'
+                },
+                legend: {
+                    display: true
+                }
+            }
+        }
+    });
+
 </script>

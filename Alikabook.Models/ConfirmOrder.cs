@@ -29,5 +29,8 @@ namespace Alikabook.Models
         public string? ProofOfPayment { get; set; }
 
         public virtual ICollection<OrderDetails> OrderDetails { get; set; }
+
+        public string? GeneratedOrderFilePath { get; set; }
+
     }
 }

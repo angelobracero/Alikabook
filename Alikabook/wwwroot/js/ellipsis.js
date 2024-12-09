@@ -3,12 +3,21 @@ const proofModal = document.getElementById("proofModal");
 const closeModal = document.getElementById("closeModal");
 const proofImage = document.getElementById("proofImage");
 
+// Hidden inputs in the forms
+const declineOrderIdInput = document.getElementById("declineOrderId");
+const acceptOrderIdInput = document.getElementById("acceptOrderId");
+
 // Show modal on button click
 showProofModalBtn.forEach(button => {
     button.addEventListener("click", () => {
         // Get the proof of payment file name from the data-* attribute
         const proofImagePath = "/images/proofofpayment/" + button.getAttribute("data-proof-of-payment");
         proofImage.src = proofImagePath;
+
+        const orderId = button.getAttribute("data-id") 
+        declineOrderIdInput.value = orderId;
+        acceptOrderIdInput.value = orderId;
+
         proofModal.style.display = "flex";
     });
 });

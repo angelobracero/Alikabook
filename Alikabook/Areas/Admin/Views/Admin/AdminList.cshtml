@@ -21,7 +21,7 @@
         <thead class="order__table-header">
             <tr>
                 <th>
-                    <input type="checkbox" name="" id="" />
+                    @* <input type="checkbox" name="" id="" /> *@
                 </th>
                 <th>Id</th>
                 <th>Name</th>
@@ -29,7 +29,7 @@
                 <th>Date Created</th>
                 <th>Phone Number</th>
                 <th>User Type</th>
-                <th>Action</th>
+                @* <th>Action</th> *@
             </tr>
         </thead>
         <tbody class="order__table-body">
@@ -53,14 +53,14 @@
                     </td>
                     <td><i class="fa-solid fa-ellipsis-vertical"></i></td>
                     <td class="order__table-body-big">
-                        <input type="checkbox" name="" id="" />
+                        <div></div>@* <input type="checkbox" name="" id="" /> *@
                         <div>@i</div>
                         <div>@customer.FirstName @customer.LastName</div>
                         <div>@customer.Email</div>
                         <div>@customer.dateCreated.ToString("MMM. dd, yyyy")</div>
                         <div>@customer.PhoneNumber</div>
                         <div class="admin_PC">@Model.Roles</div>
-                        <i class="fa-solid fa-ellipsis"></i>
+                        @* <i class="fa-solid fa-ellipsis"></i> *@
                     </td>
                 </tr>
                 i++;

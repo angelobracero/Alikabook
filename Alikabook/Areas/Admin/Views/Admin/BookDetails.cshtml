@@ -16,6 +16,7 @@
                 <p class="book-details__info-author">
                     By @Model.Author
                 </p>
+                
                 <div class="book-details__info-star-stocks">
                     @if(Model.RatingCount != 0)
                     {
@@ -44,46 +45,40 @@
         </p>
     </section>
 
-    <section class="book-description">
+    <section class="book-description" style="margin-block-end: 5em;">
         <h1 class="book-description__h1">Other Book Details</h1>
         <hr class="book-description__hr" />
-        <p class="book-description__p">
-            <table>
-                <tbody>
-                    <tr>
-                        <td>ISBN</td>
-                        <td>9781444727364</td>
-                    </tr>
-                    <tr>
-                        <td>Author</td>
-                        <td>Sun Tzu</td>
-                    </tr>
-                    <tr>
-                        <td>Publisher</td>
-                        <td>Hodder & Stoughton</td>
-                    </tr>
-                    <tr>
-                        <td>Publication Year</td>
-                        <td>1981</td>
-                    </tr>
-                    <tr>
-                        <td>Length</td>
-                        <td>12.9</td>
-                    </tr>
-                    <tr>
-                        <td>Width</td>
-                        <td>0.7</td>
-                    </tr>
-                    <tr>
-                        <td>Height</td>
-                        <td>19.7</td>
-                    </tr>
-                    <tr>
-                        <td>Pages</td>
-                        <td>102</td>
-                    </tr>
-                </tbody>
-            </table>
-        </p>
+        <table class="book-description__details">
+            <tbody>
+                <tr>
+                    <td>ISBN</td>
+                    <td>@Model.ISBN</td>
+                </tr>
+                <tr>
+                    <td>Publisher</td>
+                    <td>@Model.Publisher</td>
+                </tr>
+                <tr>
+                    <td>Publication Year</td>
+                    <td>@Model.Year</td>
+                </tr>
+                <tr>
+                    <td>Length</td>
+                    <td>@Model.Length cm</td>
+                </tr>
+                <tr>
+                    <td>Width</td>
+                    <td>@Model.Width cm</td>
+                </tr>
+                <tr>
+                    <td>Height</td>
+                    <td>@Model.Height cm</td>
+                </tr>
+                <tr>
+                    <td>Pages</td>
+                    <td>@Model.Pages pages</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 </main>

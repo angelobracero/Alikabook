@@ -1,28 +1,30 @@
-﻿//For Item Quantity
-const itemQty = document.getElementById('itemQty');
-const hiddenQty = document.getElementById('hiddenQty');
+﻿const itemQty = document.getElementById('itemQty');
 const decrease = document.getElementById('btnDecrease');
 const increase = document.getElementById('btnIncrease');
 
-let qty = 1;
-
+// Update quantity with increase button
 increase.addEventListener('click', () => {
-    qty++;
-    itemQty.textContent = qty
-    hiddenQty.value = qty;
-})
+    let qty = parseInt(itemQty.value, 10) || 1;
+    itemQty.value = qty + 1;
+});
 
+// Update quantity with decrease button
 decrease.addEventListener('click', () => {
-    if (qty <= 1) {
-        itemQty.textContent = 1
-        hiddenQty.value = 1;
+    let qty = parseInt(itemQty.value, 10) || 1;
+    if (qty > 1) {
+        itemQty.value = qty - 1;
     }
-    else {
-        qty--;
-        itemQty.textContent = qty
-        hiddenQty.value = qty;
+});
+
+// Ensure input value is valid when manually changed
+itemQty.addEventListener('input', () => {
+    let qty = parseInt(itemQty.value, 10);
+    if (isNaN(qty) || qty < 1) {
+        itemQty.value = 1; // Reset to 1 if input is invalid
     }
-})
+});
+
+
 
 //For Item Rating
 const itemRating = document.getElementById('itemRating');

@@ -12,17 +12,14 @@
             <li class="@("Pending" == ViewBag.Status ? "active" : "")">
                 <a asp-action="AllOrders" asp-route-status="Pending" asp-route-page="1">Pending</a>
             </li>
-            <li class="@("Processing" == ViewBag.Status ? "active" : "")">
-                <a asp-action="AllOrders" asp-route-status="Processing" asp-route-page="1">Processing</a>
-            </li>
             <li class="@("Delivering" == ViewBag.Status ? "active" : "")">
                 <a asp-action="AllOrders" asp-route-status="Delivering" asp-route-page="1">Delivering</a>
             </li>
             <li class="@("Completed" == ViewBag.Status ? "active" : "")">
                 <a asp-action="AllOrders" asp-route-status="Completed" asp-route-page="1">Completed</a>
             </li>
-            <li class="@("Failed" == ViewBag.Status ? "active" : "")">
-                <a asp-action="AllOrders" asp-route-status="Failed" asp-route-page="1">Failed</a>
+            <li class="@("Declined" == ViewBag.Status ? "active" : "")">
+                <a asp-action="AllOrders" asp-route-status="Declined" asp-route-page="1">Declined</a>
             </li>
         </ul>
     </nav>
@@ -36,7 +33,7 @@
             <thead class="order__table-header">
                 <tr>
                     <th>
-                        <input type="checkbox" name="" id="" />
+                        @* <input type="checkbox" name="" id="" /> *@
                     </th>
                     <th>Id</th>
                     <th>Name</th>
@@ -45,7 +42,7 @@
                     <th>Payment Method</th>
                     <th>Status</th>
                     <th>Action</th>
-                </tr>
+                </tr>   
             </thead>
 
             <tbody class="order__table-body">
@@ -58,7 +55,6 @@
 
                     if(order.Order is null)
                     {
-
                         <tr>
                             <td class="order__table-body-img">
                                 <img src="~/images/profile_pic/@image" alt="@order.User.FirstName @order.User.LastName profile picture" />
@@ -75,17 +71,17 @@
                             <td class="order__action-cell">
                                 <i class="fa-solid fa-ellipsis-vertical" onclick="toggleDropdown(event)"></i>
                                 <div class="dropdown">
-                                    <a href="#view" class="dropdown-item">View Profile</a>
+                                    <a asp-action="OrderDetailsHistory" asp-route-id="@order.OrderHistoryId" class="dropdown-item">View Order</a>
                                     @if (!string.IsNullOrEmpty(proofOfPayment) && order.Order?.PaymentMethod == "GCash")
                                     {
-                                        <button type="button" class="dropdown-item" data-proof-of-payment="@proofOfPayment" id="showProofModalBtn">View Proof of Payment</button>
+                                        <button type="button" class="dropdown-item" data-proof-of-payment="@proofOfPayment" data-id="@order.Order?.OrderId" id="showProofModalBtn">View Proof of Payment</button>
                                     }
 
                                     @* <a href="#delete" class="dropdown-item" onclick="deleteOrder('@order.OrderHistory.OrderHistoryId')">Delete</a> *@
                                 </div>
                             </td>
                             <td class="order__table-body-big">
-                                <input type="checkbox" name="" id="" />
+                                <div>@* <input type="checkbox" name="" id="" /> *@ </div>
                                 <div>@order.OrderDetailId</div>
                                 <div>@order.User.FirstName @order.User.LastName</div>
                                 <div>@order.OrderHistory.OrderDate.ToString("dd MMM yyyy")</div>
@@ -95,10 +91,10 @@
                                 <div class="order__action-cell">
                                     <i class="fa-solid fa-ellipsis-vertical" onclick="toggleDropdown(event)"></i>
                                     <div class="dropdown">
-                                        <a href="#view" class="dropdown-item">View Profile</a>
+                                        <a asp-action="OrderDetailsHistory" asp-route-id="@order.OrderHistoryId" class="dropdown-item">View Order</a>
                                         @if (!string.IsNullOrEmpty(proofOfPayment) && order.Order?.PaymentMethod == "GCash")
                                         {
-                                            <button type="button" class="dropdown-item" data-proof-of-payment="@proofOfPayment" id="showProofModalBtn">View Proof of Payment</button>
+                                            <button type="button" class="dropdown-item" data-proof-of-payment="@proofOfPayment" data-id="@order.Order?.OrderId" id="showProofModalBtn">View Proof of Payment</button>
                                         }
 
                                         @* <a href="#delete" class="dropdown-item" onclick="deleteOrder('@order.OrderHistory.OrderHistoryId')">Delete</a> *@
@@ -127,23 +123,24 @@
                                 <div class="dropdown">
                                     <div class="dropdown-item dropdown-item-status" onclick="toggleDropdown(event)">Change Status</div>
                                     <div class="dropdown-item-status-items">
-                                        <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Pending')">Pending</button>
-                                        <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Processing')">Processing</button>
+                                        @*  <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Pending')">Pending</button> *@
                                         <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Delivering')">Delivering</button>
                                         <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Completed')">Completed</button>
-                                        <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Failed')">Failed</button>
+                                        @if (!string.IsNullOrEmpty(proofOfPayment) && order.Order?.PaymentMethod == "GCash") {
+                                            <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Declined')">Declined</button>
+                                        }
                                     </div>
                                     @if (!string.IsNullOrEmpty(proofOfPayment) && order.Order?.PaymentMethod == "GCash")
                                     {
-                                        <button type="button" class="dropdown-item" data-proof-of-payment="@proofOfPayment" id="showProofModalBtn">View Proof of Payment</button>
+                                        <button type="button" class="dropdown-item" data-proof-of-payment="@proofOfPayment" data-id="@order.OrderId" id="showProofModalBtn">View Proof of Payment</button>
                                     }
 
-                                    <a href="#view" class="dropdown-item">View Profile</a>
+                                    <a asp-action="OrderDetails" asp-route-id="@order.OrderId" class="dropdown-item">View Order</a>
                                     @* <a href="#delete" class="dropdown-item" onclick="deleteOrder('@order.Order.OrderId')">Delete</a> *@
                                 </div>
                             </td>
                             <td class="order__table-body-big">
-                                <input type="checkbox" name="" id="" />
+                                <div></div>@* <input type="checkbox" name="" id="" /> *@
                                 <div>@order.OrderDetailId</div>
                                 <div>@order.User.FirstName @order.User.LastName</div>
                                 <div>@order.Order.OrderDate.ToString("dd MMM yyyy")</div>
@@ -155,16 +152,25 @@
                                     <div class="dropdown">
                                         <div class="dropdown-item dropdown-item-status" onclick="toggleDropdown(event)">Change Status</div>
                                         <div class="dropdown-item-status-items">
-                                            <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Pending')">Pending</button>
-                                            <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Processing')">Processing</button>
-                                            <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Delivering')">Delivering</button>
-                                            <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Completed')">Completed</button>
-                                            <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Failed')">Failed</button>
+                                            @* <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Pending')">Pending</button> *@
+                                            @if(order.Order.ItemStatus is not "Delivering" ) {
+                                                <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Delivering')">Delivering</button>
+                                                @if (!string.IsNullOrEmpty(proofOfPayment) && order.Order?.PaymentMethod == "GCash")
+                                                {
+                                                    <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Declined')">Declined</button>
+                                                }
+                                            }
+                                            @if (order.Order.ItemStatus is not "Pending") {
+                                                <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Completed')">Completed</button>
+                                            }
+
+                                            
                                         </div>
                                             @if (!string.IsNullOrEmpty(proofOfPayment) && order.Order?.PaymentMethod == "GCash")
                                             {
-                                                <button type="button" class="dropdown-item" data-proof-of-payment="@proofOfPayment" id="showProofModalBtn">View Proof of Payment</button>
+                                            <button type="button" class="dropdown-item" data-proof-of-payment="@proofOfPayment" data-id="@order.Order?.OrderId" id="showProofModalBtn">View Proof of Payment</button>
                                             }
+                                        <a asp-action="OrderDetails" asp-route-id="@order.OrderId" class="dropdown-item">View Order</a>
 
                                         @* <a href="#delete" class="dropdown-item" onclick="deleteOrder('@order.Order.OrderId')">Delete</a> *@
                                     </div>
@@ -204,8 +210,6 @@
             }
         </div>
     }
-
-
 </main>
 
 <div id="proofModal" class="modal">
@@ -213,7 +217,19 @@
         <span id="closeModal" class="close">&times;</span>
         <img id="proofImage" src="" alt="Proof of Payment" />
     </div>
+    <form asp-action="DeclinedStatus" method="post">
+        <input type="hidden" id="declineOrderId" name="orderId" value="" /> 
+        <button class="modal-decline-button">&#120;</button>
+    </form>
+    <form asp-action="DeclinedStatus" method="post">
+        <input type="hidden" id="acceptOrderId" name="orderId" value="" />
+        <input type="hidden" name="status" value="Delivering" />
+        <button class="modal-accept-button">&#10004;</button>
+    </form>
 </div>
 
 
 <script src="~/js/ellipsis.js" asp-append-version="true"></script>
+<script>
+    document.getElementById("")
+</script>

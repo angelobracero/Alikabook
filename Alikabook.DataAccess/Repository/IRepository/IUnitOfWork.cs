@@ -22,5 +22,6 @@ namespace Alikabook.DataAccess.Repository.IRepository
 
 
         void Save();
+        Task SaveAsync();
     }
 }

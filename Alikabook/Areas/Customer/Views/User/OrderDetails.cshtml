@@ -1,0 +1,82 @@
+﻿@model List<OrderDetails>
+
+<main class="add-books container" style="margin-block-end: 10em;">
+    <h1 class="add-books__title">Order #@Model[0].OrderId</h1>
+    <div class="order-detail-container">
+        <table class="order-detail-table">
+            <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    <tr>
+                        <td>
+                            <div>
+                                <img src="~/images/books/@order.Book.Image" alt="Book Image" />
+                            </div>
+                            <div>
+                                <h3>@order.BookTitle</h3>
+                                <p>QTY: @order.Quantity</p>
+                            </div>
+                        </td>
+                        <td><h3>₱ @(order.Price * order.Quantity)</h3></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        @* Calculate Subtotal *@
+        @{
+            decimal subtotal = Model.Sum(order => (decimal)(order.Price * order.Quantity));
+            decimal shippingFee = 85;
+            decimal tax = 25.23m;
+            decimal total = subtotal + shippingFee + tax;
+        }
+
+        <section class="order-details__summary">
+            <h2>Summary</h2>
+            <div class="order-details__summary-subtotal">
+                <div>
+                    <h4>
+                        Subtotal
+                    </h4>
+                    <p>
+                        Shipping Fee
+                    </p>
+                    <p>
+                        Tax
+                    </p>
+                </div>
+                <div>
+                    <h4>
+                        ₱ @subtotal.ToString("N2")
+                    </h4>
+                    <p>
+                        ₱ @shippingFee.ToString("N2")
+                    </p>
+                    <p>
+                        ₱ @tax.ToString("N2")
+                    </p>
+                </div>
+            </div>
+            <div class="order-details__summary-estimated">
+                <h2>Estimated Total</h2>
+                <h2>₱ @total.ToString("N2")</h2>
+                <h2>Payment Status</h2>
+                <h2>Pending</h2>
+                <h2>Payment Method</h2>
+                <h2>Cash on Delivery</h2>
+            </div>
+            @* <div class="order-details__summary-button-container">
+                <button class="order-details__summary-button">View Proof of Payment</button>
+            </div> *@
+
+
+        </section>
+    </div>
+</main>
+

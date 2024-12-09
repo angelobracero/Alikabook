@@ -5,6 +5,10 @@
     int index = 0;
 }
 
+<form asp-action="RemoveFromCart" method="post" id="removeForm">
+    <input type="hidden" name="id" id="cartItemId" value="" />
+</form>
+
 <form asp-action="SubmitOrder" method="post">
     <main class="cart-page container @(Model is null || !Model.Any() ? "cart-page-full" : "")">
         <section class="cart">
@@ -21,6 +25,7 @@
                             <th>Book</th>
                             <th>Price</th>
                             <th>Total</th>
+                            <th></th>
                         </tr>
                     </thead>
                 }
@@ -40,9 +45,9 @@
                                         <h1>@cart.Title</h1>
                                         <div class="cart__item-qty">
                                             QTY:
-                                            <button type="button" class="btnDecrease">-</button>
+                                            @* <button type="button" class="btnDecrease">-</button> *@
                                             <p class="cartQuantity">@cart.Quantity</p>
-                                            <button type="button" class="btnIncrease">+</button>
+                                            @* <button type="button" class="btnIncrease">+</button> *@
                                         </div>
 
                                         @*  Hidden Inputs for OrderDetails  *@
@@ -52,9 +57,15 @@
                                         <input type="hidden" name="OrderDetails[@index].Price" value="@cart.Price" />
 
                                         <p class="bookPrice cart__item-price">₱@cart.Price</p>
+                                        <div class="bookPrice cart__item-price">
+                                            <button type="button" class="cart__item-remove mobile" data-cart-id="@cart.Id">Remove</button>
+                                        </div>
                                     </div>
                                     <div class="bookPrice cart__item-total">₱@cart.Price</div>
                                     <div class="bookTotalPrice cart__item-total">₱@cart.Total</div>
+                                    <div class="bookTotalPrice cart__item-total">
+                                        <button type="button" class="cart__item-remove pc" data-cart-id="@cart.Id">Remove</button>
+                                    </div>
                                 </td>
                             </tr>
                             index++;

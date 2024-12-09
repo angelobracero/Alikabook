@@ -1,0 +1,17 @@
+﻿@model Category
+
+<main class="add-books container">
+    <h1 class="add-books__title">Edit Category</h1>
+    <div class="add-books__form">
+        <form method="post">
+            <div class="add-books__form-form-group required" style="grid-column: span 2">
+                <label asp-for="Name">Category Name</label>
+                <input asp-for="Name" type="text" required />
+            </div>
+            <div class="add-books__form-buttons">
+                <button type="submit">Edit Category</button>
+            </div>
+        </form>
+    </div>
+</main>
+

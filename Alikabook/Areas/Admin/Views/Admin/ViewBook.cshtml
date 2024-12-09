@@ -3,14 +3,33 @@
 <main class="add-books container">
     <h1 class="add-books__title">View Books</h1>
 
-    <!-- Search Form -->
-    <div>
-        <form asp-action="ViewBook" method="get" class="view__books-search">
-            <input type="text" name="searchQuery" value="@Model.SearchQuery" placeholder="Search Books" />
-            <input type="submit" value="" />
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </form>
-    </div>
+    <!-- Filters Form -->
+    <form asp-action="ViewBook" method="get" class="view__books-filters">
+        <input type="text" name="searchQuery" value="@Model.SearchQuery" placeholder="Search Books" />
+
+        <select name="categoryId" id="categoryFilter" onchange="this.form.submit()">
+            <option value="">All</option>
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category.Id" >
+                    @category.Name
+                </option>
+            }
+        </select>
+
+        <select name="subcategoryId" id="subcategoryFilter" onchange="this.form.submit()" @(Model.SelectedCategoryId == null ? "disabled" : "")>
+            <option value="">All</option>
+            @foreach (var subcategory in Model.Subcategories)
+            {
+                <option value="@subcategory.Id">
+                    @subcategory.Name
+                </option>
+            }
+        </select>
+
+
+        <input type="submit" value="Apply Filters" />
+    </form>
 
     <!-- Books List -->
     <div class="view-books">

@@ -1,0 +1,136 @@
+﻿@model List<OrderDetails>
+
+<main class="add-books container">
+    <h1 class="add-books__title">Order #@Model[0].OrderId</h1>
+    <div class="order-detail-container">
+        <table class="order-detail-table">
+            <thead>
+                <tr>
+                    <th>Book</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var order in Model) {
+
+                    <tr>
+                        <td>
+                            <div>
+                                <img src="~/images/books/@order.Book.Image" alt="Book Image" />
+                            </div>
+                            <div>
+                                <h3>@order.Book.Title</h3>
+                                <p>QTY: @order.Quantity</p>
+                            </div>
+                        </td>
+                        <td><h3>₱ @(order.Price * order.Quantity)</h3></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        @* Calculate Subtotal *@
+        @{
+            decimal subtotal = Model.Sum(order => (decimal)(order.Price * order.Quantity));
+            decimal shippingFee = 85; 
+            decimal tax = 25.23m; 
+            decimal total = subtotal + shippingFee + tax;
+            var proofOfPayment = Model[0].Order?.ProofOfPayment;
+        }
+
+        <section class="order-details__summary">
+            <h2>Summary</h2>
+            <div class="order-details__summary-subtotal">
+                <div>
+                    <h4>
+                        Subtotal
+                    </h4>
+                    <p>
+                        Shipping Fee
+                    </p>
+                    <p>
+                        Tax
+                    </p>
+                </div>
+                <div>
+                    <h4>
+                        ₱ @subtotal.ToString("N2")
+                    </h4>
+                    <p>
+                        ₱ @shippingFee.ToString("N2")
+                    </p>
+                    <p>
+                        ₱ @tax.ToString("N2")
+                    </p>
+                </div>
+            </div>
+            <div class="order-details__summary-estimated">
+                <h2>Estimated Total</h2>
+                <h2>₱ @total.ToString("N2")</h2>
+                <h2>Payment Status</h2>
+                <select></select>
+                <h2>Payment Method</h2>
+                <h2>Cash on Delivery</h2>
+            </div>
+            @if (!string.IsNullOrEmpty(proofOfPayment) && Model[0].Order.PaymentMethod == "GCash")
+            {
+                <div class="order-details__summary-button-container">
+                    <button class="order-details__summary-button" data-proof-of-payment="@proofOfPayment" id="showProofModalBtn">View Proof of Payment</button>
+                </div>
+            }
+            <div class="order-details__summary-button-container">
+                @if(Model[0].Order.GeneratedOrderFilePath is not null) {
+                    <form asp-action="DownloadExistingOrderFile" method="post">
+                        <input type="hidden" name="filePath" value="@Model[0].Order.GeneratedOrderFilePath" />
+                        <button class="order-details__summary-button" type="submit">Download Word Document</button>
+                    </form>
+                    
+                } else {
+                    <form asp-action="DownloadOrderWord" method="post">
+                        <input type="hidden" name="orderId" value="@Model[0].OrderId" />
+                        <button class="order-details__summary-button" type="submit">Generate Word Document</button>
+                    </form>
+                }
+                
+            </div>
+            
+        </section>
+    </div>
+</main>
+
+<div id="proofModal" class="modal">
+    <div class="modal-content">
+        <span id="closeModal" class="close">&times;</span>
+        <img id="proofImage" src="" alt="Proof of Payment" />
+    </div>
+</div>
+
+<script>
+        const showProofModalBtn = document.querySelectorAll("[id='showProofModalBtn']");
+    const proofModal = document.getElementById("proofModal");
+    const closeModal = document.getElementById("closeModal");
+    const proofImage = document.getElementById("proofImage");
+
+    // Show modal on button click
+    showProofModalBtn.forEach(button => {
+        button.addEventListener("click", () => {
+            // Get the proof of payment file name from the data-* attribute
+            const proofImagePath = "/images/proofofpayment/" + button.getAttribute("data-proof-of-payment");
+            proofImage.src = proofImagePath;
+            proofModal.style.display = "flex";
+        });
+    });
+
+    // Close modal on close button click
+    closeModal.addEventListener("click", () => {
+        proofModal.style.display = "none";
+    });
+
+    // Close modal if clicked outside the modal content
+    window.addEventListener("click", (event) => {
+        if (event.target === proofModal) {
+            proofModal.style.display = "none";
+        }
+    });
+</script>
+

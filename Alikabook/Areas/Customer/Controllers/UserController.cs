@@ -162,11 +162,9 @@ namespace Alikabook.Areas.User.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            List<OrderDetails> orders = _unitOfWork.OrderDetails.GetAll()
+            List<ConfirmOrder> orders = _unitOfWork.ConfirmOrder.GetAll()
                        .Where(o => o.UserId == userId)
-                       .Where(o => o.Order.ItemStatus.ToLower() == "pending"|| o.Order.ItemStatus.ToLower() == "processing" || o.Order.ItemStatus.ToLower() == "delivering")
-                       .Include(o => o.Book)
-                       .Include(o => o.Order)
+                       .AsNoTracking()
                        .ToList();
 
             return View(orders);
@@ -176,15 +174,57 @@ namespace Alikabook.Areas.User.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            List<OrderDetails> orders = _unitOfWork.OrderDetails.GetAll()
-                                .Where(o => o.UserId == userId)
-                                .Where(o => o.OrderHistory != null)
-                                .Include(o => o.Book)
-                                .Include(o => o.OrderHistory)
-                                .ToList();
+
+            List<OrderHistory> orders = _unitOfWork.OrderHistory.GetAll()
+                       .Where(o => o.UserId == userId)
+                       .AsNoTracking()
+                       .ToList();
 
             return View(orders);
         }
+
+        public IActionResult OrderDetails(int? id)
+        {
+            if (id is null)
+            {
+                return BadRequest("Order ID is required.");
+            }
+
+            var orders = _unitOfWork.OrderDetails.GetAll()
+                                                 .Where(od => od.OrderId == id)
+                                                 .Include(od => od.Order)
+                                                 .Include(od => od.Book)
+                                                 .AsNoTracking()
+                                                 .ToList();
+            if (orders is null)
+            {
+                return NotFound("Order is not found.");
+            }
+
+            return View(orders);
+        }
+
+        public IActionResult OrderDetailsHistory(int? id)
+        {
+            if (id is null)
+            {
+                return BadRequest("Order ID is required.");
+            }
+
+            var orders = _unitOfWork.OrderDetails.GetAll()
+                                                 .Where(od => od.OrderHistoryId == id)
+                                                 .Include(od => od.OrderHistory)
+                                                 .Include(od => od.Book)
+                                                 .AsNoTracking()
+                                                 .ToList();
+            if (orders is null)
+            {
+                return NotFound("Order is not found.");
+            }
+
+            return View(orders);
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

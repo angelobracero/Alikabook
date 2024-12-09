@@ -29,6 +29,10 @@ namespace Alikabook.Models
 
         public DateTime? DeliveredDate { get; set; }
 
+        public string? ProofOfPayment { get; set; }
+
         public virtual ICollection<OrderDetails> OrderDetails { get; set; } = new List<OrderDetails>();
+
+        public string? GeneratedOrderFilePath { get; set; }
     }
 }

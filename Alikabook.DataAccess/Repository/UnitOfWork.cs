@@ -46,5 +46,10 @@ namespace Alikabook.DataAccess.Repository
         {
             _db.SaveChanges();
         }
+
+        public async Task SaveAsync()
+        {
+            _db.SaveChangesAsync();
+        }
     }
 }

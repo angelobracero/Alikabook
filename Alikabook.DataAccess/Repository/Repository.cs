@@ -33,6 +33,14 @@ namespace Alikabook.DataAccess.Repository
             return query.FirstOrDefault();
         }
 
+        public async Task<T> GetAsync(Expression<Func<T, bool>> filter)
+        {
+            IQueryable<T> query = dbSet;
+            query = query.Where(filter);
+            return await query.FirstOrDefaultAsync();
+        }
+
+
         public IQueryable<T> GetWithIncludes(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includes)
         {
             IQueryable<T> query = dbSet;

@@ -262,9 +262,10 @@ namespace Alikabook.Areas.User.Controllers
 
             _unitOfWork.Save();
             TempData["success"] = "Book successfully added.";
-            return RedirectToAction("Index");
+            return RedirectToAction("ViewCart");
         }
 
+       
 
 
         [Authorize(Roles = SD.Role_Customer)]
@@ -279,6 +280,32 @@ namespace Alikabook.Areas.User.Controllers
                                                    .ToList();
             return View(cartItems);
         }
+
+        [HttpPost]
+        public IActionResult RemoveFromCart(int? id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (id == null)
+            {
+                return BadRequest("Cart ID is required.");
+            }
+
+            var cart = _unitOfWork.Cart.Get(c => c.Id == id);
+            if (cart == null)
+            {
+                return NotFound("Cart item not found.");
+            }
+
+            _unitOfWork.Cart.Remove(cart);
+            _unitOfWork.Save();
+
+            return RedirectToAction("ViewCart");
+
+        }
+
+
+
 
         [HttpPost]
         public IActionResult SubmitOrder(List<OrderDetails> OrderDetails, ConfirmOrder confirmOrder)
@@ -297,7 +324,7 @@ namespace Alikabook.Areas.User.Controllers
             };
 
             bool stockIsSufficient = true;
-            var outOfStockBooks = new List<string>();
+            var outOfStockBooks = new List<string>();   
 
             // Check stock for each order detail
             foreach (var orderDetail in OrderDetails)

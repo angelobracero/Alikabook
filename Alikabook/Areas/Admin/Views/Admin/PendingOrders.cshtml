@@ -9,10 +9,9 @@
         <ul>
             <li><a asp-action="AllOrders">All Orders</a></li>
             <li class="active"><a>Pending</a></li>
-            <li><a asp-action="ProcessingOrders">Processing</a></li>
             <li><a asp-action="DeliveringOrders">Delivering</a></li>
             <li><a asp-action="CompletedOrders">Completed</a></li>
-            <li><a asp-action="FailedOrders">Failed</a></li>
+            <li><a asp-action="DeclinedOrders">Declined</a></li>
         </ul>
     </nav>
 
@@ -62,10 +61,9 @@
                             <div class="dropdown">
                                 <div class="dropdown-item dropdown-item-status" onclick="toggleDropdown(event)">Change Status</div>
                                 <div class="dropdown-item-status-items">
-                                    <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Processing')">Processing</button>
                                     <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Delivering')">Delivering</button>
                                     <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Completed')">Completed</button>
-                                    <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Failed')">Failed</button>
+                                    <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Declined')">Declined</button>
                                 </div>
                                 <a href="#view" class="dropdown-item">View Profile</a>
                                 @if (!string.IsNullOrEmpty(proofOfPayment) && order.Order?.PaymentMethod == "GCash")
@@ -89,10 +87,9 @@
                                 <div class="dropdown">
                                     <div class="dropdown-item dropdown-item-status" onclick="toggleDropdown(event)">Change Status</div>
                                     <div class="dropdown-item-status-items">
-                                        <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Processing')">Processing</button>
                                         <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Delivering')">Delivering</button>
                                         <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Completed')">Completed</button>
-                                        <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Failed')">Failed</button>
+                                        <button type="submit" onclick="setStatus('@order.Order.OrderId', 'Declined')">Declined</button>
                                     </div>
                                     <a href="#view" class="dropdown-item">View Profile</a>
                                      @if (!string.IsNullOrEmpty(proofOfPayment) && order.Order?.PaymentMethod == "GCash")
