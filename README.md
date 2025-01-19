@@ -39,3 +39,16 @@
 │   └── /Repository.cs     # Repository classes for data handling
 ├── /Alikabook.Models       # Data models and DTOs
 └── /Alikabook.Utility      # Helper classes and utilities      
+```
+
+## 🛠️ Setup and Installation  
+
+### Prerequisites  
+- Visual Studio (or another C# IDE)  
+- SQL Server  
+
+### Steps  
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/angelobracero/Alikabook.git
+   cd Alikabook
