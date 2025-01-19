@@ -52,3 +52,27 @@
    ```bash
    git clone https://github.com/angelobracero/Alikabook.git
    cd Alikabook
+   ```
+2. Install dependencies:  
+   - Open the solution in Visual Studio and restore NuGet packages.
+
+3. Set up the database:  
+   - Set up a SQL Server database and update the connection string in `appsettings.json`.
+
+4. Run the migrations:  
+   - Apply database migrations to set up the schema. You can run this from the terminal or package manager console:
+     ```bash
+     dotnet ef database update
+     ```
+
+5. Start the application:  
+   - Run the application using Visual Studio or from the command line:
+     ```bash
+     dotnet run
+     ```
+
+6. Visit the app in your browser:  
+   ```plaintext
+   http://localhost:5000
+   ```
+
