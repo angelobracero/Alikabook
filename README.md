@@ -16,28 +16,26 @@
 
 ## 🚀 Technologies Used  
 
-- **Frontend**:  
-  - React  
-  - Next.js  
-  - Tailwind CSS  
-
-- **Backend**:  
-  - Node.js  
-  - Express.js  
-
-- **Database**:  
-  - MongoDB  
+- **HTML**:
+- **CSS**:
+- **ASP.NET**:
+- **SQL Server**:
 
 ---
 
 ## 📂 File Structure  
 
 ```plaintext
-├── /src
-│   ├── /components       # Reusable UI components
-│   ├── /pages            # Next.js pages (routes)
-│   ├── /styles           # Tailwind CSS and global styles
-│   └── /utils            # Utility functions
-├── /public               # Static files and assets
-├── package.json          # Dependencies and scripts
-└── README.md             # Project documentation
+├── /Alikabook
+│   ├── /wwwroot           # Static files like CSS, JS, images
+│   ├── /Areas             # Areas for different sections of the app
+│   ├── /Controllers       # Controllers for the application logic
+│   ├── /Views             # Views (Razor pages) for rendering content
+│   ├── appsettings.json   # Configuration file
+│   └── Program.cs         # Main application entry point
+├── /Alikabook.DataAccess
+│   ├── /Data              # Database context and models
+│   ├── /Migration         # Migrations for database schema changes
+│   └── /Repository.cs     # Repository classes for data handling
+├── /Alikabook.Models       # Data models and DTOs
+└── /Alikabook.Utility      # Helper classes and utilities      
